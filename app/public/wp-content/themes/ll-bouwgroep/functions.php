@@ -26,3 +26,4 @@ require_once LLB_DIR . '/inc/compat/cf7.php';
 require_once LLB_DIR . '/inc/meta-boxes.php';
 require_once LLB_DIR . '/inc/content-defaults.php';
 require_once LLB_DIR . '/inc/import.php';
+require_once LLB_DIR . '/inc/demo-images.php';

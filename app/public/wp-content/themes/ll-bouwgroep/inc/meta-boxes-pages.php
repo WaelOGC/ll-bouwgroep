@@ -170,6 +170,11 @@ function llb_meta_box_page_config() {
 			'description' => $page_notice,
 			'fields'      => array(
 				array(
+					'key'   => '_llb_why_image',
+					'type'  => 'image',
+					'label' => __( 'Image', 'll-bouwgroep' ),
+				),
+				array(
 					'key'   => '_llb_why_heading',
 					'type'  => 'text',
 					'label' => __( 'Heading (H2)', 'll-bouwgroep' ),

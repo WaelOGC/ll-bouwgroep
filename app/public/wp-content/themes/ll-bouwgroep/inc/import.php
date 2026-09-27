@@ -208,6 +208,11 @@ function llb_run_content_import() {
 
 	set_theme_mod( 'nav_menu_locations', $locations );
 
+	if ( function_exists( 'llb_import_demo_images' ) ) {
+		llb_import_demo_images();
+		update_option( 'llb_demo_images_version', (string) LLB_VERSION );
+	}
+
 	return array(
 		'created' => $created,
 		'skipped' => $skipped,

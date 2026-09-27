@@ -1,6 +1,6 @@
 <?php
 /**
- * Home — why us (text + decoration only).
+ * Home — why us.
  *
  * @package LL_Bouwgroep
  */
@@ -9,11 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$post_id = get_the_ID();
-$heading = trim( (string) llb_get_meta( $post_id, '_llb_why_heading' ) );
-$text    = trim( (string) llb_get_meta( $post_id, '_llb_why_text' ) );
+$post_id  = get_the_ID();
+$heading  = trim( (string) llb_get_meta( $post_id, '_llb_why_heading' ) );
+$text     = trim( (string) llb_get_meta( $post_id, '_llb_why_text' ) );
+$image_id = absint( llb_get_meta( $post_id, '_llb_why_image' ) );
 
-if ( '' === $heading && '' === $text ) {
+if ( '' === $heading && '' === $text && ! $image_id ) {
 	return;
 }
 ?>
@@ -31,8 +32,25 @@ if ( '' === $heading && '' === $text ) {
 				</div>
 			<?php endif; ?>
 		</div>
-		<div class="llb-home-why__aside" aria-hidden="true">
-			<span class="llb-home-why__shape"></span>
-		</div>
+		<?php if ( $image_id ) : ?>
+			<div class="llb-home-why__aside">
+				<?php
+				echo wp_get_attachment_image(
+					$image_id,
+					'large',
+					false,
+					array(
+						'class'    => 'llb-home-why__image',
+						'loading'  => 'lazy',
+						'decoding' => 'async',
+					)
+				);
+				?>
+			</div>
+		<?php else : ?>
+			<div class="llb-home-why__aside" aria-hidden="true">
+				<span class="llb-home-why__shape"></span>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>

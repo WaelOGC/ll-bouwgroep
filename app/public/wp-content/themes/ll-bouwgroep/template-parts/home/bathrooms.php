@@ -33,7 +33,7 @@ if ( '' === $heading && '' === $text && '' === $subheading && '' === $btn_text &
 				<?php
 				echo wp_get_attachment_image(
 					$image_id,
-					'llb-card',
+					'large',
 					false,
 					array(
 						'class'    => 'llb-home-bath__image',
