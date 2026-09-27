@@ -290,6 +290,12 @@ function llb_render_meta_box( $post, $metabox ) {
 
 	if ( ! empty( $box['fields'] ) ) {
 		foreach ( $box['fields'] as $field ) {
+			if ( ! empty( $field['templates'] ) && is_array( $field['templates'] ) ) {
+				$current = get_page_template_slug( $post->ID );
+				if ( ! in_array( $current, $field['templates'], true ) ) {
+					continue;
+				}
+			}
 			llb_render_meta_field( $post->ID, $field );
 		}
 	}
@@ -608,6 +614,12 @@ function llb_meta_box_fields_flat( $post_type, $post_id = null ) {
 		}
 
 		foreach ( $box['fields'] as $field ) {
+			if ( 'page' === $post_type && $post_id && ! empty( $field['templates'] ) && is_array( $field['templates'] ) ) {
+				$current = get_page_template_slug( $post_id );
+				if ( ! in_array( $current, $field['templates'], true ) ) {
+					continue;
+				}
+			}
 			$fields[] = $field;
 		}
 	}

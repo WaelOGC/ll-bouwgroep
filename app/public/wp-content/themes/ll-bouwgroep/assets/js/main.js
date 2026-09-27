@@ -7,6 +7,8 @@
 (function () {
 	'use strict';
 
+	document.documentElement.classList.add('llb-js');
+
 	var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	if (!reduceMotion) {
 		document.body.classList.add('llb-motion');
@@ -73,27 +75,52 @@
 		});
 	});
 
-	/* Image reveal (.rv) */
+	/* Image reveal (.rv) — hidden only after llb-js + llb-motion */
 	var rvs = document.querySelectorAll('.rv');
+
+	function revealRv(el) {
+		el.classList.add('in');
+	}
+
+	function rvInViewport(el) {
+		var rect = el.getBoundingClientRect();
+		var vh = window.innerHeight || document.documentElement.clientHeight;
+		return rect.bottom > 0 && rect.top < vh;
+	}
+
 	if (!reduceMotion && 'IntersectionObserver' in window && rvs.length) {
+		rvs.forEach(function (el) {
+			if (rvInViewport(el)) {
+				revealRv(el);
+			}
+		});
+
 		var rvObserver = new IntersectionObserver(
 			function (entries) {
 				entries.forEach(function (entry) {
 					if (entry.isIntersecting) {
-						entry.target.classList.add('in');
+						revealRv(entry.target);
 						rvObserver.unobserve(entry.target);
 					}
 				});
 			},
-			{ threshold: 0.15 }
+			{ threshold: 0, rootMargin: '0px 0px -10% 0px' }
 		);
+
 		rvs.forEach(function (el) {
-			rvObserver.observe(el);
+			if (!el.classList.contains('in')) {
+				rvObserver.observe(el);
+			}
 		});
+
+		window.setTimeout(function () {
+			rvs.forEach(function (el) {
+				revealRv(el);
+				rvObserver.unobserve(el);
+			});
+		}, 2500);
 	} else {
-		rvs.forEach(function (el) {
-			el.classList.add('in');
-		});
+		rvs.forEach(revealRv);
 	}
 
 	/* Legacy scroll reveal (inner pages) */

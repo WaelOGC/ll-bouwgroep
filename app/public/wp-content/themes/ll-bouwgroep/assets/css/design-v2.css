@@ -91,7 +91,8 @@ p:last-child{margin-bottom:0}
 /* ============ HERO ============ */
 .hero{position:relative;min-height:clamp(560px,calc(100svh - var(--header)),860px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#2b2621}
 .hero-img{position:absolute;inset:0}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:68% 50%}
+.hero-img picture{position:absolute;inset:0;display:block}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
 body.llb-motion .hero-img img{animation:settle 1.8s cubic-bezier(.2,.7,.2,1) both}
 .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,16,0) 30%,rgba(20,18,16,.55) 62%,rgba(20,18,16,.88) 100%)}
 .hero-in{position:relative;width:100%;padding-bottom:clamp(40px,7vw,88px);padding-top:120px}
@@ -107,6 +108,9 @@ body.llb-motion .hero-foot{animation:fade 1s .5s both}
 .hero-btns{display:flex;flex-direction:column;gap:12px}
 .hero .rule{margin:28px 0 0}
 @media (min-width:600px){.hero-btns{flex-direction:row;flex-wrap:wrap}}
+@media (min-width:600px) and (orientation:landscape){
+  .hero-img img{object-position:68% 50%}
+}
 @media (min-width:1024px){
   .hero-img::after{background:linear-gradient(90deg,rgba(20,18,16,.78) 0%,rgba(20,18,16,.45) 38%,rgba(20,18,16,0) 62%),linear-gradient(180deg,rgba(20,18,16,0) 55%,rgba(20,18,16,.45) 100%)}
   .hero-img img{object-position:center}
@@ -230,16 +234,18 @@ body.llb-motion .hero-foot{animation:fade 1s .5s both}
 .ftr-bot{margin-top:56px;padding:24px 0 calc(24px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:14px;color:rgba(255,255,255,.5)}
 .ftr p{max-width:none}
 
-/* reveal on scroll — images only */
-.rv{clip-path:inset(0 0 100% 0)}
-body.llb-motion .rv{transition:clip-path 1.1s cubic-bezier(.2,.7,.2,1)}
+/* reveal on scroll — visible by default; hide only when JS + motion are ready */
+.rv{clip-path:none}
+html.llb-js body.llb-motion .rv:not(.in){clip-path:inset(0 0 100% 0)}
+html.llb-js body.llb-motion .rv{transition:clip-path .8s cubic-bezier(.2,.7,.2,1)}
 .rv.in{clip-path:inset(0)}
 
 @media (prefers-reduced-motion:reduce){
   body.llb-motion .hero-img img,
   body.llb-motion .hero h1 .ln span,
   body.llb-motion .hero-foot{animation:none!important}
-  .rv{clip-path:none;transition:none!important}
+  html.llb-js body.llb-motion .rv:not(.in),
+  .rv{clip-path:none!important;transition:none!important}
 }
 
 /* WP admin bar */

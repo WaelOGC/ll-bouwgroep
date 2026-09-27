@@ -24,6 +24,11 @@ function llb_demo_images() {
 			'title' => 'Home hero',
 		),
 		array(
+			'file'  => 'home-hero-mobile.png',
+			'field' => '_llb_hero_image_mobile',
+			'title' => 'Home hero mobile',
+		),
+		array(
 			'file'  => 'home-bathroom.png',
 			'field' => '_llb_bath_image',
 			'title' => 'Home bathrooms',

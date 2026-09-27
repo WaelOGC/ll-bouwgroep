@@ -14,8 +14,9 @@ $title   = trim( (string) llb_get_meta( $post_id, '_llb_hero_title' ) );
 if ( '' === $title ) {
 	$title = get_the_title();
 }
-$intro    = (string) llb_get_meta( $post_id, '_llb_hero_intro' );
-$image_id = absint( llb_get_meta( $post_id, '_llb_hero_image' ) );
+$intro      = (string) llb_get_meta( $post_id, '_llb_hero_intro' );
+$image_id   = absint( llb_get_meta( $post_id, '_llb_hero_image' ) );
+$mobile_id  = absint( llb_get_meta( $post_id, '_llb_hero_image_mobile' ) );
 
 $btn1_text = trim( (string) llb_get_meta( $post_id, '_llb_hero_btn1_text' ) );
 $btn1_url  = trim( (string) llb_get_meta( $post_id, '_llb_hero_btn1_url' ) );
@@ -29,7 +30,7 @@ if ( '' === $btn2_url ) {
 	$btn2_url = llb_page_url( 'diensten' );
 }
 
-if ( '' === $title && '' === trim( $intro ) && '' === $btn1_text && '' === $btn2_text && ! $image_id ) {
+if ( '' === $title && '' === trim( $intro ) && '' === $btn1_text && '' === $btn2_text && ! $image_id && ! $mobile_id ) {
 	return;
 }
 
@@ -42,22 +43,42 @@ if ( empty( $lines ) && '' !== $title ) {
 if ( 1 === count( $lines ) && false !== stripos( $lines[0], 'badkamer' ) && false !== stripos( $lines[0], 'verbouwing' ) ) {
 	$lines = array( 'Van complete', 'badkamer tot', 'volledige verbouwing' );
 }
+
+$img_attrs = array(
+	'loading'       => 'eager',
+	'decoding'      => 'async',
+	'fetchpriority' => 'high',
+);
 ?>
 <section class="hero">
-	<?php if ( $image_id ) : ?>
+	<?php if ( $image_id || $mobile_id ) : ?>
 		<div class="hero-img">
-			<?php
-			echo wp_get_attachment_image(
-				$image_id,
-				'full',
-				false,
-				array(
-					'loading'       => 'eager',
-					'decoding'      => 'async',
-					'fetchpriority' => 'high',
-				)
-			);
-			?>
+			<?php if ( $image_id && $mobile_id ) : ?>
+				<picture>
+					<?php
+					$mobile_srcset = wp_get_attachment_image_srcset( $mobile_id, 'full' );
+					$mobile_sizes  = wp_get_attachment_image_sizes( $mobile_id, 'full' );
+					$mobile_src    = wp_get_attachment_image_url( $mobile_id, 'full' );
+					$srcset_attr   = $mobile_srcset ? $mobile_srcset : $mobile_src;
+					?>
+					<?php if ( $srcset_attr ) : ?>
+						<source
+							media="(max-width: 1023px) and (orientation: portrait)"
+							srcset="<?php echo esc_attr( $srcset_attr ); ?>"
+							<?php if ( $mobile_srcset && $mobile_sizes ) : ?>
+								sizes="<?php echo esc_attr( $mobile_sizes ); ?>"
+							<?php endif; ?>
+						>
+					<?php endif; ?>
+					<?php
+					echo wp_get_attachment_image( $image_id, 'full', false, $img_attrs );
+					?>
+				</picture>
+			<?php elseif ( $image_id ) : ?>
+				<?php echo wp_get_attachment_image( $image_id, 'full', false, $img_attrs ); ?>
+			<?php else : ?>
+				<?php echo wp_get_attachment_image( $mobile_id, 'full', false, $img_attrs ); ?>
+			<?php endif; ?>
 		</div>
 	<?php else : ?>
 		<div class="hero-img" aria-hidden="true"></div>

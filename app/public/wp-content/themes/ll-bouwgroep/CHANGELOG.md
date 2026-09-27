@@ -5,6 +5,11 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.14.1] — 2026-09-27
+
+### Fixed
+- Visible-by-default image reveal, mobile hero image
+
 ## [0.14.0] — 2026-09-27
 
 ### Changed
