@@ -118,7 +118,7 @@
 		});
 	}
 
-	/* Services carousel (JS-driven position) */
+	/* Services carousel — snap to whole cards, one card per prev/next */
 	function initServicesCarousel(root) {
 		var track = root.querySelector('[data-llb-carousel-track]');
 		var list = track ? track.querySelector('.llb-services-carousel__list') : null;
@@ -130,10 +130,7 @@
 		}
 
 		var offset = 0;
-		var paused = reduceMotion;
 		var stepping = false;
-		var lastTime = 0;
-		var speed = 40;
 		var originals = list.querySelectorAll('.llb-services-carousel__item:not([aria-hidden="true"])');
 		var setCount = originals.length;
 
@@ -146,22 +143,31 @@
 			return parseFloat(styles.columnGap || styles.gap) || 0;
 		}
 
-		function setWidth() {
+		function cardStep() {
 			var first = originals[0];
 			if (!first) {
 				return 0;
 			}
-			/* One full set including the gap after the last card (equals gap before the clone). */
-			return first.getBoundingClientRect().width * setCount + gapSize() * setCount;
+			return first.getBoundingClientRect().width + gapSize();
+		}
+
+		function setWidth() {
+			var step = cardStep();
+			return step * setCount;
 		}
 
 		function applyTransform(animate) {
-			if (animate) {
-				list.style.transition = 'transform 0.45s ease';
-			} else {
-				list.style.transition = 'none';
+			list.style.transition = animate ? 'transform 0.4s ease' : 'none';
+			list.style.transform = 'translateX(' + -offset + 'px)';
+		}
+
+		function snapToCard() {
+			var step = cardStep();
+			if (step <= 0) {
+				return;
 			}
-			list.style.transform = 'translateX(' + (-offset) + 'px)';
+			offset = Math.round(offset / step) * step;
+			normalize(true);
 		}
 
 		function normalize(silent) {
@@ -178,65 +184,27 @@
 				offset += width;
 				changed = true;
 			}
-			if (changed && silent) {
+			if (changed || silent) {
 				applyTransform(false);
 			}
 		}
 
 		function stepBy(dir) {
-			var first = originals[0];
-			if (!first) {
+			var step = cardStep();
+			if (step <= 0 || stepping) {
 				return;
 			}
-			var step = first.getBoundingClientRect().width + gapSize();
 			stepping = true;
-			paused = true;
 			offset += dir * step;
 			applyTransform(true);
 
 			window.setTimeout(function () {
 				normalize(true);
 				stepping = false;
-				if (!reduceMotion && !root.matches(':hover') && !root.contains(document.activeElement)) {
-					paused = false;
-				}
-			}, 460);
-		}
-
-		function tick(now) {
-			if (!lastTime) {
-				lastTime = now;
-			}
-			var delta = (now - lastTime) / 1000;
-			lastTime = now;
-
-			if (!reduceMotion && !paused && !stepping) {
-				offset += speed * delta;
-				normalize(false);
-				applyTransform(false);
-			}
-
-			window.requestAnimationFrame(tick);
+			}, 420);
 		}
 
 		root.classList.add('is-js-carousel');
-
-		root.addEventListener('mouseenter', function () {
-			paused = true;
-		});
-		root.addEventListener('mouseleave', function () {
-			if (!stepping && !reduceMotion) {
-				paused = false;
-			}
-		});
-		root.addEventListener('focusin', function () {
-			paused = true;
-		});
-		root.addEventListener('focusout', function () {
-			if (!root.contains(document.activeElement) && !stepping && !reduceMotion) {
-				paused = false;
-			}
-		});
 
 		if (prevBtn) {
 			prevBtn.addEventListener('click', function () {
@@ -250,11 +218,10 @@
 		}
 
 		window.addEventListener('resize', function () {
-			normalize(true);
+			snapToCard();
 		});
 
 		applyTransform(false);
-		window.requestAnimationFrame(tick);
 	}
 
 	document.querySelectorAll('[data-llb-services-carousel]').forEach(initServicesCarousel);

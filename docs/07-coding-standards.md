@@ -38,6 +38,20 @@ Follow the official **WordPress Coding Standards** for PHP, CSS, and JavaScript.
 - Comment every file header
 - Keep files small and single-purpose
 
+## Responsive breakpoints
+
+Mobile-first. Use **only** `min-width` media queries (never `max-width` for layout breakpoints).
+
+| Token | Width | Use |
+|-------|-------|-----|
+| (default) | &lt; 600px | Mobile |
+| `--llb-bp-sm` | 600px | Large mobile |
+| `--llb-bp-md` | 768px | Tablet |
+| `--llb-bp-lg` | 1024px | Small desktop |
+| `--llb-bp-xl` | 1280px | Desktop |
+
+Documented at the top of `assets/css/main.css`. Prefer these widths consistently across the theme.
+
 ## Plugin independence and guards
 
 The theme must work correctly with **no plugins installed**. Yoast SEO, Rank Math SEO, Elementor, and Contact Form 7 are enhancements, not requirements.

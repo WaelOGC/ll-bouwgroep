@@ -30,7 +30,7 @@ function llb_decor_tool_icon_list() {
 		array( 'set' => 'mdi', 'name' => 'ladder' ),
 		array( 'set' => 'mdi', 'name' => 'hard-hat' ),
 		array( 'set' => 'mdi', 'name' => 'toolbox' ),
-		array( 'set' => 'mdi', 'name' => 'toy-brick' ),
+		array( 'set' => 'mdi', 'name' => 'wall' ),
 		array( 'set' => 'mdi', 'name' => 'shovel' ),
 		array( 'set' => 'mdi', 'name' => 'bucket' ),
 		array( 'set' => 'mdi', 'name' => 'pipe-wrench' ),
