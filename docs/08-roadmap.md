@@ -11,10 +11,10 @@ Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`
 ## Phase 3 — Customizer + meta boxes + CPTs + plugin compatibility **(next)**
 
 - Customizer: company & contact, opening hours, map, social, header CTA, footer, CF7 shortcode, brand colors **(done — Phase 3b)**
-- Meta boxes for page heroes and section fields
-- FAQ repeatable meta box (question, answer, category, “Toon op homepage”)
+- **3c-1:** meta box engine + service and project fields **(done)**
+- **3c-2:** page fields (Home, Over ons, Diensten, Projecten, Contact) + FAQ repeater + import of default Dutch content **(open)**
 - Register CPTs `dienst` and `project` **(done — Phase 3a)**
-- Taxonomy `project_categorie` **(done — Phase 3a)**; project meta “Uitgelicht project” + gallery **(open — Phase 3c)**
+- Taxonomy `project_categorie` **(done — Phase 3a)**; project meta “Uitgelicht project” + gallery **(done — Phase 3c-1)**
 - Plugin compatibility layer in `inc/compat/` (`seo.php`, `elementor.php`, `cf7.php`)
 
 ## Phase 4 — Templates and design

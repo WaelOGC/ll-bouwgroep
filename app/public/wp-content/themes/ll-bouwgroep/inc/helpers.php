@@ -213,3 +213,55 @@ function llb_get_copyright() {
 
 	return implode( ' ', $parts );
 }
+
+/**
+ * Returns post meta for a known field key.
+ *
+ * Gallery and repeater values are always arrays.
+ *
+ * @param int    $post_id Post ID.
+ * @param string $key     Meta key (e.g. '_llb_hero_title').
+ * @return mixed
+ */
+function llb_get_meta( $post_id, $key ) {
+	$field = function_exists( 'llb_meta_field_by_key' ) ? llb_meta_field_by_key( $key ) : null;
+	$type  = $field && isset( $field['type'] ) ? $field['type'] : '';
+
+	$value = get_post_meta( $post_id, $key, true );
+
+	if ( 'gallery' === $type || 'repeater' === $type ) {
+		return is_array( $value ) ? $value : array();
+	}
+
+	if ( false === $value || null === $value ) {
+		return '';
+	}
+
+	return $value;
+}
+
+/**
+ * Returns non-empty trimmed lines from a lines meta field.
+ *
+ * @param int    $post_id Post ID.
+ * @param string $key     Meta key.
+ * @return array<int, string>
+ */
+function llb_get_lines( $post_id, $key ) {
+	$raw   = (string) llb_get_meta( $post_id, $key );
+	$lines = preg_split( '/\r\n|\r|\n/', $raw );
+	$out   = array();
+
+	if ( ! is_array( $lines ) ) {
+		return $out;
+	}
+
+	foreach ( $lines as $line ) {
+		$line = trim( (string) $line );
+		if ( '' !== $line ) {
+			$out[] = $line;
+		}
+	}
+
+	return $out;
+}

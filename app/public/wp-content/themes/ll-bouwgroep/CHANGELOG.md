@@ -5,6 +5,16 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] — 2026-09-27
+
+### Added
+- Meta box engine (config-driven field types, save/sanitize, admin UI)
+- Service fields (hero, overview, sections, steps, CTA)
+- Project fields (details, gallery, featured flag) + Featured admin column
+
+### Fixed
+- Brand color comparison is case-insensitive
+
 ## [0.3.0] — 2026-09-27
 
 ### Added

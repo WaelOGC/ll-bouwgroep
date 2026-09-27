@@ -60,13 +60,44 @@ Helpers: `llb_get_option()`, `llb_get_address()`, `llb_get_map_url()`, `llb_get_
 
 ## Meta boxes
 
-- Native WordPress meta box API (no ACF)
-- Placed in the **center** of the edit screen
-- Per-page: hero image, title, subtitle, and page-specific section fields
+Native WordPress meta box API (no ACF). Engine: `inc/meta-boxes.php` via `llb_meta_box_config()`.
+
+- Meta keys prefixed `_llb_` (hidden from Custom Fields)
+- Context `normal`, priority `high` (main column, below the editor). Featured project box uses `side`.
+- In the block editor, meta boxes appear below the content.
+- Field types: `text`, `textarea`, `lines`, `url`, `checkbox`, `select`, `image`, `gallery`, `repeater`
+- Read helpers: `llb_get_meta( $post_id, $key )`, `llb_get_lines( $post_id, $key )`
+- Admin assets: `assets/css/admin-meta.css`, `assets/js/admin-meta.js` (vanilla JS + `wp.media`)
+
+Native fields (not duplicated as meta):
+
+- **Featured image** — service hero / project main image
+- **Excerpt** — service card short description
+- **Order** (page attributes) — service order on overview pages
+
+### Service (`dienst`)
+
+| Box | Fields |
+|-----|--------|
+| Service hero | `_llb_hero_title`, `_llb_hero_intro` |
+| Services overview page | `_llb_overview_text`, `_llb_overview_button` |
+| Service sections | `_llb_sections` (repeater: heading, text, list) |
+| Service steps | `_llb_steps_heading`, `_llb_steps` (repeater: title, text) |
+| Service call to action | `_llb_cta_heading`, `_llb_cta_text`, `_llb_cta_button` |
+
+### Project (`project`)
+
+| Box | Fields |
+|-----|--------|
+| Project details | `_llb_project_description`, `_llb_project_work`, `_llb_project_result` |
+| Project gallery | `_llb_project_gallery` |
+| Featured project (side) | `_llb_project_featured` |
+
+Projects list table shows a **Featured** column (★ when checked).
 
 ### FAQ page (repeatable)
 
-On the FAQ page (`page-faq.php`):
+On the FAQ page (`page-faq.php`) — Phase 3c-2:
 
 - Repeatable items: question, answer, category, checkbox **“Toon op homepage”**
 - Homepage mini FAQ shows items with “Toon op homepage” checked (defaults: questions 1, 2, 3 and 7 from [10-page-content.md § 16](10-page-content.md#16-veelgestelde-vragen))

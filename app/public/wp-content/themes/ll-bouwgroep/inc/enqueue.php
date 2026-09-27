@@ -60,11 +60,11 @@ function llb_enqueue_brand_color_overrides() {
 
 	$rules = array();
 
-	if ( $red !== $defaults['llb_color_red'] && '' !== $red ) {
+	if ( strtolower( $red ) !== strtolower( $defaults['llb_color_red'] ) && '' !== $red ) {
 		$rules[] = '--llb-red: ' . esc_attr( $red ) . ';';
 	}
 
-	if ( $green !== $defaults['llb_color_green'] && '' !== $green ) {
+	if ( strtolower( $green ) !== strtolower( $defaults['llb_color_green'] ) && '' !== $green ) {
 		$rules[] = '--llb-green: ' . esc_attr( $green ) . ';';
 	}
 
