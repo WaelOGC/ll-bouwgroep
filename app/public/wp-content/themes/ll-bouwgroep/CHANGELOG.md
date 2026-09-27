@@ -5,6 +5,14 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.8.2] — 2026-09-27
+
+### Changed
+- Wider hero text panel
+
+### Fixed
+- Services carousel stays inside the content width and shows exactly 4 / 2 / 1 cards
+
 ## [0.8.1] — 2026-09-27
 
 ### Fixed

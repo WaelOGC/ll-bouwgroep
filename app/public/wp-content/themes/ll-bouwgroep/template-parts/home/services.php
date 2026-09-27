@@ -81,19 +81,19 @@ $llb_render_service_card = static function ( $service, $clone = false ) {
 				</div>
 			<?php endif; ?>
 		</div>
-	</div>
-	<?php if ( ! empty( $services ) ) : ?>
-		<div class="llb-services-carousel" data-llb-services-carousel>
-			<div class="llb-services-carousel__track" data-llb-carousel-track>
-				<ul class="llb-services-carousel__list">
-					<?php foreach ( $services as $service ) : ?>
-						<?php $llb_render_service_card( $service, false ); ?>
-					<?php endforeach; ?>
-					<?php foreach ( $services as $service ) : ?>
-						<?php $llb_render_service_card( $service, true ); ?>
-					<?php endforeach; ?>
-				</ul>
+		<?php if ( ! empty( $services ) ) : ?>
+			<div class="llb-services-carousel" data-llb-services-carousel>
+				<div class="llb-services-carousel__track" data-llb-carousel-track>
+					<ul class="llb-services-carousel__list">
+						<?php foreach ( $services as $service ) : ?>
+							<?php $llb_render_service_card( $service, false ); ?>
+						<?php endforeach; ?>
+						<?php foreach ( $services as $service ) : ?>
+							<?php $llb_render_service_card( $service, true ); ?>
+						<?php endforeach; ?>
+					</ul>
+				</div>
 			</div>
-		</div>
-	<?php endif; ?>
+		<?php endif; ?>
+	</div>
 </section>

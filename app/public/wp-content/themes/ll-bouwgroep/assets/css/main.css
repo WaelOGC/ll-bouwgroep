@@ -1029,22 +1029,22 @@ p + p {
 
 @media (min-width: 768px) {
 	.llb-home-hero__panel {
-		width: min(58%, 40rem);
+		width: min(68%, 46rem);
 		padding: var(--llb-space-8) var(--llb-space-6);
-		clip-path: polygon(0 0, 100% 0, 86% 100%, 0 100%);
+		clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
 	}
 }
 
 @media (min-width: 1024px) {
 	.llb-home-hero__panel {
-		width: min(52%, 38rem);
+		width: min(62%, 48rem);
 		padding: var(--llb-space-9) var(--llb-space-7);
 		padding-left: max(var(--llb-space-7), calc((100vw - var(--llb-container-max)) / 2 + var(--llb-space-5)));
 	}
 }
 
 .llb-home-hero__content {
-	max-width: 34rem;
+	max-width: 42rem;
 }
 
 .llb-home-hero h1 {
@@ -1061,7 +1061,7 @@ p + p {
 }
 
 .llb-home-hero__intro p {
-	max-width: 42ch;
+	max-width: 58ch;
 }
 
 /* USP strip */
@@ -1218,12 +1218,16 @@ p + p {
 }
 
 .llb-services-carousel {
+	--llb-carousel-gap: var(--llb-space-5);
+	--llb-carousel-cols: 1;
+	container-type: inline-size;
 	overflow: hidden;
-	mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+	width: 100%;
 }
 
 .llb-services-carousel__track {
 	overflow: hidden;
+	width: 100%;
 }
 
 .llb-services-carousel__list {
@@ -1231,27 +1235,26 @@ p + p {
 	padding: 0;
 	margin: 0;
 	display: flex;
-	gap: var(--llb-space-5);
+	gap: var(--llb-carousel-gap);
 	width: max-content;
 }
 
 .llb-services-carousel__item {
-	width: min(82vw, 18rem);
-	flex: 0 0 auto;
+	flex: 0 0 calc((100cqi - (var(--llb-carousel-cols) - 1) * var(--llb-carousel-gap)) / var(--llb-carousel-cols));
+	width: calc((100cqi - (var(--llb-carousel-cols) - 1) * var(--llb-carousel-gap)) / var(--llb-carousel-cols));
+	max-width: none;
 	margin: 0;
 }
 
 @media (min-width: 768px) {
-	.llb-services-carousel__item {
-		width: calc((100vw - 4rem) / 2 - 0.75rem);
-		max-width: 20rem;
+	.llb-services-carousel {
+		--llb-carousel-cols: 2;
 	}
 }
 
 @media (min-width: 1024px) {
-	.llb-services-carousel__item {
-		width: calc((min(100vw, 1200px) - 3rem) / 4 - 1rem);
-		max-width: 17.5rem;
+	.llb-services-carousel {
+		--llb-carousel-cols: 4;
 	}
 }
 
