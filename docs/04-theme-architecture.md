@@ -66,6 +66,12 @@ Fonts are fixed (self-hosted Barlow + Inter, AVG). Not editable in the Customize
 
 Helpers: `llb_get_option()`, `llb_get_address()`, `llb_get_map_url()`, `llb_get_header_cta_url()`, `llb_get_opening_hours()`, `llb_get_copyright()`.
 
+## Shortcodes
+
+| Shortcode | Output |
+|-----------|--------|
+| `[llb_company_details]` | Company name, address, email and phone from the Customizer (`inc/shortcodes.php`). Used on the Privacyverklaring page. Empty values are skipped. |
+
 ## Page templates
 
 | File | Template Name | Role |

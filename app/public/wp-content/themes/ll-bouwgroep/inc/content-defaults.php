@@ -656,7 +656,7 @@ function llb_default_privacy_content() {
 	$blocks[] = "<!-- wp:paragraph -->\n<p>Wilt u gebruikmaken van uw rechten of heeft u een vraag over uw persoonsgegevens? Neem dan contact met ons op.</p>\n<!-- /wp:paragraph -->";
 
 	$blocks[] = "<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Contact</h2>\n<!-- /wp:heading -->";
-	$blocks[] = "<!-- wp:paragraph -->\n<p>L&L Bouwgroep B.V.<br>[ADRES]<br>[E-MAIL]<br>[TELEFOON]</p>\n<!-- /wp:paragraph -->";
+	$blocks[] = "<!-- wp:shortcode -->\n[llb_company_details]\n<!-- /wp:shortcode -->";
 
 	return implode( "\n\n", $blocks );
 }

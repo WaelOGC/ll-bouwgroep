@@ -5,6 +5,11 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.5.1] — 2026-09-27
+
+### Fixed
+- Privacy page showed placeholder text; added `[llb_company_details]` shortcode
+
 ## [0.5.0] — 2026-09-27
 
 ### Added
