@@ -13,16 +13,18 @@ Visual elements:
 
 ## Colors
 
+All CSS variables use the `--llb-` prefix.
+
 Use CSS custom properties:
 
 | Token | Value | Role |
 |-------|--------|------|
-| `--color-primary` | `#D0021B` | Red (brand primary) |
-| `--color-secondary` | `#0B6B3A` | Green (brand secondary) |
-| `--color-dark` | `#1F1F1F` | Dark surfaces / strong text |
-| `--color-text` | `#4A4A4A` | Body text |
-| `--color-light` | `#F5F5F3` | Light backgrounds |
-| `--color-white` | `#FFFFFF` | White |
+| `--llb-red` | `#D0021B` | Red (brand primary) |
+| `--llb-green` | `#0B6B3A` | Green (brand secondary) |
+| `--llb-black` | `#1F1F1F` | Dark surfaces / strong text |
+| `--llb-text` | `#4A4A4A` | Body text |
+| `--llb-light` | `#F5F5F3` | Light backgrounds |
+| `--llb-white` | `#FFFFFF` | White |
 
 ## Typography
 
@@ -30,6 +32,13 @@ Use CSS custom properties:
 |------|--------|---------|
 | Headings | Barlow | 600, 700 |
 | Body | Inter | 400, 500 |
+
+Font CSS variables:
+
+| Token | Value |
+|-------|--------|
+| `--llb-font-heading` | `'Barlow', Arial, sans-serif` |
+| `--llb-font-body` | `'Inter', Arial, sans-serif` |
 
 Fonts must be **self-hosted** in the theme. Do **not** load Google Fonts (or any other font CDN) — GDPR / AVG compliance.
 

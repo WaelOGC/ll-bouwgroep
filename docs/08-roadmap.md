@@ -1,14 +1,14 @@
 # Roadmap
 
-## Phase 1 — Docs (current)
+## Phase 1 — Docs **(done)**
 
 Project documentation in `docs/` (this set of files). No theme code yet.
 
-## Phase 2 — Theme foundation
+## Phase 2 — Theme foundation **(done)**
 
 Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`style.css`, `functions.php`, `inc/`, assets, languages).
 
-## Phase 3 — Customizer + meta boxes + CPTs + plugin compatibility
+## Phase 3 — Customizer + meta boxes + CPTs + plugin compatibility **(next)**
 
 - Customizer: logo, colors, fonts, contact info, opening hours, map image, “Route bekijken” URL, social, header CTA, footer text, CF7 shortcode
 - Meta boxes for page heroes and section fields

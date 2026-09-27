@@ -364,6 +364,7 @@ Core message: **L&L Bouwgroep B.V. — Vakmanschap waarop u kunt bouwen.**
   - Maandag t/m vrijdag: 08:00 – 17:00
   - Zaterdag en zondag: Gesloten
 - Map: static map image + button "Route bekijken" (opens Google Maps in a new tab; no embed). Map image and address from Customizer.
+- FAQ link: Heeft u een vraag? Bekijk onze veelgestelde vragen. → `/veelgestelde-vragen/`
 
 ---
 
