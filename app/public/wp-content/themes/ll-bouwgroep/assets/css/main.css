@@ -2441,22 +2441,24 @@ a.llb-contact-map:hover .llb-contact-map__image {
 
 .llb-home .llb-section--angled {
 	clip-path: polygon(0 1.25rem, 100% 0, 100% calc(100% - 1.25rem), 0 100%);
+}
+
+.llb-home .llb-section.llb-section--angled {
 	padding-block: calc(var(--llb-space-7) + 1.25rem);
 }
 
 @media (min-width: 768px) {
-	.llb-home .llb-section--angled.llb-section {
+	.llb-home .llb-section.llb-section--angled {
 		padding-block: calc(var(--llb-space-8) + 1.25rem);
 	}
 
 	.llb-home .llb-home-usp.llb-section--angled {
-		padding-block: calc(var(--llb-space-6) + 1rem);
 		clip-path: polygon(0 1rem, 100% 0, 100% calc(100% - 1rem), 0 100%);
 	}
 }
 
 @media (min-width: 1024px) {
-	.llb-home .llb-section--angled.llb-section {
+	.llb-home .llb-section.llb-section--angled {
 		padding-block: calc(var(--llb-space-9) + 1.5rem);
 		clip-path: polygon(0 1.5rem, 100% 0, 100% calc(100% - 1.5rem), 0 100%);
 	}
@@ -2464,6 +2466,7 @@ a.llb-contact-map:hover .llb-contact-map__image {
 
 .llb-home .llb-home-usp.llb-section--angled {
 	clip-path: polygon(0 1rem, 100% 0, 100% calc(100% - 1rem), 0 100%);
+	padding-block: calc(var(--llb-space-5) + 0.75rem);
 }
 
 .llb-section-decor {
