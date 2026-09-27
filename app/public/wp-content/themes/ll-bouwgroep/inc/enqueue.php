@@ -43,5 +43,35 @@ function llb_enqueue_assets() {
 			'strategy'  => 'defer',
 		)
 	);
+
+	llb_enqueue_brand_color_overrides();
 }
 add_action( 'wp_enqueue_scripts', 'llb_enqueue_assets' );
+
+/**
+ * Prints CSS custom property overrides when brand colors differ from defaults.
+ *
+ * @return void
+ */
+function llb_enqueue_brand_color_overrides() {
+	$defaults = llb_customizer_defaults();
+	$red      = (string) llb_get_option( 'llb_color_red' );
+	$green    = (string) llb_get_option( 'llb_color_green' );
+
+	$rules = array();
+
+	if ( $red !== $defaults['llb_color_red'] && '' !== $red ) {
+		$rules[] = '--llb-red: ' . esc_attr( $red ) . ';';
+	}
+
+	if ( $green !== $defaults['llb_color_green'] && '' !== $green ) {
+		$rules[] = '--llb-green: ' . esc_attr( $green ) . ';';
+	}
+
+	if ( empty( $rules ) ) {
+		return;
+	}
+
+	$css = ':root { ' . implode( ' ', $rules ) . ' }';
+	wp_add_inline_style( 'llb-main', $css );
+}

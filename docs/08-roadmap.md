@@ -10,7 +10,7 @@ Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`
 
 ## Phase 3 — Customizer + meta boxes + CPTs + plugin compatibility **(next)**
 
-- Customizer: logo, colors, fonts, contact info, opening hours, map image, “Route bekijken” URL, social, header CTA, footer text, CF7 shortcode
+- Customizer: company & contact, opening hours, map, social, header CTA, footer, CF7 shortcode, brand colors **(done — Phase 3b)**
 - Meta boxes for page heroes and section fields
 - FAQ repeatable meta box (question, answer, category, “Toon op homepage”)
 - Register CPTs `dienst` and `project` **(done — Phase 3a)**

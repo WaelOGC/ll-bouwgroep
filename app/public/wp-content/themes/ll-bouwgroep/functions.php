@@ -17,3 +17,4 @@ require_once LLB_DIR . '/inc/setup.php';
 require_once LLB_DIR . '/inc/post-types.php';
 require_once LLB_DIR . '/inc/enqueue.php';
 require_once LLB_DIR . '/inc/helpers.php';
+require_once LLB_DIR . '/inc/customizer.php';

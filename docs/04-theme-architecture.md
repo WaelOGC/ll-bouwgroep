@@ -41,21 +41,22 @@ ll-bouwgroep/
 
 ## Customizer (global settings)
 
-Editable from **Appearance → Customize**:
+Panel **L&L Bouwgroep** (`llb_theme_options`). All company data comes from the Customizer — never hard-coded outside `llb_customizer_defaults()`. Copyright year is generated automatically.
 
-- Logo
-- Colors
-- Fonts
-- Contact info: phone, email, address, KvK, BTW (use TODO until real values exist)
-- Opening hours
-- Map image (static)
-- “Route bekijken” URL (Google Maps link, opens in new tab)
-- Social links
-- Header CTA
-- Footer text
-- Contact Form 7 shortcode (for the contact page)
+Fonts are fixed (self-hosted Barlow + Inter, AVG). Not editable in the Customizer. Site logo uses the native WordPress Custom Logo control.
 
-All company data comes from the Customizer — never hard-coded. Copyright year is generated automatically.
+| Section | Setting IDs | Notes |
+|---------|-------------|--------|
+| Company & contact | `llb_company_name`, `llb_phone`, `llb_email`, `llb_address_street`, `llb_address_postcode`, `llb_address_city`, `llb_kvk`, `llb_btw` | Empty fields hidden on the front end |
+| Opening hours | `llb_hours_monday` … `llb_hours_sunday` | Grouped for display via `llb_get_opening_hours()` |
+| Map | `llb_map_image`, `llb_map_url` | Static image + route URL (fallback from address) |
+| Social media | `llb_social_facebook`, `llb_social_instagram`, `llb_social_linkedin` | Empty = not shown |
+| Header | `llb_header_cta_text`, `llb_header_cta_url` | Empty URL → `/contact/` |
+| Footer | `llb_footer_tagline`, `llb_footer_text`, `llb_footer_copyright` | © + year + company auto-prefixed |
+| Contact form | `llb_cf7_shortcode` | Output in Phase 5 |
+| Brand colors | `llb_color_red`, `llb_color_green` | Inline CSS only when changed from default |
+
+Helpers: `llb_get_option()`, `llb_get_address()`, `llb_get_map_url()`, `llb_get_header_cta_url()`, `llb_get_opening_hours()`, `llb_get_copyright()`.
 
 ## Meta boxes
 
@@ -131,7 +132,7 @@ Full rules: [09-plugin-compatibility.md](09-plugin-compatibility.md).
 
 ## Internationalization
 
-All user-facing strings wrapped with `__()` / `esc_html__()` (and related i18n functions) using text domain `ll-bouwgroep`.
+See the **Language rule** in [07-coding-standards.md](07-coding-standards.md): admin UI = English with `__()` / `esc_html__()`; visitor text = Dutch (from `10-page-content.md` and template strings).
 
 ## Front-end stack
 
