@@ -17,9 +17,15 @@ A simple, modern, elegant business website with **5–6 pages**, built to scale 
 ## Deliverable
 
 - Custom **classic WordPress theme**, built from scratch
-- No page builders
-- No third-party plugins required for the theme to work
-- Yoast SEO will be installed on production (theme must cooperate; see [05-seo-yoast.md](05-seo-yoast.md))
+- Theme templates are the default; Elementor is optional per page (not required)
+- The theme must still work with **no plugins installed**. Plugins are enhancements, not requirements.
+- Fully compatible with:
+  - Yoast SEO
+  - Rank Math SEO
+  - Elementor
+  - Contact Form 7
+- Only **one** SEO plugin is active at a time (never Yoast and Rank Math together)
+- See [09-plugin-compatibility.md](09-plugin-compatibility.md) and [05-seo.md](05-seo.md)
 
 ## Admin model
 

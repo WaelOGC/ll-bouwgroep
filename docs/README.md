@@ -10,11 +10,12 @@ These docs are the **single source of truth** for development of the L&L Bouwgro
 | [01-brand-guide.md](01-brand-guide.md) | Logo, colors, typography, visual style, and accessibility |
 | [02-content.md](02-content.md) | Client copy from the brief (Dutch, original wording) |
 | [03-sitemap.md](03-sitemap.md) | Pages, sections, and content structure |
-| [04-theme-architecture.md](04-theme-architecture.md) | Theme folder layout, Customizer, meta boxes, CPTs, contact form |
-| [05-seo-yoast.md](05-seo-yoast.md) | SEO rules, Yoast boundaries, semantics, and performance |
+| [04-theme-architecture.md](04-theme-architecture.md) | Theme folder layout, Customizer, meta boxes, CPTs, CF7 |
+| [05-seo.md](05-seo.md) | SEO rules for Yoast / Rank Math, semantics, and performance |
 | [06-privacy-avg.md](06-privacy-avg.md) | AVG/GDPR, legal footer, forms, cookies, and fonts |
 | [07-coding-standards.md](07-coding-standards.md) | WordPress coding, security, prefixes, and plugin independence |
 | [08-roadmap.md](08-roadmap.md) | Development phases from docs through launch and later growth |
+| [09-plugin-compatibility.md](09-plugin-compatibility.md) | Yoast, Rank Math, Elementor, and Contact Form 7 compatibility |
 
 ## Assets
 

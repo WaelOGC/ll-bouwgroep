@@ -8,7 +8,7 @@
 | Text domain | `ll-bouwgroep` |
 | Function / prefix | `llb_` |
 
-Classic PHP theme (no block theme, no page builder).
+Classic PHP theme (no block theme). Elementor may be used optionally per page; see [09-plugin-compatibility.md](09-plugin-compatibility.md).
 
 ## Proposed structure
 
@@ -22,10 +22,14 @@ ll-bouwgroep/
 │   ├── customizer.php
 │   ├── meta-boxes.php
 │   ├── post-types.php
-│   ├── contact-form.php
-│   └── helpers.php
+│   ├── helpers.php
+│   └── compat/
+│       ├── seo.php
+│       ├── elementor.php
+│       └── cf7.php
 ├── template-parts/
 ├── page-templates/
+│   └── template-full-width.php
 ├── assets/
 │   ├── css/
 │   ├── js/
@@ -45,6 +49,7 @@ Editable from **Appearance → Customize**:
 - Social links
 - Header CTA
 - Footer text
+- Contact Form 7 shortcode (for the contact page)
 
 ## Meta boxes
 
@@ -68,17 +73,28 @@ Registered in the theme:
 - Excerpt
 - Custom fields (including gallery support)
 
-## Contact form
+## Contact form (Contact Form 7)
 
-Built into the theme:
+No custom theme contact form. Integration lives in `inc/compat/cf7.php`:
 
-- `wp_mail` for sending
-- Nonce verification
-- Honeypot
-- Server-side validation
-- AVG consent checkbox
+- Customizer setting for the CF7 form shortcode
+- If CF7 is inactive or no shortcode is set → show contact details only (no errors)
+- Brand styles for `.wpcf7`
+- AVG consent via CF7 `[acceptance]` field
+- Conditional CF7 asset loading (`wpcf7_load_js` / `wpcf7_load_css`)
 
 Local email testing: **Mailpit** (Local by Flywheel).
+
+Full rules: [09-plugin-compatibility.md](09-plugin-compatibility.md).
+
+## Page templates
+
+- Standard theme templates call `the_content()`
+- **Full-width** page template (`page-templates/template-full-width.php`): no container restrictions for Elementor layouts
+
+## Plugin compatibility layer
+
+`inc/compat/` loads guarded integrations for SEO (Yoast / Rank Math), Elementor, and CF7. See [09-plugin-compatibility.md](09-plugin-compatibility.md).
 
 ## Internationalization
 
@@ -86,5 +102,5 @@ All user-facing strings wrapped with `__()` / `esc_html__()` (and related i18n f
 
 ## Front-end stack
 
-- **Vanilla JS only** — no jQuery dependency
+- **Vanilla JS only** — no jQuery dependency (CF7 may enqueue its own scripts when a form is present)
 - Mobile-first responsive CSS

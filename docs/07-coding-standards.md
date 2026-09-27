@@ -21,6 +21,14 @@ Follow the official **WordPress Coding Standards** for PHP, CSS, and JavaScript.
 - Comment every file header
 - Keep files small and single-purpose
 
-## Plugin independence
+## Plugin independence and guards
 
-The theme must work correctly with **no plugins installed**. Yoast (and any others) are enhancements, not requirements.
+The theme must work correctly with **no plugins installed**. Yoast SEO, Rank Math SEO, Elementor, and Contact Form 7 are enhancements, not requirements.
+
+Before calling any plugin API, always check:
+
+- `function_exists()`
+- `class_exists()`
+- `defined()`
+
+See [09-plugin-compatibility.md](09-plugin-compatibility.md).

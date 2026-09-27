@@ -1,11 +1,15 @@
-# SEO and Yoast
+# SEO
+
+Details and plugin-specific rules: [09-plugin-compatibility.md](09-plugin-compatibility.md).
+
+The theme supports **Yoast SEO** and **Rank Math SEO**. Only one SEO plugin is active on the site — never both. The theme must still work with no SEO plugin installed.
 
 ## Title tag
 
 - Use `add_theme_support( 'title-tag' )`
 - Do **not** hardcode a `<title>` in the theme
 
-## What Yoast owns
+## What the SEO plugin owns
 
 The theme must **not** output:
 
@@ -13,7 +17,7 @@ The theme must **not** output:
 - Open Graph tags
 - Schema / structured data
 
-Yoast SEO handles these on production.
+Yoast or Rank Math handles these when active.
 
 ## Heading structure
 
@@ -34,7 +38,11 @@ Include a **skip link** to main content.
 
 ## Breadcrumbs
 
-If `yoast_breadcrumb()` (or equivalent Yoast breadcrumb function) exists, support outputting Yoast breadcrumbs.
+Use theme helper `llb_breadcrumbs()`:
+
+1. If `yoast_breadcrumb()` exists → use it
+2. Elseif `rank_math_the_breadcrumbs()` exists → use it
+3. Else → output nothing
 
 ## Performance
 

@@ -14,11 +14,18 @@ Dutch business websites must show in the footer:
 - Address: **TODO**
 - Email: **TODO**
 
-## Contact form
+## Contact form (Contact Form 7)
 
-- Explicit **consent checkbox** (AVG)
+- Contact form is provided by **Contact Form 7** (not a custom theme form)
+- Explicit consent via CF7 `[acceptance]` field, linked to the Privacyverklaring
 - Collect only data that is needed
-- See theme form rules in [04-theme-architecture.md](04-theme-architecture.md)
+- **No reCAPTCHA by default** (third-party request, AVG)
+- See [04-theme-architecture.md](04-theme-architecture.md) and [09-plugin-compatibility.md](09-plugin-compatibility.md)
+
+## Elementor and fonts
+
+- Elementor’s default Google Fonts loading **must be disabled** in Elementor settings
+- Theme fonts are self-hosted
 
 ## Cookies and tracking
 
