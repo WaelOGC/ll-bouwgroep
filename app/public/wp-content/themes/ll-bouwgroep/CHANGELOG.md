@@ -5,6 +5,14 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.8.1] — 2026-09-27
+
+### Fixed
+- Home layout now follows the reference design (order, hero, USP strip, services carousel, projects grid, CTA, footer columns)
+
+### Added
+- Animated backgrounds, hover effects, scroll reveal, services dropdown, footer logo setting, CTA image field
+
 ## [0.8.0] — 2026-09-27
 
 ### Added

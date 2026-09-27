@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $company_name = trim( (string) llb_get_option( 'llb_company_name' ) );
 $tagline      = trim( (string) llb_get_option( 'llb_footer_tagline' ) );
 $footer_text  = trim( (string) llb_get_option( 'llb_footer_text' ) );
+$footer_logo  = absint( llb_get_option( 'llb_footer_logo' ) );
 $phone        = trim( (string) llb_get_option( 'llb_phone' ) );
 $phone_tel    = preg_replace( '/[^\d+]/', '', $phone );
 $email        = trim( (string) llb_get_option( 'llb_email' ) );
@@ -19,6 +20,7 @@ $address      = llb_get_address();
 $kvk          = trim( (string) llb_get_option( 'llb_kvk' ) );
 $btw          = trim( (string) llb_get_option( 'llb_btw' ) );
 $copyright    = llb_get_copyright();
+$services     = function_exists( 'llb_get_services' ) ? llb_get_services() : array();
 
 $socials = array(
 	array(
@@ -53,7 +55,21 @@ $legal_line = implode( ' — ', $legal_parts );
 	<div class="llb-footer-main">
 		<div class="llb-container llb-footer-grid">
 			<div class="llb-footer-col llb-footer-col--brand">
-				<?php if ( '' !== $company_name ) : ?>
+				<?php if ( $footer_logo ) : ?>
+					<div class="llb-footer-logo">
+						<?php
+						echo wp_get_attachment_image(
+							$footer_logo,
+							'medium',
+							false,
+							array(
+								'class' => 'llb-footer-logo__img',
+								'alt'   => $company_name,
+							)
+						);
+						?>
+					</div>
+				<?php elseif ( '' !== $company_name ) : ?>
 					<p class="llb-footer-brand-name"><?php echo esc_html( $company_name ); ?></p>
 				<?php endif; ?>
 				<?php if ( '' !== $tagline ) : ?>
@@ -100,6 +116,19 @@ $legal_line = implode( ' — ', $legal_parts );
 					);
 					?>
 				</nav>
+			</div>
+
+			<div class="llb-footer-col llb-footer-col--services">
+				<p class="llb-footer-heading">Diensten</p>
+				<?php if ( ! empty( $services ) ) : ?>
+					<ul class="llb-footer-services">
+						<?php foreach ( $services as $service ) : ?>
+							<li>
+								<a href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( get_the_title( $service ) ); ?></a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
 			</div>
 
 			<div class="llb-footer-col llb-footer-col--contact">

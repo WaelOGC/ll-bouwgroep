@@ -38,11 +38,11 @@ ll-bouwgroep/
 │   ├── cta-band.php
 │   └── home/
 │       ├── hero.php
-│       ├── intro.php
+│       ├── usp.php
 │       ├── bathrooms.php
 │       ├── services.php
-│       ├── why.php
 │       ├── projects.php
+│       ├── why.php
 │       ├── faq.php
 │       └── cta.php
 ├── page-templates/

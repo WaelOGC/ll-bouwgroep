@@ -7,6 +7,8 @@
 (function () {
 	'use strict';
 
+	var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 	var header = document.querySelector('[data-llb-header]');
 	var toggle = document.querySelector('[data-llb-nav-toggle]');
 	var panel = document.querySelector('[data-llb-nav-panel]');
@@ -90,5 +92,53 @@
 				closeNav();
 			}
 		});
+	}
+
+	/* Scroll reveal */
+	var reveals = document.querySelectorAll('.llb-reveal');
+	if (!reduceMotion && 'IntersectionObserver' in window && reveals.length) {
+		document.documentElement.classList.add('llb-js-reveal');
+		var revealObserver = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						revealObserver.unobserve(entry.target);
+					}
+				});
+			},
+			{ rootMargin: '0px 0px -8% 0px', threshold: 0.12 }
+		);
+		reveals.forEach(function (el) {
+			revealObserver.observe(el);
+		});
+	} else {
+		reveals.forEach(function (el) {
+			el.classList.add('is-visible');
+		});
+	}
+
+	/* Services carousel */
+	var carousel = document.querySelector('[data-llb-services-carousel]');
+	if (carousel) {
+		if (reduceMotion) {
+			carousel.classList.add('is-static');
+		} else {
+			carousel.classList.add('is-animated');
+			carousel.addEventListener('mouseenter', function () {
+				carousel.classList.add('is-paused');
+			});
+			carousel.addEventListener('mouseleave', function () {
+				carousel.classList.remove('is-paused');
+			});
+			carousel.addEventListener('focusin', function () {
+				carousel.classList.add('is-paused');
+			});
+			carousel.addEventListener('focusout', function () {
+				if (!carousel.contains(document.activeElement)) {
+					carousel.classList.remove('is-paused');
+				}
+			});
+		}
 	}
 })();

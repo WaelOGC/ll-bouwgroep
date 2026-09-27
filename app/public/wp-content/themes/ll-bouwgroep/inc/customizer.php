@@ -43,6 +43,7 @@ function llb_customizer_defaults() {
 		'llb_footer_tagline'     => 'Vakmanschap waarop u kunt bouwen.',
 		'llb_footer_text'        => 'Bouw- en renovatiewerkzaamheden voor woningen en bedrijfspanden.',
 		'llb_footer_copyright'   => 'Alle rechten voorbehouden.',
+		'llb_footer_logo'        => 0,
 		'llb_cf7_shortcode'      => '',
 		'llb_color_red'          => '#D0021B',
 		'llb_color_green'        => '#0B6B3A',
@@ -298,6 +299,26 @@ function llb_customize_register( $wp_customize ) {
 			'section'           => 'llb_section_footer',
 			'label'             => __( 'Tagline', 'll-bouwgroep' ),
 			'type'              => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'llb_footer_logo',
+		array(
+			'default'           => $defaults['llb_footer_logo'],
+			'sanitize_callback' => 'absint',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Media_Control(
+			$wp_customize,
+			'llb_footer_logo',
+			array(
+				'label'     => __( 'Footer logo (for dark background)', 'll-bouwgroep' ),
+				'section'   => 'llb_section_footer',
+				'mime_type' => 'image',
+			)
 		)
 	);
 

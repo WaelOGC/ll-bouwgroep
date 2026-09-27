@@ -25,7 +25,8 @@ if ( '' === $heading && '' === $text && '' === $subheading && '' === $btn_text &
 	return;
 }
 ?>
-<section class="llb-section llb-section--light llb-home-bath">
+<section class="llb-section llb-section--light llb-home-bath llb-reveal">
+	<div class="llb-home-bath__deco" aria-hidden="true"></div>
 	<div class="llb-container llb-home-bath__grid<?php echo $image_id ? '' : ' llb-home-bath__grid--no-image'; ?>">
 		<?php if ( $image_id ) : ?>
 			<div class="llb-home-bath__media">
@@ -41,6 +42,12 @@ if ( '' === $heading && '' === $text && '' === $subheading && '' === $btn_text &
 					)
 				);
 				?>
+			</div>
+		<?php else : ?>
+			<div class="llb-home-bath__media">
+				<div class="llb-media-placeholder llb-media-placeholder--tall" aria-hidden="true">
+					<span class="llb-accent-line"></span>
+				</div>
 			</div>
 		<?php endif; ?>
 		<div class="llb-home-bath__content">

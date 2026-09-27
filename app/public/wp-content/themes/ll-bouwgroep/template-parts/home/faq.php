@@ -21,7 +21,7 @@ if ( empty( $items ) ) {
 $faq_page_id = llb_get_faq_page_id();
 $faq_url     = $faq_page_id ? get_permalink( $faq_page_id ) : llb_page_url( 'veelgestelde-vragen' );
 ?>
-<section class="llb-section llb-home-faq">
+<section class="llb-section llb-home-faq llb-reveal">
 	<div class="llb-container llb-home-faq__layout">
 		<div class="llb-home-faq__intro">
 			<?php if ( '' !== $heading ) : ?>
@@ -52,7 +52,9 @@ $faq_url     = $faq_page_id ? get_permalink( $faq_page_id ) : llb_page_url( 'vee
 						</span>
 					</summary>
 					<div class="llb-accordion__answer">
-						<?php echo llb_paragraphs( $answer ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
+						<div class="llb-accordion__answer-inner">
+							<?php echo llb_paragraphs( $answer ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
+						</div>
 					</div>
 				</details>
 			<?php endforeach; ?>
