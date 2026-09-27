@@ -21,6 +21,9 @@ ll-bouwgroep/
 │   ├── enqueue.php
 │   ├── customizer.php
 │   ├── meta-boxes.php
+│   ├── meta-boxes-pages.php
+│   ├── content-defaults.php
+│   ├── import.php
 │   ├── post-types.php
 │   ├── helpers.php
 │   └── compat/
@@ -29,8 +32,13 @@ ll-bouwgroep/
 │       └── cf7.php
 ├── template-parts/
 ├── page-templates/
-│   ├── template-full-width.php
-│   └── page-faq.php
+│   ├── template-home.php
+│   ├── template-about.php
+│   ├── template-services.php
+│   ├── template-projects.php
+│   ├── template-contact.php
+│   ├── page-faq.php
+│   └── template-full-width.php
 ├── assets/
 │   ├── css/
 │   ├── js/
@@ -57,6 +65,36 @@ Fonts are fixed (self-hosted Barlow + Inter, AVG). Not editable in the Customize
 | Brand colors | `llb_color_red`, `llb_color_green` | Inline CSS only when changed from default |
 
 Helpers: `llb_get_option()`, `llb_get_address()`, `llb_get_map_url()`, `llb_get_header_cta_url()`, `llb_get_opening_hours()`, `llb_get_copyright()`.
+
+## Page templates
+
+| File | Template Name | Role |
+|------|---------------|------|
+| `page-templates/template-home.php` | Home | Front page sections |
+| `page-templates/template-about.php` | About | Over ons |
+| `page-templates/template-services.php` | Services overview | Diensten page (services from CPT) |
+| `page-templates/template-projects.php` | Projects overview | Projecten page + single project labels |
+| `page-templates/template-contact.php` | Contact | Contact / Offerte |
+| `page-templates/page-faq.php` | FAQ | Veelgestelde vragen |
+| `page-templates/template-full-width.php` | Full width | Elementor layouts |
+
+Stubs only in Phase 3c-2 (`the_title` + `the_content`). Full design in Phase 4.
+
+Page meta boxes are registered per template (`template` / `templates` in `llb_meta_box_page_config()`). After changing a page template: save and reload to see matching fields.
+
+### Page / FAQ fields
+
+- Shared **Page hero** on all templates except Full width
+- Home, About, Projects, Contact, FAQ: section boxes as listed in Phase 3c-2
+- FAQ repeater `_llb_faq_items`: question, answer, category (`algemeen` / `badkamer` / `kosten` / `aanbouw`), Show on homepage
+- Questions without an answer are hidden on the website
+
+### Default content import
+
+- Appearance → **Import default content** (`inc/import.php`)
+- Defaults from `inc/content-defaults.php` (Dutch text from [10-page-content.md](10-page-content.md))
+- Creates pages, 9 services, FAQ items, Primary/Footer menus; skips existing slugs; never overwrites
+- Service slugs: `badkamers-toiletten`, `renovatie-verbouwing`, `stucwerk`, `tegelwerk`, `timmerwerk`, `schilder-afbouwwerk`, `keukenverbouwingen`, `aan-uitbouw`, `overige-bouwkundige-werkzaamheden`
 
 ## Meta boxes
 

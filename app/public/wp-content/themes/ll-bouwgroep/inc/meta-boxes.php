@@ -9,13 +9,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once LLB_DIR . '/inc/meta-boxes-pages.php';
+
 /**
  * Returns the meta box field registry (post type → boxes → fields).
  *
  * @return array<string, array<string, array<string, mixed>>>
  */
 function llb_meta_box_config() {
-	return array(
+	$config = array(
 		'dienst'  => array(
 			'llb_service_hero'     => array(
 				'title'    => __( 'Service hero', 'll-bouwgroep' ),
@@ -185,6 +187,33 @@ function llb_meta_box_config() {
 			),
 		),
 	);
+
+	$config['page'] = llb_meta_box_page_config();
+
+	return $config;
+}
+
+/**
+ * Whether a box matches the current page template.
+ *
+ * @param array $box     Box config.
+ * @param int   $post_id Post ID.
+ * @return bool
+ */
+function llb_meta_box_matches_template( $box, $post_id ) {
+	$templates = array();
+
+	if ( ! empty( $box['templates'] ) && is_array( $box['templates'] ) ) {
+		$templates = $box['templates'];
+	} elseif ( ! empty( $box['template'] ) ) {
+		$templates = array( $box['template'] );
+	} else {
+		return true;
+	}
+
+	$current = get_page_template_slug( $post_id );
+
+	return in_array( $current, $templates, true );
 }
 
 /**
@@ -194,9 +223,14 @@ function llb_meta_box_config() {
  */
 function llb_register_meta_boxes() {
 	$config = llb_meta_box_config();
+	$post   = get_post();
 
 	foreach ( $config as $post_type => $boxes ) {
 		foreach ( $boxes as $box_id => $box ) {
+			if ( 'page' === $post_type && $post && ! llb_meta_box_matches_template( $box, $post->ID ) ) {
+				continue;
+			}
+
 			add_meta_box(
 				$box_id,
 				$box['title'],
@@ -239,9 +273,21 @@ function llb_render_meta_box( $post, $metabox ) {
 	}
 
 	echo '<div class="llb-meta-box">';
-	foreach ( $box['fields'] as $field ) {
-		llb_render_meta_field( $post->ID, $field );
+
+	$description = isset( $box['description'] ) ? $box['description'] : '';
+	if ( 'llb_page_hero' === $box_id && 'page-templates/template-services.php' === get_page_template_slug( $post->ID ) ) {
+		$description = trim( $description . ' ' . __( 'The service list uses each service\'s overview text and button.', 'll-bouwgroep' ) );
 	}
+	if ( '' !== $description ) {
+		echo '<p class="description" style="margin-top:0;">' . esc_html( $description ) . '</p>';
+	}
+
+	if ( ! empty( $box['fields'] ) ) {
+		foreach ( $box['fields'] as $field ) {
+			llb_render_meta_field( $post->ID, $field );
+		}
+	}
+
 	echo '</div>';
 }
 
@@ -509,7 +555,7 @@ function llb_save_meta_boxes( $post_id ) {
 		return;
 	}
 
-	$fields = llb_meta_box_fields_flat( $post_type );
+	$fields = llb_meta_box_fields_flat( $post_type, $post_id );
 
 	foreach ( $fields as $field ) {
 		$key  = $field['key'];
@@ -532,12 +578,13 @@ function llb_save_meta_boxes( $post_id ) {
 add_action( 'save_post', 'llb_save_meta_boxes' );
 
 /**
- * Flattens top-level fields for a post type (not repeater subfields alone).
+ * Flattens top-level fields for a post type (optionally filtered by page template).
  *
- * @param string $post_type Post type.
+ * @param string   $post_type Post type.
+ * @param int|null $post_id   Post ID (required for page template filtering).
  * @return array<int, array<string, mixed>>
  */
-function llb_meta_box_fields_flat( $post_type ) {
+function llb_meta_box_fields_flat( $post_type, $post_id = null ) {
 	$config = llb_meta_box_config();
 	$fields = array();
 
@@ -546,6 +593,14 @@ function llb_meta_box_fields_flat( $post_type ) {
 	}
 
 	foreach ( $config[ $post_type ] as $box ) {
+		if ( 'page' === $post_type && $post_id && ! llb_meta_box_matches_template( $box, $post_id ) ) {
+			continue;
+		}
+
+		if ( empty( $box['fields'] ) || ! is_array( $box['fields'] ) ) {
+			continue;
+		}
+
 		foreach ( $box['fields'] as $field ) {
 			$fields[] = $field;
 		}
@@ -681,7 +736,7 @@ function llb_enqueue_admin_meta_assets( $hook_suffix ) {
 	}
 
 	$screen = get_current_screen();
-	if ( ! $screen || ! in_array( $screen->post_type, array( 'dienst', 'project' ), true ) ) {
+	if ( ! $screen || ! in_array( $screen->post_type, array( 'dienst', 'project', 'page' ), true ) ) {
 		return;
 	}
 

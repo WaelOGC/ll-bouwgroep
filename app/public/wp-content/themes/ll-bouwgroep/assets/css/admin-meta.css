@@ -109,3 +109,7 @@
 .llb-meta-repeater__row-actions .button-link-delete {
 	color: #b32d2e;
 }
+
+.llb-meta-box [hidden] {
+	display: none !important;
+}

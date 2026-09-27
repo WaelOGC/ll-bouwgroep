@@ -5,6 +5,16 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.5.0] — 2026-09-27
+
+### Added
+- Page templates (stubs): Home, About, Services overview, Projects overview, Contact, FAQ, Full width
+- Page fields per template + FAQ repeater
+- Default Dutch content + Appearance → Import default content
+
+### Fixed
+- Hidden image Remove button (WordPress `.button` vs `[hidden]`)
+
 ## [0.4.0] — 2026-09-27
 
 ### Added
