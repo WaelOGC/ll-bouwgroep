@@ -19,13 +19,10 @@ Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`
 
 ## Phase 4 — Templates and design
 
-- Page templates and template parts per [03-sitemap.md](03-sitemap.md)
-- Full-width page template for Elementor
-- FAQ page template (`page-faq.php`) + homepage mini FAQ
-- Project archive filter + featured project image slider
-- Contact opening hours + static map / “Route bekijken”
-- Brand styling per [01-brand-guide.md](01-brand-guide.md) and [11-design-reference.md](11-design-reference.md)
-- Mobile-first CSS and vanilla JS
+- **4a:** Design system, header, footer, default page, 404, template parts, helpers **(done)**
+- **4b:** Home page template and sections
+- **4c:** Services overview + single service + About
+- **4d:** Projects overview + single project + Contact + FAQ
 
 ## Phase 5 — CF7 integration + privacy
 
