@@ -1,12 +1,12 @@
 <?php
 /**
- * Section decoration layer (blueprint / tools / stripes).
+ * Section decoration layer (blueprint / tool pattern / stripes).
  *
  * Args:
  * - blueprint (bool)
- * - tools (string[]) tool keys: hammer, level, tape, trowel, tile, square
+ * - tool_pattern (bool) — full-section Tabler icon wallpaper
  * - stripes (bool)
- * - stripes_corner (bool) — corner accent only
+ * - stripes_corner (bool)
  *
  * @package LL_Bouwgroep
  */
@@ -16,39 +16,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $blueprint      = ! empty( $args['blueprint'] );
-$tools          = isset( $args['tools'] ) && is_array( $args['tools'] ) ? $args['tools'] : array();
+$tool_pattern   = ! empty( $args['tool_pattern'] );
 $stripes        = ! empty( $args['stripes'] );
 $stripes_corner = ! empty( $args['stripes_corner'] );
 
-if ( ! $blueprint && empty( $tools ) && ! $stripes && ! $stripes_corner ) {
+if ( ! $blueprint && ! $tool_pattern && ! $stripes && ! $stripes_corner ) {
 	return;
 }
-
-/**
- * Returns an inline stroke-only tool SVG.
- *
- * @param string $name Tool key.
- * @return string
- */
-$llb_tool_svg = static function ( $name ) {
-	$svgs = array(
-		'hammer' => '<svg class="llb-decor-tool__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M38 8l10 10-6 6-10-10z"/><path d="M32 14l-4 4 18 18 4-4z"/><path d="M28 22L12 52c-1 2 1 4 3 3l26-20"/></svg>',
-		'level'  => '<svg class="llb-decor-tool__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="24" width="52" height="16" rx="2"/><circle cx="32" cy="32" r="5"/><path d="M14 32h8M42 32h8"/></svg>',
-		'tape'   => '<svg class="llb-decor-tool__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="26" cy="32" r="16"/><circle cx="26" cy="32" r="6"/><path d="M40 28h16v12H42"/><path d="M44 32h8M48 28v12"/></svg>',
-		'trowel' => '<svg class="llb-decor-tool__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 44c8-2 18-8 28-22l6 6C32 42 22 50 12 50z"/><path d="M40 22l10-10 4 4-10 10"/></svg>',
-		'tile'   => '<svg class="llb-decor-tool__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="10" width="20" height="20" rx="1"/><rect x="34" y="10" width="20" height="20" rx="1"/><rect x="10" y="34" width="20" height="20" rx="1"/><rect x="34" y="34" width="20" height="20" rx="1"/></svg>',
-		'square' => '<svg class="llb-decor-tool__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 52V12h8v32h32v8H12z"/><path d="M20 28h12M20 36h20"/></svg>',
-	);
-
-	return isset( $svgs[ $name ] ) ? $svgs[ $name ] : '';
-};
 
 $classes = 'llb-section-decor';
 if ( $blueprint ) {
 	$classes .= ' llb-section-decor--blueprint';
 }
-if ( ! empty( $tools ) ) {
-	$classes .= ' llb-section-decor--tools';
+if ( $tool_pattern ) {
+	$classes .= ' llb-section-decor--tool-pattern';
 }
 if ( $stripes ) {
 	$classes .= ' llb-section-decor--stripes';
@@ -57,18 +38,23 @@ if ( $stripes_corner ) {
 	$classes .= ' llb-section-decor--stripes-corner';
 }
 
-$pattern_id = 'llb-bp-' . wp_unique_id();
+$uid     = wp_unique_id( 'llb-d-' );
+$grad_id = $uid . '-g';
 ?>
 <div class="<?php echo esc_attr( $classes ); ?>" data-llb-decor aria-hidden="true">
 	<?php if ( $blueprint ) : ?>
 		<svg class="llb-section-decor__blueprint" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
 			<defs>
-				<pattern id="<?php echo esc_attr( $pattern_id ); ?>" width="4" height="4" patternUnits="userSpaceOnUse">
-					<path d="M4 0H0V4" fill="none" stroke="currentColor" stroke-width="0.15"/>
+				<linearGradient id="<?php echo esc_attr( $grad_id ); ?>" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#D0021B"/>
+					<stop offset="100%" stop-color="#0B6B3A"/>
+				</linearGradient>
+				<pattern id="<?php echo esc_attr( $uid ); ?>-p" width="4" height="4" patternUnits="userSpaceOnUse">
+					<path d="M4 0H0V4" fill="none" stroke="url(#<?php echo esc_attr( $grad_id ); ?>)" stroke-width="0.18"/>
 				</pattern>
 			</defs>
-			<rect width="100" height="100" fill="url(#<?php echo esc_attr( $pattern_id ); ?>)" class="llb-section-decor__grid-fill"/>
-			<g class="llb-section-decor__measures" fill="none" stroke="currentColor" stroke-width="0.35" stroke-linecap="square">
+			<rect width="100" height="100" fill="url(#<?php echo esc_attr( $uid ); ?>-p)" class="llb-section-decor__grid-fill"/>
+			<g class="llb-section-decor__measures" fill="none" stroke="url(#<?php echo esc_attr( $grad_id ); ?>)" stroke-width="0.4" stroke-linecap="square">
 				<path class="llb-measure-line" pathLength="100" d="M8 22 H42"/>
 				<path class="llb-measure-tick" d="M8 20 V24 M42 20 V24"/>
 				<path class="llb-measure-line" pathLength="100" d="M55 70 H92"/>
@@ -87,17 +73,26 @@ $pattern_id = 'llb-bp-' . wp_unique_id();
 		</div>
 	<?php endif; ?>
 
-	<?php if ( ! empty( $tools ) ) : ?>
-		<div class="llb-section-decor__tools">
-			<?php foreach ( array_values( $tools ) as $index => $tool ) : ?>
+	<?php if ( $tool_pattern && function_exists( 'llb_decor_tool_pattern_placements' ) ) : ?>
+		<div class="llb-tool-pattern" data-llb-tool-pattern data-llb-parallax>
+			<?php foreach ( llb_decor_tool_pattern_placements() as $index => $item ) : ?>
 				<?php
-				$svg = $llb_tool_svg( (string) $tool );
+				$icon_uid = $uid . '-t' . $index;
+				$svg      = llb_get_tabler_icon_svg( $item['icon'], $icon_uid );
 				if ( '' === $svg ) {
 					continue;
 				}
+				$style = sprintf(
+					'left:%s%%;top:%s%%;width:%spx;height:%spx;--llb-tool-rot:%sdeg;',
+					esc_attr( (string) $item['x'] ),
+					esc_attr( (string) $item['y'] ),
+					esc_attr( (string) $item['s'] ),
+					esc_attr( (string) $item['s'] ),
+					esc_attr( (string) $item['r'] )
+				);
 				?>
-				<span class="llb-decor-tool llb-decor-tool--<?php echo esc_attr( (string) ( $index + 1 ) ); ?>" data-llb-parallax>
-					<?php echo $svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+				<span class="llb-tool-pattern__item" style="<?php echo esc_attr( $style ); ?>">
+					<?php echo $svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG from theme files. ?>
 				</span>
 			<?php endforeach; ?>
 		</div>

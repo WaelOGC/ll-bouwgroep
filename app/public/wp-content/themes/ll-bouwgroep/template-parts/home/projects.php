@@ -26,8 +26,8 @@ if ( '' === $heading && '' === $text && '' === $btn_text ) {
 		'template-parts/section-decor',
 		null,
 		array(
-			'tools'   => array( 'hammer', 'level', 'tape', 'square' ),
-			'stripes' => true,
+			'tool_pattern' => true,
+			'stripes'      => true,
 		)
 	);
 	?>

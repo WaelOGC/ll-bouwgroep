@@ -370,7 +370,7 @@
 		});
 	}
 
-	/* Light parallax on tool icons */
+	/* Light parallax on tool pattern (CSS var so drift animation stays intact) */
 	if (canParallax) {
 		var parallaxItems = [];
 		document.querySelectorAll('[data-llb-parallax]').forEach(function (el) {
@@ -394,8 +394,8 @@
 				}
 				var rect = item.section.getBoundingClientRect();
 				var progress = (vh / 2 - (rect.top + rect.height / 2)) / vh;
-				var offset = Math.max(-30, Math.min(30, progress * 30));
-				item.el.style.transform = 'translate3d(0, ' + offset.toFixed(2) + 'px, 0)';
+				var offset = Math.max(-18, Math.min(18, progress * 24));
+				item.el.style.setProperty('--llb-parallax-y', offset.toFixed(2) + 'px');
 			});
 		}
 

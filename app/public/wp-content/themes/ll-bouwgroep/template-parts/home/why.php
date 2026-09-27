@@ -24,7 +24,7 @@ if ( '' === $heading && '' === $text && ! $image_id ) {
 		'template-parts/section-decor',
 		null,
 		array(
-			'tools' => array( 'trowel', 'tile', 'square', 'level' ),
+			'tool_pattern' => true,
 		)
 	);
 	?>

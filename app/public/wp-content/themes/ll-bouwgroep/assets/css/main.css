@@ -1869,6 +1869,10 @@ p + p {
 .llb-home-why__aside {
 	min-height: 0;
 	position: relative;
+	z-index: 1;
+	isolation: isolate;
+	overflow: hidden;
+	border-radius: var(--llb-radius-sm);
 }
 
 .llb-home-why__image {
@@ -2490,11 +2494,11 @@ a.llb-contact-map:hover .llb-contact-map__image {
 	inset: 0;
 	width: 100%;
 	height: 100%;
-	opacity: 0.055;
+	opacity: 0.12;
 }
 
 .llb-section-decor__measures {
-	opacity: 0.9;
+	opacity: 1;
 }
 
 .llb-measure-line {
@@ -2540,94 +2544,63 @@ a.llb-contact-map:hover .llb-contact-map__image {
 	top: 54%;
 }
 
-.llb-section-decor__tools {
+/* Tool pattern wallpaper (Tabler Icons, brand-gradient stroke) */
+.llb-tool-pattern {
 	position: absolute;
-	inset: 0;
-}
-
-.llb-decor-tool {
-	position: absolute;
-	color: var(--llb-black);
-	opacity: 0.08;
+	inset: -4%;
+	opacity: 0.14;
+	pointer-events: none;
 	will-change: transform;
+	--llb-parallax-y: 0px;
 }
 
-.llb-decor-tool__svg {
+.llb-tool-pattern__item {
+	position: absolute;
+	display: block;
+	transform: rotate(var(--llb-tool-rot, 0deg));
+	transform-origin: center center;
+}
+
+.llb-tool-pattern__svg {
 	width: 100%;
 	height: 100%;
 	display: block;
 }
 
-.llb-decor-tool--1 {
-	width: clamp(5rem, 10vw, 9rem);
-	top: 12%;
-	right: 6%;
+/* Soft fade behind text; pattern remains around / behind image column */
+.llb-home-projects .llb-tool-pattern {
+	-webkit-mask-image: linear-gradient(105deg, transparent 0%, rgba(0, 0, 0, 0.28) 28%, #000 55%, #000 100%);
+	mask-image: linear-gradient(105deg, transparent 0%, rgba(0, 0, 0, 0.28) 28%, #000 55%, #000 100%);
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
 }
 
-.llb-decor-tool--2 {
-	width: clamp(4.5rem, 9vw, 8rem);
-	bottom: 14%;
-	left: 5%;
+.llb-home-why .llb-tool-pattern {
+	-webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.22) 32%, #000 50%, #000 100%);
+	mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.22) 32%, #000 50%, #000 100%);
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
 }
 
-.llb-decor-tool--3 {
-	width: clamp(5.5rem, 11vw, 10rem);
-	top: 48%;
-	right: 18%;
-}
-
-.llb-decor-tool--4 {
-	width: clamp(4rem, 8vw, 7.5rem);
-	top: 22%;
-	left: 12%;
-}
-
-.llb-home-projects .llb-decor-tool--1 {
-	right: 4%;
-	top: 8%;
-}
-
-.llb-home-projects .llb-decor-tool--4 {
-	left: 4%;
-	top: auto;
-	bottom: 8%;
-}
-
-.llb-motion .llb-decor-tool {
-	animation: none;
-}
-
-.llb-motion .llb-decor-tool__svg {
-	animation: llb-tool-float 16s ease-in-out infinite;
+.llb-motion .llb-tool-pattern {
+	animation: llb-tool-pattern-drift 72s linear infinite;
 	animation-play-state: paused;
 }
 
-.llb-motion .llb-decor-tool--2 .llb-decor-tool__svg {
-	animation-duration: 18s;
-	animation-delay: -4s;
-}
-
-.llb-motion .llb-decor-tool--3 .llb-decor-tool__svg {
-	animation-duration: 14s;
-	animation-delay: -7s;
-}
-
-.llb-motion .llb-decor-tool--4 .llb-decor-tool__svg {
-	animation-duration: 20s;
-	animation-delay: -2s;
-}
-
-.llb-motion .llb-section-decor.is-inview .llb-decor-tool__svg {
+.llb-motion .llb-section-decor.is-inview .llb-tool-pattern {
 	animation-play-state: running;
 }
 
-@keyframes llb-tool-float {
-	0%, 100% { transform: translate(0, 0) rotate(0deg); }
-	50% { transform: translate(0, -8px) rotate(2deg); }
+@keyframes llb-tool-pattern-drift {
+	0%, 100% { transform: translate3d(0, var(--llb-parallax-y, 0px), 0); }
+	50% { transform: translate3d(10px, calc(var(--llb-parallax-y, 0px) - 8px), 0); }
 }
 
-.llb-home-bath__media,
-.llb-home-why__aside {
+.llb-home-bath__media {
 	overflow: hidden;
 	border-radius: var(--llb-radius-sm);
 }
@@ -2705,27 +2678,24 @@ a.llb-contact-map:hover .llb-contact-map__image {
 }
 
 @media (max-width: 768px) {
-	.llb-decor-tool--3,
-	.llb-decor-tool--4 {
+	.llb-tool-pattern__item:nth-child(n + 13) {
 		display: none;
 	}
 
-	.llb-decor-tool--1,
-	.llb-decor-tool--2 {
-		width: 4.25rem;
-		opacity: 0.07;
+	.llb-tool-pattern__item {
+		width: 32px !important;
+		height: 32px !important;
 	}
 
-	.llb-motion .llb-decor-tool[data-llb-parallax] {
-		/* parallax disabled in JS on small screens */
+	.llb-tool-pattern {
+		opacity: 0.12;
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.llb-measure-line,
 	.llb-section-decor__stripe,
-	.llb-decor-tool,
-	.llb-decor-tool__svg {
+	.llb-tool-pattern {
 		animation: none !important;
 	}
 
