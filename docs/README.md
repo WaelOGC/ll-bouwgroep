@@ -17,10 +17,12 @@ These docs are the **single source of truth** for development of the L&L Bouwgro
 | [08-roadmap.md](08-roadmap.md) | Development phases from docs through launch and later growth |
 | [09-plugin-compatibility.md](09-plugin-compatibility.md) | Yoast, Rank Math, Elementor, and Contact Form 7 compatibility |
 | [10-page-content.md](10-page-content.md) | Final website text per page (Dutch). Single source of truth for all content. |
+| [11-design-reference.md](11-design-reference.md) | Design image map and layout/style decisions vs content |
 
 ## Assets
 
-| File | Description |
+| File / folder | Description |
 |------|-------------|
 | [assets/client-brief.pdf](assets/client-brief.pdf) | Original client brief (source for content) |
 | [assets/logo.jpeg](assets/logo.jpeg) | Brand logo |
+| [design/](design/) | Design reference screenshots (layout/style only; see [11-design-reference.md](11-design-reference.md)) |

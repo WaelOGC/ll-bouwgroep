@@ -8,7 +8,7 @@ The theme supports **Yoast SEO** and **Rank Math SEO**. Only one SEO plugin is a
 
 Target area: **Zoetermeer en omgeving**.
 
-SEO titles and meta descriptions are defined in [10-page-content.md § 20](10-page-content.md#20-seo-titles--meta-descriptions). The theme does **not** output them — enter them manually per page in Yoast SEO or Rank Math.
+SEO titles and meta descriptions are defined in [10-page-content.md § 21](10-page-content.md#21-seo-titles--meta-descriptions). The theme does **not** output them — enter them manually per page in Yoast SEO or Rank Math.
 
 ## Title tag
 
@@ -21,9 +21,16 @@ The theme must **not** output:
 
 - Meta descriptions
 - Open Graph tags
-- Schema / structured data
+- Schema / structured data — **except** FAQPage JSON-LD on the FAQ page (see below)
 
-Yoast or Rank Math handles these when active.
+Yoast or Rank Math handles meta descriptions, Open Graph, and other schema when active.
+
+## FAQPage schema (theme exception)
+
+On the Veelgestelde vragen page, the theme outputs `FAQPage` JSON-LD from the FAQ items.
+
+- Filter: `llb_output_faq_schema` — return `false` to disable theme FAQ schema if Yoast or Rank Math already adds FAQ schema (avoid duplicates)
+- Default: theme outputs FAQ schema when the filter allows it
 
 ## Heading structure
 

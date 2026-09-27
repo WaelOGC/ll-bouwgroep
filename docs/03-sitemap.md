@@ -1,6 +1,6 @@
 # Sitemap
 
-Page texts: [10-page-content.md](10-page-content.md).
+Page texts: [10-page-content.md](10-page-content.md). Design layout: [11-design-reference.md](11-design-reference.md).
 
 ## Home
 
@@ -11,7 +11,8 @@ Content: [10-page-content.md § 1. Home](10-page-content.md#1-home)
 - **Bathrooms & toilets highlight** — specialty callout
 - **Services grid** — overview of services
 - **Why us** — experience 10–25 years, one contact, one planning
-- **Featured projects** — selected portfolio items
+- **Featured projects** — selected portfolio items (featured project with image slider)
+- **Mini FAQ** — questions 1, 2, 3 and 7; button to FAQ page
 - **CTA** — “Uw plannen bespreken?”
 
 ## Over ons
@@ -46,6 +47,8 @@ Services:
 Content: [10-page-content.md § 13. Projecten (archive)](10-page-content.md#13-projecten-archive) and [§ 14. Single Project](10-page-content.md#14-single-project-template)
 
 - **Portfolio archive** — Custom Post Type `project`
+- **Category filter** — taxonomy `project_categorie`
+- **Featured project** — with image slider
 - **Single project** — with gallery
 
 ## Contact / Offerte aanvragen
@@ -54,28 +57,40 @@ Content: [10-page-content.md § 15. Contact](10-page-content.md#15-contact--offe
 
 - Contact form
 - Contact details (phone, email, address — TODO until provided)
+- Opening hours (Customizer; TODO: confirm with client)
+- Static map image + “Route bekijken” button (no Google Maps embed)
+- Link to FAQ page
 - CTA
+
+## Veelgestelde vragen
+
+Content: [10-page-content.md § 16. Veelgestelde vragen](10-page-content.md#16-veelgestelde-vragen)
+
+- URL: `/veelgestelde-vragen/`
+- Linked from Home (mini FAQ), Contact, and footer menu
+- **Not** in the main header navigation
 
 ## Privacyverklaring
 
-Content: [10-page-content.md § 16. Privacyverklaring](10-page-content.md#16-privacyverklaring)
+Content: [10-page-content.md § 17. Privacyverklaring](10-page-content.md#17-privacyverklaring)
 
 - Privacy policy page (Dutch AVG/GDPR)
 
 ## 404
 
-Content: [10-page-content.md § 17. 404](10-page-content.md#17-404)
+Content: [10-page-content.md § 18. 404](10-page-content.md#18-404)
 
 - Custom 404 page
 
 ## Header / Navigation
 
-Content: [10-page-content.md § 18. Header / Navigation](10-page-content.md#18-header--navigation)
+Content: [10-page-content.md § 19. Header / Navigation](10-page-content.md#19-header--navigation)
 
-- Logo, main navigation, header CTA
+- Logo, main navigation (Home, Over ons, Diensten, Projecten, Contact), header CTA
+- Main navigation stays unchanged (FAQ is not in the main nav)
 
 ## Footer
 
-Content: [10-page-content.md § 19. Footer](10-page-content.md#19-footer)
+Content: [10-page-content.md § 20. Footer](10-page-content.md#20-footer)
 
-- Company blurb, navigation, contact placeholders, KvK/BTW, copyright
+- Company blurb, navigation (includes Veelgestelde vragen + Privacyverklaring), contact placeholders, KvK/BTW, copyright

@@ -69,6 +69,15 @@ Core message: **L&L Bouwgroep B.V. — Vakmanschap waarop u kunt bouwen.**
   Bekijk een selectie van onze gerealiseerde projecten en ontdek wat L&L Bouwgroep voor uw verbouwing kan betekenen.
 - CTA: Bekijk onze projecten
 
+### Veelgestelde vragen
+- H2: Veelgestelde vragen
+- Show FAQ questions 1, 2, 3 and 7 (from section 16):
+  1. Is een offerte vrijblijvend?
+  2. In welke regio werken jullie?
+  3. Verzorgen jullie het complete project?
+  7. Hoe lang duurt een badkamerrenovatie?
+- Button: Bekijk alle vragen → links to the FAQ page (`/veelgestelde-vragen/`)
+
 ### Final CTA
 - H2: Heeft u verbouwingsplannen?
 - Text:
@@ -309,6 +318,12 @@ Core message: **L&L Bouwgroep B.V. — Vakmanschap waarop u kunt bouwen.**
 - H2: Van badkamer tot volledige verbouwing
   Onze projecten omvatten onder andere badkamer- en toiletrenovaties, renovatiewerkzaamheden en diverse bouwkundige werkzaamheden.
 - CTA (per project card): Bekijk project
+- Project categories (filter) — Draft: client may change:
+  - Alle projecten (filter default)
+  - Badkamers & toiletten
+  - Renovatie & verbouwing
+  - Keukens
+  - Aan- en uitbouw
 
 ## 14. Single Project Template
 - H1: [Projectnaam]
@@ -345,10 +360,67 @@ Core message: **L&L Bouwgroep B.V. — Vakmanschap waarop u kunt bouwen.**
   - Akkoord met de Privacyverklaring (CF7 `[acceptance]`)
 - Button: Verstuur aanvraag
 - Consent text: Door dit formulier te versturen, gaat u akkoord met de verwerking van uw gegevens zoals beschreven in onze Privacyverklaring.
+- Openingstijden — TODO: confirm with client:
+  - Maandag t/m vrijdag: 08:00 – 17:00
+  - Zaterdag en zondag: Gesloten
+- Map: static map image + button "Route bekijken" (opens Google Maps in a new tab; no embed). Map image and address from Customizer.
 
 ---
 
-## 16. Privacyverklaring
+## 16. Veelgestelde vragen
+- Page title / H1: Veelgestelde vragen
+- Slug: `veelgestelde-vragen`
+- Intro: Heeft u een vraag over uw badkamer, toilet of verbouwing? Hieronder vindt u antwoorden op de vragen die wij het vaakst krijgen. Staat uw vraag er niet tussen? Neem gerust contact met ons op.
+
+### Algemeen
+
+1. **Is een offerte vrijblijvend?**
+Ja. Wij komen graag bij u langs voor een vrijblijvende kennismaking en maken daarna een offerte op maat.
+
+2. **In welke regio werken jullie?**
+Wij werken in Zoetermeer en omgeving.
+
+3. **Verzorgen jullie het complete project?**
+Ja. Van de eerste sloopwerkzaamheden tot de laatste afwerking verzorgen wij het volledige traject, met één aanspreekpunt en één planning.
+
+4. **Nemen jullie het afval en puin mee?**
+`TODO: answer from client.`
+
+5. **Geven jullie garantie op het werk?**
+`TODO: answer from client.`
+
+### Badkamer & toilet
+
+6. **Wat kost een nieuwe badkamer?**
+De prijs hangt af van de grootte van de ruimte, het gekozen sanitair en tegelwerk, en of leidingen of elektra verlegd moeten worden. Na een bezoek ontvangt u een duidelijke offerte op maat.
+`TODO: client decides whether to show a price indication.`
+
+7. **Hoe lang duurt een badkamerrenovatie?**
+Een complete badkamerrenovatie duurt meestal twee tot drie weken, afhankelijk van de omvang van de werkzaamheden. Houd daarnaast rekening met de levertijd van sanitair en tegels.
+
+8. **Kunnen jullie ook alleen een toilet renoveren?**
+Ja. Wij renoveren ook losse toiletten, van sloopwerk tot de complete afwerking.
+
+### Kosten & btw
+
+9. **Hoeveel btw betaal ik bij een verbouwing?**
+Voor de meeste werkzaamheden, zoals sanitair, elektra en tegelwerk, geldt 21% btw. Voor stucwerk, schilderwerk, behangen en isolatie aan woningen ouder dan twee jaar geldt 9% btw. In onze offerte ziet u dit duidelijk terug.
+
+### Aan- en uitbouw
+
+10. **Heb ik een vergunning nodig voor een aanbouw?**
+Dat hangt af van uw situatie. Een aanbouw aan de achterkant tot 4 meter diep is vaak vergunningsvrij. Aan de voorkant of bij een grotere aanbouw is meestal een omgevingsvergunning nodig. Controleer dit altijd via het Omgevingsloket. Wij denken graag met u mee.
+
+11. **Werken jullie ook voor bedrijfspanden?**
+Ja. Wij voeren werkzaamheden uit voor zowel woningen als bedrijfspanden.
+
+### CTA
+- Heading: Staat uw vraag er niet tussen?
+- Button: Neem contact op → Contact page
+
+---
+
+## 17. Privacyverklaring
 Note: base text — must be reviewed by the client before launch.
 
 - H1: Privacyverklaring
@@ -376,7 +448,7 @@ Note: base text — must be reviewed by the client before launch.
 
 ---
 
-## 17. 404
+## 18. 404
 - H1: Pagina niet gevonden
 - Text: De pagina die u zoekt bestaat niet meer, is verplaatst of de URL is niet correct.
 - H2: Op zoek naar een bouw- of renovatieproject?
@@ -386,23 +458,23 @@ Note: base text — must be reviewed by the client before launch.
 
 ---
 
-## 18. Header / Navigation
+## 19. Header / Navigation
 - Logo: L&L Bouwgroep B.V.
 - Navigation: Home, Over ons, Diensten, Projecten, Contact
 - CTA: Offerte aanvragen
 
-## 19. Footer
+## 20. Footer
 - L&L Bouwgroep B.V.
 - Vakmanschap waarop u kunt bouwen.
 - Bouw- en renovatiewerkzaamheden voor woningen en bedrijfspanden.
-- Navigatie: Home, Over ons, Diensten, Projecten, Contact, Privacyverklaring
+- Navigatie: Home, Over ons, Diensten, Projecten, Contact, Veelgestelde vragen, Privacyverklaring
 - Contact: [TELEFOON], [E-MAIL], [ADRES]
 - Bedrijfsgegevens: L&L Bouwgroep B.V. — KvK: [TODO] — BTW: [TODO]
 - Copyright: © [JAAR] L&L Bouwgroep B.V. Alle rechten voorbehouden.
 
 ---
 
-## 20. SEO Titles & Meta Descriptions
+## 21. SEO Titles & Meta Descriptions
 Note: the theme does NOT output these. They are entered manually per page in Yoast SEO or Rank Math.
 
 | Pagina | SEO Title | Meta Description |
@@ -420,4 +492,5 @@ Note: the theme does NOT output these. They are entered manually per page in Yoa
 | Aanbouw | Aan- & Uitbouw Zoetermeer \| L&L Bouwgroep | L&L Bouwgroep B.V. verzorgt diverse bouwkundige werkzaamheden rondom aan- en uitbouw van woningen in Zoetermeer en omgeving. |
 | Projecten | Bouw- & Renovatieprojecten \| L&L Bouwgroep Zoetermeer | Bekijk projecten van L&L Bouwgroep B.V. en ontdek onze werkzaamheden op het gebied van bouw, renovatie en complete verbouwingen. |
 | Contact | Contact & Offerte Aanvragen \| L&L Bouwgroep | Heeft u plannen voor een badkamer, renovatie of verbouwing? Neem vrijblijvend contact op met L&L Bouwgroep B.V. in Zoetermeer. |
+| Veelgestelde vragen | Veelgestelde vragen \| L&L Bouwgroep | Antwoorden op veelgestelde vragen over badkamerrenovatie, verbouwing, kosten, btw en vergunningen. L&L Bouwgroep in Zoetermeer en omgeving. |
 | Privacy | Privacyverklaring \| L&L Bouwgroep B.V. | Lees de privacyverklaring van L&L Bouwgroep B.V. en informatie over de verwerking van persoonsgegevens. |

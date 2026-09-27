@@ -29,7 +29,8 @@ ll-bouwgroep/
 │       └── cf7.php
 ├── template-parts/
 ├── page-templates/
-│   └── template-full-width.php
+│   ├── template-full-width.php
+│   └── page-faq.php
 ├── assets/
 │   ├── css/
 │   ├── js/
@@ -46,16 +47,28 @@ Editable from **Appearance → Customize**:
 - Colors
 - Fonts
 - Contact info: phone, email, address, KvK, BTW (use TODO until real values exist)
+- Opening hours
+- Map image (static)
+- “Route bekijken” URL (Google Maps link, opens in new tab)
 - Social links
 - Header CTA
 - Footer text
 - Contact Form 7 shortcode (for the contact page)
+
+All company data comes from the Customizer — never hard-coded. Copyright year is generated automatically.
 
 ## Meta boxes
 
 - Native WordPress meta box API (no ACF)
 - Placed in the **center** of the edit screen
 - Per-page: hero image, title, subtitle, and page-specific section fields
+
+### FAQ page (repeatable)
+
+On the FAQ page (`page-faq.php`):
+
+- Repeatable items: question, answer, category, checkbox **“Toon op homepage”**
+- Homepage mini FAQ shows items with “Toon op homepage” checked (defaults: questions 1, 2, 3 and 7 from [10-page-content.md § 16](10-page-content.md#16-veelgestelde-vragen))
 
 ## Custom post types
 
@@ -72,6 +85,9 @@ Registered in the theme:
 - Featured image
 - Excerpt
 - Custom fields: description (`[Projectbeschrijving]`), werkzaamheden (`[Werkzaamheden]`), resultaat (`[Beschrijving eindresultaat]`), gallery
+- Checkbox **“Uitgelicht project”** (featured project)
+- Image gallery for the featured project slider
+- Taxonomy **`project_categorie`** (hierarchical) for the archive filter
 
 Default website texts live in [10-page-content.md](10-page-content.md). Those values are the theme defaults and must stay editable from the WordPress dashboard.
 
@@ -93,6 +109,7 @@ Full rules: [09-plugin-compatibility.md](09-plugin-compatibility.md).
 
 - Standard theme templates call `the_content()`
 - **Full-width** page template (`page-templates/template-full-width.php`): no container restrictions for Elementor layouts
+- **FAQ** page template (`page-templates/page-faq.php`): Veelgestelde vragen page
 
 ## Plugin compatibility layer
 
