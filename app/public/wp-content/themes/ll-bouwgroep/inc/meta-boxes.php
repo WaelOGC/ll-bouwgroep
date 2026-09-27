@@ -718,6 +718,9 @@ function llb_meta_value_has_content( $value, $type ) {
 	if ( 'checkbox' === $type ) {
 		return '1' === (string) $value;
 	}
+	if ( 'image' === $type ) {
+		return absint( $value ) > 0;
+	}
 	if ( is_array( $value ) ) {
 		return ! empty( $value );
 	}

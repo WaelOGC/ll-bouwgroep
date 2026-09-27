@@ -10,6 +10,61 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Returns the Home USP strip items (_llb_why_items from the front page).
+ *
+ * Each item: title, text, icon.
+ *
+ * @return array<int, array{title: string, text: string, icon: string}>
+ */
+function llb_get_why_items() {
+	$front_id = (int) get_option( 'page_on_front' );
+
+	if ( ! $front_id ) {
+		$pages = get_posts(
+			array(
+				'post_type'      => 'page',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'meta_key'       => '_wp_page_template',
+				'meta_value'     => 'page-templates/template-home.php',
+				'fields'         => 'ids',
+			)
+		);
+		$front_id = ( ! empty( $pages[0] ) ) ? (int) $pages[0] : 0;
+	}
+
+	if ( ! $front_id ) {
+		return array();
+	}
+
+	$items = llb_get_meta( $front_id, '_llb_why_items' );
+	if ( ! is_array( $items ) ) {
+		return array();
+	}
+
+	$icons = array( 'team', 'handshake', 'checklist' );
+	$out   = array();
+
+	foreach ( $items as $index => $item ) {
+		if ( ! is_array( $item ) ) {
+			continue;
+		}
+		$title = isset( $item['title'] ) ? trim( (string) $item['title'] ) : '';
+		$text  = isset( $item['text'] ) ? trim( (string) $item['text'] ) : '';
+		if ( '' === $title && '' === $text ) {
+			continue;
+		}
+		$out[] = array(
+			'title' => $title,
+			'text'  => $text,
+			'icon'  => isset( $icons[ $index ] ) ? $icons[ $index ] : 'checklist',
+		);
+	}
+
+	return $out;
+}
+
+/**
  * Returns published services ordered by menu_order, then title.
  *
  * @return array<int, WP_Post>

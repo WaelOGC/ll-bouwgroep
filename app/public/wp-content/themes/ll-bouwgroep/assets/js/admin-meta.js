@@ -237,6 +237,7 @@
 			}
 			rowsWrap.appendChild(row);
 			reindexRepeater(root);
+			row.querySelectorAll('[data-llb-image]').forEach(bindImageField);
 		});
 
 		root.addEventListener('click', function (event) {

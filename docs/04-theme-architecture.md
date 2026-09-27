@@ -36,6 +36,7 @@ ll-bouwgroep/
 │   ├── page-hero.php
 │   ├── section-heading.php
 │   ├── cta-band.php
+│   ├── usp-strip.php
 │   └── home/
 │       ├── hero.php
 │       ├── usp.php
@@ -53,6 +54,7 @@ ll-bouwgroep/
 │   ├── template-contact.php
 │   ├── page-faq.php
 │   └── template-full-width.php
+├── single-dienst.php
 ├── assets/
 │   ├── css/
 │   ├── js/
@@ -85,12 +87,13 @@ Helpers: `llb_get_option()`, `llb_get_address()`, `llb_get_map_url()`, `llb_get_
 | Helper | Returns |
 |--------|---------|
 | `llb_get_services()` | Published `dienst` posts (`menu_order`, then title) |
+| `llb_get_why_items()` | Home USP strip items (`_llb_why_items` from the front page) |
 | `llb_get_home_projects( $limit )` | Featured projects first, then newest |
 | `llb_get_faq_page_id()` | First published page using the FAQ template |
 | `llb_get_home_faq_items()` | FAQ items with Show on homepage + answer |
 | `llb_get_service_url( $slug )` | Service permalink or Services page fallback |
 
-Home sections live in `template-parts/home/`.
+Home sections live in `template-parts/home/`. Shared parts: `page-hero.php` (angled panel), `usp-strip.php` (Home why items), `cta-band.php` (split CTA with optional image).
 
 ## Shortcodes
 
@@ -103,14 +106,15 @@ Home sections live in `template-parts/home/`.
 | File | Template Name | Role |
 |------|---------------|------|
 | `page-templates/template-home.php` | Home | Front page sections |
-| `page-templates/template-about.php` | About | Over ons |
-| `page-templates/template-services.php` | Services overview | Diensten page (services from CPT) |
+| `page-templates/template-about.php` | About | Over ons (hero, USP strip, sections + steps, CTA) |
+| `page-templates/template-services.php` | Services overview | Diensten page (hero, USP strip, services grid) |
+| `single-dienst.php` | — | Single service (hero, sections, steps, CTA) |
 | `page-templates/template-projects.php` | Projects overview | Projecten page + single project labels |
 | `page-templates/template-contact.php` | Contact | Contact / Offerte |
 | `page-templates/page-faq.php` | FAQ | Veelgestelde vragen |
 | `page-templates/template-full-width.php` | Full width | Elementor layouts |
 
-Stubs only in Phase 3c-2 (`the_title` + `the_content`). Full design in Phase 4.
+Full design for Home, Diensten, single service and Over ons in Phase 4c. Remaining stubs in Phase 4d.
 
 Page meta boxes are registered per template (`template` / `templates` in `llb_meta_box_page_config()`). After changing a page template: save and reload to see matching fields.
 
@@ -154,6 +158,17 @@ Native fields (not duplicated as meta):
 | Service sections | `_llb_sections` (repeater: heading, text, list) |
 | Service steps | `_llb_steps_heading`, `_llb_steps` (repeater: title, text) |
 | Service call to action | `_llb_cta_heading`, `_llb_cta_text`, `_llb_cta_button` |
+
+### About page (`template-about.php`)
+
+| Box | Fields |
+|-----|--------|
+| Page hero | Shared `_llb_hero_*` |
+| Sections | `_llb_sections` (repeater: heading, text, image) |
+| Steps | `_llb_steps` (repeater: title, text, image) |
+| Call to action | `_llb_cta_image`, `_llb_cta_heading`, `_llb_cta_text`, `_llb_cta_btn_text` |
+
+Repeater sub fields may include `image` (attachment ID, sanitized with `absint`; media picker works on rows added via “Add row”).
 
 ### Project (`project`)
 

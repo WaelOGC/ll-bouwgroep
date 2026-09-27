@@ -21,7 +21,7 @@ Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`
 
 - **4a:** Design system, header, footer, default page, 404, template parts, helpers **(done)**
 - **4b:** Home page template and sections **(done)**
-- **4c:** Services overview + single service + About
+- **4c:** Services overview + single service + About **(done)**
 - **4d:** Projects overview + single project + Contact + FAQ
 
 ## Phase 5 — CF7 integration + privacy

@@ -293,6 +293,11 @@ function llb_meta_box_page_config() {
 							'type'  => 'textarea',
 							'label' => __( 'Text', 'll-bouwgroep' ),
 						),
+						array(
+							'key'   => 'image',
+							'type'  => 'image',
+							'label' => __( 'Image', 'll-bouwgroep' ),
+						),
 					),
 				),
 			),
@@ -319,6 +324,11 @@ function llb_meta_box_page_config() {
 							'type'  => 'textarea',
 							'label' => __( 'Text', 'll-bouwgroep' ),
 						),
+						array(
+							'key'   => 'image',
+							'type'  => 'image',
+							'label' => __( 'Image', 'll-bouwgroep' ),
+						),
 					),
 				),
 			),
@@ -330,6 +340,11 @@ function llb_meta_box_page_config() {
 			'template'    => $about,
 			'description' => $page_notice,
 			'fields'      => array(
+				array(
+					'key'   => '_llb_cta_image',
+					'type'  => 'image',
+					'label' => __( 'Background image', 'll-bouwgroep' ),
+				),
 				array(
 					'key'   => '_llb_cta_heading',
 					'type'  => 'text',

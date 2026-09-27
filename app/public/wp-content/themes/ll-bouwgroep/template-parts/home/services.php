@@ -83,6 +83,9 @@ $llb_render_service_card = static function ( $service, $clone = false ) {
 		</div>
 		<?php if ( ! empty( $services ) ) : ?>
 			<div class="llb-services-carousel" data-llb-services-carousel>
+				<button type="button" class="llb-carousel-btn llb-carousel-btn--prev" data-llb-carousel-prev aria-label="Vorige">
+					<?php echo llb_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+				</button>
 				<div class="llb-services-carousel__track" data-llb-carousel-track>
 					<ul class="llb-services-carousel__list">
 						<?php foreach ( $services as $service ) : ?>
@@ -93,6 +96,9 @@ $llb_render_service_card = static function ( $service, $clone = false ) {
 						<?php endforeach; ?>
 					</ul>
 				</div>
+				<button type="button" class="llb-carousel-btn llb-carousel-btn--next" data-llb-carousel-next aria-label="Volgende">
+					<?php echo llb_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+				</button>
 			</div>
 		<?php endif; ?>
 	</div>

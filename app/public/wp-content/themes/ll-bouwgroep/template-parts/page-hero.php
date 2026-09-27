@@ -1,6 +1,6 @@
 <?php
 /**
- * Page hero template part.
+ * Page hero template part (angled panel, same look as Home).
  *
  * Args: title, intro, image_id, buttons (text, url, style).
  *
@@ -11,30 +11,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$title     = isset( $args['title'] ) ? (string) $args['title'] : '';
+$title     = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
 $intro     = isset( $args['intro'] ) ? (string) $args['intro'] : '';
 $image_id  = isset( $args['image_id'] ) ? absint( $args['image_id'] ) : 0;
 $buttons   = isset( $args['buttons'] ) && is_array( $args['buttons'] ) ? $args['buttons'] : array();
-$variant   = isset( $args['variant'] ) ? (string) $args['variant'] : '';
 $has_image = $image_id > 0;
 
 if ( '' === $title ) {
 	return;
 }
 
-$classes = 'llb-page-hero';
-if ( 'home' === $variant ) {
-	$classes .= ' llb-page-hero--home';
-}
+$classes = 'llb-page-hero llb-reveal';
 if ( $has_image ) {
 	$classes .= ' llb-page-hero--has-image';
-} elseif ( 'home' === $variant ) {
-	$classes .= ' llb-page-hero--dark';
+} else {
+	$classes .= ' llb-page-hero--no-image';
 }
 ?>
 <section class="<?php echo esc_attr( $classes ); ?>">
-	<?php if ( $has_image ) : ?>
-		<div class="llb-page-hero__media" aria-hidden="true">
+	<div class="llb-page-hero__bg" aria-hidden="true">
+		<?php if ( $has_image ) : ?>
 			<?php
 			echo wp_get_attachment_image(
 				$image_id,
@@ -47,13 +43,13 @@ if ( $has_image ) {
 				)
 			);
 			?>
-			<div class="llb-page-hero__overlay"></div>
-		</div>
-	<?php endif; ?>
-	<div class="llb-container">
-		<div class="llb-page-hero__inner">
-			<span class="llb-accent-line" aria-hidden="true"></span>
+		<?php endif; ?>
+		<span class="llb-page-hero__shade"></span>
+	</div>
+	<div class="llb-page-hero__panel">
+		<div class="llb-page-hero__content">
 			<h1><?php echo esc_html( $title ); ?></h1>
+			<span class="llb-accent-line" aria-hidden="true"></span>
 			<?php if ( '' !== trim( $intro ) ) : ?>
 				<div class="llb-page-hero__intro">
 					<?php echo llb_paragraphs( $intro ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
