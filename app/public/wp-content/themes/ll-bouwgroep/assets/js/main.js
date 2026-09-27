@@ -394,7 +394,7 @@
 				}
 				var rect = item.section.getBoundingClientRect();
 				var progress = (vh / 2 - (rect.top + rect.height / 2)) / vh;
-				var offset = Math.max(-18, Math.min(18, progress * 24));
+				var offset = Math.max(-20, Math.min(20, progress * 22));
 				item.el.style.setProperty('--llb-parallax-y', offset.toFixed(2) + 'px');
 			});
 		}

@@ -4,7 +4,7 @@
  *
  * Args:
  * - blueprint (bool)
- * - tool_pattern (bool) — full-section Tabler icon wallpaper
+ * - tool_pattern (bool) — full-section MDI/Lucide icon wallpaper
  * - stripes (bool)
  * - stripes_corner (bool)
  *
@@ -78,21 +78,29 @@ $grad_id = $uid . '-g';
 			<?php foreach ( llb_decor_tool_pattern_placements() as $index => $item ) : ?>
 				<?php
 				$icon_uid = $uid . '-t' . $index;
-				$svg      = llb_get_tabler_icon_svg( $item['icon'], $icon_uid );
+				$svg      = llb_get_decor_icon_svg( $item['set'], $item['icon'], $icon_uid );
 				if ( '' === $svg ) {
 					continue;
 				}
 				$style = sprintf(
-					'left:%s%%;top:%s%%;width:%spx;height:%spx;--llb-tool-rot:%sdeg;',
+					'left:%s%%;top:%s%%;width:%spx;height:%spx;--llb-tool-rot:%sdeg;--llb-float-dur:%ss;--llb-float-delay:%ss;--llb-float-x:%spx;--llb-float-y:%spx;--llb-float-r:%sdeg;--llb-float-s:%s;',
 					esc_attr( (string) $item['x'] ),
 					esc_attr( (string) $item['y'] ),
 					esc_attr( (string) $item['s'] ),
 					esc_attr( (string) $item['s'] ),
-					esc_attr( (string) $item['r'] )
+					esc_attr( (string) $item['r'] ),
+					esc_attr( (string) $item['dur'] ),
+					esc_attr( (string) $item['delay'] ),
+					esc_attr( (string) $item['fx'] ),
+					esc_attr( (string) $item['fy'] ),
+					esc_attr( (string) $item['frot'] ),
+					esc_attr( (string) $item['fscale'] )
 				);
 				?>
 				<span class="llb-tool-pattern__item" style="<?php echo esc_attr( $style ); ?>">
-					<?php echo $svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG from theme files. ?>
+					<span class="llb-tool-pattern__float">
+						<?php echo $svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG from theme files. ?>
+					</span>
 				</span>
 			<?php endforeach; ?>
 		</div>

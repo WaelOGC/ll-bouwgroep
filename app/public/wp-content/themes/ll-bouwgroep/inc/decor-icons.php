@@ -1,6 +1,6 @@
 <?php
 /**
- * Tabler Icons helpers for section decorations (inline SVG, no CDN).
+ * Tool-pattern icon helpers (MDI + Lucide, inline SVG, no CDN).
  *
  * @package LL_Bouwgroep
  */
@@ -10,95 +10,82 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Icon names used in the construction tool pattern (Tabler Icons outline).
+ * Icons used in the construction tool pattern.
  *
- * Workers' tools / building site icons that exist in Tabler.
- *
- * @return array<int, string>
+ * @return array<int, array{set: string, name: string}>
  */
-function llb_decor_tool_icon_names() {
+function llb_decor_tool_icon_list() {
 	return array(
-		'hammer',
-		'tool',
-		'tools',
-		'ruler-measure',
-		'ruler-2',
-		'ruler',
-		'paint',
-		'brush',
-		'bucket',
-		'bucket-droplet',
-		'ladder',
-		'helmet',
-		'shovel',
-		'wall',
-		'trowel',
-		'axe',
-		'cut',
-		'pick',
-		'dimensions',
-		'traffic-cone',
-		'crane',
-		'backhoe',
-		'bulldozer',
-		'forklift',
-		'bolt',
-		'building',
-		'fence',
-		'wood',
-		'chisel',
-		'spray',
-		'door',
-		'window',
+		array( 'set' => 'mdi', 'name' => 'hammer' ),
+		array( 'set' => 'mdi', 'name' => 'screwdriver' ),
+		array( 'set' => 'mdi', 'name' => 'wrench' ),
+		array( 'set' => 'mdi', 'name' => 'hand-saw' ),
+		array( 'set' => 'mdi', 'name' => 'circular-saw' ),
+		array( 'set' => 'mdi', 'name' => 'saw-blade' ),
+		array( 'set' => 'mdi', 'name' => 'pliers' ),
+		array( 'set' => 'mdi', 'name' => 'spirit-level' ),
+		array( 'set' => 'mdi', 'name' => 'tape-measure' ),
+		array( 'set' => 'mdi', 'name' => 'format-paint' ),
+		array( 'set' => 'mdi', 'name' => 'pail' ),
+		array( 'set' => 'mdi', 'name' => 'ladder' ),
+		array( 'set' => 'mdi', 'name' => 'hard-hat' ),
+		array( 'set' => 'mdi', 'name' => 'toolbox' ),
+		array( 'set' => 'mdi', 'name' => 'toy-brick' ),
+		array( 'set' => 'mdi', 'name' => 'shovel' ),
+		array( 'set' => 'mdi', 'name' => 'bucket' ),
+		array( 'set' => 'mdi', 'name' => 'pipe-wrench' ),
+		array( 'set' => 'mdi', 'name' => 'ruler-square' ),
+		array( 'set' => 'mdi', 'name' => 'hammer-wrench' ),
+		array( 'set' => 'lucide', 'name' => 'drill' ),
 	);
 }
 
 /**
- * Returns wallpaper placements (icon, position %, size px, rotation deg).
+ * Wallpaper placements: icon + position + size + float motion params.
  *
- * @return array<int, array{icon: string, x: float, y: float, s: int, r: int}>
+ * @return array<int, array<string, mixed>>
  */
 function llb_decor_tool_pattern_placements() {
-	$icons  = llb_decor_tool_icon_names();
+	$icons  = llb_decor_tool_icon_list();
+	// 18 icons, even spacing, sizes 28–56, no overlap.
 	$layout = array(
-		array( 4, 6, 52, -18 ),
-		array( 18, 4, 40, 12 ),
-		array( 32, 10, 56, -8 ),
-		array( 48, 5, 36, 22 ),
-		array( 64, 9, 48, -14 ),
-		array( 80, 4, 44, 8 ),
-		array( 92, 12, 38, -22 ),
-		array( 8, 28, 46, 16 ),
-		array( 22, 24, 58, -10 ),
-		array( 38, 30, 42, 6 ),
-		array( 54, 22, 50, -20 ),
-		array( 70, 28, 36, 14 ),
-		array( 86, 26, 54, -6 ),
-		array( 3, 48, 40, 10 ),
-		array( 16, 52, 48, -16 ),
-		array( 30, 46, 34, 24 ),
-		array( 46, 54, 56, -4 ),
-		array( 60, 48, 42, 18 ),
-		array( 76, 52, 46, -12 ),
-		array( 90, 46, 38, 8 ),
-		array( 10, 72, 50, -8 ),
-		array( 26, 76, 36, 20 ),
-		array( 42, 70, 52, -18 ),
-		array( 58, 78, 40, 6 ),
-		array( 74, 72, 48, -14 ),
-		array( 88, 76, 34, 12 ),
-		array( 6, 90, 44, -6 ),
-		array( 50, 88, 38, 16 ),
+		// x%, y%, size, base_rot, dur_s, delay_s, fx, fy, frot, fscale
+		array( 6, 8, 48, -16, 22, 0, 22, -16, 6, 1.04 ),
+		array( 22, 5, 34, 12, 18, -3, -14, 24, -5, 0.96 ),
+		array( 40, 10, 52, -8, 26, -6, 28, 12, 7, 1.03 ),
+		array( 58, 6, 30, 20, 16, -1, -18, -14, -8, 0.97 ),
+		array( 76, 9, 44, -14, 24, -8, 16, 22, 5, 1.05 ),
+		array( 90, 14, 36, 8, 20, -4, -26, 12, -6, 0.95 ),
+		array( 10, 32, 40, 14, 28, -2, 12, -28, 8, 1.02 ),
+		array( 28, 28, 56, -10, 19, -7, -16, 20, -4, 0.98 ),
+		array( 48, 34, 32, 6, 15, -5, 30, -12, 7, 1.04 ),
+		array( 66, 30, 46, -18, 25, -9, -12, 26, -7, 0.96 ),
+		array( 84, 36, 38, 10, 21, -3, 18, -20, 5, 1.03 ),
+		array( 5, 54, 42, -6, 17, -6, -22, 14, -8, 0.97 ),
+		array( 24, 58, 50, 16, 27, -1, 14, -24, 6, 1.05 ),
+		array( 44, 52, 28, -20, 14, -8, -28, 16, -5, 0.95 ),
+		array( 62, 56, 48, 4, 23, -4, 24, -10, 8, 1.02 ),
+		array( 80, 50, 36, -12, 29, -10, -10, 28, -6, 0.98 ),
+		array( 14, 78, 44, 18, 18, -2, 18, -22, 4, 1.04 ),
+		array( 52, 76, 40, -8, 22, -7, -20, 12, -7, 0.96 ),
 	);
 
 	$out = array();
 	foreach ( $layout as $index => $row ) {
+		$icon = $icons[ $index % count( $icons ) ];
 		$out[] = array(
-			'icon' => $icons[ $index % count( $icons ) ],
-			'x'    => (float) $row[0],
-			'y'    => (float) $row[1],
-			's'    => (int) $row[2],
-			'r'    => (int) $row[3],
+			'set'    => $icon['set'],
+			'icon'   => $icon['name'],
+			'x'      => (float) $row[0],
+			'y'      => (float) $row[1],
+			's'      => (int) $row[2],
+			'r'      => (int) $row[3],
+			'dur'    => (int) $row[4],
+			'delay'  => (float) $row[5],
+			'fx'     => (int) $row[6],
+			'fy'     => (int) $row[7],
+			'frot'   => (int) $row[8],
+			'fscale' => (float) $row[9],
 		);
 	}
 
@@ -106,51 +93,56 @@ function llb_decor_tool_pattern_placements() {
 }
 
 /**
- * Loads a Tabler outline SVG and returns markup suitable for inline use.
+ * Loads an MDI or Lucide SVG with brand-gradient paint.
  *
- * Brand gradient is embedded per SVG so stroke urls stay same-document.
- *
+ * @param string $set  'mdi' or 'lucide'.
  * @param string $name Icon file name without extension.
- * @param string $uid  Unique id prefix for the gradient (per instance).
+ * @param string $uid  Unique id for the gradient.
  * @return string
  */
-function llb_get_tabler_icon_svg( $name, $uid = '' ) {
+function llb_get_decor_icon_svg( $set, $name, $uid = '' ) {
 	static $file_cache = array();
 
+	$set  = sanitize_key( (string) $set );
 	$name = sanitize_file_name( (string) $name );
-	if ( '' === $name ) {
+	if ( ! in_array( $set, array( 'mdi', 'lucide' ), true ) || '' === $name ) {
 		return '';
 	}
 
-	if ( ! isset( $file_cache[ $name ] ) ) {
-		$path = LLB_DIR . '/assets/icons/tabler/' . $name . '.svg';
+	$cache_key = $set . '/' . $name;
+	if ( ! isset( $file_cache[ $cache_key ] ) ) {
+		$path = LLB_DIR . '/assets/icons/' . $set . '/' . $name . '.svg';
 		if ( ! file_exists( $path ) || ! is_readable( $path ) ) {
-			$file_cache[ $name ] = '';
+			$file_cache[ $cache_key ] = '';
 			return '';
 		}
 
 		$raw = file_get_contents( $path );
 		if ( ! is_string( $raw ) || '' === $raw ) {
-			$file_cache[ $name ] = '';
+			$file_cache[ $cache_key ] = '';
 			return '';
 		}
 
 		$raw = preg_replace( '/<!--.*?-->/s', '', $raw );
 		if ( ! is_string( $raw ) || ! preg_match( '/<svg\b[^>]*>(.*?)<\/svg>/is', $raw, $m ) ) {
-			$file_cache[ $name ] = '';
+			$file_cache[ $cache_key ] = '';
 			return '';
 		}
 
-		$file_cache[ $name ] = trim( $m[1] );
+		$file_cache[ $cache_key ] = trim( $m[1] );
 	}
 
-	$inner = $file_cache[ $name ];
+	$inner = $file_cache[ $cache_key ];
 	if ( '' === $inner ) {
 		return '';
 	}
 
-	$gid = '' !== $uid ? sanitize_html_class( $uid ) : 'llb-tg';
+	$gid  = '' !== $uid ? sanitize_html_class( $uid ) : 'llb-tg';
 	$defs = '<defs><linearGradient id="' . esc_attr( $gid ) . '" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D0021B"/><stop offset="100%" stop-color="#0B6B3A"/></linearGradient></defs>';
 
-	return '<svg class="llb-tool-pattern__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="url(#' . esc_attr( $gid ) . ')" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $defs . $inner . '</svg>';
+	if ( 'lucide' === $set ) {
+		return '<svg class="llb-tool-pattern__svg llb-tool-pattern__svg--stroke" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="url(#' . esc_attr( $gid ) . ')" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $defs . $inner . '</svg>';
+	}
+
+	return '<svg class="llb-tool-pattern__svg llb-tool-pattern__svg--fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="url(#' . esc_attr( $gid ) . ')" aria-hidden="true" focusable="false">' . $defs . $inner . '</svg>';
 }

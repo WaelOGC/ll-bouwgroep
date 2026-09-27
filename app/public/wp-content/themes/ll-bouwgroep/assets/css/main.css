@@ -2544,21 +2544,30 @@ a.llb-contact-map:hover .llb-contact-map__image {
 	top: 54%;
 }
 
-/* Tool pattern wallpaper (Tabler Icons, brand-gradient stroke) */
+/* Tool pattern wallpaper (MDI + Lucide, brand-gradient, floating) */
 .llb-tool-pattern {
 	position: absolute;
 	inset: -4%;
-	opacity: 0.14;
+	opacity: 0.1;
 	pointer-events: none;
 	will-change: transform;
 	--llb-parallax-y: 0px;
+	transform: translate3d(0, var(--llb-parallax-y, 0px), 0);
 }
 
 .llb-tool-pattern__item {
 	position: absolute;
 	display: block;
+	transform-origin: center center;
+}
+
+.llb-tool-pattern__float {
+	display: block;
+	width: 100%;
+	height: 100%;
 	transform: rotate(var(--llb-tool-rot, 0deg));
 	transform-origin: center center;
+	will-change: transform;
 }
 
 .llb-tool-pattern__svg {
@@ -2569,8 +2578,8 @@ a.llb-contact-map:hover .llb-contact-map__image {
 
 /* Soft fade behind text; pattern remains around / behind image column */
 .llb-home-projects .llb-tool-pattern {
-	-webkit-mask-image: linear-gradient(105deg, transparent 0%, rgba(0, 0, 0, 0.28) 28%, #000 55%, #000 100%);
-	mask-image: linear-gradient(105deg, transparent 0%, rgba(0, 0, 0, 0.28) 28%, #000 55%, #000 100%);
+	-webkit-mask-image: linear-gradient(105deg, transparent 0%, rgba(0, 0, 0, 0.2) 30%, #000 58%, #000 100%);
+	mask-image: linear-gradient(105deg, transparent 0%, rgba(0, 0, 0, 0.2) 30%, #000 58%, #000 100%);
 	-webkit-mask-size: 100% 100%;
 	mask-size: 100% 100%;
 	-webkit-mask-repeat: no-repeat;
@@ -2578,26 +2587,34 @@ a.llb-contact-map:hover .llb-contact-map__image {
 }
 
 .llb-home-why .llb-tool-pattern {
-	-webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.22) 32%, #000 50%, #000 100%);
-	mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.22) 32%, #000 50%, #000 100%);
+	-webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.18) 34%, #000 52%, #000 100%);
+	mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.18) 34%, #000 52%, #000 100%);
 	-webkit-mask-size: 100% 100%;
 	mask-size: 100% 100%;
 	-webkit-mask-repeat: no-repeat;
 	mask-repeat: no-repeat;
 }
 
-.llb-motion .llb-tool-pattern {
-	animation: llb-tool-pattern-drift 72s linear infinite;
+.llb-motion .llb-tool-pattern__float {
+	animation: llb-tool-float var(--llb-float-dur, 20s) ease-in-out var(--llb-float-delay, 0s) infinite;
 	animation-play-state: paused;
 }
 
-.llb-motion .llb-section-decor.is-inview .llb-tool-pattern {
+.llb-motion .llb-section-decor.is-inview .llb-tool-pattern__float {
 	animation-play-state: running;
 }
 
-@keyframes llb-tool-pattern-drift {
-	0%, 100% { transform: translate3d(0, var(--llb-parallax-y, 0px), 0); }
-	50% { transform: translate3d(10px, calc(var(--llb-parallax-y, 0px) - 8px), 0); }
+@keyframes llb-tool-float {
+	0%,
+	100% {
+		transform: translate3d(0, 0, 0) rotate(var(--llb-tool-rot, 0deg)) scale(1);
+	}
+	50% {
+		transform:
+			translate3d(var(--llb-float-x, 12px), var(--llb-float-y, -12px), 0)
+			rotate(calc(var(--llb-tool-rot, 0deg) + var(--llb-float-r, 5deg)))
+			scale(var(--llb-float-s, 1.02));
+	}
 }
 
 .llb-home-bath__media {
@@ -2678,24 +2695,24 @@ a.llb-contact-map:hover .llb-contact-map__image {
 }
 
 @media (max-width: 768px) {
-	.llb-tool-pattern__item:nth-child(n + 13) {
+	.llb-tool-pattern__item:nth-child(n + 11) {
 		display: none;
 	}
 
 	.llb-tool-pattern__item {
-		width: 32px !important;
-		height: 32px !important;
+		width: clamp(24px, 8vw, 36px) !important;
+		height: clamp(24px, 8vw, 36px) !important;
 	}
 
 	.llb-tool-pattern {
-		opacity: 0.12;
+		opacity: 0.09;
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.llb-measure-line,
 	.llb-section-decor__stripe,
-	.llb-tool-pattern {
+	.llb-tool-pattern__float {
 		animation: none !important;
 	}
 
