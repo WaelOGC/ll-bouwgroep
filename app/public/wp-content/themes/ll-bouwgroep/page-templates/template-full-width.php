@@ -12,17 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 <main id="main" class="llb-main">
-	<div class="llb-container">
-		<?php while ( have_posts() ) : ?>
-			<?php the_post(); ?>
-			<article <?php post_class(); ?>>
-				<h1><?php the_title(); ?></h1>
-				<div class="llb-entry-content">
-					<?php the_content(); ?>
-				</div>
-			</article>
-		<?php endwhile; ?>
-	</div>
+	<?php while ( have_posts() ) : ?>
+		<?php the_post(); ?>
+		<?php the_content(); ?>
+	<?php endwhile; ?>
 </main>
 <?php
 get_footer();

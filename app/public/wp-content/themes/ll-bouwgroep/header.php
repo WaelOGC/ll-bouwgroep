@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="skip-link screen-reader-text" href="#main"><?php echo esc_html__( 'Ga naar de inhoud', 'll-bouwgroep' ); ?></a>
+<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) : ?>
 <header class="llb-site-header" role="banner">
 	<div class="llb-container">
 		<div class="llb-site-branding">
@@ -41,3 +42,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</nav>
 	</div>
 </header>
+<?php endif; ?>

@@ -9,6 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
+<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) : ?>
 <footer class="llb-site-footer" role="contentinfo">
 	<div class="llb-container">
 		<nav class="llb-nav-footer" aria-label="<?php echo esc_attr__( 'Footermenu', 'll-bouwgroep' ); ?>">
@@ -25,6 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</nav>
 	</div>
 </footer>
+<?php endif; ?>
 <?php wp_footer(); ?>
 </body>
 </html>

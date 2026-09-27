@@ -8,14 +8,14 @@ Project documentation in `docs/` (this set of files). No theme code yet.
 
 Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`style.css`, `functions.php`, `inc/`, assets, languages).
 
-## Phase 3 — Customizer + meta boxes + CPTs + plugin compatibility **(next)**
+## Phase 3 — Customizer + meta boxes + CPTs + plugin compatibility **(done)**
 
 - Customizer: company & contact, opening hours, map, social, header CTA, footer, CF7 shortcode, brand colors **(done — Phase 3b)**
 - **3c-1:** meta box engine + service and project fields **(done)**
 - **3c-2:** page fields (Home, Over ons, Diensten, Projecten, Contact) + FAQ repeater + import of default Dutch content **(done)**
 - Register CPTs `dienst` and `project` **(done — Phase 3a)**
 - Taxonomy `project_categorie` **(done — Phase 3a)**; project meta “Uitgelicht project” + gallery **(done — Phase 3c-1)**
-- Plugin compatibility layer in `inc/compat/` (`seo.php`, `elementor.php`, `cf7.php`)
+- **3d:** Plugin compatibility layer in `inc/compat/` (`seo.php`, `elementor.php`, `cf7.php`) **(done)**
 
 ## Phase 4 — Templates and design
 

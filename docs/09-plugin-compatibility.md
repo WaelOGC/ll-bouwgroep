@@ -26,6 +26,8 @@ Only **one** SEO plugin is active on the site at a time — never Yoast and Rank
 2. Elseif `rank_math_the_breadcrumbs()` exists → use it
 3. Else → output nothing
 
+**Implementation:** `inc/compat/seo.php` — `llb_breadcrumbs()`, FAQPage JSON-LD via `llb_output_faq_schema` / filter `llb_output_faq_schema`.
+
 See also [05-seo.md](05-seo.md).
 
 ---
@@ -39,9 +41,11 @@ See also [05-seo.md](05-seo.md).
 - Register Elementor theme locations (header / footer) via `elementor_theme_register_locations`, so Elementor Pro Theme Builder can replace header/footer if needed. If not used, theme header/footer are shown.
 - Set `$content_width` and do **not** add global CSS that overrides Elementor widgets.
 
+**Implementation:** `inc/compat/elementor.php` — `llb_register_elementor_locations()`, Google Fonts filter; header/footer use `elementor_theme_do_location()`.
+
 ### AVG note
 
-Elementor loads Google Fonts by default — this **must be disabled** in Elementor settings. Fonts are self-hosted by the theme.
+Elementor loads Google Fonts by default — this **must be disabled** in Elementor settings. Fonts are self-hosted by the theme. The theme also forces `elementor/frontend/print_google_fonts` to false.
 
 ---
 
@@ -57,3 +61,5 @@ Contact Form 7 **replaces** any custom theme contact form.
 - Load CF7 CSS/JS only on pages that contain a form, using the `wpcf7_load_js` / `wpcf7_load_css` filters
 - Local email testing via **Mailpit**
 - Form fields (labels, dropdown options, consent text, button): [10-page-content.md § 15](10-page-content.md#15-contact--offerte-aanvragen)
+
+**Implementation:** `inc/compat/cf7.php` — conditional `wpcf7_enqueue_*`, helper `llb_contact_form()`.
