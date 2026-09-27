@@ -17,12 +17,12 @@ Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`
 - Taxonomy `project_categorie` **(done — Phase 3a)**; project meta “Uitgelicht project” + gallery **(done — Phase 3c-1)**
 - **3d:** Plugin compatibility layer in `inc/compat/` (`seo.php`, `elementor.php`, `cf7.php`) **(done)**
 
-## Phase 4 — Templates and design
+## Phase 4 — Templates and design **(done)**
 
 - **4a:** Design system, header, footer, default page, 404, template parts, helpers **(done)**
 - **4b:** Home page template and sections **(done)**
 - **4c:** Services overview + single service + About **(done)**
-- **4d:** Projects overview + single project + Contact + FAQ
+- **4d:** Projects overview + single project + Contact + FAQ **(done)**
 
 ## Phase 5 — CF7 integration + privacy
 

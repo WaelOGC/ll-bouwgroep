@@ -47,6 +47,7 @@ if ( $has_image ) {
 		<span class="llb-page-hero__shade"></span>
 	</div>
 	<div class="llb-page-hero__panel">
+		<div class="llb-page-hero__panel-shape" aria-hidden="true"></div>
 		<div class="llb-page-hero__content">
 			<h1><?php echo esc_html( $title ); ?></h1>
 			<span class="llb-accent-line" aria-hidden="true"></span>

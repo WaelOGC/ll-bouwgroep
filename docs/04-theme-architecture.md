@@ -37,6 +37,9 @@ ll-bouwgroep/
 │   ├── section-heading.php
 │   ├── cta-band.php
 │   ├── usp-strip.php
+│   ├── project-card.php
+│   ├── gallery-slider.php
+│   ├── faq-accordion.php
 │   └── home/
 │       ├── hero.php
 │       ├── usp.php
@@ -55,6 +58,7 @@ ll-bouwgroep/
 │   ├── page-faq.php
 │   └── template-full-width.php
 ├── single-dienst.php
+├── single-project.php
 ├── assets/
 │   ├── css/
 │   ├── js/
@@ -91,9 +95,18 @@ Helpers: `llb_get_option()`, `llb_get_address()`, `llb_get_map_url()`, `llb_get_
 | `llb_get_home_projects( $limit )` | Featured projects first, then newest |
 | `llb_get_faq_page_id()` | First published page using the FAQ template |
 | `llb_get_home_faq_items()` | FAQ items with Show on homepage + answer |
+| `llb_get_faq_items_grouped()` | FAQ items with answers, grouped by category order |
 | `llb_get_service_url( $slug )` | Service permalink or Services page fallback |
+| `llb_get_projects_page_id()` | Projects overview page ID |
+| `llb_get_projects_page_meta( $key )` | Meta from the Projects page (single project labels) |
+| `llb_get_projects_page_url( $args )` | Projects URL with optional `categorie` / `pagina` |
+| `llb_query_projects( $slug, $paged )` | Filtered, paginated project query |
+| `llb_get_featured_project()` | First featured published project |
+| `llb_get_project_gallery_ids( $id )` | Gallery IDs, fallback featured image |
 
-Home sections live in `template-parts/home/`. Shared parts: `page-hero.php` (angled panel), `usp-strip.php` (Home why items), `cta-band.php` (split CTA with optional image).
+Home sections live in `template-parts/home/`. Shared parts: `page-hero.php` (angled panel; content stays inside the diagonal), `usp-strip.php`, `cta-band.php`, `project-card.php`, `gallery-slider.php`, `faq-accordion.php`.
+
+`template_redirect`: `/projectcategorie/{slug}/` → 301 to `/projecten/?categorie={slug}`.
 
 ## Shortcodes
 
@@ -109,12 +122,13 @@ Home sections live in `template-parts/home/`. Shared parts: `page-hero.php` (ang
 | `page-templates/template-about.php` | About | Over ons (hero, USP strip, sections + steps, CTA) |
 | `page-templates/template-services.php` | Services overview | Diensten page (hero, USP strip, services grid) |
 | `single-dienst.php` | — | Single service (hero, sections, steps, CTA) |
-| `page-templates/template-projects.php` | Projects overview | Projecten page + single project labels |
-| `page-templates/template-contact.php` | Contact | Contact / Offerte |
-| `page-templates/page-faq.php` | FAQ | Veelgestelde vragen |
+| `page-templates/template-projects.php` | Projects overview | Projecten (filter, grid, pagination, featured slider) |
+| `single-project.php` | — | Single project (hero, gallery, about/work/result, CTA) |
+| `page-templates/template-contact.php` | Contact | Contact / Offerte (form, details, map, FAQ) |
+| `page-templates/page-faq.php` | FAQ | Veelgestelde vragen (grouped accordion + CTA) |
 | `page-templates/template-full-width.php` | Full width | Elementor layouts |
 
-Full design for Home, Diensten, single service and Over ons in Phase 4c. Remaining stubs in Phase 4d.
+Phase 4 templates complete (Home, Diensten, Over ons, Projecten, Contact, FAQ, singles).
 
 Page meta boxes are registered per template (`template` / `templates` in `llb_meta_box_page_config()`). After changing a page template: save and reload to see matching fields.
 

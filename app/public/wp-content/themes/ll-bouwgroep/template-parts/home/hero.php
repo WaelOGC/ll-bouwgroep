@@ -59,6 +59,7 @@ if ( $image_id ) {
 		<span class="llb-home-hero__shade"></span>
 	</div>
 	<div class="llb-home-hero__panel">
+		<div class="llb-home-hero__panel-shape" aria-hidden="true"></div>
 		<div class="llb-home-hero__content">
 			<?php if ( '' !== $title ) : ?>
 				<h1><?php echo esc_html( $title ); ?></h1>

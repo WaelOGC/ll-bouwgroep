@@ -258,4 +258,85 @@
 	}
 
 	document.querySelectorAll('[data-llb-services-carousel]').forEach(initServicesCarousel);
+
+	/* Gallery slider */
+	function initGallerySlider(root) {
+		if (root.hasAttribute('data-llb-gallery-static')) {
+			return;
+		}
+
+		var slides = root.querySelectorAll('[data-llb-gallery-slide]');
+		var thumbs = root.querySelectorAll('[data-llb-gallery-thumb]');
+		var prevBtn = root.querySelector('[data-llb-gallery-prev]');
+		var nextBtn = root.querySelector('[data-llb-gallery-next]');
+		var index = 0;
+		var total = slides.length;
+
+		if (total < 2) {
+			return;
+		}
+
+		function show(nextIndex) {
+			index = (nextIndex + total) % total;
+			slides.forEach(function (slide, i) {
+				var active = i === index;
+				slide.classList.toggle('is-active', active);
+				if (active) {
+					slide.removeAttribute('hidden');
+				} else {
+					slide.setAttribute('hidden', '');
+				}
+			});
+			thumbs.forEach(function (thumb, i) {
+				var active = i === index;
+				thumb.classList.toggle('is-active', active);
+				thumb.setAttribute('aria-current', active ? 'true' : 'false');
+			});
+		}
+
+		if (prevBtn) {
+			prevBtn.addEventListener('click', function () {
+				show(index - 1);
+			});
+		}
+		if (nextBtn) {
+			nextBtn.addEventListener('click', function () {
+				show(index + 1);
+			});
+		}
+
+		thumbs.forEach(function (thumb) {
+			thumb.addEventListener('click', function () {
+				var i = parseInt(thumb.getAttribute('data-llb-gallery-thumb'), 10);
+				if (!isNaN(i)) {
+					show(i);
+				}
+			});
+		});
+
+		root.addEventListener('keydown', function (event) {
+			if (event.key === 'ArrowLeft') {
+				event.preventDefault();
+				show(index - 1);
+			} else if (event.key === 'ArrowRight') {
+				event.preventDefault();
+				show(index + 1);
+			}
+		});
+
+		if (!root.hasAttribute('tabindex')) {
+			root.setAttribute('tabindex', '0');
+		}
+	}
+
+	document.querySelectorAll('[data-llb-gallery-slider]').forEach(initGallerySlider);
+
+	/* Project filter select auto-submit */
+	document.querySelectorAll('.llb-project-filter__select').forEach(function (select) {
+		select.addEventListener('change', function () {
+			if (select.form) {
+				select.form.submit();
+			}
+		});
+	});
 })();
