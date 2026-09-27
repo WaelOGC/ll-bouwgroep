@@ -1,0 +1,118 @@
+/**
+ * Main theme styles — foundation only.
+ *
+ * @package LL_Bouwgroep
+ */
+
+:root {
+	--llb-red: #D0021B;
+	--llb-green: #0B6B3A;
+	--llb-black: #1F1F1F;
+	--llb-text: #4A4A4A;
+	--llb-light: #F5F5F3;
+	--llb-font-heading: 'Barlow', Arial, sans-serif;
+	--llb-font-body: 'Inter', Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	font-family: var(--llb-font-body);
+	font-weight: 400;
+	color: var(--llb-text);
+	background-color: #fff;
+	line-height: 1.6;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--llb-font-heading);
+	font-weight: 700;
+	color: var(--llb-black);
+	line-height: 1.2;
+}
+
+a {
+	color: var(--llb-red);
+}
+
+.llb-container {
+	width: 100%;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+	.llb-container {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus,
+.skip-link:focus {
+	background-color: #fff;
+	clip: auto !important;
+	clip-path: none;
+	color: var(--llb-black);
+	display: block;
+	font-size: 1rem;
+	font-weight: 500;
+	height: auto;
+	left: 0.5rem;
+	line-height: normal;
+	padding: 0.75rem 1rem;
+	text-decoration: none;
+	top: 0.5rem;
+	width: auto;
+	z-index: 100000;
+}
