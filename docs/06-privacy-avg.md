@@ -4,6 +4,8 @@
 
 Provide a Dutch **Privacyverklaring** page covering AVG/GDPR obligations for the site and contact form.
 
+Base text: [10-page-content.md § 16](10-page-content.md#16-privacyverklaring). **Must be reviewed by the client before launch.**
+
 ## Legal footer (required)
 
 Dutch business websites must show in the footer:

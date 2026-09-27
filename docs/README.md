@@ -16,6 +16,7 @@ These docs are the **single source of truth** for development of the L&L Bouwgro
 | [07-coding-standards.md](07-coding-standards.md) | WordPress coding, security, prefixes, and plugin independence |
 | [08-roadmap.md](08-roadmap.md) | Development phases from docs through launch and later growth |
 | [09-plugin-compatibility.md](09-plugin-compatibility.md) | Yoast, Rank Math, Elementor, and Contact Form 7 compatibility |
+| [10-page-content.md](10-page-content.md) | Final website text per page (Dutch). Single source of truth for all content. |
 
 ## Assets
 

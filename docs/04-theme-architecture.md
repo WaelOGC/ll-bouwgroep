@@ -71,7 +71,9 @@ Registered in the theme:
 
 - Featured image
 - Excerpt
-- Custom fields (including gallery support)
+- Custom fields: description (`[Projectbeschrijving]`), werkzaamheden (`[Werkzaamheden]`), resultaat (`[Beschrijving eindresultaat]`), gallery
+
+Default website texts live in [10-page-content.md](10-page-content.md). Those values are the theme defaults and must stay editable from the WordPress dashboard.
 
 ## Contact form (Contact Form 7)
 

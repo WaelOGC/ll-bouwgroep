@@ -54,3 +54,4 @@ Contact Form 7 **replaces** any custom theme contact form.
 - **No reCAPTCHA by default** (third-party request, AVG)
 - Load CF7 CSS/JS only on pages that contain a form, using the `wpcf7_load_js` / `wpcf7_load_css` filters
 - Local email testing via **Mailpit**
+- Form fields (labels, dropdown options, consent text, button): [10-page-content.md § 15](10-page-content.md#15-contact--offerte-aanvragen)

@@ -4,6 +4,8 @@
 
 **L&L Bouwgroep B.V.** — Netherlands.
 
+Target area: **Zoetermeer en omgeving**.
+
 Construction and renovation company. Specialty: complete bathroom and toilet renovation, covering the full trajectory from demolition through plumbing, electrical, plaster, tiling, sanitary installation, and finishing. Also delivers full renovations for homes and commercial buildings.
 
 Team experience: **10–25 years**.

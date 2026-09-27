@@ -1,5 +1,7 @@
 # Website content (Dutch)
 
+Original client brief. The final website text is in [10-page-content.md](10-page-content.md).
+
 Source: [`assets/client-brief.pdf`](assets/client-brief.pdf). Original wording preserved.
 
 ---

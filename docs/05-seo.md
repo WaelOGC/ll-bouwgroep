@@ -4,6 +4,12 @@ Details and plugin-specific rules: [09-plugin-compatibility.md](09-plugin-compat
 
 The theme supports **Yoast SEO** and **Rank Math SEO**. Only one SEO plugin is active on the site — never both. The theme must still work with no SEO plugin installed.
 
+## Local SEO
+
+Target area: **Zoetermeer en omgeving**.
+
+SEO titles and meta descriptions are defined in [10-page-content.md § 20](10-page-content.md#20-seo-titles--meta-descriptions). The theme does **not** output them — enter them manually per page in Yoast SEO or Rank Math.
+
 ## Title tag
 
 - Use `add_theme_support( 'title-tag' )`
