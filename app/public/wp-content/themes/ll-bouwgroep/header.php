@@ -106,6 +106,7 @@ $logo_alt     = '' !== $company_name ? $company_name : get_bloginfo( 'name' );
 					'theme_location' => 'primary',
 					'container'      => false,
 					'fallback_cb'    => false,
+					'menu_id'        => 'llb-menu-mobile',
 					'menu_class'     => 'llb-menu llb-menu--primary',
 					'depth'          => 2,
 				)

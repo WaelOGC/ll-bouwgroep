@@ -5,6 +5,14 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.8.0] — 2026-09-27
+
+### Added
+- Home page template and sections, query helpers, `llb-card` image size, new icons
+
+### Fixed
+- Duplicate menu IDs (mobile panel)
+
 ## [0.7.0] — 2026-09-27
 
 ### Added

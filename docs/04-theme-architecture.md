@@ -26,11 +26,25 @@ ll-bouwgroep/
 │   ├── import.php
 │   ├── post-types.php
 │   ├── helpers.php
+│   ├── queries.php
+│   ├── shortcodes.php
 │   └── compat/
 │       ├── seo.php
 │       ├── elementor.php
 │       └── cf7.php
 ├── template-parts/
+│   ├── page-hero.php
+│   ├── section-heading.php
+│   ├── cta-band.php
+│   └── home/
+│       ├── hero.php
+│       ├── intro.php
+│       ├── bathrooms.php
+│       ├── services.php
+│       ├── why.php
+│       ├── projects.php
+│       ├── faq.php
+│       └── cta.php
 ├── page-templates/
 │   ├── template-home.php
 │   ├── template-about.php
@@ -65,6 +79,18 @@ Fonts are fixed (self-hosted Barlow + Inter, AVG). Not editable in the Customize
 | Brand colors | `llb_color_red`, `llb_color_green` | Inline CSS only when changed from default |
 
 Helpers: `llb_get_option()`, `llb_get_address()`, `llb_get_map_url()`, `llb_get_header_cta_url()`, `llb_get_opening_hours()`, `llb_get_copyright()`.
+
+## Query helpers (`inc/queries.php`)
+
+| Helper | Returns |
+|--------|---------|
+| `llb_get_services()` | Published `dienst` posts (`menu_order`, then title) |
+| `llb_get_home_projects( $limit )` | Featured projects first, then newest |
+| `llb_get_faq_page_id()` | First published page using the FAQ template |
+| `llb_get_home_faq_items()` | FAQ items with Show on homepage + answer |
+| `llb_get_service_url( $slug )` | Service permalink or Services page fallback |
+
+Home sections live in `template-parts/home/`.
 
 ## Shortcodes
 

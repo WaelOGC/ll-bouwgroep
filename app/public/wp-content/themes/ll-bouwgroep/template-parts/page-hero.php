@@ -15,6 +15,7 @@ $title     = isset( $args['title'] ) ? (string) $args['title'] : '';
 $intro     = isset( $args['intro'] ) ? (string) $args['intro'] : '';
 $image_id  = isset( $args['image_id'] ) ? absint( $args['image_id'] ) : 0;
 $buttons   = isset( $args['buttons'] ) && is_array( $args['buttons'] ) ? $args['buttons'] : array();
+$variant   = isset( $args['variant'] ) ? (string) $args['variant'] : '';
 $has_image = $image_id > 0;
 
 if ( '' === $title ) {
@@ -22,8 +23,13 @@ if ( '' === $title ) {
 }
 
 $classes = 'llb-page-hero';
+if ( 'home' === $variant ) {
+	$classes .= ' llb-page-hero--home';
+}
 if ( $has_image ) {
 	$classes .= ' llb-page-hero--has-image';
+} elseif ( 'home' === $variant ) {
+	$classes .= ' llb-page-hero--dark';
 }
 ?>
 <section class="<?php echo esc_attr( $classes ); ?>">

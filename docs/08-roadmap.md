@@ -20,7 +20,7 @@ Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`
 ## Phase 4 — Templates and design
 
 - **4a:** Design system, header, footer, default page, 404, template parts, helpers **(done)**
-- **4b:** Home page template and sections
+- **4b:** Home page template and sections **(done)**
 - **4c:** Services overview + single service + About
 - **4d:** Projects overview + single project + Contact + FAQ
 
