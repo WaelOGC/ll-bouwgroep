@@ -27,8 +27,8 @@ Content: [10-page-content.md § 2. Over ons](10-page-content.md#2-over-ons)
 
 Content: [10-page-content.md § 3. Diensten (overview)](10-page-content.md#3-diensten-overview-page) and §§ 4–12 (single services)
 
-- **Overview page** — all services
-- **Single page per service** — Custom Post Type `dienst`
+- **Overview** — WordPress Page (slug `diensten`); see [URL structure](04-theme-architecture.md#url-structure)
+- **Single service** — Custom Post Type `dienst` (`/diensten/{slug}/`)
 
 Services:
 
@@ -46,10 +46,10 @@ Services:
 
 Content: [10-page-content.md § 13. Projecten (archive)](10-page-content.md#13-projecten-archive) and [§ 14. Single Project](10-page-content.md#14-single-project-template)
 
-- **Portfolio archive** — Custom Post Type `project`
-- **Category filter** — taxonomy `project_categorie`
+- **Overview** — WordPress Page (slug `projecten`); see [URL structure](04-theme-architecture.md#url-structure)
+- **Category filter** — taxonomy `project_categorie` (`/projectcategorie/{slug}/`)
 - **Featured project** — with image slider
-- **Single project** — with gallery
+- **Single project** — Custom Post Type `project` (`/projecten/{slug}/`)
 
 ## Contact / Offerte aanvragen
 

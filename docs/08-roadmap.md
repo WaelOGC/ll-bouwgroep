@@ -13,8 +13,8 @@ Scaffold the classic theme under `app/public/wp-content/themes/ll-bouwgroep/` (`
 - Customizer: logo, colors, fonts, contact info, opening hours, map image, “Route bekijken” URL, social, header CTA, footer text, CF7 shortcode
 - Meta boxes for page heroes and section fields
 - FAQ repeatable meta box (question, answer, category, “Toon op homepage”)
-- Register CPTs `dienst` and `project`
-- Taxonomy `project_categorie`; project meta “Uitgelicht project” + gallery
+- Register CPTs `dienst` and `project` **(done — Phase 3a)**
+- Taxonomy `project_categorie` **(done — Phase 3a)**; project meta “Uitgelicht project” + gallery **(open — Phase 3c)**
 - Plugin compatibility layer in `inc/compat/` (`seo.php`, `elementor.php`, `cf7.php`)
 
 ## Phase 4 — Templates and design

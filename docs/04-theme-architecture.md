@@ -72,13 +72,14 @@ On the FAQ page (`page-faq.php`):
 
 ## Custom post types
 
-Registered in the theme:
+Registered in the theme (`inc/post-types.php`):
 
 ### `dienst`
 
 - Featured image
 - Excerpt
 - Custom fields as needed for service detail
+- Rewrite slug `diensten`, `has_archive` false
 
 ### `project`
 
@@ -88,8 +89,19 @@ Registered in the theme:
 - Checkbox **“Uitgelicht project”** (featured project)
 - Image gallery for the featured project slider
 - Taxonomy **`project_categorie`** (hierarchical) for the archive filter
+- Rewrite slug `projecten`, `has_archive` false
 
 Default website texts live in [10-page-content.md](10-page-content.md). Those values are the theme defaults and must stay editable from the WordPress dashboard.
+
+## URL structure
+
+- **Diensten** overview = a normal WordPress Page (slug `diensten`), editable in the dashboard
+- **Projecten** overview = a normal WordPress Page (slug `projecten`), editable in the dashboard
+- Single service: `/diensten/{slug}/` (CPT `dienst`, no archive)
+- Single project: `/projecten/{slug}/` (CPT `project`, no archive)
+- Project category: `/projectcategorie/{slug}/`
+- **Reason:** overview texts stay editable from the dashboard, and no URL conflict between Page and CPT archive
+- Rewrite rules flush only on theme activation. After changes: **Settings → Permalinks → Save**.
 
 ## Contact form (Contact Form 7)
 
