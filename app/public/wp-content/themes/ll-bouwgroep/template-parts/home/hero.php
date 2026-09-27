@@ -1,6 +1,6 @@
 <?php
 /**
- * Home — hero (angled panel layout).
+ * Home — hero (design v2).
  *
  * @package LL_Bouwgroep
  */
@@ -33,55 +33,58 @@ if ( '' === $title && '' === trim( $intro ) && '' === $btn1_text && '' === $btn2
 	return;
 }
 
-$classes = 'llb-home-hero llb-reveal';
-if ( $image_id ) {
-	$classes .= ' llb-home-hero--has-image';
-} else {
-	$classes .= ' llb-home-hero--no-image';
+$lines = preg_split( '/\r\n|\r|\n/', $title );
+$lines = array_values( array_filter( array_map( 'trim', is_array( $lines ) ? $lines : array() ) ) );
+if ( empty( $lines ) && '' !== $title ) {
+	$lines = array( $title );
+}
+// Fallback split for the known single-line default.
+if ( 1 === count( $lines ) && false !== stripos( $lines[0], 'badkamer' ) && false !== stripos( $lines[0], 'verbouwing' ) ) {
+	$lines = array( 'Van complete', 'badkamer tot', 'volledige verbouwing' );
 }
 ?>
-<section class="<?php echo esc_attr( $classes ); ?>">
-	<div class="llb-home-hero__bg" aria-hidden="true">
-		<?php if ( $image_id ) : ?>
+<section class="hero">
+	<?php if ( $image_id ) : ?>
+		<div class="hero-img">
 			<?php
 			echo wp_get_attachment_image(
 				$image_id,
 				'full',
 				false,
 				array(
-					'class'    => 'llb-home-hero__image',
-					'loading'  => 'eager',
-					'decoding' => 'async',
+					'loading'       => 'eager',
+					'decoding'      => 'async',
+					'fetchpriority' => 'high',
 				)
 			);
 			?>
+		</div>
+	<?php else : ?>
+		<div class="hero-img" aria-hidden="true"></div>
+	<?php endif; ?>
+	<div class="wrap hero-in">
+		<?php if ( ! empty( $lines ) ) : ?>
+			<h1>
+				<?php foreach ( $lines as $line ) : ?>
+					<span class="ln"><span><?php echo esc_html( $line ); ?></span></span>
+				<?php endforeach; ?>
+			</h1>
+			<div class="rule" aria-hidden="true"></div>
 		<?php endif; ?>
-		<span class="llb-home-hero__shade"></span>
-	</div>
-	<div class="llb-home-hero__panel">
-		<div class="llb-home-hero__panel-shape" aria-hidden="true"></div>
-		<div class="llb-home-hero__content">
-			<?php if ( '' !== $title ) : ?>
-				<h1><?php echo esc_html( $title ); ?></h1>
-				<span class="llb-accent-line" aria-hidden="true"></span>
-			<?php endif; ?>
+		<div class="hero-foot">
 			<?php if ( '' !== trim( $intro ) ) : ?>
-				<div class="llb-home-hero__intro">
-					<?php echo llb_paragraphs( $intro ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
-				</div>
+				<?php echo llb_paragraphs( $intro ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 			<?php endif; ?>
 			<?php if ( '' !== $btn1_text || '' !== $btn2_text ) : ?>
-				<div class="llb-btn-group">
+				<div class="hero-btns">
 					<?php if ( '' !== $btn1_text ) : ?>
-						<a class="llb-btn llb-btn--primary" href="<?php echo esc_url( $btn1_url ); ?>">
-							<span><?php echo esc_html( $btn1_text ); ?></span>
-							<?php echo llb_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+						<a class="btn btn-red" href="<?php echo esc_url( $btn1_url ); ?>">
+							<?php echo esc_html( $btn1_text ); ?>
+							<?php echo llb_btn_arrow_svg(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
 						</a>
 					<?php endif; ?>
 					<?php if ( '' !== $btn2_text ) : ?>
-						<a class="llb-btn llb-btn--outline-light llb-btn--no-icon" href="<?php echo esc_url( $btn2_url ); ?>">
-							<span><?php echo esc_html( $btn2_text ); ?></span>
-						</a>
+						<a class="btn btn-ghost" href="<?php echo esc_url( $btn2_url ); ?>"><?php echo esc_html( $btn2_text ); ?></a>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>

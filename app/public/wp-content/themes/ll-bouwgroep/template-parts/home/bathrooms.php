@@ -1,6 +1,6 @@
 <?php
 /**
- * Home — bathrooms highlight.
+ * Home — bathrooms (design v2).
  *
  * @package LL_Bouwgroep
  */
@@ -18,55 +18,78 @@ $btn_url    = trim( (string) llb_get_meta( $post_id, '_llb_bath_btn_url' ) );
 $image_id   = absint( llb_get_meta( $post_id, '_llb_bath_image' ) );
 
 if ( '' === $btn_url ) {
-	$btn_url = llb_get_service_url( 'badkamers-toiletten' );
+	$btn_url = llb_page_url( 'diensten' );
+	$bath    = get_page_by_path( 'badkamers-toiletten', OBJECT, 'dienst' );
+	if ( $bath instanceof WP_Post ) {
+		$btn_url = get_permalink( $bath );
+	}
 }
 
 if ( '' === $heading && '' === $text && '' === $subheading && '' === $btn_text && ! $image_id ) {
 	return;
 }
+
+$sub_parts = preg_split( '/\r\n|\r|\n|\.\s+/', $subheading );
+$sub_parts = array_values( array_filter( array_map( 'trim', is_array( $sub_parts ) ? $sub_parts : array() ) ) );
+if ( empty( $sub_parts ) && '' !== $subheading ) {
+	$sub_parts = array( $subheading );
+}
+// Match reference three-line subheading when stored as one sentence with periods.
+if ( 1 === count( $sub_parts ) && substr_count( $subheading, '.' ) >= 2 ) {
+	$sub_parts = array_values(
+		array_filter(
+			array_map(
+				static function ( $p ) {
+					$p = trim( $p );
+					if ( '' === $p ) {
+						return '';
+					}
+					return ( '.' === substr( $p, -1 ) ) ? $p : $p . '.';
+				},
+				preg_split( '/(?<=\.)\s+/', $subheading )
+			)
+		)
+	);
+}
 ?>
-<section class="llb-section llb-section--light llb-home-bath llb-section--angled llb-reveal">
-	<div class="llb-home-bath__deco" aria-hidden="true"></div>
-	<div class="llb-container llb-home-bath__grid<?php echo $image_id ? '' : ' llb-home-bath__grid--no-image'; ?>">
+<section class="sec bath">
+	<div class="wrap bath-grid">
 		<?php if ( $image_id ) : ?>
-			<div class="llb-home-bath__media">
+			<div class="bath-img rv">
 				<?php
 				echo wp_get_attachment_image(
 					$image_id,
-					'large',
+					'llb-card',
 					false,
 					array(
-						'class'    => 'llb-home-bath__image',
 						'loading'  => 'lazy',
 						'decoding' => 'async',
 					)
 				);
 				?>
 			</div>
-		<?php else : ?>
-			<div class="llb-home-bath__media">
-				<div class="llb-media-placeholder llb-media-placeholder--tall" aria-hidden="true">
-					<span class="llb-accent-line"></span>
-				</div>
-			</div>
 		<?php endif; ?>
-		<div class="llb-home-bath__content">
+		<div>
 			<?php if ( '' !== $heading ) : ?>
-				<span class="llb-accent-line llb-accent-line--red" aria-hidden="true"></span>
+				<div class="rule" aria-hidden="true"></div>
 				<h2><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 			<?php if ( '' !== $text ) : ?>
-				<div class="llb-home-bath__text">
+				<div style="margin-top:28px">
 					<?php echo llb_paragraphs( $text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 				</div>
 			<?php endif; ?>
-			<?php if ( '' !== $subheading ) : ?>
-				<h3 class="llb-home-bath__subheading"><?php echo esc_html( $subheading ); ?></h3>
+			<?php if ( ! empty( $sub_parts ) ) : ?>
+				<h3>
+					<?php foreach ( $sub_parts as $part ) : ?>
+						<span><?php echo esc_html( $part ); ?></span>
+					<?php endforeach; ?>
+				</h3>
 			<?php endif; ?>
 			<?php if ( '' !== $btn_text ) : ?>
-				<a class="llb-btn llb-btn--primary" href="<?php echo esc_url( $btn_url ); ?>">
-					<span><?php echo esc_html( $btn_text ); ?></span>
-					<?php echo llb_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+				<a class="btn btn-red" href="<?php echo esc_url( $btn_url ); ?>">
+					<?php echo esc_html( $btn_text ); ?>
+					<?php echo llb_btn_arrow_svg(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
 				</a>
 			<?php endif; ?>
 		</div>

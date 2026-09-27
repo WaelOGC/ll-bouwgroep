@@ -52,7 +52,7 @@ function llb_default_pages() {
 			'slug'     => 'home',
 			'template' => 'page-templates/template-home.php',
 			'meta'     => array(
-				'_llb_hero_title'        => 'Van complete badkamer tot volledige verbouwing',
+				'_llb_hero_title'        => "Van complete\nbadkamer tot\nvolledige verbouwing",
 				'_llb_hero_intro'        => 'L&L Bouwgroep B.V. verzorgt bouw- en renovatiewerkzaamheden voor woningen en bedrijfspanden in Zoetermeer en omgeving. Van een complete badkamerrenovatie tot een volledige verbouwing: wij verzorgen het traject van begin tot eind.',
 				'_llb_hero_btn1_text'    => 'Uw plannen bespreken',
 				'_llb_hero_btn1_url'     => '',
@@ -69,7 +69,7 @@ function llb_default_pages() {
 					'Een nieuwe badkamer of toilet vraagt om verschillende werkzaamheden en vakgebieden. Daarom kunnen wij het volledige project voor u verzorgen.',
 					'Van de eerste sloopwerkzaamheden en het leidingwerk tot elektra, stucwerk, tegelwerk, montage van sanitair en de uiteindelijke afwerking.'
 				),
-				'_llb_bath_subheading'   => 'Eén aanspreekpunt. Eén planning. Een compleet eindresultaat.',
+				'_llb_bath_subheading'   => "Eén aanspreekpunt.\nEén planning.\nEen compleet eindresultaat.",
 				'_llb_bath_btn_text'     => 'Bekijk badkamers & toiletten',
 				'_llb_bath_btn_url'      => '',
 				'_llb_services_heading'  => 'Onze diensten',
@@ -81,14 +81,17 @@ function llb_default_pages() {
 				),
 				'_llb_why_items'         => array(
 					array(
+						'icon'  => 'hard-hat',
 						'title' => '10–25 jaar praktijkervaring',
 						'text'  => 'Ervaren vakmensen met jarenlange ervaring binnen verschillende werkzaamheden in de bouw en renovatie.',
 					),
 					array(
+						'icon'  => 'toolbox',
 						'title' => 'Eén aanspreekpunt',
 						'text'  => 'Wij kunnen verschillende werkzaamheden binnen één project verzorgen, zodat u niet meerdere partijen hoeft aan te sturen.',
 					),
 					array(
+						'icon'  => 'ruler-square',
 						'title' => 'Duidelijke afspraken',
 						'text'  => 'Een persoonlijke werkwijze met korte communicatielijnen en aandacht voor duidelijke afspraken.',
 					),

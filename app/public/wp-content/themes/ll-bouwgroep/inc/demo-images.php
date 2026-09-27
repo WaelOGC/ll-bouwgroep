@@ -216,3 +216,63 @@ function llb_maybe_import_demo_images() {
 	update_option( 'llb_demo_images_version', (string) LLB_VERSION );
 }
 add_action( 'admin_init', 'llb_maybe_import_demo_images' );
+
+/**
+ * Seeds demo Customizer company data only when empty (once per theme version).
+ *
+ * @return void
+ */
+function llb_seed_demo_company_options() {
+	$seeds = array(
+		'llb_phone'            => '079 123 45 67',
+		'llb_email'            => 'info@llbouwgroep.nl',
+		'llb_address_street'   => 'Voorbeeldstraat 1',
+		'llb_address_postcode' => '2711 AA',
+		'llb_address_city'     => 'Zoetermeer',
+		'llb_kvk'              => '00000000',
+		'llb_btw'              => 'NL000000000B01',
+	);
+
+	foreach ( $seeds as $key => $value ) {
+		$current = trim( (string) get_theme_mod( $key, '' ) );
+		if ( '' === $current ) {
+			set_theme_mod( $key, $value );
+		}
+	}
+}
+
+/**
+ * Seeds default service icons when empty.
+ *
+ * @return void
+ */
+function llb_seed_demo_service_icons() {
+	if ( ! function_exists( 'llb_get_services' ) || ! function_exists( 'llb_default_service_icon_for_slug' ) ) {
+		return;
+	}
+
+	foreach ( llb_get_services() as $service ) {
+		$current = trim( (string) get_post_meta( $service->ID, '_llb_service_icon', true ) );
+		if ( '' !== $current ) {
+			continue;
+		}
+		update_post_meta( $service->ID, '_llb_service_icon', llb_default_service_icon_for_slug( $service->post_name ) );
+	}
+}
+
+/**
+ * Runs demo seeds once per theme version (admin).
+ *
+ * @return void
+ */
+function llb_maybe_seed_demo_data() {
+	$stored = (string) get_option( 'llb_demo_data_version', '' );
+	if ( $stored === (string) LLB_VERSION ) {
+		return;
+	}
+
+	llb_seed_demo_company_options();
+	llb_seed_demo_service_icons();
+	update_option( 'llb_demo_data_version', (string) LLB_VERSION );
+}
+add_action( 'admin_init', 'llb_maybe_seed_demo_data' );

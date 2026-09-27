@@ -1,6 +1,6 @@
 <?php
 /**
- * Home — services carousel.
+ * Home — services tile wall (design v2).
  *
  * @package LL_Bouwgroep
  */
@@ -17,97 +17,42 @@ $services = llb_get_services();
 if ( '' === $heading && '' === $intro && empty( $services ) ) {
 	return;
 }
-
-/**
- * Renders one service card.
- *
- * @param WP_Post $service Service post.
- * @param bool    $clone   Whether this is a carousel duplicate.
- * @return void
- */
-$llb_render_service_card = static function ( $service, $clone = false ) {
-	$thumb_id = get_post_thumbnail_id( $service );
-	$excerpt  = trim( (string) $service->post_excerpt );
-	$attrs    = $clone ? ' aria-hidden="true" tabindex="-1"' : '';
-	?>
-	<li class="llb-services-carousel__item"<?php echo $attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static attributes. ?>>
-		<a class="llb-card llb-card--service" href="<?php echo esc_url( get_permalink( $service ) ); ?>"<?php echo $clone ? ' tabindex="-1"' : ''; ?>>
-			<div class="llb-card__media">
-				<?php if ( $thumb_id ) : ?>
-					<?php
-					echo wp_get_attachment_image(
-						$thumb_id,
-						'llb-card',
-						false,
-						array(
-							'class'    => 'llb-card__image',
-							'loading'  => 'lazy',
-							'decoding' => 'async',
-						)
-					);
-					?>
-				<?php else : ?>
-					<div class="llb-media-placeholder" aria-hidden="true">
-						<span class="llb-accent-line"></span>
-					</div>
-				<?php endif; ?>
-			</div>
-			<div class="llb-card__body">
-				<h3 class="llb-card__title"><?php echo esc_html( get_the_title( $service ) ); ?></h3>
-				<?php if ( '' !== $excerpt ) : ?>
-					<p class="llb-card__excerpt"><?php echo esc_html( $excerpt ); ?></p>
-				<?php endif; ?>
-				<span class="llb-card__arrow" aria-hidden="true">
-					<?php echo llb_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
-				</span>
-			</div>
-		</a>
-	</li>
-	<?php
-};
 ?>
-<section class="llb-section llb-home-services llb-section--angled llb-reveal">
-	<?php
-	get_template_part(
-		'template-parts/section-decor',
-		null,
-		array(
-			'blueprint' => true,
-		)
-	);
-	?>
-	<div class="llb-container">
-		<div class="llb-home-services__header">
+<section class="sec" id="diensten">
+	<div class="wrap">
+		<div class="svc-head">
 			<?php if ( '' !== $heading ) : ?>
-				<div class="llb-home-services__heading">
-					<span class="llb-accent-line llb-accent-line--red" aria-hidden="true"></span>
+				<div>
+					<div class="rule" aria-hidden="true"></div>
 					<h2><?php echo esc_html( $heading ); ?></h2>
 				</div>
 			<?php endif; ?>
 			<?php if ( '' !== $intro ) : ?>
-				<div class="llb-home-services__intro">
-					<?php echo llb_paragraphs( $intro ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
-				</div>
+				<?php echo llb_paragraphs( $intro ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 			<?php endif; ?>
 		</div>
 		<?php if ( ! empty( $services ) ) : ?>
-			<div class="llb-services-carousel" data-llb-services-carousel>
-				<button type="button" class="llb-carousel-btn llb-carousel-btn--prev" data-llb-carousel-prev aria-label="Vorige">
-					<?php echo llb_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
-				</button>
-				<div class="llb-services-carousel__track" data-llb-carousel-track>
-					<ul class="llb-services-carousel__list">
-						<?php foreach ( $services as $service ) : ?>
-							<?php $llb_render_service_card( $service, false ); ?>
-						<?php endforeach; ?>
-						<?php foreach ( $services as $service ) : ?>
-							<?php $llb_render_service_card( $service, true ); ?>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-				<button type="button" class="llb-carousel-btn llb-carousel-btn--next" data-llb-carousel-next aria-label="Volgende">
-					<?php echo llb_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
-				</button>
+			<div class="tiles">
+				<?php foreach ( $services as $service ) : ?>
+					<?php
+					$excerpt = trim( (string) $service->post_excerpt );
+					$icon    = trim( (string) llb_get_meta( $service->ID, '_llb_service_icon' ) );
+					if ( '' === $icon || ! isset( llb_service_icon_options()[ $icon ] ) ) {
+						$icon = llb_default_service_icon_for_slug( $service->post_name );
+					}
+					$icon_svg = llb_get_mdi_icon_svg( $icon );
+					?>
+					<a class="tile" href="<?php echo esc_url( get_permalink( $service ) ); ?>">
+						<span class="tile-ic">
+							<?php echo $icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+						</span>
+						<?php echo llb_tile_go_svg(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+						<h3><?php echo esc_html( get_the_title( $service ) ); ?></h3>
+						<?php if ( '' !== $excerpt ) : ?>
+							<p><?php echo esc_html( $excerpt ); ?></p>
+						<?php endif; ?>
+					</a>
+				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
 	</div>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Footer template.
+ * Footer template (design v2).
  *
  * @package LL_Bouwgroep
  */
@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $company_name = trim( (string) llb_get_option( 'llb_company_name' ) );
 $tagline      = trim( (string) llb_get_option( 'llb_footer_tagline' ) );
 $footer_text  = trim( (string) llb_get_option( 'llb_footer_text' ) );
-$footer_logo  = absint( llb_get_option( 'llb_footer_logo' ) );
 $phone        = trim( (string) llb_get_option( 'llb_phone' ) );
 $phone_tel    = preg_replace( '/[^\d+]/', '', $phone );
 $email        = trim( (string) llb_get_option( 'llb_email' ) );
@@ -22,25 +21,10 @@ $btw          = trim( (string) llb_get_option( 'llb_btw' ) );
 $copyright    = llb_get_copyright();
 $services     = function_exists( 'llb_get_services' ) ? llb_get_services() : array();
 
-$socials = array(
-	array(
-		'url'   => trim( (string) llb_get_option( 'llb_social_facebook' ) ),
-		'icon'  => 'facebook',
-		'label' => 'Facebook',
-	),
-	array(
-		'url'   => trim( (string) llb_get_option( 'llb_social_instagram' ) ),
-		'icon'  => 'instagram',
-		'label' => 'Instagram',
-	),
-	array(
-		'url'   => trim( (string) llb_get_option( 'llb_social_linkedin' ) ),
-		'icon'  => 'linkedin',
-		'label' => 'LinkedIn',
-	),
-);
-
 $legal_parts = array();
+if ( '' !== $company_name ) {
+	$legal_parts[] = $company_name;
+}
 if ( '' !== $kvk ) {
 	$legal_parts[] = 'KvK: ' . $kvk;
 }
@@ -48,80 +32,55 @@ if ( '' !== $btw ) {
 	$legal_parts[] = 'BTW: ' . $btw;
 }
 $legal_line = implode( ' — ', $legal_parts );
+
+$address_html = '';
+if ( '' !== $address ) {
+	$address_html = nl2br( esc_html( str_replace( ', ', "\n", $address ) ), false );
+	// Prefer street / city on two lines when Customizer has separate fields.
+	$street   = trim( (string) llb_get_option( 'llb_address_street' ) );
+	$postcode = trim( (string) llb_get_option( 'llb_address_postcode' ) );
+	$city     = trim( (string) llb_get_option( 'llb_address_city' ) );
+	if ( '' !== $street && ( '' !== $postcode || '' !== $city ) ) {
+		$line2        = trim( $postcode . ' ' . $city );
+		$address_html = esc_html( $street ) . '<br>' . esc_html( $line2 );
+	}
+}
 ?>
 <?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) : ?>
-<footer class="llb-site-footer" role="contentinfo">
-	<div class="llb-footer-accent" aria-hidden="true"></div>
-	<div class="llb-footer-main">
-		<div class="llb-container llb-footer-grid">
-			<div class="llb-footer-col llb-footer-col--brand">
-				<?php if ( $footer_logo ) : ?>
-					<div class="llb-footer-logo">
-						<?php
-						echo wp_get_attachment_image(
-							$footer_logo,
-							'medium',
-							false,
-							array(
-								'class' => 'llb-footer-logo__img',
-								'alt'   => $company_name,
-							)
-						);
-						?>
-					</div>
-				<?php elseif ( '' !== $company_name ) : ?>
-					<p class="llb-footer-brand-name"><?php echo esc_html( $company_name ); ?></p>
+<footer class="ftr" role="contentinfo">
+	<div class="wrap">
+		<div class="ftr-grid">
+			<div>
+				<?php if ( '' !== $company_name ) : ?>
+					<div class="ftr-name"><?php echo esc_html( $company_name ); ?></div>
 				<?php endif; ?>
 				<?php if ( '' !== $tagline ) : ?>
-					<p class="llb-footer-tagline"><?php echo esc_html( $tagline ); ?></p>
+					<div class="ftr-tag"><?php echo esc_html( $tagline ); ?></div>
 				<?php endif; ?>
+				<div class="rule" aria-hidden="true"></div>
 				<?php if ( '' !== $footer_text ) : ?>
-					<p class="llb-footer-text"><?php echo esc_html( $footer_text ); ?></p>
+					<p><?php echo esc_html( $footer_text ); ?></p>
 				<?php endif; ?>
+			</div>
+			<div>
+				<h4>Navigatie</h4>
 				<?php
-				$has_social = false;
-				foreach ( $socials as $social ) {
-					if ( '' !== $social['url'] ) {
-						$has_social = true;
-						break;
-					}
-				}
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer',
+						'container'      => false,
+						'fallback_cb'    => false,
+						'menu_class'     => '',
+						'depth'          => 1,
+						'items_wrap'     => '<ul>%3$s</ul>',
+					)
+				);
 				?>
-				<?php if ( $has_social ) : ?>
-					<div class="llb-footer-social">
-						<?php foreach ( $socials as $social ) : ?>
-							<?php if ( '' === $social['url'] ) : ?>
-								<?php continue; ?>
-							<?php endif; ?>
-							<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>">
-								<?php echo llb_icon( $social['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
-							</a>
-						<?php endforeach; ?>
-					</div>
-				<?php endif; ?>
 			</div>
-
-			<div class="llb-footer-col llb-footer-col--nav">
-				<p class="llb-footer-heading">Navigatie</p>
-				<nav class="llb-nav-footer" aria-label="Footermenu">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'footer',
-							'container'      => false,
-							'fallback_cb'    => false,
-							'menu_class'     => 'llb-menu llb-menu--footer',
-							'depth'          => 1,
-						)
-					);
-					?>
-				</nav>
-			</div>
-
-			<div class="llb-footer-col llb-footer-col--services">
-				<p class="llb-footer-heading">Diensten</p>
+			<div>
+				<h4>Diensten</h4>
 				<?php if ( ! empty( $services ) ) : ?>
-					<ul class="llb-footer-services">
+					<ul>
 						<?php foreach ( $services as $service ) : ?>
 							<li>
 								<a href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( get_the_title( $service ) ); ?></a>
@@ -130,40 +89,36 @@ $legal_line = implode( ' — ', $legal_parts );
 					</ul>
 				<?php endif; ?>
 			</div>
-
-			<div class="llb-footer-col llb-footer-col--contact">
-				<p class="llb-footer-heading">Contact</p>
-				<ul class="llb-footer-contact">
+			<div>
+				<h4>Contact</h4>
+				<ul class="ftr-c">
 					<?php if ( '' !== $phone && '' !== $phone_tel ) : ?>
 						<li>
-							<?php echo llb_icon( 'phone' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+							<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
 							<a href="<?php echo esc_url( 'tel:' . $phone_tel ); ?>"><?php echo esc_html( $phone ); ?></a>
 						</li>
 					<?php endif; ?>
 					<?php if ( '' !== $email ) : ?>
 						<li>
-							<?php echo llb_icon( 'email' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+							<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
 							<a href="<?php echo esc_url( 'mailto:' . antispambot( $email ) ); ?>"><?php echo esc_html( antispambot( $email ) ); ?></a>
 						</li>
 					<?php endif; ?>
-					<?php if ( '' !== $address ) : ?>
+					<?php if ( '' !== $address_html ) : ?>
 						<li>
-							<?php echo llb_icon( 'location' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
-							<span><?php echo esc_html( $address ); ?></span>
+							<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/></svg>
+							<span style="padding:4px 0;display:inline-block"><?php echo $address_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above. ?></span>
 						</li>
 					<?php endif; ?>
 				</ul>
 			</div>
 		</div>
-	</div>
-
-	<div class="llb-footer-bottom">
-		<div class="llb-container llb-footer-bottom-inner">
-			<?php if ( '' !== $copyright ) : ?>
-				<p><?php echo esc_html( $copyright ); ?></p>
-			<?php endif; ?>
+		<div class="ftr-bot">
 			<?php if ( '' !== $legal_line ) : ?>
-				<p><?php echo esc_html( $legal_line ); ?></p>
+				<span><?php echo esc_html( $legal_line ); ?></span>
+			<?php endif; ?>
+			<?php if ( '' !== $copyright ) : ?>
+				<span><?php echo esc_html( $copyright ); ?></span>
 			<?php endif; ?>
 		</div>
 	</div>

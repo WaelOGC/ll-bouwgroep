@@ -1375,6 +1375,13 @@ p + p {
 	height: 1.75rem;
 }
 
+.llb-home-usp__icon svg {
+	width: 1.75rem;
+	height: 1.75rem;
+	fill: currentColor;
+	display: block;
+}
+
 .llb-home-usp__body h3 {
 	font-size: 1.05rem;
 	margin-bottom: var(--llb-space-2);

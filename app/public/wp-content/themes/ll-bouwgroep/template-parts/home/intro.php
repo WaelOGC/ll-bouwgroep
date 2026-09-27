@@ -1,6 +1,6 @@
 <?php
 /**
- * Home — introduction.
+ * Home — intro (design v2).
  *
  * @package LL_Bouwgroep
  */
@@ -17,16 +17,16 @@ if ( '' === $heading && '' === $text ) {
 	return;
 }
 ?>
-<section class="llb-section llb-home-intro">
-	<div class="llb-container llb-home-intro__grid">
-		<div class="llb-home-intro__heading">
+<section class="sec intro">
+	<div class="wrap intro-grid">
+		<div>
 			<?php if ( '' !== $heading ) : ?>
-				<span class="llb-accent-line llb-accent-line--red" aria-hidden="true"></span>
+				<div class="rule" aria-hidden="true"></div>
 				<h2><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 		</div>
 		<?php if ( '' !== $text ) : ?>
-			<div class="llb-home-intro__text">
+			<div class="intro-text">
 				<?php echo llb_paragraphs( $text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 			</div>
 		<?php endif; ?>

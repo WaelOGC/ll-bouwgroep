@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Returns the Home USP strip items (_llb_why_items from the front page).
+ * Returns the Home why items (_llb_why_items from the front page).
  *
- * Each item: title, text, icon.
+ * Each item: title, text, icon (MDI slug).
  *
  * @return array<int, array{title: string, text: string, icon: string}>
  */
@@ -42,8 +42,9 @@ function llb_get_why_items() {
 		return array();
 	}
 
-	$icons = array( 'team', 'handshake', 'checklist' );
-	$out   = array();
+	$defaults = array( 'hard-hat', 'toolbox', 'ruler-square' );
+	$allowed  = llb_why_icon_options();
+	$out      = array();
 
 	foreach ( $items as $index => $item ) {
 		if ( ! is_array( $item ) ) {
@@ -51,13 +52,17 @@ function llb_get_why_items() {
 		}
 		$title = isset( $item['title'] ) ? trim( (string) $item['title'] ) : '';
 		$text  = isset( $item['text'] ) ? trim( (string) $item['text'] ) : '';
+		$icon  = isset( $item['icon'] ) ? sanitize_file_name( (string) $item['icon'] ) : '';
 		if ( '' === $title && '' === $text ) {
 			continue;
+		}
+		if ( '' === $icon || ! isset( $allowed[ $icon ] ) ) {
+			$icon = isset( $defaults[ $index ] ) ? $defaults[ $index ] : 'hard-hat';
 		}
 		$out[] = array(
 			'title' => $title,
 			'text'  => $text,
-			'icon'  => isset( $icons[ $index ] ) ? $icons[ $index ] : 'checklist',
+			'icon'  => $icon,
 		);
 	}
 

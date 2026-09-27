@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function llb_enqueue_assets() {
 	$fonts_path = LLB_DIR . '/assets/css/fonts.css';
 	$main_css   = LLB_DIR . '/assets/css/main.css';
+	$v2_css     = LLB_DIR . '/assets/css/design-v2.css';
 	$main_js    = LLB_DIR . '/assets/js/main.js';
 
 	wp_enqueue_style(
@@ -31,6 +32,13 @@ function llb_enqueue_assets() {
 		LLB_URI . '/assets/css/main.css',
 		array( 'llb-fonts' ),
 		file_exists( $main_css ) ? (string) filemtime( $main_css ) : LLB_VERSION
+	);
+
+	wp_enqueue_style(
+		'llb-design-v2',
+		LLB_URI . '/assets/css/design-v2.css',
+		array( 'llb-main' ),
+		file_exists( $v2_css ) ? (string) filemtime( $v2_css ) : LLB_VERSION
 	);
 
 	wp_enqueue_script(
@@ -73,5 +81,5 @@ function llb_enqueue_brand_color_overrides() {
 	}
 
 	$css = ':root { ' . implode( ' ', $rules ) . ' }';
-	wp_add_inline_style( 'llb-main', $css );
+	wp_add_inline_style( 'llb-design-v2', $css );
 }

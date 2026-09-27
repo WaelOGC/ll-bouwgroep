@@ -41,9 +41,9 @@ function llb_meta_box_page_config() {
 				),
 				array(
 					'key'         => '_llb_hero_title',
-					'type'        => 'text',
+					'type'        => 'textarea',
 					'label'       => __( 'Hero title (H1)', 'll-bouwgroep' ),
-					'description' => __( 'If empty, the page title is used.', 'll-bouwgroep' ),
+					'description' => __( 'One line per visual line (3 lines recommended). If empty, the page title is used.', 'll-bouwgroep' ),
 				),
 				array(
 					'key'   => '_llb_hero_intro',
@@ -189,6 +189,12 @@ function llb_meta_box_page_config() {
 					'type'   => 'repeater',
 					'label'  => __( 'Items', 'll-bouwgroep' ),
 					'fields' => array(
+						array(
+							'key'     => 'icon',
+							'type'    => 'select',
+							'label'   => __( 'Icon', 'll-bouwgroep' ),
+							'options' => llb_why_icon_options(),
+						),
 						array(
 							'key'   => 'title',
 							'type'  => 'text',

@@ -43,6 +43,12 @@ function llb_meta_box_config() {
 				'priority' => 'high',
 				'fields'   => array(
 					array(
+						'key'     => '_llb_service_icon',
+						'type'    => 'select',
+						'label'   => __( 'Icon', 'll-bouwgroep' ),
+						'options' => llb_service_icon_options(),
+					),
+					array(
 						'key'   => '_llb_overview_text',
 						'type'  => 'textarea',
 						'label' => __( 'Text on the Services overview page', 'll-bouwgroep' ),
