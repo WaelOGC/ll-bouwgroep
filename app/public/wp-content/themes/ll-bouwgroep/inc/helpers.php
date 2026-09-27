@@ -312,6 +312,40 @@ function llb_icon( $name ) {
 }
 
 /**
+ * Escapes a title and wraps digit runs for count-up animation.
+ *
+ * Output HTML still shows the real numbers for SEO / no-JS.
+ *
+ * @param string $title Plain title.
+ * @return string Safe HTML.
+ */
+function llb_format_count_title( $title ) {
+	$title = (string) $title;
+	if ( '' === $title ) {
+		return '';
+	}
+
+	$parts = preg_split( '/(\d+)/', $title, -1, PREG_SPLIT_DELIM_CAPTURE );
+	if ( ! is_array( $parts ) ) {
+		return esc_html( $title );
+	}
+
+	$html = '';
+	foreach ( $parts as $part ) {
+		if ( '' === $part ) {
+			continue;
+		}
+		if ( preg_match( '/^\d+$/', $part ) ) {
+			$html .= '<span data-llb-count="' . esc_attr( $part ) . '">' . esc_html( $part ) . '</span>';
+		} else {
+			$html .= esc_html( $part );
+		}
+	}
+
+	return $html;
+}
+
+/**
  * Returns the permalink for a page by slug, with a path fallback.
  *
  * @param string $slug Page slug.

@@ -25,7 +25,7 @@ if ( '' === $heading && '' === $text && '' === $subheading && '' === $btn_text &
 	return;
 }
 ?>
-<section class="llb-section llb-section--light llb-home-bath llb-reveal">
+<section class="llb-section llb-section--light llb-home-bath llb-section--angled llb-reveal">
 	<div class="llb-home-bath__deco" aria-hidden="true"></div>
 	<div class="llb-container llb-home-bath__grid<?php echo $image_id ? '' : ' llb-home-bath__grid--no-image'; ?>">
 		<?php if ( $image_id ) : ?>

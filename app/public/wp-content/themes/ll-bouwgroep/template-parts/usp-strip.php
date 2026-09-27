@@ -14,7 +14,7 @@ if ( empty( $items ) ) {
 	return;
 }
 ?>
-<section class="llb-home-usp llb-reveal">
+<section class="llb-home-usp llb-section--angled llb-reveal">
 	<div class="llb-container">
 		<ul class="llb-home-usp__list">
 			<?php foreach ( $items as $row ) : ?>
@@ -24,7 +24,7 @@ if ( empty( $items ) ) {
 					</span>
 					<div class="llb-home-usp__body">
 						<?php if ( '' !== $row['title'] ) : ?>
-							<h3><?php echo esc_html( $row['title'] ); ?></h3>
+							<h3><?php echo llb_format_count_title( $row['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?></h3>
 						<?php endif; ?>
 						<?php if ( '' !== $row['text'] ) : ?>
 							<?php echo llb_paragraphs( $row['text'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>

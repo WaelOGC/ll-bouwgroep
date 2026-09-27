@@ -339,4 +339,125 @@
 			}
 		});
 	});
+
+	/* Motion system: body class + section decor + count-up */
+	if (!reduceMotion) {
+		document.body.classList.add('llb-motion');
+	}
+
+	var decorRoots = document.querySelectorAll('[data-llb-decor]');
+	var canParallax = !reduceMotion && window.matchMedia('(min-width: 769px)').matches;
+
+	if ('IntersectionObserver' in window && decorRoots.length) {
+		var decorObserver = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-inview');
+					} else {
+						entry.target.classList.remove('is-inview');
+					}
+				});
+			},
+			{ rootMargin: '10% 0px', threshold: 0.08 }
+		);
+		decorRoots.forEach(function (el) {
+			decorObserver.observe(el);
+		});
+	} else {
+		decorRoots.forEach(function (el) {
+			el.classList.add('is-inview');
+		});
+	}
+
+	/* Light parallax on tool icons */
+	if (canParallax) {
+		var parallaxItems = [];
+		document.querySelectorAll('[data-llb-parallax]').forEach(function (el) {
+			parallaxItems.push({
+				el: el,
+				section: el.closest('section')
+			});
+		});
+
+		var ticking = false;
+		function updateParallax() {
+			ticking = false;
+			var vh = window.innerHeight || 1;
+			parallaxItems.forEach(function (item) {
+				if (!item.section) {
+					return;
+				}
+				var decor = item.el.closest('[data-llb-decor]');
+				if (decor && !decor.classList.contains('is-inview')) {
+					return;
+				}
+				var rect = item.section.getBoundingClientRect();
+				var progress = (vh / 2 - (rect.top + rect.height / 2)) / vh;
+				var offset = Math.max(-30, Math.min(30, progress * 30));
+				item.el.style.transform = 'translate3d(0, ' + offset.toFixed(2) + 'px, 0)';
+			});
+		}
+
+		window.addEventListener(
+			'scroll',
+			function () {
+				if (!ticking) {
+					ticking = true;
+					window.requestAnimationFrame(updateParallax);
+				}
+			},
+			{ passive: true }
+		);
+		updateParallax();
+	}
+
+	/* USP number count-up */
+	function animateCount(el) {
+		var target = parseInt(el.getAttribute('data-llb-count'), 10);
+		if (isNaN(target)) {
+			return;
+		}
+		if (reduceMotion) {
+			el.textContent = String(target);
+			return;
+		}
+		var start = null;
+		var duration = 1100;
+		function step(ts) {
+			if (!start) {
+				start = ts;
+			}
+			var t = Math.min(1, (ts - start) / duration);
+			var eased = 1 - Math.pow(1 - t, 3);
+			el.textContent = String(Math.round(target * eased));
+			if (t < 1) {
+				window.requestAnimationFrame(step);
+			} else {
+				el.textContent = String(target);
+			}
+		}
+		el.textContent = '0';
+		window.requestAnimationFrame(step);
+	}
+
+	var countEls = document.querySelectorAll('[data-llb-count]');
+	if (countEls.length && 'IntersectionObserver' in window) {
+		var countObserver = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (!entry.isIntersecting) {
+						return;
+					}
+					var root = entry.target;
+					root.querySelectorAll('[data-llb-count]').forEach(animateCount);
+					countObserver.unobserve(root);
+				});
+			},
+			{ threshold: 0.4 }
+		);
+		document.querySelectorAll('.llb-home-usp').forEach(function (section) {
+			countObserver.observe(section);
+		});
+	}
 })();

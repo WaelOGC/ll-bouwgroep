@@ -18,8 +18,16 @@ if ( '' === $heading && '' === $text && ! $image_id ) {
 	return;
 }
 ?>
-<section class="llb-section llb-home-why llb-reveal">
-	<div class="llb-home-why__deco" aria-hidden="true"></div>
+<section class="llb-section llb-home-why llb-section--angled llb-reveal">
+	<?php
+	get_template_part(
+		'template-parts/section-decor',
+		null,
+		array(
+			'tools' => array( 'trowel', 'tile', 'square', 'level' ),
+		)
+	);
+	?>
 	<div class="llb-container llb-home-why__grid">
 		<div class="llb-home-why__intro">
 			<?php if ( '' !== $heading ) : ?>

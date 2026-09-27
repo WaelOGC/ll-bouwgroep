@@ -20,7 +20,17 @@ if ( '' === $heading && '' === $text && '' === $btn_text ) {
 	return;
 }
 ?>
-<section class="llb-section llb-section--light llb-home-projects llb-reveal">
+<section class="llb-section llb-section--light llb-home-projects llb-section--angled llb-reveal">
+	<?php
+	get_template_part(
+		'template-parts/section-decor',
+		null,
+		array(
+			'tools'   => array( 'hammer', 'level', 'tape', 'square' ),
+			'stripes' => true,
+		)
+	);
+	?>
 	<div class="llb-container">
 		<div class="llb-home-projects__header">
 			<?php if ( '' !== $heading ) : ?>

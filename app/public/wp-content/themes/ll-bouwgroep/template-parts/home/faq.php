@@ -21,7 +21,17 @@ if ( empty( $items ) ) {
 $faq_page_id = llb_get_faq_page_id();
 $faq_url     = $faq_page_id ? get_permalink( $faq_page_id ) : llb_page_url( 'veelgestelde-vragen' );
 ?>
-<section class="llb-section llb-home-faq llb-reveal">
+<section class="llb-section llb-home-faq llb-section--angled llb-reveal">
+	<?php
+	get_template_part(
+		'template-parts/section-decor',
+		null,
+		array(
+			'blueprint'      => true,
+			'stripes_corner' => true,
+		)
+	);
+	?>
 	<div class="llb-container llb-home-faq__layout">
 		<div class="llb-home-faq__intro">
 			<?php if ( '' !== $heading ) : ?>

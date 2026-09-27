@@ -66,7 +66,16 @@ $llb_render_service_card = static function ( $service, $clone = false ) {
 	<?php
 };
 ?>
-<section class="llb-section llb-home-services llb-reveal">
+<section class="llb-section llb-home-services llb-section--angled llb-reveal">
+	<?php
+	get_template_part(
+		'template-parts/section-decor',
+		null,
+		array(
+			'blueprint' => true,
+		)
+	);
+	?>
 	<div class="llb-container">
 		<div class="llb-home-services__header">
 			<?php if ( '' !== $heading ) : ?>
