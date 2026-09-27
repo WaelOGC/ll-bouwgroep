@@ -83,10 +83,9 @@ $grad_id = $uid . '-g';
 					continue;
 				}
 				$style = sprintf(
-					'left:%s%%;top:%s%%;width:%spx;height:%spx;--llb-tool-rot:%sdeg;--llb-float-dur:%ss;--llb-float-delay:%ss;--llb-float-x:%spx;--llb-float-y:%spx;--llb-float-r:%sdeg;--llb-float-s:%s;',
+					'left:%s%%;top:%s%%;--llb-tool-s:%spx;--llb-tool-rot:%sdeg;--llb-float-dur:%ss;--llb-float-delay:%ss;--llb-float-x:%spx;--llb-float-y:%spx;--llb-float-r:%sdeg;--llb-float-s:%s;',
 					esc_attr( (string) $item['x'] ),
 					esc_attr( (string) $item['y'] ),
-					esc_attr( (string) $item['s'] ),
 					esc_attr( (string) $item['s'] ),
 					esc_attr( (string) $item['r'] ),
 					esc_attr( (string) $item['dur'] ),

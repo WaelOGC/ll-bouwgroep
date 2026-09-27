@@ -1,5 +1,29 @@
 # Coding standards
 
+## **Responsive is mandatory**
+
+Everything we build now or later — every page, template, section, and element (headings, tagline, body text, images, background images, background decoration, colors, buttons, effects, spacing) — **MUST** look perfect on desktop, tablet and smartphone. On a phone the theme must feel like a native app.
+
+**No task is “done” before it is verified on desktop, tablet AND phone widths.**
+
+Standard test widths: **1440, 1280, 1024, 834, 768, 720, 600, 414, 390, 360**.
+
+Rules:
+
+- Mobile-first CSS only (`min-width` breakpoints; see below)
+- No horizontal scroll (`overflow-x`)
+- Nothing cut, hidden, or overlapping
+- Images: `object-fit: cover`, never stretched
+- Background images readable on every ratio (dark overlay strong enough that text is always readable)
+- Decoration (icons / grid / stripes / angled edges) never cover content; lighter on mobile
+- Type uses `clamp()`
+- Primary buttons full-width on phone
+- Tap targets ≥ 44px
+
+This rule applies automatically to every future prompt.
+
+---
+
 ## WordPress standards
 
 Follow the official **WordPress Coding Standards** for PHP, CSS, and JavaScript.
