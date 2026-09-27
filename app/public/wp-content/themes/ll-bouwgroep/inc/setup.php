@@ -38,8 +38,8 @@ function llb_setup() {
 
 	register_nav_menus(
 		array(
-			'primary' => __( 'Hoofdmenu', 'll-bouwgroep' ),
-			'footer'  => __( 'Footermenu', 'll-bouwgroep' ),
+			'primary' => __( 'Primary menu', 'll-bouwgroep' ),
+			'footer'  => __( 'Footer menu', 'll-bouwgroep' ),
 		)
 	);
 

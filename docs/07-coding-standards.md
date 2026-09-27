@@ -16,6 +16,23 @@ Follow the official **WordPress Coding Standards** for PHP, CSS, and JavaScript.
 - Prefix everything with `llb_`
 - No leaking global variables
 
+## Language rule
+
+- Everything the **admin sees in the dashboard** is written in **English**: post type labels, taxonomy labels, menu location names, Customizer panels/sections/controls, meta box titles and field labels, admin notices, help text.
+- Everything the **visitor sees on the website** is **Dutch**: all content from `10-page-content.md`, default values, and visitor-facing template text (skip link, aria-labels, "no results" messages, buttons).
+- Admin strings: English, wrapped in `__()` / `esc_html__()` with text domain `ll-bouwgroep`.
+- Visitor strings: Dutch, as they are now.
+- No translation files (`.po` / `.mo`) are needed.
+
+## Versioning
+
+- Semantic versioning: `0.x.y` until launch, `1.0.0` at launch.
+- Single source of truth: `Version` in `style.css`. `LLB_VERSION` reads that value via `wp_get_theme( get_template() )->get( 'Version' )`.
+- Every task that changes theme code: bump `Version` in `style.css` + add a `CHANGELOG.md` entry, in the same commit.
+  - New feature / phase = minor (`0.3.0`). Fix = patch (`0.3.1`).
+- Docs-only changes: no version bump.
+- Reason: on the live server LiteSpeed Cache can serve old CSS/JS. A new version number forces fresh files.
+
 ## File hygiene
 
 - Comment every file header

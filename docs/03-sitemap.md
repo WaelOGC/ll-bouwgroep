@@ -44,7 +44,7 @@ Services:
 
 ## Projecten
 
-Content: [10-page-content.md § 13. Projecten (archive)](10-page-content.md#13-projecten-archive) and [§ 14. Single Project](10-page-content.md#14-single-project-template)
+Content: [10-page-content.md § 13. Projecten (overview page)](10-page-content.md#13-projecten-overview-page) and [§ 14. Single Project](10-page-content.md#14-single-project-template)
 
 - **Overview** — WordPress Page (slug `projecten`); see [URL structure](04-theme-architecture.md#url-structure)
 - **Category filter** — taxonomy `project_categorie` (`/projectcategorie/{slug}/`)

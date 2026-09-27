@@ -18,6 +18,7 @@ These docs are the **single source of truth** for development of the L&L Bouwgro
 | [09-plugin-compatibility.md](09-plugin-compatibility.md) | Yoast, Rank Math, Elementor, and Contact Form 7 compatibility |
 | [10-page-content.md](10-page-content.md) | Final website text per page (Dutch). Single source of truth for all content. |
 | [11-design-reference.md](11-design-reference.md) | Design image map and layout/style decisions vs content |
+| [12-deployment.md](12-deployment.md) | Upload, LiteSpeed purge, rollback, and language settings |
 
 ## Assets
 

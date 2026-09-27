@@ -100,6 +100,8 @@ Default website texts live in [10-page-content.md](10-page-content.md). Those va
 - Single service: `/diensten/{slug}/` (CPT `dienst`, no archive)
 - Single project: `/projecten/{slug}/` (CPT `project`, no archive)
 - Project category: `/projectcategorie/{slug}/`
+- **Pagination on the Projecten page:** do NOT use `/projecten/page/2/` (conflicts with single project URLs `/projecten/{slug}/`). Use `/projecten/?pagina=2`.
+- **Project filter:** `/projecten/?categorie={slug}`.
 - **Reason:** overview texts stay editable from the dashboard, and no URL conflict between Page and CPT archive
 - Rewrite rules flush only on theme activation. After changes: **Settings → Permalinks → Save**.
 

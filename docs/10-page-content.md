@@ -312,7 +312,7 @@ Core message: **L&L Bouwgroep B.V. — Vakmanschap waarop u kunt bouwen.**
 
 ---
 
-## 13. Projecten (archive)
+## 13. Projecten (overview page)
 - H1: Onze projecten
 - Intro: Bekijk een selectie van projecten van L&L Bouwgroep B.V. en ontdek hoe verschillende bouw- en renovatiewerkzaamheden samenkomen in een compleet eindresultaat.
 - H2: Van badkamer tot volledige verbouwing

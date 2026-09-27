@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LLB_VERSION', '0.1.0' );
+define( 'LLB_VERSION', wp_get_theme( get_template() )->get( 'Version' ) );
 define( 'LLB_DIR', get_template_directory() );
 define( 'LLB_URI', get_template_directory_uri() );
 

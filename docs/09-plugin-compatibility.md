@@ -7,6 +7,8 @@ The theme must be **fully compatible** with:
 - Elementor
 - Contact Form 7
 
+**LiteSpeed Cache** (hosting): cache plugin, no theme code needed — see [12-deployment.md](12-deployment.md).
+
 The theme must still work with **no plugins installed**. Plugins are enhancements, not requirements. Always guard plugin APIs with `function_exists()`, `class_exists()`, or `defined()` before calling them.
 
 Only **one** SEO plugin is active on the site at a time — never Yoast and Rank Math together.

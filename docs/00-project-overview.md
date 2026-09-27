@@ -26,6 +26,7 @@ A simple, modern, elegant business website with **5–6 pages**, built to scale 
   - Rank Math SEO
   - Elementor
   - Contact Form 7
+- LiteSpeed Cache: hosting cache plugin, no theme code needed — see [12-deployment.md](12-deployment.md)
 - Only **one** SEO plugin is active at a time (never Yoast and Rank Math together)
 - See [09-plugin-compatibility.md](09-plugin-compatibility.md) and [05-seo.md](05-seo.md)
 

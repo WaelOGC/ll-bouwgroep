@@ -1,0 +1,20 @@
+# Changelog
+
+All notable changes to the L&L Bouwgroep theme are documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project uses [Semantic Versioning](https://semver.org/).
+
+## [0.2.0] — 2026-09-27
+
+### Added
+- Custom post types `dienst` and `project`, plus taxonomy `project_categorie` (Phase 3a)
+- Theme versioning from `style.css` via `LLB_VERSION` / `CHANGELOG.md`
+
+### Changed
+- Admin labels (CPT, taxonomy, menu locations) switched to English
+
+## [0.1.0] — 2026-09-27
+
+### Added
+- Theme foundation (Phase 2): setup, enqueue, helpers, header/footer/index, self-hosted fonts, base CSS
