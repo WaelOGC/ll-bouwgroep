@@ -233,82 +233,283 @@ Core message: **L&L Bouwgroep B.V. — Vakmanschap waarop u kunt bouwen.**
 ---
 
 ## 5. Dienst — Renovatie en verbouwing
+
+### Hero
 - H1: Renovatie en verbouwing
 - Intro: Voor renovatie- en verbouwingswerkzaamheden aan woningen en bedrijfspanden kunt u terecht bij L&L Bouwgroep B.V.
+
+### Intro
 - H2: Een praktische aanpak voor uw verbouwing
   Iedere verbouwing heeft zijn eigen werkzaamheden en aandachtspunten. Wij denken met u mee over de uitvoering en kunnen verschillende werkzaamheden binnen één project verzorgen.
 - H2: Verschillende werkzaamheden combineren
   Van timmerwerk en stucwerk tot tegelwerk, schilderwerk en andere bouwkundige werkzaamheden: afhankelijk van uw project kunnen verschillende onderdelen worden gecombineerd.
-- CTA H2: Uw verbouwingsplannen bespreken?
-  Neem contact met ons op voor een vrijblijvende kennismaking.
+
+### Werkzaamheden
+- H2: Werkzaamheden voor uw verbouwing
+- List (demo content — to be confirmed by client):
+  - Sloopwerkzaamheden
+  - Timmerwerk
+  - Stucwerk
+  - Tegelwerk
+  - Schilderwerk
+  - Afwerking
+
+### Werkwijze
+- H2: Van eerste werkzaamheden tot compleet eindresultaat
+- H3: 1. Bespreken van uw plannen
+  We bespreken uw wensen en de werkzaamheden die nodig zijn.
+- H3: 2. Uitvoering
+  De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.
+- H3: 3. Afwerking
+  De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.
+
+### CTA
+- H2: Uw verbouwingsplannen bespreken?
+- Text: Neem contact met ons op voor een vrijblijvende kennismaking.
+- CTA: Vraag een kennismaking aan
 
 ## 6. Dienst — Stucwerk
+
+### Hero
 - H1: Stucwerk
 - Intro: Strak stucwerk vormt een belangrijke basis voor de verdere afwerking van een ruimte.
+
+### Intro
 - H2: Stucwerk als onderdeel van uw verbouwing
   Bij renovatie- en verbouwingsprojecten komt stucwerk vaak samen met andere werkzaamheden. L&L Bouwgroep kan het stucwerk daarom onderdeel maken van het totale project.
 - H2: Van renovatie tot afwerking
   Heeft u stucwerk nodig voor een badkamer, woning, bedrijfspand of ander renovatieproject? Bespreek uw plannen met ons.
-- CTA H2: Stucwerk nodig?
-  Neem contact op en bespreek de mogelijkheden.
+
+### Werkzaamheden
+- H2: Werkzaamheden voor uw stucwerk
+- List (demo content — to be confirmed by client):
+  - Wanden stucen
+  - Plafonds stucen
+  - Sausklaar afwerken
+  - Behangklaar afwerken
+  - Reparatie van scheuren
+
+### Werkwijze
+- H2: Van eerste werkzaamheden tot compleet eindresultaat
+- H3: 1. Bespreken van uw plannen
+  We bespreken uw wensen en de werkzaamheden die nodig zijn.
+- H3: 2. Uitvoering
+  De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.
+- H3: 3. Afwerking
+  De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.
+
+### CTA
+- H2: Stucwerk nodig?
+- Text: Neem contact op en bespreek de mogelijkheden.
+- CTA: Vraag een kennismaking aan
 
 ## 7. Dienst — Tegelwerk
+
+### Hero
 - H1: Tegelwerk
 - Intro: Professioneel tegelwerk voor badkamers, toiletten, keukens en andere ruimtes binnen uw renovatie of verbouwing.
+
+### Intro
 - H2: Tegelwerk als onderdeel van het totaalproject
   Tegelwerk is vaak één van meerdere werkzaamheden binnen een renovatie. Daarom kunnen wij het tegelwerk combineren met onder andere sloopwerk, stucwerk, leidingwerk en sanitair.
 - H2: Een complete afwerking
   Van badkamer en toilet tot keuken of andere ruimte: wij verzorgen tegelwerk als onderdeel van uiteenlopende projecten.
-- CTA H2: Uw tegelwerk bespreken?
-  Neem contact op met L&L Bouwgroep.
+
+### Werkzaamheden
+- H2: Werkzaamheden voor uw tegelwerk
+- List (demo content — to be confirmed by client):
+  - Wandtegels
+  - Vloertegels
+  - Badkamers en toiletten
+  - Keukenwanden
+  - Kitwerk
+
+### Werkwijze
+- H2: Van eerste werkzaamheden tot compleet eindresultaat
+- H3: 1. Bespreken van uw plannen
+  We bespreken uw wensen en de werkzaamheden die nodig zijn.
+- H3: 2. Uitvoering
+  De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.
+- H3: 3. Afwerking
+  De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.
+
+### CTA
+- H2: Uw tegelwerk bespreken?
+- Text: Neem contact op met L&L Bouwgroep.
+- CTA: Vraag een kennismaking aan
 
 ## 8. Dienst — Timmerwerk
+
+### Hero
 - H1: Timmerwerk
 - Intro: Timmerwerk voor uiteenlopende renovatie-, verbouwings- en bouwkundige werkzaamheden.
+
+### Intro
 - H2: Timmerwerk binnen uw project
   Bij een verbouwing kunnen verschillende timmerwerkzaamheden nodig zijn. L&L Bouwgroep verzorgt timmerwerk als onderdeel van het totale project.
 - H2: Combinatie met andere werkzaamheden
   Timmerwerk kan worden gecombineerd met andere werkzaamheden zoals stucwerk, tegelwerk, schilderwerk en overige bouwkundige werkzaamheden.
-- CTA H2: Timmerwerk nodig?
-  Bespreek uw project met L&L Bouwgroep.
+
+### Werkzaamheden
+- H2: Werkzaamheden voor uw timmerwerk
+- List (demo content — to be confirmed by client):
+  - Wanden plaatsen
+  - Deuren en kozijnen
+  - Inbouwkasten
+  - Plafonds
+  - Aftimmerwerk
+
+### Werkwijze
+- H2: Van eerste werkzaamheden tot compleet eindresultaat
+- H3: 1. Bespreken van uw plannen
+  We bespreken uw wensen en de werkzaamheden die nodig zijn.
+- H3: 2. Uitvoering
+  De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.
+- H3: 3. Afwerking
+  De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.
+
+### CTA
+- H2: Timmerwerk nodig?
+- Text: Bespreek uw project met L&L Bouwgroep.
+- CTA: Vraag een kennismaking aan
 
 ## 9. Dienst — Schilder- en afbouwwerk
+
+### Hero
 - H1: Schilder- en afbouwwerk
 - Intro: De afwerking maakt uw verbouwing compleet. L&L Bouwgroep verzorgt schilder- en afbouwwerk als onderdeel van uiteenlopende projecten.
+
+### Intro
 - H2: Aandacht voor de laatste fase
   Na de bouwkundige werkzaamheden volgt de afwerking. Schilder- en afbouwwerk zorgt ervoor dat de verschillende onderdelen van een project samenkomen.
 - H2: Een compleet project
   Waar mogelijk kunnen de afbouwwerkzaamheden worden gecombineerd met andere werkzaamheden binnen uw renovatie of verbouwing.
-- CTA H2: Uw project compleet laten afwerken?
-  Neem contact met ons op.
+
+### Werkzaamheden
+- H2: Werkzaamheden voor uw afwerking
+- List (demo content — to be confirmed by client):
+  - Binnenschilderwerk
+  - Kozijnen en deuren
+  - Plafonds
+  - Kitwerk
+  - Eindafwerking
+
+### Werkwijze
+- H2: Van eerste werkzaamheden tot compleet eindresultaat
+- H3: 1. Bespreken van uw plannen
+  We bespreken uw wensen en de werkzaamheden die nodig zijn.
+- H3: 2. Uitvoering
+  De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.
+- H3: 3. Afwerking
+  De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.
+
+### CTA
+- H2: Uw project compleet laten afwerken?
+- Text: Neem contact met ons op.
+- CTA: Vraag een kennismaking aan
 
 ## 10. Dienst — Keukenverbouwingen
+
+### Hero
 - H1: Keukenverbouwingen
 - Intro: Een keukenverbouwing vraagt vaak om meer dan alleen het plaatsen van een keuken. L&L Bouwgroep verzorgt verschillende werkzaamheden rondom keukenverbouwingen.
+
+### Intro
 - H2: Werkzaamheden rondom uw keuken
   Afhankelijk van uw plannen kunnen verschillende bouwkundige en afbouwwerkzaamheden onderdeel zijn van de verbouwing.
 - H2: Van voorbereiding tot afwerking
   Door werkzaamheden te combineren, kunnen verschillende onderdelen van uw keukenverbouwing binnen één project worden uitgevoerd.
-- CTA H2: Plannen voor een keukenverbouwing?
-  Bespreek uw wensen met L&L Bouwgroep.
+
+### Werkzaamheden
+- H2: Werkzaamheden voor uw keuken
+- List (demo content — to be confirmed by client):
+  - Sloopwerkzaamheden
+  - Leidingwerk
+  - Elektra
+  - Tegelwerk
+  - Stucwerk
+  - Afwerking
+
+### Werkwijze
+- H2: Van eerste werkzaamheden tot compleet eindresultaat
+- H3: 1. Bespreken van uw plannen
+  We bespreken uw wensen en de werkzaamheden die nodig zijn.
+- H3: 2. Uitvoering
+  De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.
+- H3: 3. Afwerking
+  De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.
+
+### CTA
+- H2: Plannen voor een keukenverbouwing?
+- Text: Bespreek uw wensen met L&L Bouwgroep.
+- CTA: Vraag een kennismaking aan
 
 ## 11. Dienst — Aan- en uitbouw
+
+### Hero
 - H1: Aan- en uitbouw
 - Intro: Wilt u uw woning uitbreiden? L&L Bouwgroep verzorgt diverse bouwkundige werkzaamheden rondom aan- en uitbouw.
+
+### Intro
 - H2: Meer ruimte voor uw woning
   Een aan- of uitbouw kan verschillende bouwkundige werkzaamheden met zich meebrengen. Wij bespreken graag wat er binnen uw project nodig is.
 - H2: Bouwkundige werkzaamheden
   Van timmerwerk tot afwerking: afhankelijk van uw plannen kunnen verschillende werkzaamheden worden gecombineerd.
-- CTA H2: Uw plannen voor een aan- of uitbouw bespreken?
-  Neem contact op met L&L Bouwgroep.
+
+### Werkzaamheden
+- H2: Werkzaamheden voor uw aan- of uitbouw
+- List (demo content — to be confirmed by client):
+  - Fundering
+  - Ruwbouw
+  - Dakconstructie
+  - Kozijnen en schuifpuien
+  - Stucwerk
+  - Afwerking
+
+### Werkwijze
+- H2: Van eerste werkzaamheden tot compleet eindresultaat
+- H3: 1. Bespreken van uw plannen
+  We bespreken uw wensen en de werkzaamheden die nodig zijn.
+- H3: 2. Uitvoering
+  De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.
+- H3: 3. Afwerking
+  De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.
+
+### CTA
+- H2: Uw plannen voor een aan- of uitbouw bespreken?
+- Text: Neem contact op met L&L Bouwgroep.
+- CTA: Vraag een kennismaking aan
 
 ## 12. Dienst — Overige bouwkundige werkzaamheden
+
+### Hero
 - H1: Overige bouwkundige werkzaamheden
 - Intro: Heeft u bouwkundige werkzaamheden die niet direct binnen één van onze diensten vallen? Neem contact met ons op.
+
+### Intro
 - H2: Uw project, uw situatie
   Geen verbouwing is hetzelfde. Soms bestaat een project uit meerdere verschillende werkzaamheden. We bespreken graag wat uw plannen zijn en welke werkzaamheden nodig zijn.
-- CTA H2: Bespreek uw project
-  Neem vrijblijvend contact met ons op.
+
+### Werkzaamheden
+- H2: Werkzaamheden voor uw project
+- List (demo content — to be confirmed by client):
+  - Kleine verbouwingen
+  - Reparaties
+  - Combinaties van werkzaamheden
+
+### Werkwijze
+- H2: Van eerste werkzaamheden tot compleet eindresultaat
+- H3: 1. Bespreken van uw plannen
+  We bespreken uw wensen en de werkzaamheden die nodig zijn.
+- H3: 2. Uitvoering
+  De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.
+- H3: 3. Afwerking
+  De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.
+
+### CTA
+- H2: Bespreek uw project
+- Text: Neem vrijblijvend contact met ons op.
+- CTA: Vraag een kennismaking aan
 
 ---
 

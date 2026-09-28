@@ -309,11 +309,163 @@ function llb_default_faq_items() {
 }
 
 /**
+ * Shared Werkwijze steps for services (same as Badkamers).
+ *
+ * @return array{heading: string, steps: array<int, array{title: string, text: string}>}
+ */
+function llb_default_service_steps_v2() {
+	return array(
+		'heading' => 'Van eerste werkzaamheden tot compleet eindresultaat',
+		'steps'   => array(
+			array(
+				'title' => '1. Bespreken van uw plannen',
+				'text'  => 'We bespreken uw wensen en de werkzaamheden die nodig zijn.',
+			),
+			array(
+				'title' => '2. Uitvoering',
+				'text'  => 'De werkzaamheden worden volgens de gemaakte afspraken uitgevoerd.',
+			),
+			array(
+				'title' => '3. Afwerking',
+				'text'  => 'De verschillende onderdelen worden samengebracht tot een compleet eindresultaat.',
+			),
+		),
+	);
+}
+
+/**
+ * Demo checklist sections + CTA button for the 8 services that lacked them.
+ *
+ * @return array<string, array{section: array{heading: string, text: string, list: string}, cta_button: string}>
+ */
+function llb_default_service_content_v2_map() {
+	$cta = 'Vraag een kennismaking aan';
+
+	return array(
+		'renovatie-verbouwing'              => array(
+			'section'    => array(
+				'heading' => 'Werkzaamheden voor uw verbouwing',
+				'text'    => '',
+				'list'    => "Sloopwerkzaamheden\nTimmerwerk\nStucwerk\nTegelwerk\nSchilderwerk\nAfwerking",
+			),
+			'cta_button' => $cta,
+		),
+		'stucwerk'                          => array(
+			'section'    => array(
+				'heading' => 'Werkzaamheden voor uw stucwerk',
+				'text'    => '',
+				'list'    => "Wanden stucen\nPlafonds stucen\nSausklaar afwerken\nBehangklaar afwerken\nReparatie van scheuren",
+			),
+			'cta_button' => $cta,
+		),
+		'tegelwerk'                         => array(
+			'section'    => array(
+				'heading' => 'Werkzaamheden voor uw tegelwerk',
+				'text'    => '',
+				'list'    => "Wandtegels\nVloertegels\nBadkamers en toiletten\nKeukenwanden\nKitwerk",
+			),
+			'cta_button' => $cta,
+		),
+		'timmerwerk'                        => array(
+			'section'    => array(
+				'heading' => 'Werkzaamheden voor uw timmerwerk',
+				'text'    => '',
+				'list'    => "Wanden plaatsen\nDeuren en kozijnen\nInbouwkasten\nPlafonds\nAftimmerwerk",
+			),
+			'cta_button' => $cta,
+		),
+		'schilder-afbouwwerk'               => array(
+			'section'    => array(
+				'heading' => 'Werkzaamheden voor uw afwerking',
+				'text'    => '',
+				'list'    => "Binnenschilderwerk\nKozijnen en deuren\nPlafonds\nKitwerk\nEindafwerking",
+			),
+			'cta_button' => $cta,
+		),
+		'keukenverbouwingen'                => array(
+			'section'    => array(
+				'heading' => 'Werkzaamheden voor uw keuken',
+				'text'    => '',
+				'list'    => "Sloopwerkzaamheden\nLeidingwerk\nElektra\nTegelwerk\nStucwerk\nAfwerking",
+			),
+			'cta_button' => $cta,
+		),
+		'aan-uitbouw'                       => array(
+			'section'    => array(
+				'heading' => 'Werkzaamheden voor uw aan- of uitbouw',
+				'text'    => '',
+				'list'    => "Fundering\nRuwbouw\nDakconstructie\nKozijnen en schuifpuien\nStucwerk\nAfwerking",
+			),
+			'cta_button' => $cta,
+		),
+		'overige-bouwkundige-werkzaamheden' => array(
+			'section'    => array(
+				'heading' => 'Werkzaamheden voor uw project',
+				'text'    => '',
+				'list'    => "Kleine verbouwingen\nReparaties\nCombinaties van werkzaamheden",
+			),
+			'cta_button' => $cta,
+		),
+	);
+}
+
+/**
+ * Whether a steps repeater has any usable items.
+ *
+ * @param mixed $steps Raw meta value.
+ * @return bool
+ */
+function llb_service_steps_are_empty( $steps ) {
+	if ( ! is_array( $steps ) || empty( $steps ) ) {
+		return true;
+	}
+
+	foreach ( $steps as $step ) {
+		if ( ! is_array( $step ) ) {
+			continue;
+		}
+		$title = isset( $step['title'] ) ? trim( (string) $step['title'] ) : '';
+		$text  = isset( $step['text'] ) ? trim( (string) $step['text'] ) : '';
+		if ( '' !== $title || '' !== $text ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Whether any section has a non-empty list.
+ *
+ * @param mixed $sections Raw sections meta.
+ * @return bool
+ */
+function llb_service_sections_have_list( $sections ) {
+	if ( ! is_array( $sections ) ) {
+		return false;
+	}
+
+	foreach ( $sections as $section ) {
+		if ( ! is_array( $section ) ) {
+			continue;
+		}
+		$list = isset( $section['list'] ) ? $section['list'] : '';
+		if ( ! empty( llb_parse_section_list( $list ) ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
  * Default services (§§ 1, 3, 4–12).
  *
  * @return array<int, array<string, mixed>>
  */
 function llb_default_services() {
+	$steps_v2 = llb_default_service_steps_v2();
+	$map_v2   = llb_default_service_content_v2_map();
 	return array(
 		array(
 			'title'    => 'Badkamers & toiletten',
@@ -387,12 +539,13 @@ function llb_default_services() {
 						'text'    => 'Van timmerwerk en stucwerk tot tegelwerk, schilderwerk en andere bouwkundige werkzaamheden: afhankelijk van uw project kunnen verschillende onderdelen worden gecombineerd.',
 						'list'    => '',
 					),
+					$map_v2['renovatie-verbouwing']['section'],
 				),
-				'_llb_steps_heading'   => '',
-				'_llb_steps'           => array(),
+				'_llb_steps_heading'   => $steps_v2['heading'],
+				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Uw verbouwingsplannen bespreken?',
 				'_llb_cta_text'        => 'Neem contact met ons op voor een vrijblijvende kennismaking.',
-				'_llb_cta_button'      => '',
+				'_llb_cta_button'      => $map_v2['renovatie-verbouwing']['cta_button'],
 			),
 		),
 		array(
@@ -419,12 +572,13 @@ function llb_default_services() {
 						'text'    => 'Heeft u stucwerk nodig voor een badkamer, woning, bedrijfspand of ander renovatieproject? Bespreek uw plannen met ons.',
 						'list'    => '',
 					),
+					$map_v2['stucwerk']['section'],
 				),
-				'_llb_steps_heading'   => '',
-				'_llb_steps'           => array(),
+				'_llb_steps_heading'   => $steps_v2['heading'],
+				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Stucwerk nodig?',
 				'_llb_cta_text'        => 'Neem contact op en bespreek de mogelijkheden.',
-				'_llb_cta_button'      => '',
+				'_llb_cta_button'      => $map_v2['stucwerk']['cta_button'],
 			),
 		),
 		array(
@@ -451,12 +605,13 @@ function llb_default_services() {
 						'text'    => 'Van badkamer en toilet tot keuken of andere ruimte: wij verzorgen tegelwerk als onderdeel van uiteenlopende projecten.',
 						'list'    => '',
 					),
+					$map_v2['tegelwerk']['section'],
 				),
-				'_llb_steps_heading'   => '',
-				'_llb_steps'           => array(),
+				'_llb_steps_heading'   => $steps_v2['heading'],
+				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Uw tegelwerk bespreken?',
 				'_llb_cta_text'        => 'Neem contact op met L&L Bouwgroep.',
-				'_llb_cta_button'      => '',
+				'_llb_cta_button'      => $map_v2['tegelwerk']['cta_button'],
 			),
 		),
 		array(
@@ -483,12 +638,13 @@ function llb_default_services() {
 						'text'    => 'Timmerwerk kan worden gecombineerd met andere werkzaamheden zoals stucwerk, tegelwerk, schilderwerk en overige bouwkundige werkzaamheden.',
 						'list'    => '',
 					),
+					$map_v2['timmerwerk']['section'],
 				),
-				'_llb_steps_heading'   => '',
-				'_llb_steps'           => array(),
+				'_llb_steps_heading'   => $steps_v2['heading'],
+				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Timmerwerk nodig?',
 				'_llb_cta_text'        => 'Bespreek uw project met L&L Bouwgroep.',
-				'_llb_cta_button'      => '',
+				'_llb_cta_button'      => $map_v2['timmerwerk']['cta_button'],
 			),
 		),
 		array(
@@ -515,12 +671,13 @@ function llb_default_services() {
 						'text'    => 'Waar mogelijk kunnen de afbouwwerkzaamheden worden gecombineerd met andere werkzaamheden binnen uw renovatie of verbouwing.',
 						'list'    => '',
 					),
+					$map_v2['schilder-afbouwwerk']['section'],
 				),
-				'_llb_steps_heading'   => '',
-				'_llb_steps'           => array(),
+				'_llb_steps_heading'   => $steps_v2['heading'],
+				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Uw project compleet laten afwerken?',
 				'_llb_cta_text'        => 'Neem contact met ons op.',
-				'_llb_cta_button'      => '',
+				'_llb_cta_button'      => $map_v2['schilder-afbouwwerk']['cta_button'],
 			),
 		),
 		array(
@@ -547,12 +704,13 @@ function llb_default_services() {
 						'text'    => 'Door werkzaamheden te combineren, kunnen verschillende onderdelen van uw keukenverbouwing binnen één project worden uitgevoerd.',
 						'list'    => '',
 					),
+					$map_v2['keukenverbouwingen']['section'],
 				),
-				'_llb_steps_heading'   => '',
-				'_llb_steps'           => array(),
+				'_llb_steps_heading'   => $steps_v2['heading'],
+				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Plannen voor een keukenverbouwing?',
 				'_llb_cta_text'        => 'Bespreek uw wensen met L&L Bouwgroep.',
-				'_llb_cta_button'      => '',
+				'_llb_cta_button'      => $map_v2['keukenverbouwingen']['cta_button'],
 			),
 		),
 		array(
@@ -576,12 +734,13 @@ function llb_default_services() {
 						'text'    => 'Van timmerwerk tot afwerking: afhankelijk van uw plannen kunnen verschillende werkzaamheden worden gecombineerd.',
 						'list'    => '',
 					),
+					$map_v2['aan-uitbouw']['section'],
 				),
-				'_llb_steps_heading'   => '',
-				'_llb_steps'           => array(),
+				'_llb_steps_heading'   => $steps_v2['heading'],
+				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Uw plannen voor een aan- of uitbouw bespreken?',
 				'_llb_cta_text'        => 'Neem contact op met L&L Bouwgroep.',
-				'_llb_cta_button'      => '',
+				'_llb_cta_button'      => $map_v2['aan-uitbouw']['cta_button'],
 			),
 		),
 		array(
@@ -603,12 +762,13 @@ function llb_default_services() {
 						'text'    => 'Geen verbouwing is hetzelfde. Soms bestaat een project uit meerdere verschillende werkzaamheden. We bespreken graag wat uw plannen zijn en welke werkzaamheden nodig zijn.',
 						'list'    => '',
 					),
+					$map_v2['overige-bouwkundige-werkzaamheden']['section'],
 				),
-				'_llb_steps_heading'   => '',
-				'_llb_steps'           => array(),
+				'_llb_steps_heading'   => $steps_v2['heading'],
+				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Bespreek uw project',
 				'_llb_cta_text'        => 'Neem vrijblijvend contact met ons op.',
-				'_llb_cta_button'      => '',
+				'_llb_cta_button'      => $map_v2['overige-bouwkundige-werkzaamheden']['cta_button'],
 			),
 		),
 	);
@@ -664,3 +824,57 @@ function llb_default_privacy_content() {
 
 	return implode( "\n\n", $blocks );
 }
+
+/**
+ * One-time fill of checklist, steps and CTA button for the 8 incomplete services.
+ * Never overwrites admin-edited text.
+ *
+ * @return void
+ */
+function llb_maybe_migrate_service_content_v2() {
+	if ( get_option( 'llb_service_content_v2' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'llb_get_services' ) ) {
+		return;
+	}
+
+	$map      = llb_default_service_content_v2_map();
+	$steps_v2 = llb_default_service_steps_v2();
+
+	foreach ( llb_get_services() as $service ) {
+		$slug = $service->post_name;
+		if ( ! isset( $map[ $slug ] ) ) {
+			continue;
+		}
+
+		$data     = $map[ $slug ];
+		$sections = get_post_meta( $service->ID, '_llb_sections', true );
+		if ( ! is_array( $sections ) ) {
+			$sections = array();
+		}
+
+		if ( ! llb_service_sections_have_list( $sections ) ) {
+			$sections[] = $data['section'];
+			update_post_meta( $service->ID, '_llb_sections', $sections );
+		}
+
+		$steps_heading = trim( (string) get_post_meta( $service->ID, '_llb_steps_heading', true ) );
+		if ( '' === $steps_heading ) {
+			update_post_meta( $service->ID, '_llb_steps_heading', $steps_v2['heading'] );
+		}
+
+		$steps = get_post_meta( $service->ID, '_llb_steps', true );
+		if ( llb_service_steps_are_empty( $steps ) ) {
+			update_post_meta( $service->ID, '_llb_steps', $steps_v2['steps'] );
+		}
+
+		$cta_button = trim( (string) get_post_meta( $service->ID, '_llb_cta_button', true ) );
+		if ( '' === $cta_button ) {
+			update_post_meta( $service->ID, '_llb_cta_button', $data['cta_button'] );
+		}
+	}
+
+	update_option( 'llb_service_content_v2', '1' );
+}
+add_action( 'admin_init', 'llb_maybe_migrate_service_content_v2' );
