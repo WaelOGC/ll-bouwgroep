@@ -16,16 +16,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function llb_service_icon_options() {
 	return array(
-		''             => __( '— Default by service —', 'll-bouwgroep' ),
-		'pipe-wrench'  => 'Pipe wrench',
-		'hammer-wrench'=> 'Hammer wrench',
-		'spirit-level' => 'Spirit level',
-		'wall'         => 'Wall',
-		'hand-saw'     => 'Hand saw',
-		'format-paint' => 'Format paint',
-		'toolbox'      => 'Toolbox',
-		'ladder'       => 'Ladder',
-		'hammer'       => 'Hammer',
+		''                   => __( '— Default by service —', 'll-bouwgroep' ),
+		'shower-head'        => 'Shower head',
+		'home-edit'          => 'House edit',
+		'spirit-level'       => 'Spirit level',
+		'view-grid'          => 'Tiles',
+		'hand-saw'           => 'Hand saw',
+		'format-paint'       => 'Paint roller',
+		'countertop'         => 'Kitchen counter',
+		'home-plus'          => 'House extension',
+		'hammer-screwdriver' => 'Hammer & screwdriver',
 	);
 }
 
@@ -43,26 +43,47 @@ function llb_why_icon_options() {
 }
 
 /**
- * Default service icon by post slug.
+ * Default service icon by post slug (real slugs from content-defaults).
  *
  * @param string $slug Service post slug.
  * @return string
  */
 function llb_default_service_icon_for_slug( $slug ) {
 	$map = array(
-		'badkamers-toiletten'                 => 'pipe-wrench',
-		'renovatie-en-verbouwing'             => 'hammer-wrench',
-		'stucwerk'                            => 'spirit-level',
-		'tegelwerk'                           => 'wall',
-		'timmerwerk'                          => 'hand-saw',
-		'schilder-en-afbouwwerk'              => 'format-paint',
-		'keukenverbouwingen'                  => 'toolbox',
-		'aan-en-uitbouw'                      => 'ladder',
-		'overige-bouwkundige-werkzaamheden'   => 'hammer',
+		'badkamers-toiletten'               => 'shower-head',
+		'renovatie-verbouwing'              => 'home-edit',
+		'stucwerk'                          => 'spirit-level',
+		'tegelwerk'                         => 'view-grid',
+		'timmerwerk'                        => 'hand-saw',
+		'schilder-afbouwwerk'               => 'format-paint',
+		'keukenverbouwingen'                => 'countertop',
+		'aan-uitbouw'                       => 'home-plus',
+		'overige-bouwkundige-werkzaamheden' => 'hammer-screwdriver',
 	);
 	$slug = sanitize_title( (string) $slug );
-	return isset( $map[ $slug ] ) ? $map[ $slug ] : 'hammer';
+	return isset( $map[ $slug ] ) ? $map[ $slug ] : 'hammer-screwdriver';
 }
+
+/**
+ * One-time overwrite of service icons to the v2 map (fixes wrong seeded hammers).
+ *
+ * @return void
+ */
+function llb_migrate_service_icons_v2() {
+	if ( get_option( 'llb_service_icons_v2' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'llb_get_services' ) || ! function_exists( 'llb_default_service_icon_for_slug' ) ) {
+		return;
+	}
+
+	foreach ( llb_get_services() as $service ) {
+		update_post_meta( $service->ID, '_llb_service_icon', llb_default_service_icon_for_slug( $service->post_name ) );
+	}
+
+	update_option( 'llb_service_icons_v2', '1' );
+}
+add_action( 'admin_init', 'llb_migrate_service_icons_v2' );
 
 /**
  * Returns MDI SVG markup (fill currentColor / inherited fill).
