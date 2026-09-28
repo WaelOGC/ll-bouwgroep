@@ -8,11 +8,39 @@ How to ship the L&L Bouwgroep theme from Local to production.
 - `CHANGELOG.md` updated
 - `php -l` passes on every PHP file
 - Tested on Local (`ll-bouwgroep.local`)
+- Full pre-launch run-through: [13-launch-checklist.md](13-launch-checklist.md)
+
+## Build the zip
+
+`bin/build-theme-zip` produces a clean archive containing the theme folder only, named after the version in `style.css`.
+
+```bash
+# macOS / Linux / Git Bash
+bin/build-theme-zip
+```
+
+```powershell
+# Windows PowerShell
+powershell -ExecutionPolicy Bypass -File bin\build-theme-zip.ps1
+```
+
+Both scripts write to `dist/ll-bouwgroep-<version>.zip` (the `dist/` folder is not committed) and exclude development files: `.git`, `.github`, `node_modules`, `bin`, `docs`, `tests`, `*.map`, `*.log`, `*.zip`, `.DS_Store`, `Thumbs.db`, `.editorconfig`, `phpcs.xml*` and `package*.json`.
+
+The archive contains `ll-bouwgroep/` at its root, which is what **Appearance → Themes → Add New → Upload** expects.
+
+### Translation template
+
+`languages/ll-bouwgroep.pot` holds the admin strings. Regenerate it after adding or changing `__()` / `esc_html__()` strings:
+
+```bash
+wp i18n make-pot app/public/wp-content/themes/ll-bouwgroep app/public/wp-content/themes/ll-bouwgroep/languages/ll-bouwgroep.pot
+```
+
+Without WP-CLI, `php bin/make-pot.php` produces the same file with a minimal extractor.
 
 ## Upload
 
-- Zip the theme folder only (`ll-bouwgroep/`)
-- Upload via **Appearance → Themes → Add New → Upload** (replace current), or via SFTP
+- Upload the zip via **Appearance → Themes → Add New → Upload** (replace current), or copy the theme folder via SFTP
 
 ## After upload
 

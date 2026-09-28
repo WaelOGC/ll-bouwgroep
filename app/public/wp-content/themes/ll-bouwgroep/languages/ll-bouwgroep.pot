@@ -1,0 +1,1385 @@
+# Copyright (C) 2026 Wael Safan
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: L&L Bouwgroep 0.25.0\n"
+"Report-Msgid-Bugs-To: https://github.com/WaelOGC/ll-bouwgroep/issues\n"
+"POT-Creation-Date: 2026-09-28 22:51+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: ll-bouwgroep\n"
+
+#: inc/theme-options.php:804
+msgid "%s is active, so it provides the breadcrumb trail and the breadcrumb structured data. The theme only supplies the styling."
+msgstr ""
+
+#: inc/customizer.php:458
+msgid "404 page"
+msgstr ""
+
+#: inc/features/maintenance.php:93
+msgid "A new preview link was generated. The old link no longer works."
+msgstr ""
+
+#: inc/theme-options.php:915
+msgid "A thin bar above the header for short messages such as holiday closing days. Visitors can close it; the choice is remembered per message."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:435
+msgid "About heading (H2)"
+msgstr ""
+
+#: inc/meta-boxes.php:183
+msgid "About this project"
+msgstr ""
+
+#: inc/post-types.php:35
+#: inc/post-types.php:87
+msgid "Add New"
+msgstr ""
+
+#: inc/post-types.php:88
+msgid "Add New Project"
+msgstr ""
+
+#: inc/post-types.php:142
+msgid "Add New Project category"
+msgstr ""
+
+#: inc/post-types.php:36
+msgid "Add New Service"
+msgstr ""
+
+#: inc/meta-boxes.php:492
+msgid "Add images"
+msgstr ""
+
+#: inc/post-types.php:149
+msgid "Add or remove project categories"
+msgstr ""
+
+#: inc/meta-boxes.php:530
+msgid "Add row"
+msgstr ""
+
+#: inc/post-types.php:138
+msgid "All Project categories"
+msgstr ""
+
+#: inc/post-types.php:93
+msgid "All Projects"
+msgstr ""
+
+#: inc/post-types.php:41
+msgid "All Services"
+msgstr ""
+
+#: inc/theme-options.php:688
+msgid "Animations"
+msgstr ""
+
+#: inc/theme-options.php:681
+msgid "Animations and projects are both enabled on the website."
+msgstr ""
+
+#: inc/theme-options.php:678
+msgid "Animations are turned off on the website."
+msgstr ""
+
+#: inc/theme-options.php:376
+msgid "Announcement"
+msgstr ""
+
+#: inc/theme-options.php:925
+msgid "Announcement bar"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:573
+msgid "Answer"
+msgstr ""
+
+#: inc/theme-options.php:828
+msgid "Area served"
+msgstr ""
+
+#: inc/customizer.php:129
+msgid "BTW number"
+msgstr ""
+
+#: inc/theme-options.php:698
+msgid "Back to top button"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:272
+#: inc/meta-boxes-pages.php:363
+#: inc/meta-boxes-pages.php:605
+msgid "Background image"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:112
+msgid "Bathrooms highlight"
+msgstr ""
+
+#: inc/theme-options.php:1013
+msgid "Body consent category"
+msgstr ""
+
+#: inc/theme-options.php:1007
+msgid "Body snippet"
+msgstr ""
+
+#: inc/customizer.php:540
+msgid "Brand colors"
+msgstr ""
+
+#: inc/theme-options.php:386
+msgid "Branding"
+msgstr ""
+
+#: inc/theme-options.php:821
+msgid "Breadcrumbs"
+msgstr ""
+
+#: inc/theme-options.php:796
+msgid "Business data structured for search engines, and breadcrumbs on inner pages."
+msgstr ""
+
+#: inc/customizer.php:288
+#: inc/meta-boxes-pages.php:146
+msgid "Button link"
+msgstr ""
+
+#: inc/customizer.php:276
+#: inc/meta-boxes-pages.php:141
+#: inc/meta-boxes-pages.php:238
+#: inc/meta-boxes-pages.php:257
+#: inc/meta-boxes-pages.php:287
+#: inc/meta-boxes-pages.php:378
+#: inc/meta-boxes-pages.php:615
+#: inc/meta-boxes.php:168
+msgid "Button text"
+msgstr ""
+
+#: inc/meta-boxes.php:64
+msgid "Button text on the Services overview page"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:460
+msgid "CTA button text"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:450
+msgid "CTA heading (H2)"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:455
+msgid "CTA text"
+msgstr ""
+
+#: inc/theme-options.php:766
+msgid "Call button text"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:354
+#: inc/meta-boxes-pages.php:596
+msgid "Call to action"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:578
+msgid "Category"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:539
+msgid "Category navigation"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:548
+msgid "Category navigation label"
+msgstr ""
+
+#: inc/post-types.php:150
+msgid "Choose from the most used project categories"
+msgstr ""
+
+#: inc/customizer.php:119
+msgid "City"
+msgstr ""
+
+#: inc/customizer.php:85
+msgid "Company & contact"
+msgstr ""
+
+#: inc/customizer.php:94
+msgid "Company name"
+msgstr ""
+
+#: inc/customizer.php:378
+msgid "Contact Form 7 shortcode"
+msgstr ""
+
+#: inc/theme-options.php:361
+msgid "Contact buttons"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:466
+msgid "Contact details"
+msgstr ""
+
+#: inc/customizer.php:365
+msgid "Contact form"
+msgstr ""
+
+#: inc/customizer.php:355
+msgid "Copyright text"
+msgstr ""
+
+#: inc/import.php:54
+msgid "Created: %s"
+msgstr ""
+
+#: inc/import.php:47
+msgid "Creates pages, services, FAQ and menus with the default Dutch content. Existing items (same slug) are skipped, never overwritten."
+msgstr ""
+
+#: inc/theme-options.php:1049
+msgid "Dashboard footer text"
+msgstr ""
+
+#: inc/theme-options.php:871
+msgid "Dutch heading on the holding page."
+msgstr ""
+
+#: inc/theme-options.php:943
+msgid "Dutch label for the link. Without it the link is not shown."
+msgstr ""
+
+#: inc/theme-options.php:772
+msgid "Dutch label. Links to the contact page."
+msgstr ""
+
+#: inc/theme-options.php:767
+msgid "Dutch label. Links to the phone number from the Customizer."
+msgstr ""
+
+#: inc/theme-options.php:933
+msgid "Dutch message. Keep it to one short sentence."
+msgstr ""
+
+#: inc/theme-options.php:878
+msgid "Dutch paragraph under the heading. Phone and e-mail come from the Customizer."
+msgstr ""
+
+#: inc/theme-options.php:750
+msgid "Dutch text the visitor sees pre-filled in WhatsApp."
+msgstr ""
+
+#: inc/post-types.php:90
+msgid "Edit Project"
+msgstr ""
+
+#: inc/post-types.php:139
+msgid "Edit Project category"
+msgstr ""
+
+#: inc/post-types.php:38
+msgid "Edit Service"
+msgstr ""
+
+#: inc/customizer.php:104
+msgid "Email"
+msgstr ""
+
+#: inc/customizer.php:233
+msgid "Empty = not shown."
+msgstr ""
+
+#: inc/theme-options.php:952
+msgid "End date (optional)"
+msgstr ""
+
+#: inc/customizer.php:154
+msgid "Example: 08:00 – 17:00 or Gesloten."
+msgstr ""
+
+#: inc/theme-options.php:977
+msgid "Extra third-party snippets. Each snippet is only printed after the visitor consented to the chosen category."
+msgstr ""
+
+#: inc/meta-boxes.php:145
+msgid "FAQ category"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:525
+msgid "FAQ link"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:534
+msgid "FAQ link text"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:243
+msgid "FAQ section"
+msgstr ""
+
+#: inc/customizer.php:240
+msgid "Facebook URL"
+msgstr ""
+
+#: inc/meta-boxes.php:822
+#: inc/meta-boxes.php:840
+msgid "Featured"
+msgstr ""
+
+#: inc/post-types.php:46
+#: inc/post-types.php:98
+msgid "Featured image"
+msgstr ""
+
+#: inc/meta-boxes.php:211
+#: inc/meta-boxes.php:218
+msgid "Featured project"
+msgstr ""
+
+#: inc/post-types.php:105
+msgid "Filter projects list"
+msgstr ""
+
+#: inc/post-types.php:53
+msgid "Filter services list"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:411
+msgid "Filter “all” label"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:263
+msgid "Final call to action"
+msgstr ""
+
+#: inc/theme-options.php:760
+msgid "Fixed bar at the bottom of the screen on phones only (under 768px) with a call button and a quote button."
+msgstr ""
+
+#: inc/theme-options.php:721
+msgid "Floating WhatsApp button and the fixed contact bar that only shows on phones."
+msgstr ""
+
+#: inc/customizer.php:298
+msgid "Footer"
+msgstr ""
+
+#: inc/theme-options.php:1022
+msgid "Footer consent category"
+msgstr ""
+
+#: inc/customizer.php:329
+msgid "Footer logo (for dark background)"
+msgstr ""
+
+#: inc/setup.php:42
+msgid "Footer menu"
+msgstr ""
+
+#: inc/theme-options.php:1016
+msgid "Footer snippet"
+msgstr ""
+
+#: inc/customizer.php:343
+msgid "Footer text"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:486
+msgid "Form"
+msgstr ""
+
+#: inc/customizer.php:165
+msgid "Friday"
+msgstr ""
+
+#: inc/theme-options.php:108
+msgid "Functional"
+msgstr ""
+
+#: inc/meta-boxes.php:205
+msgid "Gallery images"
+msgstr ""
+
+#: inc/theme-options.php:356
+msgid "General"
+msgstr ""
+
+#: inc/theme-options.php:896
+msgid "Generate new preview link"
+msgstr ""
+
+#: inc/theme-options.php:980
+msgid "Google Analytics / Search Console via Site Kit by Google are configured in Site Kit — do not add them here."
+msgstr ""
+
+#: inc/theme-options.php:1004
+msgid "Head consent category"
+msgstr ""
+
+#: inc/theme-options.php:998
+msgid "Head snippet"
+msgstr ""
+
+#: inc/customizer.php:263
+msgid "Header"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:610
+#: inc/theme-options.php:870
+msgid "Heading"
+msgstr ""
+
+#: inc/customizer.php:471
+msgid "Heading (H1)"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:102
+#: inc/meta-boxes-pages.php:126
+#: inc/meta-boxes-pages.php:161
+#: inc/meta-boxes-pages.php:186
+#: inc/meta-boxes-pages.php:228
+#: inc/meta-boxes-pages.php:252
+#: inc/meta-boxes-pages.php:277
+#: inc/meta-boxes-pages.php:306
+#: inc/meta-boxes-pages.php:368
+#: inc/meta-boxes-pages.php:392
+#: inc/meta-boxes-pages.php:475
+#: inc/meta-boxes-pages.php:495
+#: inc/meta-boxes.php:81
+#: inc/meta-boxes.php:158
+msgid "Heading (H2)"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:62
+msgid "Hero buttons"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:40
+#: inc/meta-boxes.php:30
+msgid "Hero image"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:45
+msgid "Hero image (mobile)"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:57
+#: inc/meta-boxes.php:41
+msgid "Hero intro"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:51
+#: inc/meta-boxes.php:35
+msgid "Hero title (H1)"
+msgstr ""
+
+#: inc/customizer.php:519
+msgid "Home button text"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:201
+#: inc/meta-boxes.php:53
+msgid "Icon"
+msgstr ""
+
+#: inc/customizer.php:289
+msgid "If empty, links to /contact/."
+msgstr ""
+
+#: inc/meta-boxes.php:36
+msgid "If empty, the service title is used."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:147
+msgid "If empty: Badkamers & toiletten service"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:88
+msgid "If empty: Services page"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:77
+msgid "If empty: header button link"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:461
+msgid "If empty: header button text"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:121
+#: inc/meta-boxes-pages.php:181
+#: inc/meta-boxes-pages.php:316
+#: inc/meta-boxes-pages.php:347
+#: inc/meta-boxes.php:96
+msgid "Image"
+msgstr ""
+
+#: inc/import.php:20
+#: inc/import.php:21
+#: inc/import.php:46
+#: inc/import.php:64
+msgid "Import default content"
+msgstr ""
+
+#: inc/import.php:51
+msgid "Import finished."
+msgstr ""
+
+#: inc/post-types.php:103
+msgid "Insert into project"
+msgstr ""
+
+#: inc/post-types.php:51
+msgid "Insert into service"
+msgstr ""
+
+#: inc/customizer.php:241
+msgid "Instagram URL"
+msgstr ""
+
+#: inc/theme-options.php:744
+msgid "International format, for example +31612345678. Leave empty to hide the button."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:166
+#: inc/meta-boxes-pages.php:430
+msgid "Intro"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:93
+#: inc/meta-boxes-pages.php:383
+msgid "Introduction"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:196
+msgid "Items"
+msgstr ""
+
+#: inc/compat/seo.php:162
+#: inc/compat/seo.php:169
+msgid "Kruimelpad"
+msgstr ""
+
+#: inc/customizer.php:124
+msgid "KvK number"
+msgstr ""
+
+#: inc/customizer.php:76
+msgid "L&L Bouwgroep"
+msgstr ""
+
+#: inc/features/tracking.php:150
+msgid "L&L Bouwgroep: tracking code is saved but no consent plugin (WP Consent API / Complianz) is active, so the code is never printed on the website."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:402
+msgid "Labels"
+msgstr ""
+
+#: inc/customizer.php:483
+msgid "Lead text"
+msgstr ""
+
+#: inc/customizer.php:86
+msgid "Leave empty until the real company data is available. Empty fields are hidden on the website."
+msgstr ""
+
+#: inc/theme-options.php:937
+msgid "Link (optional)"
+msgstr ""
+
+#: inc/theme-options.php:942
+msgid "Link text (optional)"
+msgstr ""
+
+#: inc/customizer.php:242
+msgid "LinkedIn URL"
+msgstr ""
+
+#: inc/meta-boxes.php:91
+msgid "List items (one per line, optional)"
+msgstr ""
+
+#: inc/theme-options.php:816
+msgid "Local business structured data"
+msgstr ""
+
+#: inc/theme-options.php:371
+msgid "Maintenance"
+msgstr ""
+
+#: inc/theme-options.php:863
+msgid "Maintenance mode"
+msgstr ""
+
+#: inc/features/maintenance.php:291
+msgid "Maintenance mode is ON — visitors see the holding page."
+msgstr ""
+
+#: inc/theme-options.php:856
+msgid "Maintenance mode is ON. Visitors see the holding page and search engines get a 503 response."
+msgstr ""
+
+#: inc/customizer.php:188
+msgid "Map"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:520
+msgid "Map button text"
+msgstr ""
+
+#: inc/theme-options.php:111
+msgid "Marketing"
+msgstr ""
+
+#: inc/theme-options.php:759
+msgid "Mobile contact bar"
+msgstr ""
+
+#: inc/customizer.php:161
+msgid "Monday"
+msgstr ""
+
+#: inc/meta-boxes.php:547
+msgid "Move down"
+msgstr ""
+
+#: inc/meta-boxes.php:546
+msgid "Move up"
+msgstr ""
+
+#: inc/post-types.php:89
+msgid "New Project"
+msgstr ""
+
+#: inc/post-types.php:143
+msgid "New Project category name"
+msgstr ""
+
+#: inc/post-types.php:37
+msgid "New Service"
+msgstr ""
+
+#: inc/theme-options.php:985
+msgid "No consent plugin found. Install a plugin that supports the WP Consent API (for example Complianz) before adding tracking code. Without it the snippets below are never printed."
+msgstr ""
+
+#: inc/theme-options.php:888
+msgid "No preview token yet. One is created automatically when you turn maintenance mode on, or generate one now."
+msgstr ""
+
+#: inc/post-types.php:152
+msgid "No project categories"
+msgstr ""
+
+#: inc/post-types.php:151
+msgid "No project categories found."
+msgstr ""
+
+#: inc/post-types.php:97
+msgid "No projects found in Trash."
+msgstr ""
+
+#: inc/post-types.php:96
+msgid "No projects found."
+msgstr ""
+
+#: inc/post-types.php:45
+msgid "No services found in Trash."
+msgstr ""
+
+#: inc/post-types.php:44
+msgid "No services found."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:52
+msgid "One line per visual line (3 lines recommended). If empty, the page title is used."
+msgstr ""
+
+#: inc/customizer.php:153
+msgid "Opening hours"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:506
+msgid "Opening hours and map"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:515
+msgid "Opening hours heading"
+msgstr ""
+
+#: inc/customizer.php:223
+msgid "Opens in a new tab. If empty, a Google Maps link is built from the address."
+msgstr ""
+
+#: inc/customizer.php:449
+msgid "Other services heading"
+msgstr ""
+
+#: inc/theme-options.php:817
+msgid "Output GeneralContractor JSON-LD on every page with the company name, address, phone, opening hours and social profiles from the Customizer."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:31
+msgid "Page hero"
+msgstr ""
+
+#: inc/post-types.php:144
+msgid "Parent Project category"
+msgstr ""
+
+#: inc/post-types.php:145
+msgid "Parent Project category:"
+msgstr ""
+
+#: inc/post-types.php:95
+msgid "Parent Project:"
+msgstr ""
+
+#: inc/post-types.php:43
+msgid "Parent Service:"
+msgstr ""
+
+#: inc/customizer.php:379
+msgid "Paste the shortcode from Contact → Contact Forms. If empty or CF7 is inactive, only contact details are shown."
+msgstr ""
+
+#: inc/customizer.php:99
+msgid "Phone"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:481
+msgid "Phone, email and address come from the Customizer."
+msgstr ""
+
+#: inc/post-types.php:147
+msgid "Popular Project categories"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:46
+msgid "Portrait image for phones and portrait tablets. If empty, the desktop hero image is used."
+msgstr ""
+
+#: inc/customizer.php:114
+msgid "Postcode"
+msgstr ""
+
+#: inc/theme-options.php:749
+msgid "Pre-filled message"
+msgstr ""
+
+#: inc/theme-options.php:109
+msgid "Preferences"
+msgstr ""
+
+#: inc/theme-options.php:886
+msgid "Preview link"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:76
+msgid "Primary button link"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:71
+msgid "Primary button text"
+msgstr ""
+
+#: inc/setup.php:41
+msgid "Primary menu"
+msgstr ""
+
+#: inc/customizer.php:560
+msgid "Primary red"
+msgstr ""
+
+#: inc/theme-options.php:1010
+msgid "Printed directly after the opening <body> tag."
+msgstr ""
+
+#: inc/theme-options.php:1001
+msgid "Printed inside <head>."
+msgstr ""
+
+#: inc/theme-options.php:1019
+msgid "Printed just before the closing </body> tag."
+msgstr ""
+
+#: inc/post-types.php:84
+#: inc/post-types.php:86
+msgid "Project"
+msgstr ""
+
+#: inc/post-types.php:102
+msgid "Project archives"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:416
+msgid "Project card button text"
+msgstr ""
+
+#: inc/post-types.php:135
+#: inc/post-types.php:137
+msgid "Project categories"
+msgstr ""
+
+#: inc/post-types.php:154
+msgid "Project categories list"
+msgstr ""
+
+#: inc/post-types.php:153
+msgid "Project categories list navigation"
+msgstr ""
+
+#: inc/meta-boxes.php:139
+#: inc/post-types.php:136
+msgid "Project category"
+msgstr ""
+
+#: inc/meta-boxes.php:176
+msgid "Project details"
+msgstr ""
+
+#: inc/meta-boxes.php:198
+msgid "Project gallery"
+msgstr ""
+
+#: inc/post-types.php:83
+#: inc/post-types.php:85
+#: inc/theme-options.php:693
+msgid "Projects"
+msgstr ""
+
+#: inc/theme-options.php:675
+msgid "Projects are hidden on the website."
+msgstr ""
+
+#: inc/theme-options.php:1255
+msgid "Projects are turned off in Theme Options — only admins can see this page."
+msgstr ""
+
+#: inc/post-types.php:107
+msgid "Projects list"
+msgstr ""
+
+#: inc/post-types.php:106
+msgid "Projects list navigation"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:219
+msgid "Projects section"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:568
+msgid "Question"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:553
+#: inc/meta-boxes-pages.php:562
+msgid "Questions"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:258
+msgid "Questions marked 'Show on homepage' on the FAQ page are shown."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:563
+msgid "Questions without an answer are hidden on the website."
+msgstr ""
+
+#: inc/theme-options.php:771
+msgid "Quote button text"
+msgstr ""
+
+#: inc/theme-options.php:829
+msgid "Region shown in the structured data, in Dutch. For example: Zoetermeer en omgeving."
+msgstr ""
+
+#: inc/customizer.php:437
+msgid "Related FAQ button text"
+msgstr ""
+
+#: inc/customizer.php:425
+msgid "Related FAQ heading"
+msgstr ""
+
+#: inc/meta-boxes.php:132
+msgid "Related content"
+msgstr ""
+
+#: inc/customizer.php:413
+msgid "Related projects button text"
+msgstr ""
+
+#: inc/customizer.php:401
+msgid "Related projects heading"
+msgstr ""
+
+#: inc/meta-boxes.php:457
+msgid "Remove"
+msgstr ""
+
+#: inc/post-types.php:48
+#: inc/post-types.php:100
+msgid "Remove featured image"
+msgstr ""
+
+#: inc/meta-boxes.php:487
+msgid "Remove image"
+msgstr ""
+
+#: inc/meta-boxes.php:548
+msgid "Remove row"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:445
+msgid "Result heading (H2)"
+msgstr ""
+
+#: inc/customizer.php:222
+msgid "Route URL (Google Maps)"
+msgstr ""
+
+#: inc/theme-options.php:366
+msgid "SEO"
+msgstr ""
+
+#: inc/customizer.php:166
+msgid "Saturday"
+msgstr ""
+
+#: inc/theme-options.php:536
+msgid "Save Changes"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:27
+msgid "Save and reload the page after changing the template to see the matching fields."
+msgstr ""
+
+#: inc/post-types.php:146
+msgid "Search Project categories"
+msgstr ""
+
+#: inc/post-types.php:94
+msgid "Search Projects"
+msgstr ""
+
+#: inc/post-types.php:42
+msgid "Search Services"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:87
+msgid "Secondary button link"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:82
+msgid "Secondary button text"
+msgstr ""
+
+#: inc/customizer.php:580
+msgid "Secondary green"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:292
+#: inc/meta-boxes-pages.php:301
+#: inc/meta-boxes.php:76
+msgid "Sections"
+msgstr ""
+
+#: inc/meta-boxes.php:456
+msgid "Select image"
+msgstr ""
+
+#: inc/post-types.php:148
+msgid "Separate project categories with commas"
+msgstr ""
+
+#: inc/post-types.php:32
+#: inc/post-types.php:34
+#: inc/setup.php:132
+msgid "Service"
+msgstr ""
+
+#: inc/post-types.php:50
+msgid "Service archives"
+msgstr ""
+
+#: inc/meta-boxes.php:151
+msgid "Service call to action"
+msgstr ""
+
+#: inc/meta-boxes.php:23
+msgid "Service hero"
+msgstr ""
+
+#: inc/meta-boxes.php:69
+msgid "Service sections"
+msgstr ""
+
+#: inc/meta-boxes.php:103
+msgid "Service steps"
+msgstr ""
+
+#: inc/customizer.php:388
+msgid "Service template"
+msgstr ""
+
+#: inc/post-types.php:31
+#: inc/post-types.php:33
+msgid "Services"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:167
+msgid "Services are loaded from Services, in their Order."
+msgstr ""
+
+#: inc/customizer.php:531
+msgid "Services button text"
+msgstr ""
+
+#: inc/post-types.php:55
+msgid "Services list"
+msgstr ""
+
+#: inc/post-types.php:54
+msgid "Services list navigation"
+msgstr ""
+
+#: inc/meta-boxes.php:46
+msgid "Services overview page"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:152
+msgid "Services section"
+msgstr ""
+
+#: inc/post-types.php:47
+#: inc/post-types.php:99
+msgid "Set featured image"
+msgstr ""
+
+#: inc/features/maintenance.php:292
+msgid "Settings"
+msgstr ""
+
+#: inc/theme-options.php:890
+msgid "Share this link with people who should see the real website while maintenance mode is on. It sets a cookie that lasts 7 days."
+msgstr ""
+
+#: inc/theme-options.php:853
+msgid "Show a branded holding page to visitors while you keep working on the site. Logged-in administrators always see the normal website."
+msgstr ""
+
+#: inc/theme-options.php:822
+msgid "Show a breadcrumb trail above the page title on all pages except the homepage."
+msgstr ""
+
+#: inc/theme-options.php:735
+msgid "Show a round WhatsApp button in the bottom-right corner on every page."
+msgstr ""
+
+#: inc/theme-options.php:699
+msgid "Show a round button in the bottom-right corner after the visitor scrolls down, to jump back to the top of the page."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:589
+msgid "Show on homepage"
+msgstr ""
+
+#: inc/theme-options.php:694
+msgid "Show or hide everything related to projects on the whole website. Nothing is deleted; turning it back on restores everything."
+msgstr ""
+
+#: inc/theme-options.php:926
+msgid "Show the bar above the header on every page."
+msgstr ""
+
+#: inc/meta-boxes.php:219
+msgid "Shown as featured project with image slider."
+msgstr ""
+
+#: inc/theme-options.php:1050
+msgid "Shown at the bottom left of every dashboard screen. Leave empty for the WordPress default."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:421
+msgid "Single project texts"
+msgstr ""
+
+#: inc/import.php:57
+msgid "Skipped: %s"
+msgstr ""
+
+#: inc/customizer.php:232
+msgid "Social media"
+msgstr ""
+
+#: inc/theme-options.php:947
+msgid "Start date (optional)"
+msgstr ""
+
+#: inc/customizer.php:208
+msgid "Static map image"
+msgstr ""
+
+#: inc/theme-options.php:110
+msgid "Statistics"
+msgstr ""
+
+#: inc/meta-boxes.php:120
+msgid "Step title (H3)"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:323
+#: inc/meta-boxes-pages.php:332
+#: inc/meta-boxes.php:115
+msgid "Steps"
+msgstr ""
+
+#: inc/meta-boxes.php:110
+msgid "Steps heading (H2)"
+msgstr ""
+
+#: inc/customizer.php:109
+msgid "Street + number"
+msgstr ""
+
+#: inc/customizer.php:507
+msgid "Sub text"
+msgstr ""
+
+#: inc/customizer.php:495
+msgid "Subheading (H2)"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:136
+msgid "Subheading (H3)"
+msgstr ""
+
+#: inc/customizer.php:167
+msgid "Sunday"
+msgstr ""
+
+#: inc/customizer.php:311
+msgid "Tagline"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:107
+#: inc/meta-boxes-pages.php:131
+#: inc/meta-boxes-pages.php:191
+#: inc/meta-boxes-pages.php:212
+#: inc/meta-boxes-pages.php:233
+#: inc/meta-boxes-pages.php:282
+#: inc/meta-boxes-pages.php:311
+#: inc/meta-boxes-pages.php:342
+#: inc/meta-boxes-pages.php:373
+#: inc/meta-boxes-pages.php:397
+#: inc/meta-boxes-pages.php:480
+#: inc/meta-boxes-pages.php:500
+#: inc/meta-boxes.php:86
+#: inc/meta-boxes.php:125
+#: inc/meta-boxes.php:163
+#: inc/theme-options.php:875
+#: inc/theme-options.php:932
+msgid "Text"
+msgstr ""
+
+#: inc/meta-boxes.php:59
+msgid "Text on the Services overview page"
+msgstr ""
+
+#: inc/theme-options.php:918
+msgid "The announcement bar is enabled but the text is empty, so nothing is shown."
+msgstr ""
+
+#: inc/theme-options.php:953
+msgid "The bar disappears after this date."
+msgstr ""
+
+#: inc/theme-options.php:948
+msgid "The bar stays hidden before this date."
+msgstr ""
+
+#: inc/meta-boxes.php:169
+msgid "The button links to the Contact page."
+msgstr ""
+
+#: inc/meta-boxes-pages.php:501
+msgid "The form itself: Customizer → Contact form."
+msgstr ""
+
+#: inc/theme-options.php:1042
+msgid "The login screen always uses the theme logo and brand colors. Only the dashboard footer text is editable."
+msgstr ""
+
+#: inc/theme-options.php:727
+msgid "The mobile contact bar uses the phone number from Customizer → L&L Bouwgroep → Company & contact. That field is still empty."
+msgstr ""
+
+#: inc/meta-boxes.php:193
+msgid "The result"
+msgstr ""
+
+#: inc/meta-boxes.php:314
+msgid "The service list uses each service's overview text and button."
+msgstr ""
+
+#: inc/customizer.php:356
+msgid "The © symbol, current year and company name are added automatically."
+msgstr ""
+
+#: inc/theme-options.php:399
+#: inc/theme-options.php:400
+msgid "Theme Options"
+msgstr ""
+
+#: inc/theme-options.php:914
+msgid "Theme Options — Announcement"
+msgstr ""
+
+#: inc/theme-options.php:1041
+msgid "Theme Options — Branding"
+msgstr ""
+
+#: inc/theme-options.php:720
+msgid "Theme Options — Contact buttons"
+msgstr ""
+
+#: inc/theme-options.php:672
+msgid "Theme Options — General"
+msgstr ""
+
+#: inc/theme-options.php:852
+msgid "Theme Options — Maintenance"
+msgstr ""
+
+#: inc/theme-options.php:795
+msgid "Theme Options — SEO"
+msgstr ""
+
+#: inc/theme-options.php:976
+msgid "Theme Options — Tracking"
+msgstr ""
+
+#: inc/customizer.php:164
+msgid "Thursday"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:207
+#: inc/meta-boxes-pages.php:337
+msgid "Title (H3)"
+msgstr ""
+
+#: inc/theme-options.php:381
+msgid "Tracking"
+msgstr ""
+
+#: inc/customizer.php:162
+msgid "Tuesday"
+msgstr ""
+
+#: inc/theme-options.php:689
+msgid "Turn all motion effects on or off on the whole website (entrance animations, image reveal, image zoom on hover, hero effects)."
+msgstr ""
+
+#: inc/post-types.php:141
+msgid "Update Project category"
+msgstr ""
+
+#: inc/post-types.php:104
+msgid "Uploaded to this project"
+msgstr ""
+
+#: inc/post-types.php:52
+msgid "Uploaded to this service"
+msgstr ""
+
+#: inc/post-types.php:49
+#: inc/post-types.php:101
+msgid "Use as featured image"
+msgstr ""
+
+#: inc/meta-boxes.php:206
+msgid "Used for the image slider when this project is featured."
+msgstr ""
+
+#: inc/post-types.php:91
+msgid "View Project"
+msgstr ""
+
+#: inc/post-types.php:140
+msgid "View Project category"
+msgstr ""
+
+#: inc/post-types.php:92
+msgid "View Projects"
+msgstr ""
+
+#: inc/post-types.php:39
+msgid "View Service"
+msgstr ""
+
+#: inc/post-types.php:40
+msgid "View Services"
+msgstr ""
+
+#: inc/theme-options.php:864
+msgid "Visitors get the holding page with an HTTP 503 status and a noindex tag. wp-admin, the login page and the REST API stay reachable."
+msgstr ""
+
+#: inc/customizer.php:163
+msgid "Wednesday"
+msgstr ""
+
+#: inc/theme-options.php:734
+msgid "WhatsApp button"
+msgstr ""
+
+#: inc/theme-options.php:724
+msgid "WhatsApp is enabled but no number is set, so the button stays hidden."
+msgstr ""
+
+#: inc/theme-options.php:741
+msgid "WhatsApp number"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:172
+msgid "Why us"
+msgstr ""
+
+#: inc/meta-boxes.php:188
+msgid "Work carried out (one per line)"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:440
+msgid "Work heading (H2)"
+msgstr ""
+
+#: inc/features/maintenance.php:67
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: inc/theme-options.php:990
+msgid "Your user role may not save raw script tags, so scripts will be stripped on save."
+msgstr ""
+
+#: inc/decor-icons.php:19
+msgid "— Default by service —"
+msgstr ""
+
+#: inc/queries.php:675
+#: inc/queries.php:709
+msgid "— None —"
+msgstr ""
+
+#: inc/post-types.php:155
+msgid "← Back to Project categories"
+msgstr ""

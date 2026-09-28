@@ -9,6 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Elementor builder pages render their own layout (no hero, TOC or prose wrapper).
+if ( function_exists( 'llb_is_elementor_builder_page' ) && llb_is_elementor_builder_page( get_queried_object_id() ) ) {
+	require LLB_DIR . '/page-templates/template-elementor.php';
+	return;
+}
+
 get_header();
 ?>
 <main id="main" class="llb-main llb-page-default">
@@ -40,6 +46,11 @@ get_header();
 			?>
 			<section class="thero">
 				<div class="wrap">
+					<?php
+					if ( function_exists( 'llb_breadcrumbs' ) ) {
+						llb_breadcrumbs();
+					}
+					?>
 					<?php if ( '' !== $title ) : ?>
 						<h1><?php echo esc_html( $title ); ?></h1>
 						<div class="rule" aria-hidden="true"></div>

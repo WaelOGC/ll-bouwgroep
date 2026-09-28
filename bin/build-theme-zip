@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+#
+# Builds a distributable theme zip containing the theme folder only.
+#
+# Usage: bin/build-theme-zip
+# Output: dist/ll-bouwgroep-<version>.zip
+#
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+THEME_SLUG="ll-bouwgroep"
+THEME_DIR="${REPO_ROOT}/app/public/wp-content/themes/${THEME_SLUG}"
+DIST_DIR="${REPO_ROOT}/dist"
+
+if [ ! -f "${THEME_DIR}/style.css" ]; then
+	echo "Theme not found at ${THEME_DIR}" >&2
+	exit 1
+fi
+
+VERSION="$(grep -m1 -E '^[[:space:]]*Version:' "${THEME_DIR}/style.css" | sed -E 's/.*Version:[[:space:]]*//' | tr -d '\r')"
+
+if [ -z "${VERSION}" ]; then
+	echo "Could not read Version from style.css" >&2
+	exit 1
+fi
+
+ZIP_FILE="${DIST_DIR}/${THEME_SLUG}-${VERSION}.zip"
+
+mkdir -p "${DIST_DIR}"
+rm -f "${ZIP_FILE}"
+
+# Zip from the themes directory so the archive contains ll-bouwgroep/ at the root.
+cd "$(dirname "${THEME_DIR}")"
+
+zip -r -q "${ZIP_FILE}" "${THEME_SLUG}" \
+	-x "${THEME_SLUG}/.git/*" \
+	-x "${THEME_SLUG}/.github/*" \
+	-x "${THEME_SLUG}/node_modules/*" \
+	-x "${THEME_SLUG}/bin/*" \
+	-x "${THEME_SLUG}/docs/*" \
+	-x "${THEME_SLUG}/tests/*" \
+	-x "${THEME_SLUG}/*.map" \
+	-x "${THEME_SLUG}/*.log" \
+	-x "${THEME_SLUG}/*.zip" \
+	-x "${THEME_SLUG}/.DS_Store" \
+	-x "${THEME_SLUG}/*/.DS_Store" \
+	-x "${THEME_SLUG}/Thumbs.db" \
+	-x "${THEME_SLUG}/*/Thumbs.db" \
+	-x "${THEME_SLUG}/.editorconfig" \
+	-x "${THEME_SLUG}/phpcs.xml*" \
+	-x "${THEME_SLUG}/package*.json"
+
+echo "Built ${ZIP_FILE}"

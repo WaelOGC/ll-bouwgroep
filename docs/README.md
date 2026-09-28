@@ -15,10 +15,11 @@ These docs are the **single source of truth** for development of the L&L Bouwgro
 | [06-privacy-avg.md](06-privacy-avg.md) | AVG/GDPR, legal footer, forms, cookies, and fonts |
 | [07-coding-standards.md](07-coding-standards.md) | WordPress coding, security, prefixes, and plugin independence |
 | [08-roadmap.md](08-roadmap.md) | Development phases from docs through launch and later growth |
-| [09-plugin-compatibility.md](09-plugin-compatibility.md) | Yoast, Rank Math, Elementor, and Contact Form 7 compatibility |
+| [09-plugin-compatibility.md](09-plugin-compatibility.md) | Yoast, Rank Math, Elementor, CF7 + Turnstile, Site Kit, Complianz, and the recommended plugin list |
 | [10-page-content.md](10-page-content.md) | Final website text per page (Dutch). Single source of truth for all content. |
 | [11-design-reference.md](11-design-reference.md) | Design image map and layout/style decisions vs content |
-| [12-deployment.md](12-deployment.md) | Upload, LiteSpeed purge, rollback, and language settings |
+| [12-deployment.md](12-deployment.md) | Build the theme zip, upload, LiteSpeed purge, rollback, and language settings |
+| [13-launch-checklist.md](13-launch-checklist.md) | Everything to verify before and right after go-live |
 
 ## Assets
 

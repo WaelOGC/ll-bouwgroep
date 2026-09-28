@@ -251,6 +251,49 @@
 		});
 	})();
 
+	/* Announcement bar close (remembered per message) */
+	(function initAnnouncement() {
+		var bar = document.getElementById('llb-announce');
+		if (!bar) {
+			return;
+		}
+		var key = bar.getAttribute('data-llb-announce');
+		var close = bar.querySelector('[data-llb-announce-close]');
+		if (!close) {
+			return;
+		}
+		close.addEventListener('click', function () {
+			bar.hidden = true;
+			try {
+				window.localStorage.setItem(key, '1');
+			} catch (err) {
+				/* Storage unavailable (private mode): the bar simply returns next visit. */
+			}
+		});
+	})();
+
+	/* Back to top */
+	(function initBackToTop() {
+		var btn = document.getElementById('llb-back-to-top');
+		if (!btn) {
+			return;
+		}
+
+		var threshold = 600;
+
+		function toggle() {
+			btn.hidden = window.scrollY < threshold;
+		}
+
+		toggle();
+		window.addEventListener('scroll', toggle, { passive: true });
+
+		btn.addEventListener('click', function () {
+			var smooth = !reduceMotion && animationsOn;
+			window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+		});
+	})();
+
 	/* Text page TOC scroll-spy (privacy / default page) */
 	(function initTocSpy() {
 		var links = [].slice.call(document.querySelectorAll('.toc a'));

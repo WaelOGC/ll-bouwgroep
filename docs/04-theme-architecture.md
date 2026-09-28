@@ -29,6 +29,14 @@ ll-bouwgroep/
 │   ├── helpers.php
 │   ├── queries.php
 │   ├── shortcodes.php
+│   ├── features/
+│   │   ├── contact-buttons.php
+│   │   ├── schema.php
+│   │   ├── maintenance.php
+│   │   ├── announcement.php
+│   │   ├── tracking.php
+│   │   ├── branding.php
+│   │   └── back-to-top.php
 │   └── compat/
 │       ├── seo.php
 │       ├── elementor.php
@@ -70,23 +78,101 @@ ll-bouwgroep/
 
 ## Theme Options
 
-Top-level admin menu **Theme Options** (`inc/theme-options.php`), directly below Appearance. Capability: `manage_options`. English UI labels.
+Top-level admin menu **Theme Options** (`inc/theme-options.php`), directly below Appearance. Capability: `manage_options`. English UI labels; every value the visitor reads is Dutch.
 
-| Sub-page | Slug | Notes |
-|----------|------|--------|
-| **General** | `admin.php?page=llb-theme-options` | Animations + Projects toggles |
-| **Import default content** | `admin.php?page=llb-import-content` | See default content import below |
+| Sub-page | Slug | Section key |
+|----------|------|-------------|
+| **General** | `admin.php?page=llb-theme-options` | `general` |
+| **Contact buttons** | `admin.php?page=llb-to-contact` | `contact` |
+| **SEO** | `admin.php?page=llb-to-seo` | `seo` |
+| **Maintenance** | `admin.php?page=llb-to-maintenance` | `maintenance` |
+| **Announcement** | `admin.php?page=llb-to-announcement` | `announcement` |
+| **Tracking** | `admin.php?page=llb-to-tracking` | `tracking` |
+| **Branding** | `admin.php?page=llb-to-branding` | `branding` |
+| **Import default content** | `admin.php?page=llb-import-content` | — (see default content import below) |
+
+### Storage and helpers
 
 | Item | Value |
 |------|--------|
-| Option name | `llb_theme_options` (array) |
-| Helper | `llb_theme_option( $key )` — saved value or default |
-| Defaults | `animations` = 1, `projects` = 1 |
+| Option name | `llb_theme_options` (single array, shared by all sub-pages) |
+| Settings group | `llb_theme_options_group` |
+| Read value | `llb_theme_option( $key )` — toggles return `int`, everything else returns `string` |
+| Read trimmed string | `llb_theme_option_text( $key )` |
+| Read toggle as bool | `llb_theme_option_on( $key )` |
+| Full array | `llb_get_theme_options()` — saved values merged over the defaults |
+| Key types | `llb_theme_options_types()` — `bool`, `text`, `textarea`, `url`, `date`, `tel`, `code`, `consent` |
+| Section ownership | `llb_theme_options_sections()` — which keys each admin page may write |
 
-| Toggle | Effect when off |
-|--------|-----------------|
-| **Animations** | No `body.llb-motion` class. All decorative motion (hero entrance, image reveal `.rv`, hover zoom/lift) is gated under that class. FAQ open/close and colour hover feedback stay. Images are visible immediately. `prefers-reduced-motion` still applies when animations are on. |
-| **Projects** | Hides Home “Bekijk ons werk”, related projects on service pages, and Projecten links in menus/templates. Projecten page, singles and category URLs return the theme 404 for visitors (admins still see them with a notice bar). Excluded from core / Yoast / Rank Math sitemaps and site search. CPT stays in the dashboard. |
+**Section-scoped saving.** Each page posts a hidden `llb_theme_options[_section]` field. `llb_sanitize_theme_options()` starts from the currently stored array and only writes the keys that belong to that section, so saving one page never resets another page. Checkboxes in the posted section are explicitly set to `0` when unchecked; keys from other sections are ignored even if they are injected into the request.
+
+### Option keys and defaults
+
+| Key | Type | Default | Used by |
+|-----|------|---------|---------|
+| `animations` | bool | `1` | General |
+| `projects` | bool | `1` | General |
+| `back_to_top` | bool | `1` | General |
+| `whatsapp_enabled` | bool | `0` | Contact buttons |
+| `whatsapp_number` | tel | `''` | Contact buttons |
+| `whatsapp_message` | text | `Hallo, ik heb een vraag.` | Contact buttons |
+| `mobile_bar_enabled` | bool | `0` | Contact buttons |
+| `mobile_bar_call_text` | text | `Bel ons` | Contact buttons |
+| `mobile_bar_quote_text` | text | `Offerte aanvragen` | Contact buttons |
+| `schema_local_business` | bool | `1` | SEO |
+| `breadcrumbs` | bool | `1` | SEO |
+| `schema_area_served` | text | `Zoetermeer en omgeving` | SEO |
+| `maintenance_enabled` | bool | `0` | Maintenance |
+| `maintenance_heading` | text | `Onze website wordt vernieuwd` | Maintenance |
+| `maintenance_text` | textarea | `Binnenkort vindt u hier de nieuwe website van L&L Bouwgroep B.V.` | Maintenance |
+| `maintenance_preview_token` | text | `''` | Maintenance (generated, never edited by hand) |
+| `announcement_enabled` | bool | `0` | Announcement |
+| `announcement_text` | text | `''` | Announcement |
+| `announcement_link` | url | `''` | Announcement |
+| `announcement_link_text` | text | `''` | Announcement |
+| `announcement_start` | date (`Y-m-d`) | `''` | Announcement |
+| `announcement_end` | date (`Y-m-d`) | `''` | Announcement |
+| `tracking_head` | code | `''` | Tracking |
+| `tracking_body` | code | `''` | Tracking |
+| `tracking_footer` | code | `''` | Tracking |
+| `tracking_head_category` | consent | `statistics` | Tracking |
+| `tracking_body_category` | consent | `statistics` | Tracking |
+| `tracking_footer_category` | consent | `marketing` | Tracking |
+| `admin_footer_text` | text | `L&L Bouwgroep B.V.` | Branding |
+
+Consent categories follow the WP Consent API names: `functional`, `preferences`, `statistics`, `marketing`.
+
+### What each toggle does
+
+| Toggle | Effect |
+|--------|--------|
+| **Animations** | Off: no `body.llb-motion` class. All decorative motion (hero entrance, image reveal `.rv`, hover zoom/lift) is gated under that class. FAQ open/close and colour hover feedback stay. Images are visible immediately. Back to top scrolls instantly instead of smoothly. `prefers-reduced-motion` still applies when animations are on. |
+| **Projects** | Off: hides Home “Bekijk ons werk”, related projects on service pages, and Projecten links in menus/templates. Projecten page, singles and category URLs return the theme 404 for visitors (admins still see them with a notice bar). Excluded from core / Yoast / Rank Math sitemaps and site search. CPT stays in the dashboard. |
+| **Back to top button** | On: round button bottom-right that appears after 600px of scrolling. |
+| **WhatsApp button** | On *and* a number filled in: round WhatsApp button bottom-right linking to `wa.me` in a new tab. Hidden when the number is empty. |
+| **Mobile contact bar** | On: fixed bar under 768px with a `tel:` button and a quote button. Adds body padding (plus safe-area inset) and lifts the floating buttons above it. Hidden while the mobile menu is open. |
+| **Local business structured data** | On: `GeneralContractor` JSON-LD in `wp_head` on every page, built from the Customizer company data. Empty values are skipped. |
+| **Breadcrumbs** | On: trail above the H1 on every page except the homepage. Source: Yoast, else Rank Math, else the theme trail. The theme only adds `BreadcrumbList` JSON-LD when neither SEO plugin is active. |
+| **Maintenance mode** | On: visitors get a branded holding page with HTTP 503, `Retry-After: 3600` and `noindex`. Administrators see the normal site plus a warning bar. wp-admin, wp-login, REST, cron and AJAX are never blocked. A preview link (`?preview=TOKEN`) sets a 7-day cookie for people who need to see the real site. |
+| **Announcement bar** | On, text filled in and within the optional start/end dates: a thin dark bar above the header at `wp_body_open` priority 3, with an optional link and a close button. The dismissal is stored in `localStorage` under a hash of the message, so editing the text shows the bar again. |
+
+### Feature modules (`inc/features/`)
+
+Loaded from `functions.php` after `inc/theme-options.php`.
+
+| File | Responsibility |
+|------|----------------|
+| `contact-buttons.php` | WhatsApp button, mobile contact bar, related body classes |
+| `schema.php` | `GeneralContractor` JSON-LD, opening-hours parsing, logo URL |
+| `maintenance.php` | Holding page, 503 headers, preview token and cookie, admin warning bar |
+| `announcement.php` | Announcement bar markup and date window |
+| `tracking.php` | Consent-gated head / body / footer snippets, consent helpers |
+| `branding.php` | Login screen styling, login logo link, dashboard footer text |
+| `back-to-top.php` | Back to top button and the shared `.llb-float-stack` wrapper |
+
+The floating buttons render once through `wp_footer` priority 5 inside `.llb-float-stack`; the mobile bar renders separately at priority 6. Body classes: `llb-has-whatsapp`, `llb-has-mobile-bar`, `llb-has-back-to-top`, `llb-has-announce`.
+
+Tracking snippets are **never** printed when no consent plugin is available. `llb_consent_api_available()` looks for `wp_has_consent()` (WP Consent API) or `cmplz_has_consent()` (Complianz); the dashboard shows an error notice when code is saved without one. Google Analytics and Search Console belong in Site Kit by Google, not in these fields.
 
 Saving Theme Options purges LiteSpeed Cache when that plugin is active (`do_action( 'litespeed_purge_all' )`). Legacy Appearance URLs (`themes.php?page=llb-theme-options` / `llb-import-content`) redirect to the new screens.
 
@@ -150,6 +236,7 @@ Home sections live in `template-parts/home/`. Shared parts: `page-hero.php` (ang
 | `page-templates/template-contact.php` | Contact | Contact / Offerte (form, details, map, FAQ) |
 | `page-templates/page-faq.php` | FAQ | Veelgestelde vragen (grouped accordion + CTA) |
 | `page-templates/template-full-width.php` | Full width | Elementor layouts |
+| `page-templates/template-elementor.php` | — (not selectable) | Applied automatically to Elementor builder pages: header, `the_content()`, footer |
 
 Phase 4 templates complete (Home, Diensten, Over ons, Projecten, Contact, FAQ, singles).
 

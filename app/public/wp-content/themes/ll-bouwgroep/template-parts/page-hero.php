@@ -73,6 +73,11 @@ if ( '' !== $hero_class ) {
 		<div class="hero-img" aria-hidden="true"></div>
 	<?php endif; ?>
 	<div class="wrap hero-in">
+		<?php
+		if ( function_exists( 'llb_breadcrumbs' ) ) {
+			llb_breadcrumbs();
+		}
+		?>
 		<?php if ( '' !== $label ) : ?>
 			<span class="phero-label"><?php echo esc_html( $label ); ?></span>
 		<?php endif; ?>

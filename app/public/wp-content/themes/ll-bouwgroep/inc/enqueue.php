@@ -57,6 +57,8 @@ function llb_enqueue_assets() {
 		'llbTheme',
 		array(
 			'animations' => llb_animations_enabled() ? 1 : 0,
+			'backToTop'  => llb_back_to_top_enabled() ? 1 : 0,
+			'mobileBar'  => llb_mobile_bar_enabled() ? 1 : 0,
 		)
 	);
 

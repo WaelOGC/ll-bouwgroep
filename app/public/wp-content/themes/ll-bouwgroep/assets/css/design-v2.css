@@ -588,3 +588,61 @@ body.llb-motion .phero-label{animation:fade 1s .2s both}
 .e404-btns{display:flex;flex-direction:column;gap:12px;margin-top:28px}
 @media (min-width:600px){.e404-btns{flex-direction:row;flex-wrap:wrap}}
 
+
+/* ============ BREADCRUMBS (in hero, above H1) ============ */
+.llb-crumbs{margin:0 0 18px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.8);max-width:100%}
+.llb-crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.llb-crumbs li{display:flex;align-items:center;gap:8px;margin:0;min-width:0}
+.llb-crumbs p{margin:0;max-width:none}
+.llb-crumbs a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;overflow-wrap:anywhere}
+.llb-crumbs a:hover{color:#fff;border-bottom-color:currentColor}
+.llb-crumbs span{overflow-wrap:anywhere}
+.llb-crumbs [aria-current]{color:#fff}
+.llb-crumbs__sep,.llb-crumbs .breadcrumb_last+span{opacity:.6}
+body.llb-motion .llb-crumbs{animation:fade 1s .1s both}
+
+/* ============ ANNOUNCEMENT BAR ============ */
+.llb-announce{position:relative;z-index:60;display:flex;align-items:center;gap:8px;padding:10px var(--pad);background:var(--black);color:#fff}
+.llb-announce[hidden]{display:none}
+.llb-announce__in{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 14px;text-align:center}
+.llb-announce__text{margin:0;max-width:none;font-size:14px;line-height:1.5}
+.llb-announce__link{color:#fff;font-family:var(--head);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.llb-announce__close{flex:none;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;background:none;color:#fff;opacity:.75;cursor:pointer}
+.llb-announce__close:hover{opacity:1}
+.llb-announce__close svg{width:18px;height:18px}
+
+/* ============ FLOATING BUTTONS ============ */
+.llb-float-stack{position:fixed;right:16px;bottom:16px;z-index:45;display:flex;flex-direction:column;gap:12px}
+.llb-fab{width:52px;height:52px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;color:#fff;cursor:pointer;box-shadow:0 6px 20px rgba(31,31,31,.22);transition:transform .2s,background .2s}
+.llb-fab[hidden]{display:none}
+.llb-fab svg{width:26px;height:26px}
+.llb-fab--wa{background:#25D366;fill:currentColor}
+.llb-fab--wa:hover{background:#1DA851}
+.llb-fab--top{background:var(--black)}
+.llb-fab--top:hover{background:var(--red)}
+.llb-fab--top svg{width:22px;height:22px}
+body.llb-motion .llb-fab:hover{transform:translateY(-2px)}
+.menu-open .llb-float-stack{display:none}
+body.llb-has-mobile-bar .llb-float-stack{bottom:calc(56px + 16px + env(safe-area-inset-bottom))}
+
+/* ============ MOBILE CONTACT BAR (phones only) ============ */
+.llb-mobilebar{position:fixed;left:0;right:0;bottom:0;z-index:46;display:flex;gap:1px;background:var(--line);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 16px rgba(31,31,31,.12)}
+.llb-mobilebar__btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 12px;font-family:var(--head);font-weight:600;font-size:16px;text-decoration:none;text-align:center}
+.llb-mobilebar__btn--call{background:#fff;color:var(--black)}
+.llb-mobilebar__btn--quote{background:var(--red);color:#fff}
+.llb-mobilebar__btn svg{width:18px;height:18px;flex-shrink:0}
+.llb-mobilebar__btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu-open .llb-mobilebar{display:none}
+body.llb-has-mobile-bar{padding-bottom:calc(56px + env(safe-area-inset-bottom))}
+@media (min-width:768px){
+  .llb-mobilebar{display:none}
+  body.llb-has-mobile-bar{padding-bottom:0}
+  body.llb-has-mobile-bar .llb-float-stack{bottom:16px}
+}
+
+/* ============ CLOUDFLARE TURNSTILE (CF7) ============ */
+.wpcf7-form .cf-turnstile,.wpcf7-form .cf7-cf-turnstile,.wpcf7-form .wpcf7-cf-turnstile{display:block;width:100%;margin:0 0 20px;min-height:65px}
+.wpcf7-form .cf-turnstile iframe,.wpcf7-form .cf7-cf-turnstile iframe,.wpcf7-form .wpcf7-cf-turnstile iframe{max-width:100%;border-radius:var(--radius)}
+@media (min-width:600px){
+  .wpcf7-form .cf-turnstile,.wpcf7-form .cf7-cf-turnstile,.wpcf7-form .wpcf7-cf-turnstile{margin-bottom:24px}
+}

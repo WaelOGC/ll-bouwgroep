@@ -1,6 +1,7 @@
 /*
 !/.gitignore
 !/docs/
+!/bin/
 !/app/
 /app/*
 !/app/public/

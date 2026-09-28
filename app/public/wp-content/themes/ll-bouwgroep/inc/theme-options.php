@@ -12,20 +12,113 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Default Theme Options values.
  *
- * @return array{animations:int,projects:int}
+ * Front-end visitor strings are Dutch on purpose; the admin UI around them is English.
+ *
+ * @return array<string, int|string>
  */
 function llb_theme_options_defaults() {
 	return array(
-		'animations' => 1,
-		'projects'   => 1,
+		// General.
+		'animations'                => 1,
+		'projects'                  => 1,
+		'back_to_top'               => 1,
+		// Contact buttons.
+		'whatsapp_enabled'          => 0,
+		'whatsapp_number'           => '',
+		'whatsapp_message'          => 'Hallo, ik heb een vraag.',
+		'mobile_bar_enabled'        => 0,
+		'mobile_bar_call_text'      => 'Bel ons',
+		'mobile_bar_quote_text'     => 'Offerte aanvragen',
+		// SEO.
+		'schema_local_business'     => 1,
+		'breadcrumbs'               => 1,
+		'schema_area_served'        => 'Zoetermeer en omgeving',
+		// Maintenance.
+		'maintenance_enabled'       => 0,
+		'maintenance_heading'       => 'Onze website wordt vernieuwd',
+		'maintenance_text'          => 'Binnenkort vindt u hier de nieuwe website van L&L Bouwgroep B.V.',
+		'maintenance_preview_token' => '',
+		// Announcement.
+		'announcement_enabled'      => 0,
+		'announcement_text'         => '',
+		'announcement_link'         => '',
+		'announcement_link_text'    => '',
+		'announcement_start'        => '',
+		'announcement_end'          => '',
+		// Tracking.
+		'tracking_head'             => '',
+		'tracking_body'             => '',
+		'tracking_footer'           => '',
+		'tracking_head_category'    => 'statistics',
+		'tracking_body_category'    => 'statistics',
+		'tracking_footer_category'  => 'marketing',
+		// Branding.
+		'admin_footer_text'         => 'L&L Bouwgroep B.V.',
 	);
 }
 
 /**
- * Returns a Theme Options value or its default.
+ * Value type per Theme Options key.
  *
- * @param string $key Option key (animations|projects).
- * @return int|mixed
+ * Types: bool (0/1), text, textarea, url, date (Y-m-d), tel, code, consent.
+ *
+ * @return array<string, string>
+ */
+function llb_theme_options_types() {
+	return array(
+		'animations'                => 'bool',
+		'projects'                  => 'bool',
+		'back_to_top'               => 'bool',
+		'whatsapp_enabled'          => 'bool',
+		'whatsapp_number'           => 'tel',
+		'whatsapp_message'          => 'text',
+		'mobile_bar_enabled'        => 'bool',
+		'mobile_bar_call_text'      => 'text',
+		'mobile_bar_quote_text'     => 'text',
+		'schema_local_business'     => 'bool',
+		'breadcrumbs'               => 'bool',
+		'schema_area_served'        => 'text',
+		'maintenance_enabled'       => 'bool',
+		'maintenance_heading'       => 'text',
+		'maintenance_text'          => 'textarea',
+		'maintenance_preview_token' => 'text',
+		'announcement_enabled'      => 'bool',
+		'announcement_text'         => 'text',
+		'announcement_link'         => 'url',
+		'announcement_link_text'    => 'text',
+		'announcement_start'        => 'date',
+		'announcement_end'          => 'date',
+		'tracking_head'             => 'code',
+		'tracking_body'             => 'code',
+		'tracking_footer'           => 'code',
+		'tracking_head_category'    => 'consent',
+		'tracking_body_category'    => 'consent',
+		'tracking_footer_category'  => 'consent',
+		'admin_footer_text'         => 'text',
+	);
+}
+
+/**
+ * Consent categories available for tracking snippets (WP Consent API names).
+ *
+ * @return array<string, string>
+ */
+function llb_theme_options_consent_categories() {
+	return array(
+		'functional'  => __( 'Functional', 'll-bouwgroep' ),
+		'preferences' => __( 'Preferences', 'll-bouwgroep' ),
+		'statistics'  => __( 'Statistics', 'll-bouwgroep' ),
+		'marketing'   => __( 'Marketing', 'll-bouwgroep' ),
+	);
+}
+
+/**
+ * Returns a Theme Options value or its default, cast to the key type.
+ *
+ * Toggles return int; every other key returns a string.
+ *
+ * @param string $key Option key.
+ * @return int|string|null
  */
 function llb_theme_option( $key ) {
 	$defaults = llb_theme_options_defaults();
@@ -35,12 +128,45 @@ function llb_theme_option( $key ) {
 		return null;
 	}
 
+	$types = llb_theme_options_types();
+	$type  = isset( $types[ $key ] ) ? $types[ $key ] : 'text';
+
 	$saved = get_option( 'llb_theme_options', array() );
 	if ( ! is_array( $saved ) || ! array_key_exists( $key, $saved ) ) {
 		return $defaults[ $key ];
 	}
 
-	return (int) $saved[ $key ];
+	$value = $saved[ $key ];
+
+	if ( 'bool' === $type ) {
+		return empty( $value ) ? 0 : 1;
+	}
+
+	if ( is_scalar( $value ) ) {
+		return (string) $value;
+	}
+
+	return $defaults[ $key ];
+}
+
+/**
+ * Returns a trimmed Theme Options string value.
+ *
+ * @param string $key Option key.
+ * @return string
+ */
+function llb_theme_option_text( $key ) {
+	return trim( (string) llb_theme_option( $key ) );
+}
+
+/**
+ * Whether a Theme Options toggle is on.
+ *
+ * @param string $key Option key.
+ * @return bool
+ */
+function llb_theme_option_on( $key ) {
+	return 1 === (int) llb_theme_option( $key );
 }
 
 /**
@@ -62,20 +188,140 @@ function llb_projects_enabled() {
 }
 
 /**
- * Sanitizes Theme Options on save.
+ * Keys owned by each admin section.
  *
- * @param mixed $input Raw form input.
- * @return array{animations:int,projects:int}
+ * Every admin page submits one section only; all other keys are preserved on save.
+ *
+ * @return array<string, array<int, string>>
  */
-function llb_sanitize_theme_options( $input ) {
-	$out = llb_theme_options_defaults();
+function llb_theme_options_sections() {
+	return array(
+		'general'      => array( 'animations', 'projects', 'back_to_top' ),
+		'contact'      => array( 'whatsapp_enabled', 'whatsapp_number', 'whatsapp_message', 'mobile_bar_enabled', 'mobile_bar_call_text', 'mobile_bar_quote_text' ),
+		'seo'          => array( 'schema_local_business', 'breadcrumbs', 'schema_area_served' ),
+		'maintenance'  => array( 'maintenance_enabled', 'maintenance_heading', 'maintenance_text' ),
+		'announcement' => array( 'announcement_enabled', 'announcement_text', 'announcement_link', 'announcement_link_text', 'announcement_start', 'announcement_end' ),
+		'tracking'     => array( 'tracking_head', 'tracking_head_category', 'tracking_body', 'tracking_body_category', 'tracking_footer', 'tracking_footer_category' ),
+		'branding'     => array( 'admin_footer_text' ),
+	);
+}
 
-	if ( ! is_array( $input ) ) {
-		$input = array();
+/**
+ * Returns the currently stored options merged over the defaults.
+ *
+ * @return array<string, int|string>
+ */
+function llb_get_theme_options() {
+	$defaults = llb_theme_options_defaults();
+	$saved    = get_option( 'llb_theme_options', array() );
+
+	if ( ! is_array( $saved ) ) {
+		return $defaults;
 	}
 
-	$out['animations'] = ! empty( $input['animations'] ) ? 1 : 0;
-	$out['projects']   = ! empty( $input['projects'] ) ? 1 : 0;
+	return array_merge( $defaults, array_intersect_key( $saved, $defaults ) );
+}
+
+/**
+ * Generates a maintenance preview token.
+ *
+ * @return string
+ */
+function llb_generate_maintenance_token() {
+	return wp_generate_password( 20, false, false );
+}
+
+/**
+ * Sanitizes a single Theme Options value by key type.
+ *
+ * @param string $key   Option key.
+ * @param mixed  $value Raw value.
+ * @return int|string
+ */
+function llb_sanitize_theme_option_value( $key, $value ) {
+	$types = llb_theme_options_types();
+	$type  = isset( $types[ $key ] ) ? $types[ $key ] : 'text';
+
+	switch ( $type ) {
+		case 'bool':
+			return empty( $value ) ? 0 : 1;
+
+		case 'url':
+			return esc_url_raw( trim( (string) $value ) );
+
+		case 'tel':
+			$tel = preg_replace( '/[^0-9+]/', '', (string) $value );
+			return is_string( $tel ) ? $tel : '';
+
+		case 'date':
+			$date = trim( (string) $value );
+			if ( '' === $date ) {
+				return '';
+			}
+			$parsed = date_create_from_format( 'Y-m-d', $date );
+			return ( $parsed && $parsed->format( 'Y-m-d' ) === $date ) ? $date : '';
+
+		case 'consent':
+			$categories = llb_theme_options_consent_categories();
+			$value      = sanitize_key( (string) $value );
+			return isset( $categories[ $value ] ) ? $value : 'statistics';
+
+		case 'code':
+			// Raw scripts are only kept for users who may post unfiltered HTML.
+			if ( current_user_can( 'unfiltered_html' ) ) {
+				return trim( (string) $value );
+			}
+			return trim( wp_kses_post( (string) $value ) );
+
+		case 'textarea':
+			return sanitize_textarea_field( (string) $value );
+
+		default:
+			return sanitize_text_field( (string) $value );
+	}
+}
+
+/**
+ * Sanitizes Theme Options on save, preserving keys owned by other admin pages.
+ *
+ * @param mixed $input Raw form input.
+ * @return array<string, int|string>
+ */
+function llb_sanitize_theme_options( $input ) {
+	$out = llb_get_theme_options();
+
+	if ( ! is_array( $input ) ) {
+		return $out;
+	}
+
+	$sections = llb_theme_options_sections();
+	$section  = isset( $input['_section'] ) ? sanitize_key( $input['_section'] ) : '';
+
+	if ( ! isset( $sections[ $section ] ) ) {
+		return $out;
+	}
+
+	$types = llb_theme_options_types();
+
+	foreach ( $sections[ $section ] as $key ) {
+		$type = isset( $types[ $key ] ) ? $types[ $key ] : 'text';
+
+		// Unchecked checkboxes are not posted at all, so they are explicitly set to 0.
+		if ( 'bool' === $type ) {
+			$out[ $key ] = empty( $input[ $key ] ) ? 0 : 1;
+			continue;
+		}
+
+		if ( ! array_key_exists( $key, $input ) ) {
+			continue;
+		}
+
+		$out[ $key ] = llb_sanitize_theme_option_value( $key, $input[ $key ] );
+	}
+
+	if ( 'maintenance' === $section && ! empty( $out['maintenance_enabled'] ) && '' === trim( (string) $out['maintenance_preview_token'] ) ) {
+		$out['maintenance_preview_token'] = llb_generate_maintenance_token();
+	}
 
 	return $out;
 }
@@ -99,7 +345,52 @@ function llb_register_theme_options() {
 add_action( 'admin_init', 'llb_register_theme_options' );
 
 /**
- * Registers Theme Options as a top-level admin menu (General first).
+ * Admin sub-pages under the Theme Options parent menu.
+ *
+ * @return array<int, array{slug:string, title:string, callback:string}>
+ */
+function llb_theme_options_pages() {
+	return array(
+		array(
+			'slug'     => 'llb-theme-options',
+			'title'    => __( 'General', 'll-bouwgroep' ),
+			'callback' => 'llb_render_theme_options_page',
+		),
+		array(
+			'slug'     => 'llb-to-contact',
+			'title'    => __( 'Contact buttons', 'll-bouwgroep' ),
+			'callback' => 'llb_render_contact_options_page',
+		),
+		array(
+			'slug'     => 'llb-to-seo',
+			'title'    => __( 'SEO', 'll-bouwgroep' ),
+			'callback' => 'llb_render_seo_options_page',
+		),
+		array(
+			'slug'     => 'llb-to-maintenance',
+			'title'    => __( 'Maintenance', 'll-bouwgroep' ),
+			'callback' => 'llb_render_maintenance_options_page',
+		),
+		array(
+			'slug'     => 'llb-to-announcement',
+			'title'    => __( 'Announcement', 'll-bouwgroep' ),
+			'callback' => 'llb_render_announcement_options_page',
+		),
+		array(
+			'slug'     => 'llb-to-tracking',
+			'title'    => __( 'Tracking', 'll-bouwgroep' ),
+			'callback' => 'llb_render_tracking_options_page',
+		),
+		array(
+			'slug'     => 'llb-to-branding',
+			'title'    => __( 'Branding', 'll-bouwgroep' ),
+			'callback' => 'llb_render_branding_options_page',
+		),
+	);
+}
+
+/**
+ * Registers Theme Options as a top-level admin menu with one sub-page per section.
  *
  * @return void
  */
@@ -114,16 +405,34 @@ function llb_add_theme_options_page() {
 		61
 	);
 
-	add_submenu_page(
-		'llb-theme-options',
-		__( 'General', 'll-bouwgroep' ),
-		__( 'General', 'll-bouwgroep' ),
-		'manage_options',
-		'llb-theme-options',
-		'llb_render_theme_options_page'
-	);
+	foreach ( llb_theme_options_pages() as $page ) {
+		add_submenu_page(
+			'llb-theme-options',
+			$page['title'],
+			$page['title'],
+			'manage_options',
+			$page['slug'],
+			$page['callback']
+		);
+	}
 }
 add_action( 'admin_menu', 'llb_add_theme_options_page' );
+
+/**
+ * Whether an admin page slug belongs to the Theme Options screens.
+ *
+ * @param string $page Page slug.
+ * @return bool
+ */
+function llb_is_theme_options_screen( $page ) {
+	$page = (string) $page;
+
+	if ( in_array( $page, array( 'llb-theme-options', 'llb-import-content' ), true ) ) {
+		return true;
+	}
+
+	return 0 === strpos( $page, 'llb-to-' );
+}
 
 /**
  * Redirects legacy Appearance URLs to the new Theme Options screens.
@@ -136,7 +445,7 @@ function llb_redirect_legacy_theme_option_pages() {
 	}
 
 	$page = sanitize_key( wp_unslash( $_GET['page'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	if ( ! in_array( $page, array( 'llb-theme-options', 'llb-import-content' ), true ) ) {
+	if ( ! llb_is_theme_options_screen( $page ) ) {
 		return;
 	}
 
@@ -161,12 +470,15 @@ add_action( 'admin_page_access_denied', 'llb_redirect_legacy_theme_option_pages'
  * @return void
  */
 function llb_enqueue_theme_options_assets( $hook ) {
-	if ( 'toplevel_page_llb-theme-options' !== $hook ) {
+	unset( $hook );
+
+	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only screen check.
+	if ( ! llb_is_theme_options_screen( $page ) ) {
 		return;
 	}
 
 	$css = '
-		.llb-to-wrap{max-width:720px}
+		.llb-to-wrap{max-width:880px}
 		.llb-to-row{display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid #dcdcde}
 		.llb-to-row:last-of-type{border-bottom:0}
 		.llb-to-copy{flex:1;min-width:0}
@@ -180,6 +492,19 @@ function llb_enqueue_theme_options_assets( $hook ) {
 		.llb-switch input:checked+.llb-switch-slider:before{transform:translateX(20px)}
 		.llb-switch input:focus+.llb-switch-slider{box-shadow:0 0 0 2px #fff,0 0 0 4px #2271b1}
 		.llb-to-notice{margin:16px 0 0}
+		.llb-to-intro{margin:8px 0 4px;max-width:70ch;color:#3c434a}
+		.llb-to-fields{margin-top:8px}
+		.llb-to-fields .form-table th{width:220px;padding-left:0}
+		.llb-to-fields .form-table td p.description{max-width:60ch}
+		.llb-to-fields input[type=text],.llb-to-fields input[type=url],.llb-to-fields textarea{max-width:520px;width:100%}
+		.llb-to-fields input[type=date]{max-width:220px}
+		.llb-to-fields textarea.llb-to-code{font-family:Consolas,Monaco,monospace;font-size:12px;line-height:1.5;max-width:640px}
+		.llb-to-section{margin-top:28px;padding-top:4px;border-top:1px solid #dcdcde}
+		.llb-to-section h2{font-size:15px;margin:20px 0 0}
+		.llb-to-preview{background:#fff;border:1px solid #dcdcde;border-radius:4px;padding:14px 16px;margin:16px 0;max-width:700px}
+		.llb-to-preview code{display:inline-block;word-break:break-all;padding:2px 6px}
+		.llb-to-preview p{margin:0 0 10px}
+		.llb-to-preview p:last-child{margin-bottom:0}
 	';
 
 	wp_register_style( 'llb-theme-options', false, array(), LLB_VERSION );
@@ -187,6 +512,117 @@ function llb_enqueue_theme_options_assets( $hook ) {
 	wp_add_inline_style( 'llb-theme-options', $css );
 }
 add_action( 'admin_enqueue_scripts', 'llb_enqueue_theme_options_assets' );
+
+/**
+ * Opens a Theme Options form for one section.
+ *
+ * @param string $section Section key.
+ * @return void
+ */
+function llb_theme_options_form_open( $section ) {
+	?>
+	<form method="post" action="options.php">
+		<?php settings_fields( 'llb_theme_options_group' ); ?>
+		<input type="hidden" name="llb_theme_options[_section]" value="<?php echo esc_attr( $section ); ?>" />
+	<?php
+}
+
+/**
+ * Closes a Theme Options form.
+ *
+ * @return void
+ */
+function llb_theme_options_form_close() {
+	submit_button( __( 'Save Changes', 'll-bouwgroep' ) );
+	echo '</form>';
+}
+
+/**
+ * Opens a form table for text-style fields.
+ *
+ * @param string $heading Optional heading above the table.
+ * @return void
+ */
+function llb_theme_options_table_open( $heading = '' ) {
+	echo '<div class="llb-to-fields">';
+	if ( '' !== $heading ) {
+		echo '<h2>' . esc_html( $heading ) . '</h2>';
+	}
+	echo '<table class="form-table" role="presentation"><tbody>';
+}
+
+/**
+ * Closes a form table.
+ *
+ * @return void
+ */
+function llb_theme_options_table_close() {
+	echo '</tbody></table></div>';
+}
+
+/**
+ * Renders one text-style field row inside a form table.
+ *
+ * @param string               $key  Option key.
+ * @param string               $label Field label.
+ * @param array<string, mixed> $args  Optional: desc, placeholder, rows, class, options.
+ * @return void
+ */
+function llb_theme_options_render_field( $key, $label, $args = array() ) {
+	$types = llb_theme_options_types();
+	$type  = isset( $types[ $key ] ) ? $types[ $key ] : 'text';
+	$value = (string) llb_theme_option( $key );
+	$id    = 'llb_theme_option_' . $key;
+	$name  = 'llb_theme_options[' . $key . ']';
+
+	$desc        = isset( $args['desc'] ) ? (string) $args['desc'] : '';
+	$placeholder = isset( $args['placeholder'] ) ? (string) $args['placeholder'] : '';
+	$rows        = isset( $args['rows'] ) ? (int) $args['rows'] : 4;
+	?>
+	<tr>
+		<th scope="row"><label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label></th>
+		<td>
+			<?php if ( 'textarea' === $type || 'code' === $type ) : ?>
+				<textarea
+					id="<?php echo esc_attr( $id ); ?>"
+					name="<?php echo esc_attr( $name ); ?>"
+					rows="<?php echo esc_attr( (string) $rows ); ?>"
+					class="large-text<?php echo 'code' === $type ? ' llb-to-code' : ''; ?>"
+					placeholder="<?php echo esc_attr( $placeholder ); ?>"
+				><?php echo esc_textarea( $value ); ?></textarea>
+			<?php elseif ( 'consent' === $type ) : ?>
+				<select id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>">
+					<?php foreach ( llb_theme_options_consent_categories() as $slug => $title ) : ?>
+						<option value="<?php echo esc_attr( $slug ); ?>" <?php selected( $value, $slug ); ?>><?php echo esc_html( $title ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			<?php else : ?>
+				<?php
+				$input_type = 'text';
+				if ( 'url' === $type ) {
+					$input_type = 'url';
+				} elseif ( 'date' === $type ) {
+					$input_type = 'date';
+				} elseif ( 'tel' === $type ) {
+					$input_type = 'tel';
+				}
+				?>
+				<input
+					type="<?php echo esc_attr( $input_type ); ?>"
+					id="<?php echo esc_attr( $id ); ?>"
+					name="<?php echo esc_attr( $name ); ?>"
+					value="<?php echo esc_attr( $value ); ?>"
+					class="regular-text"
+					placeholder="<?php echo esc_attr( $placeholder ); ?>"
+				/>
+			<?php endif; ?>
+			<?php if ( '' !== $desc ) : ?>
+				<p class="description"><?php echo esc_html( $desc ); ?></p>
+			<?php endif; ?>
+		</td>
+	</tr>
+	<?php
+}
 
 /**
  * Renders a toggle row.
@@ -197,9 +633,7 @@ add_action( 'admin_enqueue_scripts', 'llb_enqueue_theme_options_assets' );
  * @return void
  */
 function llb_theme_options_render_toggle( $key, $label, $desc ) {
-	$opts    = get_option( 'llb_theme_options', llb_theme_options_defaults() );
-	$opts    = is_array( $opts ) ? $opts : llb_theme_options_defaults();
-	$checked = ! empty( $opts[ $key ] );
+	$checked = llb_theme_option_on( $key );
 	$id      = 'llb_theme_option_' . $key;
 	?>
 	<div class="llb-to-row">
@@ -235,7 +669,7 @@ function llb_render_theme_options_page() {
 	$projects_on   = llb_projects_enabled();
 	?>
 	<div class="wrap llb-to-wrap">
-		<h1><?php echo esc_html__( 'Theme Options', 'll-bouwgroep' ); ?></h1>
+		<h1><?php echo esc_html__( 'Theme Options — General', 'll-bouwgroep' ); ?></h1>
 
 		<?php if ( ! $projects_on ) : ?>
 			<div class="notice notice-warning llb-to-notice"><p><?php echo esc_html__( 'Projects are hidden on the website.', 'll-bouwgroep' ); ?></p></div>
@@ -247,8 +681,7 @@ function llb_render_theme_options_page() {
 			<div class="notice notice-success llb-to-notice"><p><?php echo esc_html__( 'Animations and projects are both enabled on the website.', 'll-bouwgroep' ); ?></p></div>
 		<?php endif; ?>
 
-		<form method="post" action="options.php">
-			<?php settings_fields( 'llb_theme_options_group' ); ?>
+		<?php llb_theme_options_form_open( 'general' ); ?>
 			<?php
 			llb_theme_options_render_toggle(
 				'animations',
@@ -260,9 +693,365 @@ function llb_render_theme_options_page() {
 				__( 'Projects', 'll-bouwgroep' ),
 				__( 'Show or hide everything related to projects on the whole website. Nothing is deleted; turning it back on restores everything.', 'll-bouwgroep' )
 			);
-			submit_button( __( 'Save Changes', 'll-bouwgroep' ) );
+			llb_theme_options_render_toggle(
+				'back_to_top',
+				__( 'Back to top button', 'll-bouwgroep' ),
+				__( 'Show a round button in the bottom-right corner after the visitor scrolls down, to jump back to the top of the page.', 'll-bouwgroep' )
+			);
 			?>
-		</form>
+		<?php llb_theme_options_form_close(); ?>
+	</div>
+	<?php
+}
+
+/**
+ * Renders the Contact buttons admin page.
+ *
+ * @return void
+ */
+function llb_render_contact_options_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$phone = trim( (string) llb_get_option( 'llb_phone' ) );
+	?>
+	<div class="wrap llb-to-wrap">
+		<h1><?php echo esc_html__( 'Theme Options — Contact buttons', 'll-bouwgroep' ); ?></h1>
+		<p class="llb-to-intro"><?php echo esc_html__( 'Floating WhatsApp button and the fixed contact bar that only shows on phones.', 'll-bouwgroep' ); ?></p>
+
+		<?php if ( llb_theme_option_on( 'whatsapp_enabled' ) && '' === llb_theme_option_text( 'whatsapp_number' ) ) : ?>
+			<div class="notice notice-warning llb-to-notice"><p><?php echo esc_html__( 'WhatsApp is enabled but no number is set, so the button stays hidden.', 'll-bouwgroep' ); ?></p></div>
+		<?php endif; ?>
+		<?php if ( llb_theme_option_on( 'mobile_bar_enabled' ) && '' === $phone ) : ?>
+			<div class="notice notice-warning llb-to-notice"><p><?php echo esc_html__( 'The mobile contact bar uses the phone number from Customizer → L&L Bouwgroep → Company & contact. That field is still empty.', 'll-bouwgroep' ); ?></p></div>
+		<?php endif; ?>
+
+		<?php llb_theme_options_form_open( 'contact' ); ?>
+			<?php
+			llb_theme_options_render_toggle(
+				'whatsapp_enabled',
+				__( 'WhatsApp button', 'll-bouwgroep' ),
+				__( 'Show a round WhatsApp button in the bottom-right corner on every page.', 'll-bouwgroep' )
+			);
+
+			llb_theme_options_table_open();
+			llb_theme_options_render_field(
+				'whatsapp_number',
+				__( 'WhatsApp number', 'll-bouwgroep' ),
+				array(
+					'placeholder' => '+31612345678',
+					'desc'        => __( 'International format, for example +31612345678. Leave empty to hide the button.', 'll-bouwgroep' ),
+				)
+			);
+			llb_theme_options_render_field(
+				'whatsapp_message',
+				__( 'Pre-filled message', 'll-bouwgroep' ),
+				array( 'desc' => __( 'Dutch text the visitor sees pre-filled in WhatsApp.', 'll-bouwgroep' ) )
+			);
+			llb_theme_options_table_close();
+			?>
+
+			<div class="llb-to-section">
+				<?php
+				llb_theme_options_render_toggle(
+					'mobile_bar_enabled',
+					__( 'Mobile contact bar', 'll-bouwgroep' ),
+					__( 'Fixed bar at the bottom of the screen on phones only (under 768px) with a call button and a quote button.', 'll-bouwgroep' )
+				);
+
+				llb_theme_options_table_open();
+				llb_theme_options_render_field(
+					'mobile_bar_call_text',
+					__( 'Call button text', 'll-bouwgroep' ),
+					array( 'desc' => __( 'Dutch label. Links to the phone number from the Customizer.', 'll-bouwgroep' ) )
+				);
+				llb_theme_options_render_field(
+					'mobile_bar_quote_text',
+					__( 'Quote button text', 'll-bouwgroep' ),
+					array( 'desc' => __( 'Dutch label. Links to the contact page.', 'll-bouwgroep' ) )
+				);
+				llb_theme_options_table_close();
+				?>
+			</div>
+		<?php llb_theme_options_form_close(); ?>
+	</div>
+	<?php
+}
+
+/**
+ * Renders the SEO admin page.
+ *
+ * @return void
+ */
+function llb_render_seo_options_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$seo_plugin = llb_active_seo_plugin_name();
+	?>
+	<div class="wrap llb-to-wrap">
+		<h1><?php echo esc_html__( 'Theme Options — SEO', 'll-bouwgroep' ); ?></h1>
+		<p class="llb-to-intro"><?php echo esc_html__( 'Business data structured for search engines, and breadcrumbs on inner pages.', 'll-bouwgroep' ); ?></p>
+
+		<?php if ( '' !== $seo_plugin ) : ?>
+			<div class="notice notice-info llb-to-notice">
+				<p>
+					<?php
+					printf(
+						/* translators: %s: SEO plugin name. */
+						esc_html__( '%s is active, so it provides the breadcrumb trail and the breadcrumb structured data. The theme only supplies the styling.', 'll-bouwgroep' ),
+						esc_html( $seo_plugin )
+					);
+					?>
+				</p>
+			</div>
+		<?php endif; ?>
+
+		<?php llb_theme_options_form_open( 'seo' ); ?>
+			<?php
+			llb_theme_options_render_toggle(
+				'schema_local_business',
+				__( 'Local business structured data', 'll-bouwgroep' ),
+				__( 'Output GeneralContractor JSON-LD on every page with the company name, address, phone, opening hours and social profiles from the Customizer.', 'll-bouwgroep' )
+			);
+			llb_theme_options_render_toggle(
+				'breadcrumbs',
+				__( 'Breadcrumbs', 'll-bouwgroep' ),
+				__( 'Show a breadcrumb trail above the page title on all pages except the homepage.', 'll-bouwgroep' )
+			);
+
+			llb_theme_options_table_open();
+			llb_theme_options_render_field(
+				'schema_area_served',
+				__( 'Area served', 'll-bouwgroep' ),
+				array( 'desc' => __( 'Region shown in the structured data, in Dutch. For example: Zoetermeer en omgeving.', 'll-bouwgroep' ) )
+			);
+			llb_theme_options_table_close();
+			?>
+		<?php llb_theme_options_form_close(); ?>
+	</div>
+	<?php
+}
+
+/**
+ * Renders the Maintenance admin page.
+ *
+ * @return void
+ */
+function llb_render_maintenance_options_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$enabled = llb_theme_option_on( 'maintenance_enabled' );
+	$token   = llb_theme_option_text( 'maintenance_preview_token' );
+	?>
+	<div class="wrap llb-to-wrap">
+		<h1><?php echo esc_html__( 'Theme Options — Maintenance', 'll-bouwgroep' ); ?></h1>
+		<p class="llb-to-intro"><?php echo esc_html__( 'Show a branded holding page to visitors while you keep working on the site. Logged-in administrators always see the normal website.', 'll-bouwgroep' ); ?></p>
+
+		<?php if ( $enabled ) : ?>
+			<div class="notice notice-warning llb-to-notice"><p><?php echo esc_html__( 'Maintenance mode is ON. Visitors see the holding page and search engines get a 503 response.', 'll-bouwgroep' ); ?></p></div>
+		<?php endif; ?>
+
+		<?php llb_theme_options_form_open( 'maintenance' ); ?>
+			<?php
+			llb_theme_options_render_toggle(
+				'maintenance_enabled',
+				__( 'Maintenance mode', 'll-bouwgroep' ),
+				__( 'Visitors get the holding page with an HTTP 503 status and a noindex tag. wp-admin, the login page and the REST API stay reachable.', 'll-bouwgroep' )
+			);
+
+			llb_theme_options_table_open();
+			llb_theme_options_render_field(
+				'maintenance_heading',
+				__( 'Heading', 'll-bouwgroep' ),
+				array( 'desc' => __( 'Dutch heading on the holding page.', 'll-bouwgroep' ) )
+			);
+			llb_theme_options_render_field(
+				'maintenance_text',
+				__( 'Text', 'll-bouwgroep' ),
+				array(
+					'rows' => 3,
+					'desc' => __( 'Dutch paragraph under the heading. Phone and e-mail come from the Customizer.', 'll-bouwgroep' ),
+				)
+			);
+			llb_theme_options_table_close();
+			?>
+		<?php llb_theme_options_form_close(); ?>
+
+		<div class="llb-to-preview">
+			<h2><?php echo esc_html__( 'Preview link', 'll-bouwgroep' ); ?></h2>
+			<?php if ( '' === $token ) : ?>
+				<p><?php echo esc_html__( 'No preview token yet. One is created automatically when you turn maintenance mode on, or generate one now.', 'll-bouwgroep' ); ?></p>
+			<?php else : ?>
+				<p><?php echo esc_html__( 'Share this link with people who should see the real website while maintenance mode is on. It sets a cookie that lasts 7 days.', 'll-bouwgroep' ); ?></p>
+				<p><code><?php echo esc_html( llb_maintenance_preview_url() ); ?></code></p>
+			<?php endif; ?>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<input type="hidden" name="action" value="llb_regenerate_maintenance_token" />
+				<?php wp_nonce_field( 'llb_regenerate_maintenance_token' ); ?>
+				<?php submit_button( __( 'Generate new preview link', 'll-bouwgroep' ), 'secondary', 'submit', false ); ?>
+			</form>
+		</div>
+	</div>
+	<?php
+}
+
+/**
+ * Renders the Announcement admin page.
+ *
+ * @return void
+ */
+function llb_render_announcement_options_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	?>
+	<div class="wrap llb-to-wrap">
+		<h1><?php echo esc_html__( 'Theme Options — Announcement', 'll-bouwgroep' ); ?></h1>
+		<p class="llb-to-intro"><?php echo esc_html__( 'A thin bar above the header for short messages such as holiday closing days. Visitors can close it; the choice is remembered per message.', 'll-bouwgroep' ); ?></p>
+
+		<?php if ( llb_theme_option_on( 'announcement_enabled' ) && '' === llb_theme_option_text( 'announcement_text' ) ) : ?>
+			<div class="notice notice-warning llb-to-notice"><p><?php echo esc_html__( 'The announcement bar is enabled but the text is empty, so nothing is shown.', 'll-bouwgroep' ); ?></p></div>
+		<?php endif; ?>
+
+		<?php llb_theme_options_form_open( 'announcement' ); ?>
+			<?php
+			llb_theme_options_render_toggle(
+				'announcement_enabled',
+				__( 'Announcement bar', 'll-bouwgroep' ),
+				__( 'Show the bar above the header on every page.', 'll-bouwgroep' )
+			);
+
+			llb_theme_options_table_open();
+			llb_theme_options_render_field(
+				'announcement_text',
+				__( 'Text', 'll-bouwgroep' ),
+				array( 'desc' => __( 'Dutch message. Keep it to one short sentence.', 'll-bouwgroep' ) )
+			);
+			llb_theme_options_render_field(
+				'announcement_link',
+				__( 'Link (optional)', 'll-bouwgroep' ),
+				array( 'placeholder' => 'https://' )
+			);
+			llb_theme_options_render_field(
+				'announcement_link_text',
+				__( 'Link text (optional)', 'll-bouwgroep' ),
+				array( 'desc' => __( 'Dutch label for the link. Without it the link is not shown.', 'll-bouwgroep' ) )
+			);
+			llb_theme_options_render_field(
+				'announcement_start',
+				__( 'Start date (optional)', 'll-bouwgroep' ),
+				array( 'desc' => __( 'The bar stays hidden before this date.', 'll-bouwgroep' ) )
+			);
+			llb_theme_options_render_field(
+				'announcement_end',
+				__( 'End date (optional)', 'll-bouwgroep' ),
+				array( 'desc' => __( 'The bar disappears after this date.', 'll-bouwgroep' ) )
+			);
+			llb_theme_options_table_close();
+			?>
+		<?php llb_theme_options_form_close(); ?>
+	</div>
+	<?php
+}
+
+/**
+ * Renders the Tracking admin page.
+ *
+ * @return void
+ */
+function llb_render_tracking_options_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$has_code    = llb_tracking_has_any_code();
+	$has_consent = llb_consent_api_available();
+	?>
+	<div class="wrap llb-to-wrap">
+		<h1><?php echo esc_html__( 'Theme Options — Tracking', 'll-bouwgroep' ); ?></h1>
+		<p class="llb-to-intro"><?php echo esc_html__( 'Extra third-party snippets. Each snippet is only printed after the visitor consented to the chosen category.', 'll-bouwgroep' ); ?></p>
+
+		<div class="notice notice-info llb-to-notice">
+			<p><?php echo esc_html__( 'Google Analytics / Search Console via Site Kit by Google are configured in Site Kit — do not add them here.', 'll-bouwgroep' ); ?></p>
+		</div>
+
+		<?php if ( ! $has_consent ) : ?>
+			<div class="notice notice-<?php echo $has_code ? 'error' : 'warning'; ?> llb-to-notice">
+				<p><?php echo esc_html__( 'No consent plugin found. Install a plugin that supports the WP Consent API (for example Complianz) before adding tracking code. Without it the snippets below are never printed.', 'll-bouwgroep' ); ?></p>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( ! current_user_can( 'unfiltered_html' ) ) : ?>
+			<div class="notice notice-warning llb-to-notice"><p><?php echo esc_html__( 'Your user role may not save raw script tags, so scripts will be stripped on save.', 'll-bouwgroep' ); ?></p></div>
+		<?php endif; ?>
+
+		<?php llb_theme_options_form_open( 'tracking' ); ?>
+			<?php
+			llb_theme_options_table_open();
+			llb_theme_options_render_field(
+				'tracking_head',
+				__( 'Head snippet', 'll-bouwgroep' ),
+				array(
+					'rows' => 6,
+					'desc' => __( 'Printed inside <head>.', 'll-bouwgroep' ),
+				)
+			);
+			llb_theme_options_render_field( 'tracking_head_category', __( 'Head consent category', 'll-bouwgroep' ) );
+			llb_theme_options_render_field(
+				'tracking_body',
+				__( 'Body snippet', 'll-bouwgroep' ),
+				array(
+					'rows' => 6,
+					'desc' => __( 'Printed directly after the opening <body> tag.', 'll-bouwgroep' ),
+				)
+			);
+			llb_theme_options_render_field( 'tracking_body_category', __( 'Body consent category', 'll-bouwgroep' ) );
+			llb_theme_options_render_field(
+				'tracking_footer',
+				__( 'Footer snippet', 'll-bouwgroep' ),
+				array(
+					'rows' => 6,
+					'desc' => __( 'Printed just before the closing </body> tag.', 'll-bouwgroep' ),
+				)
+			);
+			llb_theme_options_render_field( 'tracking_footer_category', __( 'Footer consent category', 'll-bouwgroep' ) );
+			llb_theme_options_table_close();
+			?>
+		<?php llb_theme_options_form_close(); ?>
+	</div>
+	<?php
+}
+
+/**
+ * Renders the Branding admin page.
+ *
+ * @return void
+ */
+function llb_render_branding_options_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	?>
+	<div class="wrap llb-to-wrap">
+		<h1><?php echo esc_html__( 'Theme Options — Branding', 'll-bouwgroep' ); ?></h1>
+		<p class="llb-to-intro"><?php echo esc_html__( 'The login screen always uses the theme logo and brand colors. Only the dashboard footer text is editable.', 'll-bouwgroep' ); ?></p>
+
+		<?php llb_theme_options_form_open( 'branding' ); ?>
+			<?php
+			llb_theme_options_table_open();
+			llb_theme_options_render_field(
+				'admin_footer_text',
+				__( 'Dashboard footer text', 'll-bouwgroep' ),
+				array( 'desc' => __( 'Shown at the bottom left of every dashboard screen. Leave empty for the WordPress default.', 'll-bouwgroep' ) )
+			);
+			llb_theme_options_table_close();
+			?>
+		<?php llb_theme_options_form_close(); ?>
 	</div>
 	<?php
 }
