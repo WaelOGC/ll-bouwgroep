@@ -10,7 +10,8 @@
 	document.documentElement.classList.add('llb-js');
 
 	var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	if (!reduceMotion) {
+	var animationsOn = !(window.llbTheme && String(window.llbTheme.animations) === '0');
+	if (!reduceMotion && animationsOn) {
 		document.body.classList.add('llb-motion');
 	}
 
@@ -120,7 +121,7 @@
 		return rect.bottom > 0 && rect.top < vh;
 	}
 
-	if (!reduceMotion && 'IntersectionObserver' in window && rvs.length) {
+	if (!reduceMotion && animationsOn && 'IntersectionObserver' in window && rvs.length) {
 		rvs.forEach(function (el) {
 			if (rvInViewport(el)) {
 				revealRv(el);
@@ -157,7 +158,7 @@
 
 	/* Legacy scroll reveal (inner pages) */
 	var reveals = document.querySelectorAll('.llb-reveal');
-	if (!reduceMotion && 'IntersectionObserver' in window && reveals.length) {
+	if (!reduceMotion && animationsOn && 'IntersectionObserver' in window && reveals.length) {
 		document.documentElement.classList.add('llb-js-reveal');
 		var revealObserver = new IntersectionObserver(
 			function (entries) {

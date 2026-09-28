@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! llb_projects_enabled() ) {
+	return;
+}
+
 $post_id  = get_the_ID();
 $heading  = trim( (string) llb_get_meta( $post_id, '_llb_projects_heading' ) );
 $text     = trim( (string) llb_get_meta( $post_id, '_llb_projects_text' ) );

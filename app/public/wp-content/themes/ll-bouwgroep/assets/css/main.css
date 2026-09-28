@@ -903,6 +903,9 @@ p + p{
 	padding: var(--llb-space-4);
 	background: linear-gradient(120deg, #f0efeb 0%, #e8ebe6 40%, #f5f0f0 70%, #f5f5f3 100%);
 	background-size: 200% 200%;
+}
+
+body.llb-motion .llb-media-placeholder{
 	animation: llb-gradient-shift 14s ease infinite;
 }
 
@@ -929,9 +932,12 @@ p + p{
 }
 
 .llb-card:hover{
+	color: inherit;
+}
+
+body.llb-motion .llb-card:hover{
 	transform: translateY(-4px);
 	box-shadow: 0 10px 28px rgba(31, 31, 31, 0.14);
-	color: inherit;
 }
 
 .llb-card__media{
@@ -946,6 +952,10 @@ p + p{
 }
 
 .llb-card:hover .llb-card__image{
+	transform: none;
+}
+
+body.llb-motion .llb-card:hover .llb-card__image{
 	transform: scale(1.05);
 }
 

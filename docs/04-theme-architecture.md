@@ -20,6 +20,7 @@ ll-bouwgroep/
 │   ├── setup.php
 │   ├── enqueue.php
 │   ├── customizer.php
+│   ├── theme-options.php
 │   ├── meta-boxes.php
 │   ├── meta-boxes-pages.php
 │   ├── content-defaults.php
@@ -67,9 +68,26 @@ ll-bouwgroep/
 └── languages/
 ```
 
+## Theme Options
+
+Admin page: **Appearance → Theme Options** (`inc/theme-options.php`). Capability: `manage_options`. English UI labels.
+
+| Item | Value |
+|------|--------|
+| Option name | `llb_theme_options` (array) |
+| Helper | `llb_theme_option( $key )` — saved value or default |
+| Defaults | `animations` = 1, `projects` = 1 |
+
+| Toggle | Effect when off |
+|--------|-----------------|
+| **Animations** | No `body.llb-motion` class. All decorative motion (hero entrance, image reveal `.rv`, hover zoom/lift) is gated under that class. FAQ open/close and colour hover feedback stay. Images are visible immediately. `prefers-reduced-motion` still applies when animations are on. |
+| **Projects** | Hides Home “Bekijk ons werk”, related projects on service pages, and Projecten links in menus/templates. Projecten page, singles and category URLs return the theme 404 for visitors (admins still see them with a notice bar). Excluded from core / Yoast / Rank Math sitemaps and site search. CPT stays in the dashboard. |
+
+Saving Theme Options purges LiteSpeed Cache when that plugin is active (`do_action( 'litespeed_purge_all' )`).
+
 ## Customizer (global settings)
 
-Panel **L&L Bouwgroep** (`llb_theme_options`). All company data comes from the Customizer — never hard-coded outside `llb_customizer_defaults()`. Copyright year is generated automatically.
+Panel **L&L Bouwgroep** (Customizer panel ID `llb_theme_options` — separate from the Theme Options database option above). All company data comes from the Customizer — never hard-coded outside `llb_customizer_defaults()`. Copyright year is generated automatically.
 
 Fonts are fixed (self-hosted Barlow + Inter, AVG). Not editable in the Customizer. Site logo uses the native WordPress Custom Logo control.
 

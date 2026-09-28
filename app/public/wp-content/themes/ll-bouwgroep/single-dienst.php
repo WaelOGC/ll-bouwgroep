@@ -191,7 +191,7 @@ get_header();
 		<?php endif; ?>
 
 		<?php
-		$related_projects = llb_get_related_projects_for_service( $post_id, 2 );
+		$related_projects = llb_projects_enabled() ? llb_get_related_projects_for_service( $post_id, 2 ) : array();
 		$projects_heading = trim( (string) llb_get_option( 'llb_service_projects_heading' ) );
 		$projects_btn     = trim( (string) llb_get_option( 'llb_service_projects_btn' ) );
 		$card_btn         = trim( (string) llb_get_projects_page_meta( '_llb_card_btn_text' ) );
@@ -199,7 +199,7 @@ get_header();
 			$card_btn = 'Bekijk project';
 		}
 
-		if ( ! empty( $related_projects ) && ( '' !== $projects_heading || '' !== $projects_btn ) ) :
+		if ( llb_projects_enabled() && ! empty( $related_projects ) && ( '' !== $projects_heading || '' !== $projects_btn ) ) :
 			?>
 			<section class="sec">
 				<div class="wrap">

@@ -52,6 +52,14 @@ function llb_enqueue_assets() {
 		)
 	);
 
+	wp_localize_script(
+		'llb-main',
+		'llbTheme',
+		array(
+			'animations' => llb_animations_enabled() ? 1 : 0,
+		)
+	);
+
 	llb_enqueue_brand_color_overrides();
 }
 add_action( 'wp_enqueue_scripts', 'llb_enqueue_assets' );

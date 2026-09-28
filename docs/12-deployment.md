@@ -24,7 +24,8 @@ How to ship the L&L Bouwgroep theme from Local to production.
 ## LiteSpeed Cache notes
 
 - Theme assets have the version number in the URL, so a new version loads fresh after purge
-- If CSS/JS combine or minify breaks the layout: turn that option off, test, report
+- Changing a toggle on **Appearance → Theme Options** purges LiteSpeed Cache automatically so visitors see the change immediately
+- If LiteSpeed CSS/JS combine or minify breaks the layout: turn that option off, test, report
 - Never edit theme files on the live server. Always: Local → GitHub → upload
 
 ## Rollback
