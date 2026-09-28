@@ -258,12 +258,12 @@ p + p{
 }
 
 /* Primary / lone CTAs stretch on small screens */
-.llb-btn--primary, .llb-btn-group .llb-btn, .llb-404 .llb-btn{
+.llb-btn--primary, .llb-btn-group .llb-btn{
 	width: 100%;
 }
 
 @media (min-width: 600px){
-	.llb-btn--primary, .llb-btn-group .llb-btn, .llb-404 .llb-btn{
+	.llb-btn--primary, .llb-btn-group .llb-btn{
 		width: auto;
 	}
 }
@@ -853,39 +853,9 @@ p + p{
    Components
    ------------------------------------------------------------------------- */
 
-.llb-section-heading{
-	margin-bottom: var(--llb-space-5);
-}
-
-.llb-section-heading__text{
-	margin-top: var(--llb-space-3);
-	max-width: 55ch;
-}
-
 /* -------------------------------------------------------------------------
    Pages
    ------------------------------------------------------------------------- */
-
-.llb-page-default .llb-entry-content{
-	padding-block: var(--llb-space-6);
-}
-
-.llb-404{
-	padding-block: var(--llb-space-8);
-	text-align: left;
-}
-
-.llb-404 h1{
-	margin-bottom: var(--llb-space-4);
-}
-
-.llb-404__lead{
-	margin-bottom: var(--llb-space-6);
-}
-
-.llb-404 h2{
-	margin-bottom: var(--llb-space-3);
-}
 
 /* Home */
 
@@ -916,109 +886,6 @@ p + p{
 /* Full-bleed dark shade on phone so text never sits on bright photo */
 
 /* Phone: solid full-width panel behind text (no angled cut leaving bright image) */
-
-/* USP strip — cards on mobile/tablet; desktop strip from 1024px */
-.llb-home-usp{
-	background: var(--llb-light);
-	border-bottom: none;
-	padding-block: var(--llb-space-5);
-}
-
-.llb-home-usp__list{
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	display: grid;
-	gap: var(--llb-space-4);
-	grid-template-columns: 1fr;
-}
-
-@media (min-width: 600px){
-	.llb-home-usp__list{
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: var(--llb-space-3);
-	}
-
-	.llb-home-usp__item{
-		padding: var(--llb-space-3);
-		flex-direction: column;
-		gap: var(--llb-space-3);
-	}
-}
-
-@media (min-width: 768px){
-	.llb-home-usp__list{
-		gap: var(--llb-space-4);
-	}
-
-	.llb-home-usp__item{
-		padding: var(--llb-space-4);
-		flex-direction: row;
-		gap: var(--llb-space-4);
-	}
-}
-
-.llb-home-usp__item{
-	display: flex;
-	gap: var(--llb-space-4);
-	align-items: flex-start;
-	margin: 0;
-	padding: var(--llb-space-4);
-	background: var(--llb-white);
-	border: 1px solid rgba(31, 31, 31, 0.1);
-	border-radius: var(--llb-radius-sm);
-	box-shadow: var(--llb-shadow);
-}
-
-@media (min-width: 1024px){
-	.llb-home-usp{
-		background: var(--llb-white);
-		border-bottom: 1px solid rgba(31, 31, 31, 0.08);
-	}
-
-	.llb-home-usp__list{
-		gap: 0;
-	}
-
-	.llb-home-usp__item{
-		padding: 0 var(--llb-space-5);
-		background: transparent;
-		border: 0;
-		border-radius: 0;
-		box-shadow: none;
-	}
-
-	.llb-home-usp__item + .llb-home-usp__item{
-		border-left: 1px solid rgba(31, 31, 31, 0.12);
-	}
-}
-
-.llb-home-usp__icon{
-	color: var(--llb-red);
-	flex-shrink: 0;
-}
-
-.llb-home-usp__icon .llb-icon{
-	width: 1.75rem;
-	height: 1.75rem;
-}
-
-.llb-home-usp__icon svg{
-	width: 1.75rem;
-	height: 1.75rem;
-	fill: currentColor;
-	display: block;
-}
-
-.llb-home-usp__body h3{
-	font-size: 1.05rem;
-	margin-bottom: var(--llb-space-2);
-}
-
-.llb-home-usp__body p{
-	font-size: 0.95rem;
-	max-width: none;
-}
 
 /* Badkamers */
 
@@ -1280,10 +1147,6 @@ p + p{
 		padding-block: calc(var(--llb-space-8) + 1.5rem);
 		clip-path: polygon(0 1rem, 100% 0, 100% calc(100% - 1rem), 0 100%);
 	}
-
-	.llb-home .llb-home-usp.llb-section--angled{
-		clip-path: polygon(0 0.75rem, 100% 0, 100% calc(100% - 0.75rem), 0 100%);
-	}
 }
 
 @media (min-width: 1024px){
@@ -1293,12 +1156,7 @@ p + p{
 	}
 }
 
-.llb-home .llb-home-usp.llb-section--angled{
-	clip-path: polygon(0 0.75rem, 100% 0, 100% calc(100% - 0.75rem), 0 100%);
-	padding-block: calc(var(--llb-space-5) + 0.85rem);
-}
-
-.llb-section--angled > .llb-container, .llb-home-usp > .llb-container{
+.llb-section--angled > .llb-container{
 	position: relative;
 	z-index: 1;
 }

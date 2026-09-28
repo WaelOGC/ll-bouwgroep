@@ -22,7 +22,7 @@ function llb_meta_box_page_config() {
 	$contact  = 'page-templates/template-contact.php';
 	$faq      = 'page-templates/page-faq.php';
 
-	$hero_templates = array( $home, $about, $services, $projects, $contact, $faq );
+	$hero_templates = array( '', $home, $about, $services, $projects, $contact, $faq );
 
 	$page_notice = __( 'Save and reload the page after changing the template to see the matching fields.', 'll-bouwgroep' );
 

@@ -227,7 +227,10 @@ function llb_default_pages() {
 			'slug'     => 'privacyverklaring',
 			'template' => '',
 			'content'  => llb_default_privacy_content(),
-			'meta'     => array(),
+			'meta'     => array(
+				'_llb_hero_title' => 'Privacyverklaring',
+				'_llb_hero_intro' => 'L&L Bouwgroep B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.',
+			),
 		),
 	);
 }
@@ -800,8 +803,6 @@ function llb_default_menus() {
 function llb_default_privacy_content() {
 	$blocks = array();
 
-	$blocks[] = "<!-- wp:paragraph -->\n<p>L&L Bouwgroep B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.</p>\n<!-- /wp:paragraph -->";
-
 	$blocks[] = "<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Welke gegevens verwerken wij?</h2>\n<!-- /wp:heading -->";
 	$blocks[] = "<!-- wp:paragraph -->\n<p>Wanneer u contact met ons opneemt, kunnen wij persoonsgegevens verwerken die u zelf aan ons verstrekt, zoals uw naam, e-mailadres, telefoonnummer en de informatie die u in uw bericht vermeldt.</p>\n<!-- /wp:paragraph -->";
 
@@ -900,3 +901,47 @@ function llb_maybe_migrate_project_single_cta_v1() {
 	update_option( 'llb_project_single_cta_v1', '1' );
 }
 add_action( 'admin_init', 'llb_maybe_migrate_project_single_cta_v1' );
+
+/**
+ * One-time Privacyverklaring hero fields + move intro out of body content.
+ *
+ * @return void
+ */
+function llb_maybe_migrate_privacy_page_v1() {
+	if ( get_option( 'llb_privacy_page_v1' ) ) {
+		return;
+	}
+
+	$page = get_page_by_path( 'privacyverklaring', OBJECT, 'page' );
+	if ( $page instanceof WP_Post ) {
+		$title = trim( (string) get_post_meta( $page->ID, '_llb_hero_title', true ) );
+		if ( '' === $title ) {
+			update_post_meta( $page->ID, '_llb_hero_title', 'Privacyverklaring' );
+		}
+
+		$intro = trim( (string) get_post_meta( $page->ID, '_llb_hero_intro', true ) );
+		if ( '' === $intro ) {
+			update_post_meta(
+				$page->ID,
+				'_llb_hero_intro',
+				'L&L Bouwgroep B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.'
+			);
+		}
+
+		$old_intro = '<!-- wp:paragraph -->' . "\n" . '<p>L&L Bouwgroep B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.</p>' . "\n" . '<!-- /wp:paragraph -->';
+		$content   = (string) $page->post_content;
+		$trimmed   = ltrim( $content );
+		if ( 0 === strpos( $trimmed, $old_intro ) ) {
+			$new_content = ltrim( substr( $trimmed, strlen( $old_intro ) ) );
+			wp_update_post(
+				array(
+					'ID'           => $page->ID,
+					'post_content' => $new_content,
+				)
+			);
+		}
+	}
+
+	update_option( 'llb_privacy_page_v1', '1' );
+}
+add_action( 'admin_init', 'llb_maybe_migrate_privacy_page_v1' );

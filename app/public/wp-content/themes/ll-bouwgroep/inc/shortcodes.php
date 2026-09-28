@@ -20,33 +20,33 @@ function llb_shortcode_company_details() {
 	$email   = trim( (string) llb_get_option( 'llb_email' ) );
 	$phone   = trim( (string) llb_get_option( 'llb_phone' ) );
 
-	$lines = array();
+	$parts = array();
 
 	if ( '' !== $company ) {
-		$lines[] = esc_html( $company );
+		$parts[] = '<strong>' . esc_html( $company ) . '</strong>';
 	}
 
 	if ( '' !== $address ) {
-		$lines[] = esc_html( $address );
+		$parts[] = '<span>' . esc_html( $address ) . '</span>';
 	}
 
 	if ( '' !== $email ) {
-		$lines[] = '<a href="' . esc_url( 'mailto:' . antispambot( $email ) ) . '">' . esc_html( antispambot( $email ) ) . '</a>';
+		$parts[] = '<a href="' . esc_url( 'mailto:' . antispambot( $email ) ) . '">' . esc_html( antispambot( $email ) ) . '</a>';
 	}
 
 	if ( '' !== $phone ) {
 		$tel = preg_replace( '/[^\d+]/', '', $phone );
 		if ( '' !== $tel ) {
-			$lines[] = '<a href="' . esc_url( 'tel:' . $tel ) . '">' . esc_html( $phone ) . '</a>';
+			$parts[] = '<a href="' . esc_url( 'tel:' . $tel ) . '">' . esc_html( $phone ) . '</a>';
 		} else {
-			$lines[] = esc_html( $phone );
+			$parts[] = '<span>' . esc_html( $phone ) . '</span>';
 		}
 	}
 
-	if ( empty( $lines ) ) {
+	if ( empty( $parts ) ) {
 		return '';
 	}
 
-	return '<p class="llb-company-details">' . implode( '<br>', $lines ) . '</p>';
+	return '<div class="company-card">' . implode( '', $parts ) . '</div>';
 }
 add_shortcode( 'llb_company_details', 'llb_shortcode_company_details' );

@@ -167,6 +167,18 @@ function llb_demo_images() {
 			'title' => 'Home CTA',
 		),
 		array(
+			'file'  => 'privacy-hero.png',
+			'field' => '_llb_hero_image',
+			'page'  => 'privacyverklaring',
+			'title' => 'Privacy hero',
+		),
+		array(
+			'file'  => 'privacy-hero-mobile.png',
+			'field' => '_llb_hero_image_mobile',
+			'page'  => 'privacyverklaring',
+			'title' => 'Privacy hero mobile',
+		),
+		array(
 			'file'      => 'service-badkamers-toiletten-hero.png',
 			'field'     => '_llb_hero_image',
 			'post_type' => 'dienst',

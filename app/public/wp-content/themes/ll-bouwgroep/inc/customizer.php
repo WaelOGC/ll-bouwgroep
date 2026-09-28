@@ -52,6 +52,12 @@ function llb_customizer_defaults() {
 		'llb_service_faq_heading'      => 'Veelgestelde vragen',
 		'llb_service_faq_btn'          => 'Bekijk alle vragen',
 		'llb_service_others_heading'   => 'Onze diensten',
+		'llb_404_title'                => 'Pagina niet gevonden',
+		'llb_404_lead'                 => 'De pagina die u zoekt bestaat niet meer, is verplaatst of de URL is niet correct.',
+		'llb_404_sub_title'            => 'Op zoek naar een bouw- of renovatieproject?',
+		'llb_404_sub_text'             => 'Bekijk onze diensten of neem contact met L&L Bouwgroep B.V. op.',
+		'llb_404_btn_home'             => 'Naar de homepage',
+		'llb_404_btn_services'         => 'Bekijk onze diensten',
 	);
 }
 
@@ -441,6 +447,88 @@ function llb_customize_register( $wp_customize ) {
 			'sanitize_callback' => 'sanitize_text_field',
 			'section'           => 'llb_section_service_template',
 			'label'             => __( 'Other services heading', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	// 404 page.
+	$wp_customize->add_section(
+		'llb_section_404',
+		array(
+			'title'    => __( '404 page', 'll-bouwgroep' ),
+			'panel'    => 'llb_theme_options',
+			'priority' => 76,
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_404_title',
+		array(
+			'default'           => $defaults['llb_404_title'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_404',
+			'label'             => __( 'Heading (H1)', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_404_lead',
+		array(
+			'default'           => $defaults['llb_404_lead'],
+			'sanitize_callback' => 'sanitize_textarea_field',
+			'section'           => 'llb_section_404',
+			'label'             => __( 'Lead text', 'll-bouwgroep' ),
+			'type'              => 'textarea',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_404_sub_title',
+		array(
+			'default'           => $defaults['llb_404_sub_title'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_404',
+			'label'             => __( 'Subheading (H2)', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_404_sub_text',
+		array(
+			'default'           => $defaults['llb_404_sub_text'],
+			'sanitize_callback' => 'sanitize_textarea_field',
+			'section'           => 'llb_section_404',
+			'label'             => __( 'Sub text', 'll-bouwgroep' ),
+			'type'              => 'textarea',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_404_btn_home',
+		array(
+			'default'           => $defaults['llb_404_btn_home'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_404',
+			'label'             => __( 'Home button text', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_404_btn_services',
+		array(
+			'default'           => $defaults['llb_404_btn_services'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_404',
+			'label'             => __( 'Services button text', 'll-bouwgroep' ),
 			'type'              => 'text',
 		)
 	);

@@ -312,40 +312,6 @@ function llb_icon( $name ) {
 }
 
 /**
- * Escapes a title and wraps digit runs for count-up animation.
- *
- * Output HTML still shows the real numbers for SEO / no-JS.
- *
- * @param string $title Plain title.
- * @return string Safe HTML.
- */
-function llb_format_count_title( $title ) {
-	$title = (string) $title;
-	if ( '' === $title ) {
-		return '';
-	}
-
-	$parts = preg_split( '/(\d+)/', $title, -1, PREG_SPLIT_DELIM_CAPTURE );
-	if ( ! is_array( $parts ) ) {
-		return esc_html( $title );
-	}
-
-	$html = '';
-	foreach ( $parts as $part ) {
-		if ( '' === $part ) {
-			continue;
-		}
-		if ( preg_match( '/^\d+$/', $part ) ) {
-			$html .= '<span data-llb-count="' . esc_attr( $part ) . '">' . esc_html( $part ) . '</span>';
-		} else {
-			$html .= esc_html( $part );
-		}
-	}
-
-	return $html;
-}
-
-/**
  * Returns the permalink for a page by slug, with a path fallback.
  *
  * @param string $slug Page slug.
@@ -363,4 +329,72 @@ function llb_page_url( $slug ) {
 	}
 
 	return home_url( '/' . $slug . '/' );
+}
+
+/**
+ * Adds unique ids to H2 headings in HTML and returns TOC entries.
+ *
+ * @param string $html Content HTML.
+ * @return array{html: string, toc: array<int, array{id: string, title: string}>}
+ */
+function llb_prose_prepare( $html ) {
+	$html = (string) $html;
+	$toc  = array();
+	$used = array();
+
+	if ( '' === trim( $html ) || false === stripos( $html, '<h2' ) ) {
+		return array(
+			'html' => $html,
+			'toc'  => $toc,
+		);
+	}
+
+	$out = preg_replace_callback(
+		'/<h2(\s[^>]*)?>(.*?)<\/h2>/is',
+		function ( $matches ) use ( &$toc, &$used ) {
+			$attrs = isset( $matches[1] ) ? (string) $matches[1] : '';
+			$inner = isset( $matches[2] ) ? (string) $matches[2] : '';
+			$title = trim( wp_strip_all_tags( $inner ) );
+			$title = trim( preg_replace( '/\s+/u', ' ', $title ) );
+
+			$id = '';
+			if ( preg_match( '/\bid=["\']([^"\']+)["\']/i', $attrs, $id_match ) ) {
+				$id = sanitize_title( $id_match[1] );
+				$attrs = preg_replace( '/\s*id=["\'][^"\']*["\']/i', '', $attrs );
+			}
+			if ( '' === $id ) {
+				$id = sanitize_title( $title );
+			}
+			if ( '' === $id ) {
+				$id = 'section';
+			}
+
+			$base  = $id;
+			$count = 2;
+			while ( isset( $used[ $id ] ) ) {
+				$id = $base . '-' . $count;
+				++$count;
+			}
+			$used[ $id ] = true;
+
+			if ( '' !== $title ) {
+				$toc[] = array(
+					'id'    => $id,
+					'title' => $title,
+				);
+			}
+
+			return '<h2 id="' . esc_attr( $id ) . '"' . $attrs . '>' . $inner . '</h2>';
+		},
+		$html
+	);
+
+	if ( ! is_string( $out ) ) {
+		$out = $html;
+	}
+
+	return array(
+		'html' => $out,
+		'toc'  => $toc,
+	);
 }

@@ -250,47 +250,37 @@
 		});
 	})();
 
-	/* USP count-up on inner pages that still use the strip */
-	function animateCount(el) {
-		var target = parseInt(el.getAttribute('data-llb-count'), 10);
-		if (isNaN(target)) {
+	/* Text page TOC scroll-spy (privacy / default page) */
+	(function initTocSpy() {
+		var links = [].slice.call(document.querySelectorAll('.toc a'));
+		if (!links.length || !('IntersectionObserver' in window)) {
 			return;
 		}
-		if (reduceMotion) {
-			el.textContent = String(target);
-			return;
-		}
-		var start = null;
-		var duration = 1100;
-		function step(ts) {
-			if (!start) {
-				start = ts;
+		var map = {};
+		links.forEach(function (a) {
+			var href = a.getAttribute('href') || '';
+			if (href.charAt(0) === '#') {
+				map[href.slice(1)] = a;
 			}
-			var p = Math.min(1, (ts - start) / duration);
-			el.textContent = String(Math.round(target * p));
-			if (p < 1) {
-				window.requestAnimationFrame(step);
-			}
-		}
-		window.requestAnimationFrame(step);
-	}
-
-	var countEls = document.querySelectorAll('[data-llb-count]');
-	if (countEls.length && 'IntersectionObserver' in window) {
-		var countObserver = new IntersectionObserver(
-			function (entries) {
-				entries.forEach(function (entry) {
-					if (!entry.isIntersecting) {
+		});
+		var io = new IntersectionObserver(
+			function (es) {
+				es.forEach(function (e) {
+					if (!e.isIntersecting) {
 						return;
 					}
-					entry.target.querySelectorAll('[data-llb-count]').forEach(animateCount);
-					countObserver.unobserve(entry.target);
+					links.forEach(function (l) {
+						l.removeAttribute('aria-current');
+					});
+					if (map[e.target.id]) {
+						map[e.target.id].setAttribute('aria-current', 'true');
+					}
 				});
 			},
-			{ threshold: 0.35 }
+			{ rootMargin: '-20% 0px -70% 0px' }
 		);
-		document.querySelectorAll('.llb-home-usp, .llb-usp-strip').forEach(function (rootEl) {
-			countObserver.observe(rootEl);
+		document.querySelectorAll('.prose h2[id]').forEach(function (h) {
+			io.observe(h);
 		});
-	}
+	})();
 })();
