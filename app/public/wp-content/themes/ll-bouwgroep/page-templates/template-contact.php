@@ -134,10 +134,7 @@ get_header();
 									$map_id,
 									'large',
 									false,
-									array(
-										'loading'  => 'lazy',
-										'decoding' => 'async',
-									)
+llb_lazy_img_attrs( 'cta' )
 								);
 								?>
 							</a>
@@ -148,10 +145,7 @@ get_header();
 									$map_id,
 									'large',
 									false,
-									array(
-										'loading'  => 'lazy',
-										'decoding' => 'async',
-									)
+llb_lazy_img_attrs( 'cta' )
 								);
 								?>
 							</div>

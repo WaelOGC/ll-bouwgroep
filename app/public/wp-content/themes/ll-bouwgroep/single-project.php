@@ -82,6 +82,7 @@ get_header();
 										'id'       => $multi ? 'galImg' : '',
 										'loading'  => 'eager',
 										'decoding' => 'async',
+										'sizes'    => llb_image_sizes_attr( 'gallery' ),
 										'alt'      => $first_alt,
 									)
 								);
@@ -108,10 +109,11 @@ get_header();
 													$gid,
 													'medium',
 													false,
-													array(
-														'loading'  => 'lazy',
-														'decoding' => 'async',
-														'alt'      => '',
+													llb_lazy_img_attrs(
+														'thumb',
+														array(
+															'alt' => '',
+														)
 													)
 												);
 												?>

@@ -884,7 +884,7 @@ function llb_get_related_faq_for_service( $service_id, $limit = 3 ) {
  */
 function llb_get_home_cta_image_id() {
 	if ( function_exists( 'llb_find_demo_attachment' ) ) {
-		$demo = llb_find_demo_attachment( 'home-cta.png' );
+		$demo = llb_find_demo_attachment( 'home-cta.webp' );
 		if ( $demo ) {
 			return $demo;
 		}

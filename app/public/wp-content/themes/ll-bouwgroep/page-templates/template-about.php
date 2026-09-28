@@ -76,10 +76,7 @@ get_header();
 									$s1_image,
 									'llb-card',
 									false,
-									array(
-										'loading'  => 'lazy',
-										'decoding' => 'async',
-									)
+llb_lazy_img_attrs( 'split' )
 								);
 								?>
 							</div>
@@ -105,10 +102,7 @@ get_header();
 									$s2_image,
 									'llb-card',
 									false,
-									array(
-										'loading'  => 'lazy',
-										'decoding' => 'async',
-									)
+llb_lazy_img_attrs( 'split' )
 								);
 								?>
 							</div>
@@ -188,10 +182,7 @@ get_header();
 												$step_image,
 												'llb-card',
 												false,
-												array(
-													'loading'  => 'lazy',
-													'decoding' => 'async',
-												)
+												llb_lazy_img_attrs( 'card' )
 											);
 											?>
 										</div>

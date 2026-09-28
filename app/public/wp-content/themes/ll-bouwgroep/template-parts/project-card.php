@@ -30,10 +30,7 @@ $cat         = ( ! is_wp_error( $terms ) && ! empty( $terms[0] ) ) ? $terms[0]->
 					$thumb_id,
 					'llb-card',
 					false,
-					array(
-						'loading'  => 'lazy',
-						'decoding' => 'async',
-					)
+					llb_lazy_img_attrs( 'card' )
 				);
 				?>
 			<?php endif; ?>

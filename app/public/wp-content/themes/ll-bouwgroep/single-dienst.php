@@ -99,10 +99,7 @@ get_header();
 								$intro_img,
 								'large',
 								false,
-								array(
-									'loading'  => 'lazy',
-									'decoding' => 'async',
-								)
+								llb_lazy_img_attrs( 'split' )
 							);
 							?>
 						</div>

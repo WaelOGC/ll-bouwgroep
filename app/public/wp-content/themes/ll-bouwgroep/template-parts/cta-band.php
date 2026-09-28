@@ -35,12 +35,13 @@ if ( '' !== $extra_class ) {
 			<?php
 			echo wp_get_attachment_image(
 				$image_id,
-				'full',
+				'large',
 				false,
-				array(
-					'loading'  => 'lazy',
-					'decoding' => 'async',
-					'alt'      => '',
+				llb_lazy_img_attrs(
+					'cta',
+					array(
+						'alt' => '',
+					)
 				)
 			);
 			?>

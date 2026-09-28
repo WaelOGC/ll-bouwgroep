@@ -33,6 +33,7 @@ $img_attrs = array(
 	'loading'       => 'eager',
 	'decoding'      => 'async',
 	'fetchpriority' => 'high',
+	'sizes'         => llb_image_sizes_attr( 'hero' ),
 );
 
 $section_class = 'phero';
@@ -47,7 +48,7 @@ if ( '' !== $hero_class ) {
 				<picture>
 					<?php
 					$mobile_srcset = wp_get_attachment_image_srcset( $mobile_id, 'full' );
-					$mobile_sizes  = wp_get_attachment_image_sizes( $mobile_id, 'full' );
+					$mobile_sizes  = llb_image_sizes_attr( 'hero' );
 					$mobile_src    = wp_get_attachment_image_url( $mobile_id, 'full' );
 					$srcset_attr   = $mobile_srcset ? $mobile_srcset : $mobile_src;
 					?>

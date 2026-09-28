@@ -31,10 +31,7 @@ $default_icons = array( 'hard-hat', 'toolbox', 'ruler-square' );
 						$image_id,
 						'llb-card',
 						false,
-						array(
-							'loading'  => 'lazy',
-							'decoding' => 'async',
-						)
+						llb_lazy_img_attrs( 'split' )
 					);
 					?>
 				</div>

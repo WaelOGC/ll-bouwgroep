@@ -81,10 +81,7 @@ $filter_terms = $has_projects ? llb_get_project_filter_terms() : array();
 										$feat_thumb,
 										'large',
 										false,
-										array(
-											'loading'  => 'lazy',
-											'decoding' => 'async',
-										)
+										llb_lazy_img_attrs( 'featured' )
 									);
 									?>
 								<?php endif; ?>

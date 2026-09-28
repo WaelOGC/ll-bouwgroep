@@ -61,10 +61,7 @@ if ( 1 === count( $sub_parts ) && substr_count( $subheading, '.' ) >= 2 ) {
 					$image_id,
 					'llb-card',
 					false,
-					array(
-						'loading'  => 'lazy',
-						'decoding' => 'async',
-					)
+					llb_lazy_img_attrs( 'split' )
 				);
 				?>
 			</div>

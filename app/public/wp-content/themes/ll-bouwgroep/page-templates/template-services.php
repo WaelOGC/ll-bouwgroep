@@ -62,10 +62,7 @@ get_header();
 											$thumb_id,
 											'llb-card',
 											false,
-											array(
-												'loading'  => 'lazy',
-												'decoding' => 'async',
-											)
+											llb_lazy_img_attrs( 'card' )
 										);
 										?>
 									<?php else : ?>
