@@ -1,8 +1,8 @@
 <?php
 /**
- * Project card (image, category, title, arrow).
+ * Project card (image, category, title, link).
  *
- * Args: project (WP_Post).
+ * Args: project (WP_Post), button_text (string).
  *
  * @package LL_Bouwgroep
  */
@@ -16,39 +16,37 @@ if ( ! ( $project instanceof WP_Post ) ) {
 	return;
 }
 
-$thumb_id = get_post_thumbnail_id( $project );
-$terms    = get_the_terms( $project, 'project_categorie' );
-$cat      = ( ! is_wp_error( $terms ) && ! empty( $terms[0] ) ) ? $terms[0]->name : '';
+$button_text = isset( $args['button_text'] ) ? trim( (string) $args['button_text'] ) : '';
+$thumb_id    = get_post_thumbnail_id( $project );
+$terms       = get_the_terms( $project, 'project_categorie' );
+$cat         = ( ! is_wp_error( $terms ) && ! empty( $terms[0] ) ) ? $terms[0]->name : '';
 ?>
-<a class="llb-project-card" href="<?php echo esc_url( get_permalink( $project ) ); ?>">
-	<div class="llb-project-card__media">
-		<?php if ( $thumb_id ) : ?>
-			<?php
-			echo wp_get_attachment_image(
-				$thumb_id,
-				'llb-card',
-				false,
-				array(
-					'class'    => 'llb-project-card__image',
-					'loading'  => 'lazy',
-					'decoding' => 'async',
-				)
-			);
-			?>
-		<?php else : ?>
-			<div class="llb-media-placeholder llb-media-placeholder--dark" aria-hidden="true">
-				<span class="llb-accent-line"></span>
-			</div>
+<li class="pcard">
+	<a href="<?php echo esc_url( get_permalink( $project ) ); ?>">
+		<div class="pcard-img">
+			<?php if ( $thumb_id ) : ?>
+				<?php
+				echo wp_get_attachment_image(
+					$thumb_id,
+					'llb-card',
+					false,
+					array(
+						'loading'  => 'lazy',
+						'decoding' => 'async',
+					)
+				);
+				?>
+			<?php endif; ?>
+			<?php if ( '' !== $cat ) : ?>
+				<span class="pcard-cat"><?php echo esc_html( $cat ); ?></span>
+			<?php endif; ?>
+		</div>
+		<h3><?php echo esc_html( get_the_title( $project ) ); ?></h3>
+		<?php if ( '' !== $button_text ) : ?>
+			<span class="link">
+				<?php echo esc_html( $button_text ); ?>
+				<?php echo llb_btn_arrow_svg(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
+			</span>
 		<?php endif; ?>
-		<span class="llb-project-card__overlay" aria-hidden="true"></span>
-	</div>
-	<?php if ( '' !== $cat ) : ?>
-		<span class="llb-project-card__cat"><?php echo esc_html( $cat ); ?></span>
-	<?php endif; ?>
-	<div class="llb-project-card__footer">
-		<h3 class="llb-project-card__title"><?php echo esc_html( get_the_title( $project ) ); ?></h3>
-		<span class="llb-project-card__arrow" aria-hidden="true">
-			<?php echo llb_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?>
-		</span>
-	</div>
-</a>
+	</a>
+</li>

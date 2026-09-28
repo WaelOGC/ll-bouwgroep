@@ -213,6 +213,11 @@ function llb_run_content_import() {
 		update_option( 'llb_demo_images_version', (string) LLB_VERSION );
 	}
 
+	if ( function_exists( 'llb_import_demo_projects' ) ) {
+		llb_import_demo_projects();
+		update_option( 'llb_demo_projects_version', (string) LLB_VERSION );
+	}
+
 	return array(
 		'created' => $created,
 		'skipped' => $skipped,

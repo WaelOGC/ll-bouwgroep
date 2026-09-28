@@ -124,6 +124,18 @@ function llb_demo_images() {
 			'page'  => 'diensten',
 			'title' => 'Services hero mobile',
 		),
+		array(
+			'file'  => 'projects-hero.png',
+			'field' => '_llb_hero_image',
+			'page'  => 'projecten',
+			'title' => 'Projects hero',
+		),
+		array(
+			'file'  => 'projects-hero-mobile.png',
+			'field' => '_llb_hero_image_mobile',
+			'page'  => 'projecten',
+			'title' => 'Projects hero mobile',
+		),
 	);
 }
 

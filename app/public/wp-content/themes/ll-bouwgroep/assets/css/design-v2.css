@@ -321,14 +321,55 @@ body.llb-motion .step:hover .step-img img{transform:scale(1.04)}
 .scard p{font-size:15px;line-height:1.65}
 .scard .link{margin-top:auto;padding-top:8px;align-self:flex-start;font-size:17px}
 
+/* ============ PROJECTS OVERVIEW ============ */
+/* featured project */
+.pfeat{display:grid;background:var(--black);color:rgba(255,255,255,.78);text-decoration:none;margin-top:clamp(40px,5vw,64px);overflow:hidden}
+.pfeat-img{overflow:hidden}
+.pfeat-img img{width:100%;height:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.pfeat:hover .pfeat-img img{transform:scale(1.03)}
+.pfeat-body{padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:center;gap:16px}
+.pfeat-label{font-family:var(--head);font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:10px}
+.pfeat-label::before{content:"";width:28px;height:3px;background:linear-gradient(90deg,var(--red) 50%,var(--green) 50%)}
+.pfeat h2{color:#fff;font-size:clamp(28px,3vw,42px);line-height:1.1}
+.pfeat p{font-size:clamp(16px,1.2vw,18px);margin:0}
+.pfeat .btn{align-self:flex-start;margin-top:8px}
+@media (min-width:1024px){.pfeat{grid-template-columns:7fr 5fr}.pfeat-img img{aspect-ratio:auto;min-height:100%}}
+
+/* filter */
+.pfilter{display:flex;gap:8px;margin:clamp(48px,6vw,80px) 0 clamp(28px,3vw,40px);overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-right:calc(var(--pad) * -1);padding-right:var(--pad)}
+.pfilter::-webkit-scrollbar{display:none}
+.pfilter a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1.5px solid var(--line);font-family:var(--head);font-weight:600;font-size:16px;color:var(--black);text-decoration:none;transition:background .2s,border-color .2s,color .2s}
+.pfilter a:hover{border-color:var(--black)}
+.pfilter a[aria-current]{background:var(--black);border-color:var(--black);color:#fff}
+@media (min-width:768px){.pfilter{flex-wrap:wrap;overflow:visible;margin-right:0;padding-right:0}}
+
+/* grid */
+.pgrid{list-style:none;margin:0;padding:0;display:grid;gap:clamp(40px,4vw,56px) clamp(20px,2.4vw,32px)}
+@media (min-width:600px){.pgrid{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.pgrid{grid-template-columns:repeat(3,1fr)}}
+.pcard a{text-decoration:none;color:inherit;display:block}
+.pcard-img{position:relative;overflow:hidden;background:var(--stone)}
+.pcard-img img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.pcard a:hover .pcard-img img{transform:scale(1.04)}
+.pcard-cat{position:absolute;left:0;top:0;background:#fff;color:var(--black);font-family:var(--head);font-weight:600;font-size:13px;letter-spacing:.04em;padding:8px 14px}
+.pcard h3{margin:20px 0 10px;font-size:clamp(20px,1.7vw,23px);transition:color .2s}
+.pcard a:hover h3{color:var(--red)}
+.pcard .link{font-size:16px}
+
+/* pagination (?pagina=) */
+.pager{display:flex;gap:8px;justify-content:center;margin-top:clamp(48px,6vw,72px)}
+.pager a,.pager span{display:grid;place-items:center;min-width:44px;height:44px;padding:0 12px;border:1.5px solid var(--line);font-family:var(--head);font-weight:600;color:var(--black);text-decoration:none}
+.pager a:hover{border-color:var(--black)}
+.pager [aria-current]{background:var(--red);border-color:var(--red);color:#fff}
+
 @media (prefers-reduced-motion:reduce){
   body.llb-motion .phero .hero-img img,
   body.llb-motion .phero h1 .ln span,
   body.llb-motion .phero-intro{animation:none!important}
-  .step-img img,.scard-media img,.scard-media--empty > svg{transition:none!important}
-  body.llb-motion .step:hover .step-img img,.scard:hover .scard-media img{transform:none}
+  .step-img img,.scard-media img,.scard-media--empty > svg,.pfeat-img img,.pcard-img img{transition:none!important}
+  body.llb-motion .step:hover .step-img img,.scard:hover .scard-media img,.pfeat:hover .pfeat-img img,.pcard a:hover .pcard-img img{transform:none}
 }
 
 .cta .wrap{position:relative}
-.llb-page-about,.llb-page-services{padding-bottom:0}
+.llb-page-about,.llb-page-services,.llb-page-projects{padding-bottom:0}
 

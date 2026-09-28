@@ -300,15 +300,22 @@ function llb_get_projects_page_url( $args = array() ) {
 /**
  * Returns project_categorie terms that have at least one published project.
  *
+ * Order matches the approved Projecten filter (docs + design reference).
+ *
  * @return array<int, WP_Term>
  */
 function llb_get_project_filter_terms() {
+	$preferred_slugs = array(
+		'badkamers-toiletten',
+		'renovatie-verbouwing',
+		'keukens',
+		'aan-en-uitbouw',
+	);
+
 	$terms = get_terms(
 		array(
 			'taxonomy'   => 'project_categorie',
 			'hide_empty' => true,
-			'orderby'    => 'name',
-			'order'      => 'ASC',
 		)
 	);
 
@@ -316,7 +323,26 @@ function llb_get_project_filter_terms() {
 		return array();
 	}
 
-	return $terms;
+	$by_slug = array();
+	foreach ( $terms as $term ) {
+		if ( $term instanceof WP_Term ) {
+			$by_slug[ $term->slug ] = $term;
+		}
+	}
+
+	$ordered = array();
+	foreach ( $preferred_slugs as $slug ) {
+		if ( isset( $by_slug[ $slug ] ) ) {
+			$ordered[] = $by_slug[ $slug ];
+			unset( $by_slug[ $slug ] );
+		}
+	}
+
+	foreach ( $by_slug as $term ) {
+		$ordered[] = $term;
+	}
+
+	return $ordered;
 }
 
 /**
