@@ -112,6 +112,18 @@ function llb_demo_images() {
 			'page'  => 'over-ons',
 			'title' => 'Home CTA',
 		),
+		array(
+			'file'  => 'services-hero.png',
+			'field' => '_llb_hero_image',
+			'page'  => 'diensten',
+			'title' => 'Services hero',
+		),
+		array(
+			'file'  => 'services-hero-mobile.png',
+			'field' => '_llb_hero_image_mobile',
+			'page'  => 'diensten',
+			'title' => 'Services hero mobile',
+		),
 	);
 }
 

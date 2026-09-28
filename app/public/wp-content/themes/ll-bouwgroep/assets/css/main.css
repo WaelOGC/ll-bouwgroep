@@ -1725,32 +1725,6 @@ p + p {
 	text-decoration: none;
 }
 
-/* Services overview grid */
-.llb-services-grid__list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: grid;
-	gap: var(--llb-space-5);
-	grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-	.llb-services-grid__list {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-}
-
-@media (min-width: 1024px) {
-	.llb-services-grid__list {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-	}
-}
-
-.llb-services-grid .llb-card__title {
-	font-size: 1.25rem;
-}
-
 /* About / service steps (shared with single-dienst) */
 .llb-about-steps__header {
 	display: grid;
@@ -2967,17 +2941,6 @@ a.llb-contact-map:hover .llb-contact-map__image {
 	to { transform: translateX(8%); }
 }
 
-.llb-motion .llb-card--service {
-	transition:
-		transform 250ms ease,
-		box-shadow 250ms ease;
-}
-
-.llb-motion .llb-card--service:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 12px 28px rgba(31, 31, 31, 0.14);
-}
-
 .llb-motion .llb-accordion {
 	transition:
 		transform 250ms ease,
@@ -3036,7 +2999,6 @@ a.llb-contact-map:hover .llb-contact-map__image {
 		animation: none !important;
 	}
 
-	.llb-motion .llb-card--service:hover,
 	.llb-motion .llb-accordion:hover,
 	.llb-motion .llb-home-bath__media:hover .llb-home-bath__image,
 	.llb-motion .llb-home-why__aside:hover .llb-home-why__image {

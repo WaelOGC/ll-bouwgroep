@@ -265,7 +265,7 @@ body.admin-bar .mnav{inset:calc(var(--header) + 32px) 0 0 0}
 body.llb-motion .phero .hero-img img{animation:settle 1.8s cubic-bezier(.2,.7,.2,1) both}
 .phero .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,16,0) 30%,rgba(20,18,16,.55) 62%,rgba(20,18,16,.88) 100%)}
 .phero .hero-in{position:relative;width:100%;padding-bottom:clamp(40px,7vw,88px);padding-top:120px}
-.phero h1{color:#fff;font-size:clamp(40px,6vw,80px);line-height:.98;letter-spacing:-.02em;max-width:none}
+.phero h1{color:#fff;font-size:clamp(28px,7.4vw,80px);line-height:1;letter-spacing:-.02em;overflow-wrap:break-word;hyphens:auto}
 .phero h1 .ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
 .phero h1 .ln span{display:block}
 body.llb-motion .phero h1 .ln span{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
@@ -303,14 +303,32 @@ body.llb-motion .step:hover .step-img img{transform:scale(1.04)}
 .step p{font-size:15px;line-height:1.6;margin:0;max-width:none}
 @media (min-width:768px) and (max-width:1023px){.step-img img{aspect-ratio:4/5}}
 
+/* ============ SERVICES OVERVIEW ============ */
+.scards{list-style:none;margin:0;padding:0;display:grid;gap:clamp(40px,4vw,56px) clamp(20px,2.4vw,32px)}
+@media (min-width:600px){.scards{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.scards{grid-template-columns:repeat(3,1fr)}}
+.scard{display:flex;flex-direction:column}
+.scard-media{position:relative;display:block;overflow:hidden;background:var(--stone);aspect-ratio:4/3}
+.scard-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.scard:hover .scard-media img{transform:scale(1.04)}
+.scard-media--empty{display:grid;place-items:center}
+.scard-media--empty svg{width:72px;height:72px;fill:#D6D4CF;transition:fill .3s}
+.scard:hover .scard-media--empty svg{fill:var(--red)}
+.scard-ic{position:absolute;left:0;bottom:0;width:52px;height:52px;display:grid;place-items:center;background:var(--red)}
+.scard-ic svg{width:24px;height:24px;fill:#fff}
+.scard h2{font-size:clamp(22px,1.9vw,26px);line-height:1.2;margin:24px 0 12px;letter-spacing:-.01em}
+.scard h2 a{text-decoration:none;color:inherit}
+.scard p{font-size:15px;line-height:1.65}
+.scard .link{margin-top:auto;padding-top:8px;align-self:flex-start;font-size:17px}
+
 @media (prefers-reduced-motion:reduce){
   body.llb-motion .phero .hero-img img,
   body.llb-motion .phero h1 .ln span,
   body.llb-motion .phero-intro{animation:none!important}
-  .step-img img{transition:none!important}
-  body.llb-motion .step:hover .step-img img{transform:none}
+  .step-img img,.scard-media img,.scard-media--empty svg{transition:none!important}
+  body.llb-motion .step:hover .step-img img,.scard:hover .scard-media img{transform:none}
 }
 
 .cta .wrap{position:relative}
-.llb-page-about{padding-bottom:0}
+.llb-page-about,.llb-page-services{padding-bottom:0}
 
