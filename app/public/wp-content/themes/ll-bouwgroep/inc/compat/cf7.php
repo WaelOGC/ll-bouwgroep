@@ -75,7 +75,7 @@ function llb_cf7_default_form_template() {
     <label class="llb-field"><span class="llb-field__label">Naam *</span>[text* your-name autocomplete:name]</label>
     <label class="llb-field"><span class="llb-field__label">E-mailadres *</span>[email* your-email autocomplete:email]</label>
     <label class="llb-field"><span class="llb-field__label">Telefoonnummer</span>[tel your-phone autocomplete:tel]</label>
-    <label class="llb-field"><span class="llb-field__label">Type werkzaamheden *</span>[select* your-service include_blank "Badkamers & toiletten" "Renovatie en verbouwing" "Stucwerk" "Tegelwerk" "Timmerwerk" "Schilder- en afbouwwerk" "Keukenverbouwingen" "Aan- en uitbouw" "Overige bouwkundige werkzaamheden"]</label>
+    <label class="llb-field"><span class="llb-field__label">Type werkzaamheden *</span>[select* your-service first_as_label "— Kies een optie —" "Badkamers & toiletten" "Renovatie en verbouwing" "Stucwerk" "Tegelwerk" "Timmerwerk" "Schilder- en afbouwwerk" "Keukenverbouwingen" "Aan- en uitbouw" "Overige bouwkundige werkzaamheden"]</label>
     <label class="llb-field llb-field--full"><span class="llb-field__label">Bericht *</span>[textarea* your-message x5]</label>
   </div>
   <div class="llb-form__consent">[acceptance privacy-consent] Door dit formulier te versturen, gaat u akkoord met de verwerking van uw gegevens zoals beschreven in onze <a href="' . $privacy_url . '">Privacyverklaring</a>. [/acceptance]</div>
@@ -99,6 +99,26 @@ function llb_cf7_default_mail() {
 		'attachments'        => '',
 		'use_html'           => 0,
 		'exclude_blank'      => 0,
+	);
+}
+
+/**
+ * Returns Dutch CF7 validation / response messages.
+ *
+ * @return array<string, string>
+ */
+function llb_cf7_default_messages() {
+	return array(
+		'mail_sent_ok'      => 'Bedankt voor uw bericht. Wij nemen zo snel mogelijk contact met u op.',
+		'mail_sent_ng'      => 'Er is een fout opgetreden bij het versturen. Probeer het later opnieuw.',
+		'validation_error'  => 'Een of meer velden bevatten een fout. Controleer deze en probeer het opnieuw.',
+		'spam'              => 'Er is een fout opgetreden bij het versturen. Probeer het later opnieuw.',
+		'accept_terms'      => 'U moet akkoord gaan met de Privacyverklaring om verder te gaan.',
+		'invalid_required'  => 'Dit veld is verplicht.',
+		'invalid_too_long'  => 'Dit veld is te lang.',
+		'invalid_too_short' => 'Dit veld is te kort.',
+		'invalid_email'     => 'Vul een geldig e-mailadres in.',
+		'invalid_tel'       => 'Vul een geldig telefoonnummer in.',
 	);
 }
 
@@ -149,6 +169,31 @@ function llb_cf7_shortcode_for_id( $form_id ) {
 }
 
 /**
+ * Applies form template + Dutch messages to a contact form instance.
+ *
+ * @param WPCF7_ContactForm $contact_form Contact form.
+ * @return void
+ */
+function llb_apply_default_cf7_form_content( $contact_form ) {
+	if ( ! ( $contact_form instanceof WPCF7_ContactForm ) ) {
+		return;
+	}
+
+	$properties             = $contact_form->get_properties();
+	$properties['form']     = llb_cf7_default_form_template();
+	$properties['mail']     = array_merge(
+		isset( $properties['mail'] ) && is_array( $properties['mail'] ) ? $properties['mail'] : array(),
+		llb_cf7_default_mail()
+	);
+	$properties['messages'] = array_merge(
+		isset( $properties['messages'] ) && is_array( $properties['messages'] ) ? $properties['messages'] : array(),
+		llb_cf7_default_messages()
+	);
+
+	$contact_form->set_properties( $properties );
+}
+
+/**
  * Creates the default Contact Form 7 form when missing.
  *
  * @return int Form ID or 0.
@@ -169,14 +214,7 @@ function llb_create_default_cf7_form() {
 		)
 	);
 
-	$properties         = $contact_form->get_properties();
-	$properties['form'] = llb_cf7_default_form_template();
-	$properties['mail'] = array_merge(
-		isset( $properties['mail'] ) && is_array( $properties['mail'] ) ? $properties['mail'] : array(),
-		llb_cf7_default_mail()
-	);
-
-	$contact_form->set_properties( $properties );
+	llb_apply_default_cf7_form_content( $contact_form );
 	$form_id = (int) $contact_form->save();
 
 	if ( ! $form_id ) {
@@ -187,6 +225,42 @@ function llb_create_default_cf7_form() {
 
 	return $form_id;
 }
+
+/**
+ * One-time migration: Dutch messages + first_as_label select on the default form.
+ *
+ * @return void
+ */
+function llb_maybe_migrate_default_cf7_form_v2() {
+	if ( ! defined( 'WPCF7_VERSION' ) || ! class_exists( 'WPCF7_ContactForm' ) ) {
+		return;
+	}
+
+	if ( get_option( 'llb_cf7_form_v2' ) ) {
+		return;
+	}
+
+	$form_id = llb_find_default_cf7_form_id();
+	if ( ! $form_id ) {
+		$form_id = llb_create_default_cf7_form();
+	}
+
+	if ( $form_id ) {
+		$contact_form = WPCF7_ContactForm::get_instance( $form_id );
+		if ( $contact_form instanceof WPCF7_ContactForm ) {
+			llb_apply_default_cf7_form_content( $contact_form );
+			$contact_form->save();
+		}
+
+		$current = trim( (string) get_theme_mod( 'llb_cf7_shortcode', '' ) );
+		if ( '' === $current ) {
+			set_theme_mod( 'llb_cf7_shortcode', llb_cf7_shortcode_for_id( $form_id ) );
+		}
+	}
+
+	update_option( 'llb_cf7_form_v2', '1' );
+}
+add_action( 'admin_init', 'llb_maybe_migrate_default_cf7_form_v2', 31 );
 
 /**
  * Ensures the default CF7 form exists once per theme version.

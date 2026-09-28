@@ -18,6 +18,7 @@
   --wrap:1240px; --pad:clamp(20px,5vw,48px);
   --sec:clamp(64px,10vw,128px);
   --header:72px;
+  --radius:12px;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:var(--header);-webkit-text-size-adjust:100%}
@@ -39,7 +40,7 @@ p:last-child{margin-bottom:0}
 .rule::before{background:var(--red)}.rule::after{background:var(--green)}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;font-family:var(--head);font-weight:600;font-size:17px;text-decoration:none;border:2px solid transparent;transition:background .2s,color .2s,border-color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;font-family:var(--head);font-weight:600;font-size:17px;text-decoration:none;border:2px solid transparent;border-radius:var(--radius);transition:background .2s,color .2s,border-color .2s}
 .btn svg{width:18px;height:18px;transition:transform .2s}
 .btn:hover svg{transform:translateX(4px)}
 .btn-red{background:var(--red);color:#fff}.btn-red:hover{background:var(--red-dark)}
@@ -181,7 +182,7 @@ p:last-child{margin-bottom:0}
 .qa{border-top:1px solid #D6D4CF}
 .qa:last-child{border-bottom:1px solid #D6D4CF}
 .qa button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;min-height:64px;background:none;border:0;cursor:pointer;text-align:left;font-family:var(--head);font-weight:600;font-size:clamp(18px,1.6vw,21px);color:var(--black)}
-.qa-x{flex:none;width:36px;height:36px;border:1.5px solid var(--black);display:grid;place-items:center;transition:background .25s,border-color .25s,transform .3s}
+.qa-x{flex:none;width:36px;height:36px;border:1.5px solid var(--black);border-radius:var(--radius);display:grid;place-items:center;transition:background .25s,border-color .25s,transform .3s}
 .qa-x svg{width:16px;height:16px;stroke:var(--black);stroke-width:2.2;fill:none;transition:stroke .25s}
 .qa.open .qa-x{background:var(--red);border-color:var(--red);transform:rotate(45deg)}
 .qa.open .qa-x svg{stroke:#fff}
@@ -302,7 +303,7 @@ p:last-child{margin-bottom:0}
 /* filter */
 .pfilter{display:flex;gap:8px;margin:clamp(48px,6vw,80px) 0 clamp(28px,3vw,40px);overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-right:calc(var(--pad) * -1);padding-right:var(--pad)}
 .pfilter::-webkit-scrollbar{display:none}
-.pfilter a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1.5px solid var(--line);font-family:var(--head);font-weight:600;font-size:16px;color:var(--black);text-decoration:none;transition:background .2s,border-color .2s,color .2s}
+.pfilter a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1.5px solid var(--line);border-radius:var(--radius);font-family:var(--head);font-weight:600;font-size:16px;color:var(--black);text-decoration:none;transition:background .2s,border-color .2s,color .2s}
 .pfilter a:hover{border-color:var(--black)}
 .pfilter a[aria-current]{background:var(--black);border-color:var(--black);color:#fff}
 @media (min-width:768px){.pfilter{flex-wrap:wrap;overflow:visible;margin-right:0;padding-right:0}}
@@ -322,7 +323,7 @@ p:last-child{margin-bottom:0}
 
 /* pagination (?pagina=) */
 .pager{display:flex;gap:8px;justify-content:center;margin-top:clamp(48px,6vw,72px)}
-.pager a,.pager span{display:grid;place-items:center;min-width:44px;height:44px;padding:0 12px;border:1.5px solid var(--line);font-family:var(--head);font-weight:600;color:var(--black);text-decoration:none}
+.pager a,.pager span{display:grid;place-items:center;min-width:44px;height:44px;padding:0 12px;border:1.5px solid var(--line);border-radius:var(--radius);font-family:var(--head);font-weight:600;color:var(--black);text-decoration:none}
 .pager a:hover{border-color:var(--black)}
 .pager [aria-current]{background:var(--red);border-color:var(--red);color:#fff}
 
@@ -356,6 +357,7 @@ a.cinfo-v:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .cfaq .link svg{display:inline-block;vertical-align:-3px;margin-left:6px}
 
 /* form — markup as Contact Form 7 renders it */
+.wpcf7 .hidden-fields-container{border:0;padding:0;margin:0;min-width:0}
 .wpcf7-form{margin-top:clamp(32px,4vw,48px)}
 .llb-form{overflow-x:clip}
 .llb-form__grid{display:grid;gap:20px}
@@ -363,7 +365,7 @@ a.cinfo-v:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .llb-field{display:block}
 .llb-field__label{display:block;font-family:var(--head);font-weight:600;font-size:16px;color:var(--black);margin-bottom:8px}
 .wpcf7-form-control-wrap{display:block;position:relative}
-.wpcf7-text,.wpcf7-email,.wpcf7-tel,.wpcf7-select,.wpcf7-textarea{width:100%;min-height:54px;padding:14px 16px;border:1.5px solid #D6D4CF;border-radius:0;background:#fff;font:inherit;font-size:16px;color:var(--black);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+.wpcf7-text,.wpcf7-email,.wpcf7-tel,.wpcf7-select,.wpcf7-textarea{width:100%;min-height:54px;padding:14px 16px;border:1.5px solid #D6D4CF;border-radius:var(--radius);background:#fff;font:inherit;font-size:16px;color:var(--black);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
 .wpcf7-textarea{min-height:160px;resize:vertical;line-height:1.6}
 .wpcf7-select{padding-right:48px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231F1F1F' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:18px;cursor:pointer}
 .wpcf7-text:hover,.wpcf7-email:hover,.wpcf7-tel:hover,.wpcf7-select:hover,.wpcf7-textarea:hover{border-color:#B9B7B1}
@@ -373,7 +375,7 @@ a.cinfo-v:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .llb-form__consent{margin:24px 0}
 .wpcf7-acceptance .wpcf7-list-item{margin:0}
 .wpcf7-acceptance label{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;cursor:pointer;font-size:15px;line-height:1.6}
-.wpcf7-acceptance input{width:24px;height:24px;margin:0;border:1.5px solid #B9B7B1;background:#fff;-webkit-appearance:none;appearance:none;display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
+.wpcf7-acceptance input{width:24px;height:24px;margin:0;border:1.5px solid #B9B7B1;border-radius:6px;background:#fff;-webkit-appearance:none;appearance:none;display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
 .wpcf7-acceptance input:checked{background:var(--red);border-color:var(--red)}
 .wpcf7-acceptance input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
 .wpcf7-acceptance a{color:var(--black);text-decoration:underline;text-underline-offset:3px}
@@ -381,7 +383,7 @@ a.cinfo-v:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 @media (min-width:600px){.wpcf7-submit{width:auto;padding:0 40px}}
 .wpcf7-submit:disabled{opacity:.5;cursor:not-allowed}
 .wpcf7-spinner{margin:0 0 0 16px;vertical-align:middle}
-.wpcf7-response-output{margin:24px 0 0!important;padding:16px 20px!important;border:0!important;border-left:4px solid var(--black)!important;background:var(--stone);font-size:15px}
+.wpcf7-response-output{margin:24px 0 0!important;padding:16px 20px!important;border:0!important;border-left:4px solid var(--black)!important;border-radius:var(--radius);background:var(--stone);font-size:15px}
 .wpcf7-form.sent .wpcf7-response-output{border-left-color:var(--green)!important}
 .wpcf7-form.invalid .wpcf7-response-output,.wpcf7-form.failed .wpcf7-response-output,.wpcf7-form.unaccepted .wpcf7-response-output{border-left-color:var(--red)!important}
 .wpcf7-response-output:empty{display:none}
@@ -448,7 +450,7 @@ a.cinfo-v:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
       <div class="wpcf7">
         <form class="wpcf7-form init" novalidate onsubmit="return false">
           <div class="llb-form">
-            <div class="llb-form__grid"><label class="llb-field"><span class="llb-field__label">Naam *</span><span class="wpcf7-form-control-wrap" data-name="your-name"><input type="text" name="your-name" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" autocomplete="name" aria-required="true"></span></label><label class="llb-field"><span class="llb-field__label">E-mailadres *</span><span class="wpcf7-form-control-wrap" data-name="your-email"><input type="email" name="your-email" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" autocomplete="email" aria-required="true"></span></label><label class="llb-field"><span class="llb-field__label">Telefoonnummer</span><span class="wpcf7-form-control-wrap" data-name="your-phone"><input type="tel" name="your-phone" class="wpcf7-form-control wpcf7-tel wpcf7-text wpcf7-validates-as-tel" autocomplete="tel"></span></label><label class="llb-field"><span class="llb-field__label">Type werkzaamheden *</span><span class="wpcf7-form-control-wrap" data-name="your-service"><select name="your-service" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true"><option value="">—Kies een optie—</option><option value="Badkamers &amp; toiletten">Badkamers &amp; toiletten</option><option value="Renovatie en verbouwing">Renovatie en verbouwing</option><option value="Stucwerk">Stucwerk</option><option value="Tegelwerk">Tegelwerk</option><option value="Timmerwerk">Timmerwerk</option><option value="Schilder- en afbouwwerk">Schilder- en afbouwwerk</option><option value="Keukenverbouwingen">Keukenverbouwingen</option><option value="Aan- en uitbouw">Aan- en uitbouw</option><option value="Overige bouwkundige werkzaamheden">Overige bouwkundige werkzaamheden</option></select></span></label><label class="llb-field llb-field--full"><span class="llb-field__label">Bericht *</span><span class="wpcf7-form-control-wrap" data-name="your-message"><textarea name="your-message" rows="5" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" aria-required="true"></textarea></span></label></div>
+            <div class="llb-form__grid"><label class="llb-field"><span class="llb-field__label">Naam *</span><span class="wpcf7-form-control-wrap" data-name="your-name"><input type="text" name="your-name" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" autocomplete="name" aria-required="true"></span></label><label class="llb-field"><span class="llb-field__label">E-mailadres *</span><span class="wpcf7-form-control-wrap" data-name="your-email"><input type="email" name="your-email" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" autocomplete="email" aria-required="true"></span></label><label class="llb-field"><span class="llb-field__label">Telefoonnummer</span><span class="wpcf7-form-control-wrap" data-name="your-phone"><input type="tel" name="your-phone" class="wpcf7-form-control wpcf7-tel wpcf7-text wpcf7-validates-as-tel" autocomplete="tel"></span></label><label class="llb-field"><span class="llb-field__label">Type werkzaamheden *</span><span class="wpcf7-form-control-wrap" data-name="your-service"><select name="your-service" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true"><option value="">— Kies een optie —</option><option value="Badkamers &amp; toiletten">Badkamers &amp; toiletten</option><option value="Renovatie en verbouwing">Renovatie en verbouwing</option><option value="Stucwerk">Stucwerk</option><option value="Tegelwerk">Tegelwerk</option><option value="Timmerwerk">Timmerwerk</option><option value="Schilder- en afbouwwerk">Schilder- en afbouwwerk</option><option value="Keukenverbouwingen">Keukenverbouwingen</option><option value="Aan- en uitbouw">Aan- en uitbouw</option><option value="Overige bouwkundige werkzaamheden">Overige bouwkundige werkzaamheden</option></select></span></label><label class="llb-field llb-field--full"><span class="llb-field__label">Bericht *</span><span class="wpcf7-form-control-wrap" data-name="your-message"><textarea name="your-message" rows="5" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" aria-required="true"></textarea></span></label></div>
             <div class="llb-form__consent"><span class="wpcf7-form-control-wrap" data-name="privacy-consent"><span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item"><label><input type="checkbox" name="privacy-consent" value="1" aria-invalid="false"><span class="wpcf7-list-item-label">Door dit formulier te versturen, gaat u akkoord met de verwerking van uw gegevens zoals beschreven in onze <a href="#">Privacyverklaring</a>.</span></label></span></span></span></div>
             <input class="wpcf7-form-control wpcf7-submit has-spinner btn btn-red" type="submit" value="Verstuur aanvraag">
           </div>
