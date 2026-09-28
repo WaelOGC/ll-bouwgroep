@@ -535,6 +535,20 @@ function llb_meta_box_page_config() {
 				),
 			),
 		),
+		'llb_faq_nav'                => array(
+			'title'       => __( 'Category navigation', 'll-bouwgroep' ),
+			'context'     => 'normal',
+			'priority'    => 'high',
+			'template'    => $faq,
+			'description' => $page_notice,
+			'fields'      => array(
+				array(
+					'key'   => '_llb_fnav_label',
+					'type'  => 'text',
+					'label' => __( 'Category navigation label', 'll-bouwgroep' ),
+				),
+			),
+		),
 		'llb_faq_questions'          => array(
 			'title'       => __( 'Questions', 'll-bouwgroep' ),
 			'context'     => 'normal',
@@ -585,6 +599,11 @@ function llb_meta_box_page_config() {
 			'template'    => $faq,
 			'description' => $page_notice,
 			'fields'      => array(
+				array(
+					'key'   => '_llb_cta_image',
+					'type'  => 'image',
+					'label' => __( 'Background image', 'll-bouwgroep' ),
+				),
 				array(
 					'key'   => '_llb_cta_heading',
 					'type'  => 'text',

@@ -35,31 +35,62 @@ get_header();
 			)
 		);
 
-		$groups      = llb_get_faq_items_grouped();
+		$groups     = llb_get_faq_items_grouped();
+		$visible    = array();
+		foreach ( $groups as $slug => $group ) {
+			if ( empty( $group['items'] ) ) {
+				continue;
+			}
+			$visible[ $slug ] = $group;
+		}
+
+		$fnav_label = trim( (string) llb_get_meta( $post_id, '_llb_fnav_label' ) );
+		if ( '' === $fnav_label ) {
+			$fnav_label = 'Categorieën';
+		}
+
 		$cta_heading = trim( (string) llb_get_meta( $post_id, '_llb_cta_heading' ) );
 		$cta_btn     = trim( (string) llb_get_meta( $post_id, '_llb_cta_btn_text' ) );
+		$cta_image   = absint( llb_get_meta( $post_id, '_llb_cta_image' ) );
 		?>
 
-		<?php foreach ( $groups as $group ) : ?>
-			<?php if ( empty( $group['items'] ) ) : ?>
-				<?php continue; ?>
-			<?php endif; ?>
-			<section class="llb-section llb-faq-group llb-reveal">
-				<div class="llb-container llb-content-narrow">
-					<span class="llb-accent-line llb-accent-line--red" aria-hidden="true"></span>
-					<h2><?php echo esc_html( $group['label'] ); ?></h2>
-					<?php
-					get_template_part(
-						'template-parts/faq-accordion',
-						null,
-						array(
-							'items' => $group['items'],
-						)
-					);
-					?>
+		<?php if ( ! empty( $visible ) ) : ?>
+			<section class="sec">
+				<div class="wrap fgrid">
+					<nav class="fnav" aria-label="<?php echo esc_attr( $fnav_label ); ?>">
+						<span class="fnav-t"><?php echo esc_html( $fnav_label ); ?></span>
+						<ul>
+							<?php $first = true; ?>
+							<?php foreach ( $visible as $slug => $group ) : ?>
+								<li>
+									<a href="#<?php echo esc_attr( $slug ); ?>"<?php echo $first ? ' aria-current="true"' : ''; ?>>
+										<?php echo esc_html( $group['label'] ); ?>
+									</a>
+								</li>
+								<?php $first = false; ?>
+							<?php endforeach; ?>
+						</ul>
+					</nav>
+					<div>
+						<?php foreach ( $visible as $slug => $group ) : ?>
+							<section class="fcat" id="<?php echo esc_attr( $slug ); ?>">
+								<div class="rule" aria-hidden="true"></div>
+								<h2><?php echo esc_html( $group['label'] ); ?></h2>
+								<?php
+								get_template_part(
+									'template-parts/faq-accordion',
+									null,
+									array(
+										'items' => $group['items'],
+									)
+								);
+								?>
+							</section>
+						<?php endforeach; ?>
+					</div>
 				</div>
 			</section>
-		<?php endforeach; ?>
+		<?php endif; ?>
 
 		<?php
 		get_template_part(
@@ -69,18 +100,11 @@ get_header();
 				'heading'     => $cta_heading,
 				'button_text' => $cta_btn,
 				'button_url'  => llb_page_url( 'contact' ),
+				'image_id'    => $cta_image,
+				'class'       => 'cta--short',
 			)
 		);
-
-		$raw_content = get_post_field( 'post_content', $post_id );
-		if ( is_string( $raw_content ) && '' !== trim( $raw_content ) ) :
-			?>
-			<div class="llb-container">
-				<div class="llb-entry-content">
-					<?php the_content(); ?>
-				</div>
-			</div>
-		<?php endif; ?>
+		?>
 	<?php endwhile; ?>
 </main>
 <?php

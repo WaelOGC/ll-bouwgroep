@@ -66,7 +66,7 @@
 		});
 	}
 
-	/* Home FAQ accordion (design v2) */
+	/* Home / FAQ accordion (design v2) */
 	document.querySelectorAll('.qa > button').forEach(function (btn) {
 		btn.addEventListener('click', function () {
 			var q = btn.parentNode;
@@ -74,6 +74,38 @@
 			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 		});
 	});
+
+	/* FAQ page category scroll-spy (faq-v2) */
+	(function () {
+		var links = [].slice.call(document.querySelectorAll('.fnav a'));
+		if (!links.length || !('IntersectionObserver' in window)) {
+			return;
+		}
+		var map = {};
+		links.forEach(function (a) {
+			map[a.getAttribute('href').slice(1)] = a;
+		});
+		var io = new IntersectionObserver(
+			function (es) {
+				es.forEach(function (e) {
+					if (e.isIntersecting) {
+						links.forEach(function (l) {
+							l.removeAttribute('aria-current');
+						});
+						var a = map[e.target.id];
+						a.setAttribute('aria-current', 'true');
+						if (innerWidth < 1024) {
+							a.scrollIntoView({ block: 'nearest', inline: 'center' });
+						}
+					}
+				});
+			},
+			{ rootMargin: '-30% 0px -60% 0px' }
+		);
+		document.querySelectorAll('.fcat').forEach(function (s) {
+			io.observe(s);
+		});
+	})();
 
 	/* Image reveal (.rv) — hidden only after llb-js + llb-motion */
 	var rvs = document.querySelectorAll('.rv');

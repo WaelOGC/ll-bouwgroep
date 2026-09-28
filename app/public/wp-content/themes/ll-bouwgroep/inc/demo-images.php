@@ -148,6 +148,24 @@ function llb_demo_images() {
 			'page'  => 'contact',
 			'title' => 'Contact hero mobile',
 		),
+		array(
+			'file'  => 'faq-hero.png',
+			'field' => '_llb_hero_image',
+			'page'  => 'veelgestelde-vragen',
+			'title' => 'FAQ hero',
+		),
+		array(
+			'file'  => 'faq-hero-mobile.png',
+			'field' => '_llb_hero_image_mobile',
+			'page'  => 'veelgestelde-vragen',
+			'title' => 'FAQ hero mobile',
+		),
+		array(
+			'reuse' => 'home-cta.png',
+			'field' => '_llb_cta_image',
+			'page'  => 'veelgestelde-vragen',
+			'title' => 'Home CTA',
+		),
 	);
 }
 

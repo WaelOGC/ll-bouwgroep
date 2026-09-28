@@ -216,6 +216,7 @@ function llb_default_pages() {
 			'meta'     => array(
 				'_llb_hero_title'   => 'Veelgestelde vragen',
 				'_llb_hero_intro'   => 'Heeft u een vraag over uw badkamer, toilet of verbouwing? Hieronder vindt u antwoorden op de vragen die wij het vaakst krijgen. Staat uw vraag er niet tussen? Neem gerust contact met ons op.',
+				'_llb_fnav_label'   => 'Categorieën',
 				'_llb_faq_items'    => llb_default_faq_items(),
 				'_llb_cta_heading'  => 'Staat uw vraag er niet tussen?',
 				'_llb_cta_btn_text' => 'Neem contact op',
