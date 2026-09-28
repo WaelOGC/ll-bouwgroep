@@ -44,7 +44,6 @@ function llb_meta_box_page_config() {
 					'type'        => 'image',
 					'label'       => __( 'Hero image (mobile)', 'll-bouwgroep' ),
 					'description' => __( 'Portrait image for phones and portrait tablets. If empty, the desktop hero image is used.', 'll-bouwgroep' ),
-					'templates'   => array( $home ),
 				),
 				array(
 					'key'         => '_llb_hero_title',

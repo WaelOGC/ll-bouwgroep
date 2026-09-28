@@ -15,10 +15,11 @@ get_header();
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
 		<?php
-		$post_id  = get_the_ID();
-		$title    = trim( (string) llb_get_meta( $post_id, '_llb_hero_title' ) );
-		$intro    = (string) llb_get_meta( $post_id, '_llb_hero_intro' );
-		$image_id = absint( llb_get_meta( $post_id, '_llb_hero_image' ) );
+		$post_id   = get_the_ID();
+		$title     = trim( (string) llb_get_meta( $post_id, '_llb_hero_title' ) );
+		$intro     = (string) llb_get_meta( $post_id, '_llb_hero_intro' );
+		$image_id  = absint( llb_get_meta( $post_id, '_llb_hero_image' ) );
+		$mobile_id = absint( llb_get_meta( $post_id, '_llb_hero_image_mobile' ) );
 		if ( '' === $title ) {
 			$title = get_the_title();
 		}
@@ -27,9 +28,10 @@ get_header();
 			'template-parts/page-hero',
 			null,
 			array(
-				'title'    => $title,
-				'intro'    => $intro,
-				'image_id' => $image_id,
+				'title'     => $title,
+				'intro'     => $intro,
+				'image_id'  => $image_id,
+				'mobile_id' => $mobile_id,
 			)
 		);
 

@@ -1751,41 +1751,7 @@ p + p {
 	font-size: 1.25rem;
 }
 
-/* About split sections */
-.llb-about-split--light {
-	background: var(--llb-light);
-}
-
-.llb-about-split__inner {
-	display: grid;
-	gap: var(--llb-space-6);
-	align-items: center;
-}
-
-@media (min-width: 1024px) {
-	.llb-about-split__inner {
-		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-		gap: var(--llb-space-7);
-	}
-}
-
-.llb-about-split__image {
-	width: 100%;
-	height: auto;
-	display: block;
-	border-radius: var(--llb-radius-sm);
-	object-fit: cover;
-}
-
-.llb-about-split__text {
-	margin-top: var(--llb-space-4);
-}
-
-.llb-about-split__text p {
-	max-width: 55ch;
-}
-
-/* About / service steps */
+/* About / service steps (shared with single-dienst) */
 .llb-about-steps__header {
 	display: grid;
 	gap: var(--llb-space-4);
@@ -3088,7 +3054,6 @@ img.llb-home-bath__image,
 img.llb-home-why__image,
 img.llb-gallery__image,
 img.llb-gallery__thumb-image,
-img.llb-about-split__image,
 img.llb-contact-map__image,
 img.llb-page-hero__image,
 img.llb-home-hero__image,
@@ -3122,7 +3087,6 @@ img.llb-cta-band__image {
 }
 
 .llb-contact__layout,
-.llb-about-split__inner,
 .llb-featured-project__inner,
 .llb-home-bath__grid,
 .llb-home-why__grid {

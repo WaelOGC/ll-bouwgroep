@@ -256,3 +256,61 @@ body.admin-bar .mnav{inset:calc(var(--header) + 32px) 0 0 0}
 
 .llb-home{padding-bottom:0}
 .skip-link:focus{position:fixed;top:8px;left:8px;z-index:100;background:#fff;padding:8px 12px}
+
+/* ============ PAGE HERO (inner pages) ============ */
+.phero{position:relative;min-height:clamp(420px,62svh,620px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#2b2621}
+.phero .hero-img{position:absolute;inset:0}
+.phero .hero-img picture{position:absolute;inset:0;display:block}
+.phero .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+body.llb-motion .phero .hero-img img{animation:settle 1.8s cubic-bezier(.2,.7,.2,1) both}
+.phero .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,16,0) 30%,rgba(20,18,16,.55) 62%,rgba(20,18,16,.88) 100%)}
+.phero .hero-in{position:relative;width:100%;padding-bottom:clamp(40px,7vw,88px);padding-top:120px}
+.phero h1{color:#fff;font-size:clamp(40px,6vw,80px);line-height:.98;letter-spacing:-.02em;max-width:none}
+.phero h1 .ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.phero h1 .ln span{display:block}
+body.llb-motion .phero h1 .ln span{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.phero .rule{margin:28px 0 0}
+.phero-intro{margin:24px 0 0;color:rgba(255,255,255,.9);font-size:clamp(17px,1.4vw,21px);max-width:44ch}
+body.llb-motion .phero-intro{animation:fade 1s .4s both}
+@media (min-width:1024px){
+  .phero .hero-img img{object-position:center}
+  .phero .hero-img::after{background:linear-gradient(90deg,rgba(20,18,16,.78) 0%,rgba(20,18,16,.45) 38%,rgba(20,18,16,0) 62%),linear-gradient(180deg,rgba(20,18,16,0) 55%,rgba(20,18,16,.45) 100%)}
+}
+
+/* ============ SPLIT (text + image) ============ */
+.split{display:grid;gap:40px;align-items:center}
+.split-body{margin-top:28px}
+.split-body p{font-size:clamp(16px,1.2vw,18px)}
+.split-img{margin:0 calc(var(--pad) * -1)}
+.split-img img{width:100%;aspect-ratio:4/3;object-fit:cover}
+@media (min-width:768px){.split-img{margin:0}}
+@media (min-width:1024px){
+  .split{grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,80px)}
+  .split-img img{aspect-ratio:1/1}
+  .split--rev .split-img{order:-1}
+}
+.why .split-body p{color:rgba(255,255,255,.78)}
+
+/* ============ STEPS ============ */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:40px}
+@media (min-width:768px){.steps{grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,32px)}}
+.step{position:relative}
+.step-img{overflow:hidden;background:var(--stone)}
+.step-img img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+body.llb-motion .step:hover .step-img img{transform:scale(1.04)}
+.step-no{display:block;font-family:var(--head);font-weight:700;font-size:clamp(40px,4vw,56px);line-height:1;color:var(--red);margin:24px 0 12px;letter-spacing:-.02em}
+.step h3{margin-bottom:8px}
+.step p{font-size:15px;line-height:1.6;margin:0;max-width:none}
+@media (min-width:768px) and (max-width:1023px){.step-img img{aspect-ratio:4/5}}
+
+@media (prefers-reduced-motion:reduce){
+  body.llb-motion .phero .hero-img img,
+  body.llb-motion .phero h1 .ln span,
+  body.llb-motion .phero-intro{animation:none!important}
+  .step-img img{transition:none!important}
+  body.llb-motion .step:hover .step-img img{transform:none}
+}
+
+.cta .wrap{position:relative}
+.llb-page-about{padding-bottom:0}
+

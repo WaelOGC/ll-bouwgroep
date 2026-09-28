@@ -11,14 +11,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 ?>
-<main id="main" class="llb-main llb-page-about">
+<main id="main" class="llb-page-about">
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
 		<?php
-		$post_id  = get_the_ID();
-		$title    = trim( (string) llb_get_meta( $post_id, '_llb_hero_title' ) );
-		$intro    = (string) llb_get_meta( $post_id, '_llb_hero_intro' );
-		$image_id = absint( llb_get_meta( $post_id, '_llb_hero_image' ) );
+		$post_id   = get_the_ID();
+		$title     = trim( (string) llb_get_meta( $post_id, '_llb_hero_title' ) );
+		$intro     = trim( (string) llb_get_meta( $post_id, '_llb_hero_intro' ) );
+		$image_id  = absint( llb_get_meta( $post_id, '_llb_hero_image' ) );
+		$mobile_id = absint( llb_get_meta( $post_id, '_llb_hero_image_mobile' ) );
 		if ( '' === $title ) {
 			$title = get_the_title();
 		}
@@ -27,19 +28,17 @@ get_header();
 			'template-parts/page-hero',
 			null,
 			array(
-				'title'    => $title,
-				'intro'    => $intro,
-				'image_id' => $image_id,
+				'title'     => $title,
+				'intro'     => $intro,
+				'image_id'  => $image_id,
+				'mobile_id' => $mobile_id,
 			)
 		);
-
-		get_template_part( 'template-parts/usp-strip' );
 
 		$sections = llb_get_meta( $post_id, '_llb_sections' );
 		if ( ! is_array( $sections ) ) {
 			$sections = array();
 		}
-
 		$section_1 = isset( $sections[0] ) && is_array( $sections[0] ) ? $sections[0] : null;
 		$section_2 = isset( $sections[1] ) && is_array( $sections[1] ) ? $sections[1] : null;
 		$section_3 = isset( $sections[2] ) && is_array( $sections[2] ) ? $sections[2] : null;
@@ -57,39 +56,34 @@ get_header();
 			$s1_image   = isset( $section_1['image'] ) ? absint( $section_1['image'] ) : 0;
 			if ( '' !== $s1_heading || '' !== $s1_text || $s1_image ) :
 				?>
-				<section class="llb-section llb-about-split llb-reveal">
-					<div class="llb-container llb-about-split__inner">
-						<div class="llb-about-split__copy">
+				<section class="sec">
+					<div class="wrap split">
+						<div class="split-text">
 							<?php if ( '' !== $s1_heading ) : ?>
-								<span class="llb-accent-line llb-accent-line--red" aria-hidden="true"></span>
+								<div class="rule" aria-hidden="true"></div>
 								<h2><?php echo esc_html( $s1_heading ); ?></h2>
 							<?php endif; ?>
 							<?php if ( '' !== $s1_text ) : ?>
-								<div class="llb-about-split__text">
+								<div class="split-body">
 									<?php echo llb_paragraphs( $s1_text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 								</div>
 							<?php endif; ?>
 						</div>
-						<div class="llb-about-split__media">
-							<?php if ( $s1_image ) : ?>
+						<?php if ( $s1_image ) : ?>
+							<div class="split-img rv">
 								<?php
 								echo wp_get_attachment_image(
 									$s1_image,
-									'large',
+									'llb-card',
 									false,
 									array(
-										'class'    => 'llb-about-split__image',
 										'loading'  => 'lazy',
 										'decoding' => 'async',
 									)
 								);
 								?>
-							<?php else : ?>
-								<div class="llb-media-placeholder llb-media-placeholder--tall" aria-hidden="true">
-									<span class="llb-accent-line"></span>
-								</div>
-							<?php endif; ?>
-						</div>
+							</div>
+						<?php endif; ?>
 					</div>
 				</section>
 			<?php endif; ?>
@@ -102,35 +96,30 @@ get_header();
 			$s2_image   = isset( $section_2['image'] ) ? absint( $section_2['image'] ) : 0;
 			if ( '' !== $s2_heading || '' !== $s2_text || $s2_image ) :
 				?>
-				<section class="llb-section llb-about-split llb-about-split--reverse llb-about-split--light llb-reveal">
-					<div class="llb-container llb-about-split__inner">
-						<div class="llb-about-split__media">
-							<?php if ( $s2_image ) : ?>
+				<section class="sec why">
+					<div class="wrap split split--rev">
+						<?php if ( $s2_image ) : ?>
+							<div class="split-img rv">
 								<?php
 								echo wp_get_attachment_image(
 									$s2_image,
-									'large',
+									'llb-card',
 									false,
 									array(
-										'class'    => 'llb-about-split__image',
 										'loading'  => 'lazy',
 										'decoding' => 'async',
 									)
 								);
 								?>
-							<?php else : ?>
-								<div class="llb-media-placeholder llb-media-placeholder--tall" aria-hidden="true">
-									<span class="llb-accent-line"></span>
-								</div>
-							<?php endif; ?>
-						</div>
-						<div class="llb-about-split__copy">
+							</div>
+						<?php endif; ?>
+						<div class="split-text">
 							<?php if ( '' !== $s2_heading ) : ?>
-								<span class="llb-accent-line llb-accent-line--red" aria-hidden="true"></span>
+								<div class="rule" aria-hidden="true"></div>
 								<h2><?php echo esc_html( $s2_heading ); ?></h2>
 							<?php endif; ?>
 							<?php if ( '' !== $s2_text ) : ?>
-								<div class="llb-about-split__text">
+								<div class="split-body">
 									<?php echo llb_paragraphs( $s2_text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 								</div>
 							<?php endif; ?>
@@ -143,21 +132,33 @@ get_header();
 		<?php
 		$s3_heading = $section_3 && isset( $section_3['heading'] ) ? trim( (string) $section_3['heading'] ) : '';
 		$s3_text    = $section_3 && isset( $section_3['text'] ) ? trim( (string) $section_3['text'] ) : '';
-		$has_steps  = ! empty( $steps );
+		$has_steps  = false;
+		foreach ( $steps as $step_check ) {
+			if ( ! is_array( $step_check ) ) {
+				continue;
+			}
+			$st = isset( $step_check['title'] ) ? trim( (string) $step_check['title'] ) : '';
+			$sx = isset( $step_check['text'] ) ? trim( (string) $step_check['text'] ) : '';
+			$si = isset( $step_check['image'] ) ? absint( $step_check['image'] ) : 0;
+			if ( '' !== $st || '' !== $sx || $si ) {
+				$has_steps = true;
+				break;
+			}
+		}
 		if ( '' !== $s3_heading || '' !== $s3_text || $has_steps ) :
 			?>
-			<section class="llb-section llb-about-steps llb-reveal">
-				<div class="llb-container">
+			<section class="sec">
+				<div class="wrap">
 					<?php if ( '' !== $s3_heading || '' !== $s3_text ) : ?>
-						<div class="llb-about-steps__header">
+						<div class="svc-head">
 							<?php if ( '' !== $s3_heading ) : ?>
-								<div class="llb-about-steps__heading">
-									<span class="llb-accent-line llb-accent-line--red" aria-hidden="true"></span>
+								<div>
+									<div class="rule" aria-hidden="true"></div>
 									<h2><?php echo esc_html( $s3_heading ); ?></h2>
 								</div>
 							<?php endif; ?>
 							<?php if ( '' !== $s3_text ) : ?>
-								<div class="llb-about-steps__intro">
+								<div>
 									<?php echo llb_paragraphs( $s3_text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 								</div>
 							<?php endif; ?>
@@ -165,7 +166,7 @@ get_header();
 					<?php endif; ?>
 
 					<?php if ( $has_steps ) : ?>
-						<ul class="llb-about-steps__list">
+						<ol class="steps">
 							<?php foreach ( $steps as $index => $step ) : ?>
 								<?php
 								if ( ! is_array( $step ) ) {
@@ -179,41 +180,32 @@ get_header();
 								}
 								$badge = str_pad( (string) ( (int) $index + 1 ), 2, '0', STR_PAD_LEFT );
 								?>
-								<li class="llb-about-steps__item">
-									<div class="llb-step-card">
-										<div class="llb-step-card__media">
-											<?php if ( $step_image ) : ?>
-												<?php
-												echo wp_get_attachment_image(
-													$step_image,
-													'llb-card',
-													false,
-													array(
-														'class'    => 'llb-step-card__image',
-														'loading'  => 'lazy',
-														'decoding' => 'async',
-													)
-												);
-												?>
-											<?php else : ?>
-												<div class="llb-media-placeholder" aria-hidden="true">
-													<span class="llb-accent-line"></span>
-												</div>
-											<?php endif; ?>
-											<span class="llb-step-card__badge" aria-hidden="true"><?php echo esc_html( $badge ); ?></span>
+								<li class="step">
+									<?php if ( $step_image ) : ?>
+										<div class="step-img">
+											<?php
+											echo wp_get_attachment_image(
+												$step_image,
+												'llb-card',
+												false,
+												array(
+													'loading'  => 'lazy',
+													'decoding' => 'async',
+												)
+											);
+											?>
 										</div>
-										<div class="llb-step-card__body">
-											<?php if ( '' !== $step_title ) : ?>
-												<h3><?php echo esc_html( $step_title ); ?></h3>
-											<?php endif; ?>
-											<?php if ( '' !== $step_text ) : ?>
-												<?php echo llb_paragraphs( $step_text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
-											<?php endif; ?>
-										</div>
-									</div>
+									<?php endif; ?>
+									<span class="step-no" aria-hidden="true"><?php echo esc_html( $badge ); ?></span>
+									<?php if ( '' !== $step_title ) : ?>
+										<h3><?php echo esc_html( $step_title ); ?></h3>
+									<?php endif; ?>
+									<?php if ( '' !== $step_text ) : ?>
+										<p><?php echo esc_html( $step_text ); ?></p>
+									<?php endif; ?>
 								</li>
 							<?php endforeach; ?>
-						</ul>
+						</ol>
 					<?php endif; ?>
 				</div>
 			</section>
@@ -231,16 +223,7 @@ get_header();
 				'image_id'    => absint( llb_get_meta( $post_id, '_llb_cta_image' ) ),
 			)
 		);
-
-		$raw_content = get_post_field( 'post_content', $post_id );
-		if ( is_string( $raw_content ) && '' !== trim( $raw_content ) ) :
-			?>
-			<div class="llb-container">
-				<div class="llb-entry-content">
-					<?php the_content(); ?>
-				</div>
-			</div>
-		<?php endif; ?>
+		?>
 	<?php endwhile; ?>
 </main>
 <?php
