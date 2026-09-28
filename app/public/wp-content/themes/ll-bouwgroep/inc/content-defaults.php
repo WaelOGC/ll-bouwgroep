@@ -187,7 +187,7 @@ function llb_default_pages() {
 				'_llb_single_result_heading' => 'Het resultaat',
 				'_llb_single_cta_heading'    => 'Heeft u een vergelijkbaar project?',
 				'_llb_single_cta_text'       => 'Bespreek uw plannen vrijblijvend met L&L Bouwgroep B.V.',
-				'_llb_single_cta_btn_text'   => '',
+				'_llb_single_cta_btn_text'   => 'Vraag een kennismaking aan',
 			),
 		),
 		array(
@@ -878,3 +878,25 @@ function llb_maybe_migrate_service_content_v2() {
 	update_option( 'llb_service_content_v2', '1' );
 }
 add_action( 'admin_init', 'llb_maybe_migrate_service_content_v2' );
+
+/**
+ * One-time set of Projecten page single CTA button when empty.
+ *
+ * @return void
+ */
+function llb_maybe_migrate_project_single_cta_v1() {
+	if ( get_option( 'llb_project_single_cta_v1' ) ) {
+		return;
+	}
+
+	$page_id = function_exists( 'llb_get_projects_page_id' ) ? llb_get_projects_page_id() : 0;
+	if ( $page_id ) {
+		$btn = trim( (string) get_post_meta( $page_id, '_llb_single_cta_btn_text', true ) );
+		if ( '' === $btn ) {
+			update_post_meta( $page_id, '_llb_single_cta_btn_text', 'Vraag een kennismaking aan' );
+		}
+	}
+
+	update_option( 'llb_project_single_cta_v1', '1' );
+}
+add_action( 'admin_init', 'llb_maybe_migrate_project_single_cta_v1' );

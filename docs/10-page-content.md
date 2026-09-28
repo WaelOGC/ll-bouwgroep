@@ -527,16 +527,31 @@ Core message: **L&L Bouwgroep B.V. — Vakmanschap waarop u kunt bouwen.**
   - Aan- en uitbouw
 
 ## 14. Single Project Template
+
+### Hero
 - H1: [Projectnaam]
+- Category label: [project_categorie]
 - Intro: Een project van L&L Bouwgroep B.V.
+
+### Gallery
+- Images from the project gallery, excluding the featured image (already in the hero)
+
+### Over dit project
 - H2: Over dit project
   [Projectbeschrijving]
+
+### Uitgevoerde werkzaamheden
 - H2: Uitgevoerde werkzaamheden
   [Werkzaamheden]
+
+### Het resultaat
 - H2: Het resultaat
   [Beschrijving eindresultaat]
-- CTA H2: Heeft u een vergelijkbaar project?
-  Bespreek uw plannen vrijblijvend met L&L Bouwgroep B.V.
+
+### CTA
+- H2: Heeft u een vergelijkbaar project?
+- Text: Bespreek uw plannen vrijblijvend met L&L Bouwgroep B.V.
+- CTA: Vraag een kennismaking aan
 
 ---
 

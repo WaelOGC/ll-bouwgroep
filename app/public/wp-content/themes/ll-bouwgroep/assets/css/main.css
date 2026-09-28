@@ -1046,60 +1046,6 @@ p + p{
 
 /* Services */
 
-.llb-carousel-btn{
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 2.75rem;
-	height: 2.75rem;
-	min-width: 44px;
-	min-height: 44px;
-	padding: 0;
-	border: 1px solid rgba(31, 31, 31, 0.12);
-	border-radius: 50%;
-	background: var(--llb-white);
-	color: var(--llb-black);
-	box-shadow: var(--llb-shadow);
-	cursor: pointer;
-	transition:
-		background-color var(--llb-transition),
-		color var(--llb-transition),
-		border-color var(--llb-transition),
-		transform var(--llb-transition),
-		box-shadow var(--llb-transition);
-	flex-shrink: 0;
-	z-index: 2;
-}
-
-.llb-carousel-btn .llb-icon{
-	width: 1.1rem;
-	height: 1.1rem;
-}
-
-.llb-carousel-btn--prev .llb-icon{
-	transform: rotate(180deg);
-}
-
-.llb-carousel-btn:hover{
-	background: var(--llb-red);
-	border-color: var(--llb-red);
-	color: var(--llb-white);
-	transform: translateY(-2px);
-	box-shadow: 0 8px 20px rgba(208, 2, 27, 0.25);
-}
-
-.llb-carousel-btn:focus-visible{
-	outline: 2px solid var(--llb-red);
-	outline-offset: 2px;
-}
-
-@media (min-width: 768px){
-	.llb-carousel-btn{
-		width: 3rem;
-		height: 3rem;
-	}
-}
-
 .llb-card{
 	display: flex;
 	flex-direction: column;
@@ -1278,74 +1224,7 @@ p + p{
 
 /* CTA split */
 
-/* Gallery (single project) */
-.llb-gallery__stage{
-	position: relative;
-	border-radius: var(--llb-radius-sm);
-	overflow: hidden;
-	background: var(--llb-black);
-}
-
-.llb-gallery__slide{
-	margin: 0;
-}
-
-.llb-gallery__slide[hidden]{
-	display: none;
-}
-
-.llb-gallery__image{
-	width: 100%;
-	aspect-ratio: 4 / 3;
-	object-fit: cover;
-	display: block;
-}
-
-.llb-gallery__btn{
-	position: absolute;
-	bottom: var(--llb-space-3);
-	z-index: 2;
-}
-
-.llb-gallery__btn--prev{
-	left: var(--llb-space-3);
-}
-
-.llb-gallery__btn--next{
-	right: var(--llb-space-3);
-}
-
-.llb-gallery__thumbs{
-	list-style: none;
-	margin: var(--llb-space-3) 0 0;
-	padding: 0;
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--llb-space-2);
-}
-
-.llb-gallery__thumb{
-	display: block;
-	padding: 0;
-	border: 2px solid transparent;
-	border-radius: var(--llb-radius-sm);
-	overflow: hidden;
-	cursor: pointer;
-	background: none;
-	line-height: 0;
-	transition: border-color var(--llb-transition);
-}
-
-.llb-gallery__thumb.is-active, .llb-gallery__thumb:hover{
-	border-color: var(--llb-red);
-}
-
-.llb-gallery__thumb-image{
-	width: 4.5rem;
-	height: 3.25rem;
-	object-fit: cover;
-	display: block;
-}
+/* Single project gallery styles live in design-v2.css (.gallery / .gal-*) */
 
 /* FAQ page styles live in design-v2.css (.fgrid / .fnav / .fcat / .qa) */
 
@@ -1428,17 +1307,12 @@ p + p{
    Theme-wide responsive polish
    ------------------------------------------------------------------------- */
 
-img.llb-card__image, img.llb-gallery__image, img.llb-gallery__thumb-image{
+img.llb-card__image{
 	object-fit: cover;
 	max-width: 100%;
 }
 
 .llb-nav-toggle{
-	min-width: 44px;
-	min-height: 44px;
-}
-
-.llb-gallery__thumb{
 	min-width: 44px;
 	min-height: 44px;
 }

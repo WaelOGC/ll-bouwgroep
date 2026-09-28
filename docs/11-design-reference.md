@@ -4,6 +4,8 @@ Visual layout and style reference for the L&L Bouwgroep website. **Design = layo
 
 ## Approved page references
 
+The `*-v2.html` files in `docs/design/` are the **only approved design references**. Open them in a browser and match them 1:1 (CSS values, spacing, breakpoints, structure, motion).
+
 | File | Status |
 |------|--------|
 | **`home-v2.html`** | **Approved Home design** (desktop, tablet, phone). Live from theme **0.14.0**. |
@@ -13,19 +15,11 @@ Visual layout and style reference for the L&L Bouwgroep website. **Design = layo
 | **`contact-v2.html`** | **Approved Contact design** (desktop, tablet, phone). Live from theme **0.18.0**. Same design system (`design-v2.css`). |
 | **`faq-v2.html`** | **Approved FAQ design** (desktop, tablet, phone). Live from theme **0.19.0**. Same design system (`design-v2.css`). |
 | **`dienst-v2.html`** | **Approved single service design** (desktop, tablet, phone). Live from theme **0.20.0**. Same design system (`design-v2.css`). Built on Badkamers & toiletten; applies to all 9 services. |
-| `home.png` | Superseded by `home-v2.html` — do not use for new Home work. |
-| `over-ons.png` | Superseded by `over-ons-v2.html` — do not use for new Over ons work. |
-| `diensten.png` | Superseded by `diensten-v2.html` — do not use for new Diensten work. |
-| `projecten.png` | Superseded by `projecten-v2.html` — do not use for new Projecten work. |
-| `contact.png` | Superseded by `contact-v2.html` — do not use for new Contact work. |
+| **`project-v2.html`** | **Approved single project design** (desktop, tablet, phone). Live from theme **0.21.0**. Same design system (`design-v2.css`). Built on Aanbouw met lichtstraat; applies to all projects. |
 
-Open the approved HTML files in a browser and match them 1:1 (CSS values, spacing, breakpoints, structure, motion).
+## Archived PNG references
 
-## Other design images (`docs/design/`)
-
-| File | Shows |
-|------|--------|
-| `home-responsive.png` | Older Home responsive notes (superseded by home-v2.html) |
+Older PNG mockups live in `docs/design/archive/` (`contact.png`, `diensten.png`, `home.png`, `home-responsive.png`, `over-ons.png`, `projecten.png`). They are superseded by the `*-v2.html` files and must not be used for new work.
 
 ## Decisions
 
@@ -37,8 +31,9 @@ Open the approved HTML files in a browser and match them 1:1 (CSS values, spacin
 6. **Contact** follows `contact-v2.html` exactly (page hero, info panel, CF7 form).
 7. **Veelgestelde vragen** follows `faq-v2.html` exactly (page hero, category nav, accordion groups, short CTA).
 8. **Single service** follows `dienst-v2.html` exactly (service hero, intro split, checklist/text sections, steps, related projects/FAQ, other services, CTA).
-9. **No Google Maps embed (AVG).** Contact page shows a static map image with a button "Route bekijken" that opens Google Maps in a new tab. Map image and address are editable in the Customizer.
-10. **All company data comes from the Customizer**, never hard-coded: phone, email, address, KvK, BTW, opening hours, map image. Copyright year is generated automatically. Demo placeholders may be seeded when empty.
-11. **Fonts:** Barlow (headings) + Inter (body), self-hosted.
-12. **Images in the design are placeholders.** They must be replaced by real photos from the client before launch.
-13. **Responsive is mandatory** — see [07-coding-standards.md](07-coding-standards.md).
+9. **Single project** follows `project-v2.html` exactly (project hero with category label, gallery, text + werkzaamheden panel, related projects, CTA).
+10. **No Google Maps embed (AVG).** Contact page shows a static map image with a button "Route bekijken" that opens Google Maps in a new tab. Map image and address are editable in the Customizer.
+11. **All company data comes from the Customizer**, never hard-coded: phone, email, address, KvK, BTW, opening hours, map image. Copyright year is generated automatically. Demo placeholders may be seeded when empty.
+12. **Fonts:** Barlow (headings) + Inter (body), self-hosted.
+13. **Images in the design are placeholders.** They must be replaced by real photos from the client before launch.
+14. **Responsive is mandatory** — see [07-coding-standards.md](07-coding-standards.md).

@@ -15,7 +15,8 @@ $title     = isset( $args['title'] ) ? trim( (string) $args['title'] ) : '';
 $intro     = isset( $args['intro'] ) ? trim( (string) $args['intro'] ) : '';
 $image_id  = isset( $args['image_id'] ) ? absint( $args['image_id'] ) : 0;
 $mobile_id = isset( $args['mobile_id'] ) ? absint( $args['mobile_id'] ) : 0;
-$buttons   = isset( $args['buttons'] ) && is_array( $args['buttons'] ) ? $args['buttons'] : array();
+$buttons    = isset( $args['buttons'] ) && is_array( $args['buttons'] ) ? $args['buttons'] : array();
+$label      = isset( $args['label'] ) ? trim( (string) $args['label'] ) : '';
 $hero_class = isset( $args['class'] ) ? trim( (string) $args['class'] ) : '';
 
 if ( '' === $title && '' === $intro && ! $image_id && ! $mobile_id ) {
@@ -71,6 +72,9 @@ if ( '' !== $hero_class ) {
 		<div class="hero-img" aria-hidden="true"></div>
 	<?php endif; ?>
 	<div class="wrap hero-in">
+		<?php if ( '' !== $label ) : ?>
+			<span class="phero-label"><?php echo esc_html( $label ); ?></span>
+		<?php endif; ?>
 		<?php if ( ! empty( $lines ) ) : ?>
 			<h1>
 				<?php foreach ( $lines as $line ) : ?>

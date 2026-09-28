@@ -473,6 +473,99 @@ function llb_get_project_gallery_ids( $post_id ) {
 }
 
 /**
+ * Gallery IDs for the single project page (excludes featured image; no fallback).
+ *
+ * @param int $post_id Project ID.
+ * @return array<int, int>
+ */
+function llb_get_project_gallery_ids_excluding_featured( $post_id ) {
+	$post_id = absint( $post_id );
+	$ids     = llb_get_meta( $post_id, '_llb_project_gallery' );
+	if ( ! is_array( $ids ) ) {
+		$ids = array();
+	}
+
+	$ids    = array_values( array_filter( array_map( 'absint', $ids ) ) );
+	$thumb  = (int) get_post_thumbnail_id( $post_id );
+	$out    = array();
+
+	foreach ( $ids as $id ) {
+		if ( $thumb && (int) $id === $thumb ) {
+			continue;
+		}
+		$out[] = (int) $id;
+	}
+
+	return array_values( array_unique( $out ) );
+}
+
+/**
+ * Related projects for a single project (same category first, then newest fill).
+ *
+ * @param int $project_id Current project ID.
+ * @param int $limit      Number of projects.
+ * @return array<int, WP_Post>
+ */
+function llb_get_related_projects_for_project( $project_id, $limit = 2 ) {
+	$limit      = max( 1, absint( $limit ) );
+	$project_id = absint( $project_id );
+	$out        = array();
+	$exclude    = array( $project_id );
+
+	$terms = get_the_terms( $project_id, 'project_categorie' );
+	if ( ! is_wp_error( $terms ) && ! empty( $terms[0] ) && $terms[0] instanceof WP_Term ) {
+		$from_cat = get_posts(
+			array(
+				'post_type'      => 'project',
+				'post_status'    => 'publish',
+				'posts_per_page' => $limit,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'post__not_in'   => $exclude,
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'project_categorie',
+						'field'    => 'term_id',
+						'terms'    => array( (int) $terms[0]->term_id ),
+					),
+				),
+			)
+		);
+		if ( is_array( $from_cat ) ) {
+			foreach ( $from_cat as $post ) {
+				if ( $post instanceof WP_Post ) {
+					$out[]     = $post;
+					$exclude[] = (int) $post->ID;
+				}
+			}
+		}
+	}
+
+	$needed = $limit - count( $out );
+	if ( $needed > 0 ) {
+		$rest = get_posts(
+			array(
+				'post_type'      => 'project',
+				'post_status'    => 'publish',
+				'posts_per_page' => $needed,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'post__not_in'   => $exclude,
+			)
+		);
+		if ( is_array( $rest ) ) {
+			foreach ( $rest as $post ) {
+				if ( $post instanceof WP_Post ) {
+					$out[] = $post;
+				}
+			}
+		}
+	}
+
+	return array_slice( $out, 0, $limit );
+}
+
+/**
  * FAQ category labels in display order.
  *
  * @return array<string, string>
