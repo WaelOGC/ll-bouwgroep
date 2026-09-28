@@ -136,6 +136,18 @@ function llb_demo_images() {
 			'page'  => 'projecten',
 			'title' => 'Projects hero mobile',
 		),
+		array(
+			'file'  => 'contact-hero.png',
+			'field' => '_llb_hero_image',
+			'page'  => 'contact',
+			'title' => 'Contact hero',
+		),
+		array(
+			'file'  => 'contact-hero-mobile.png',
+			'field' => '_llb_hero_image_mobile',
+			'page'  => 'contact',
+			'title' => 'Contact hero mobile',
+		),
 	);
 }
 

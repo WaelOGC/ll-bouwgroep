@@ -10,10 +10,12 @@ Visual layout and style reference for the L&L Bouwgroep website. **Design = layo
 | **`over-ons-v2.html`** | **Approved Over ons design** (desktop, tablet, phone). Live from theme **0.15.0**. Same design system as Home (`design-v2.css`). |
 | **`diensten-v2.html`** | **Approved Diensten design** (desktop, tablet, phone). Live from theme **0.16.0**. Same design system (`design-v2.css`). |
 | **`projecten-v2.html`** | **Approved Projecten design** (desktop, tablet, phone). Live from theme **0.17.0**. Same design system (`design-v2.css`). |
+| **`contact-v2.html`** | **Approved Contact design** (desktop, tablet, phone). Live from theme **0.18.0**. Same design system (`design-v2.css`). |
 | `home.png` | Superseded by `home-v2.html` — do not use for new Home work. |
 | `over-ons.png` | Superseded by `over-ons-v2.html` — do not use for new Over ons work. |
 | `diensten.png` | Superseded by `diensten-v2.html` — do not use for new Diensten work. |
 | `projecten.png` | Superseded by `projecten-v2.html` — do not use for new Projecten work. |
+| `contact.png` | Superseded by `contact-v2.html` — do not use for new Contact work. |
 
 Open the approved HTML files in a browser and match them 1:1 (CSS values, spacing, breakpoints, structure, motion).
 
@@ -22,7 +24,6 @@ Open the approved HTML files in a browser and match them 1:1 (CSS values, spacin
 | File | Shows |
 |------|--------|
 | `home-responsive.png` | Older Home responsive notes (superseded by home-v2.html) |
-| `contact.png` | Contact page |
 
 ## Decisions
 
@@ -31,8 +32,9 @@ Open the approved HTML files in a browser and match them 1:1 (CSS values, spacin
 3. **Over ons** follows `over-ons-v2.html` exactly (page hero, splits, steps, CTA).
 4. **Diensten** follows `diensten-v2.html` exactly (page hero, service cards).
 5. **Projecten** follows `projecten-v2.html` exactly (page hero, intro, featured block, filter, grid, pagination).
-6. **No Google Maps embed (AVG).** Contact page shows a static map image with a button "Route bekijken" that opens Google Maps in a new tab. Map image and address are editable in the Customizer.
-7. **All company data comes from the Customizer**, never hard-coded: phone, email, address, KvK, BTW, opening hours, map image. Copyright year is generated automatically. Demo placeholders may be seeded when empty.
-8. **Fonts:** Barlow (headings) + Inter (body), self-hosted.
-9. **Images in the design are placeholders.** They must be replaced by real photos from the client before launch.
-10. **Responsive is mandatory** — see [07-coding-standards.md](07-coding-standards.md).
+6. **Contact** follows `contact-v2.html` exactly (page hero, info panel, CF7 form).
+7. **No Google Maps embed (AVG).** Contact page shows a static map image with a button "Route bekijken" that opens Google Maps in a new tab. Map image and address are editable in the Customizer.
+8. **All company data comes from the Customizer**, never hard-coded: phone, email, address, KvK, BTW, opening hours, map image. Copyright year is generated automatically. Demo placeholders may be seeded when empty.
+9. **Fonts:** Barlow (headings) + Inter (body), self-hosted.
+10. **Images in the design are placeholders.** They must be replaced by real photos from the client before launch.
+11. **Responsive is mandatory** — see [07-coding-standards.md](07-coding-standards.md).
