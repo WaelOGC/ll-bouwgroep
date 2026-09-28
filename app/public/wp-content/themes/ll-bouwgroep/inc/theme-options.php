@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme Options (Appearance → Theme Options).
+ * Theme Options (top-level admin menu).
  *
  * @package LL_Bouwgroep
  */
@@ -99,14 +99,25 @@ function llb_register_theme_options() {
 add_action( 'admin_init', 'llb_register_theme_options' );
 
 /**
- * Adds Appearance → Theme Options.
+ * Registers Theme Options as a top-level admin menu (General first).
  *
  * @return void
  */
 function llb_add_theme_options_page() {
-	add_theme_page(
+	add_menu_page(
 		__( 'Theme Options', 'll-bouwgroep' ),
 		__( 'Theme Options', 'll-bouwgroep' ),
+		'manage_options',
+		'llb-theme-options',
+		'llb_render_theme_options_page',
+		'dashicons-admin-generic',
+		61
+	);
+
+	add_submenu_page(
+		'llb-theme-options',
+		__( 'General', 'll-bouwgroep' ),
+		__( 'General', 'll-bouwgroep' ),
 		'manage_options',
 		'llb-theme-options',
 		'llb_render_theme_options_page'
@@ -115,13 +126,42 @@ function llb_add_theme_options_page() {
 add_action( 'admin_menu', 'llb_add_theme_options_page' );
 
 /**
+ * Redirects legacy Appearance URLs to the new Theme Options screens.
+ *
+ * @return void
+ */
+function llb_redirect_legacy_theme_option_pages() {
+	if ( ! is_admin() || empty( $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only redirect.
+		return;
+	}
+
+	$page = sanitize_key( wp_unslash( $_GET['page'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! in_array( $page, array( 'llb-theme-options', 'llb-import-content' ), true ) ) {
+		return;
+	}
+
+	$target = admin_url( 'admin.php?page=' . $page );
+
+	// Already on the new URL.
+	global $pagenow;
+	if ( 'admin.php' === $pagenow ) {
+		return;
+	}
+
+	wp_safe_redirect( $target );
+	exit;
+}
+add_action( 'admin_init', 'llb_redirect_legacy_theme_option_pages', 1 );
+add_action( 'admin_page_access_denied', 'llb_redirect_legacy_theme_option_pages' );
+
+/**
  * Enqueues admin CSS for the Theme Options switches.
  *
  * @param string $hook Current admin page hook.
  * @return void
  */
 function llb_enqueue_theme_options_assets( $hook ) {
-	if ( 'appearance_page_llb-theme-options' !== $hook ) {
+	if ( 'toplevel_page_llb-theme-options' !== $hook ) {
 		return;
 	}
 

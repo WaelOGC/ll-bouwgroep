@@ -10,15 +10,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the import admin page under Appearance.
+ * Registers the import admin page under Theme Options.
  *
  * @return void
  */
 function llb_register_import_page() {
-	add_theme_page(
+	add_submenu_page(
+		'llb-theme-options',
 		__( 'Import default content', 'll-bouwgroep' ),
 		__( 'Import default content', 'll-bouwgroep' ),
-		'edit_theme_options',
+		'manage_options',
 		'llb-import-content',
 		'llb_render_import_page'
 	);
@@ -31,7 +32,7 @@ add_action( 'admin_menu', 'llb_register_import_page' );
  * @return void
  */
 function llb_render_import_page() {
-	if ( ! current_user_can( 'edit_theme_options' ) ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
 

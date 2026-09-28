@@ -70,7 +70,12 @@ ll-bouwgroep/
 
 ## Theme Options
 
-Admin page: **Appearance → Theme Options** (`inc/theme-options.php`). Capability: `manage_options`. English UI labels.
+Top-level admin menu **Theme Options** (`inc/theme-options.php`), directly below Appearance. Capability: `manage_options`. English UI labels.
+
+| Sub-page | Slug | Notes |
+|----------|------|--------|
+| **General** | `admin.php?page=llb-theme-options` | Animations + Projects toggles |
+| **Import default content** | `admin.php?page=llb-import-content` | See default content import below |
 
 | Item | Value |
 |------|--------|
@@ -83,7 +88,7 @@ Admin page: **Appearance → Theme Options** (`inc/theme-options.php`). Capabili
 | **Animations** | No `body.llb-motion` class. All decorative motion (hero entrance, image reveal `.rv`, hover zoom/lift) is gated under that class. FAQ open/close and colour hover feedback stay. Images are visible immediately. `prefers-reduced-motion` still applies when animations are on. |
 | **Projects** | Hides Home “Bekijk ons werk”, related projects on service pages, and Projecten links in menus/templates. Projecten page, singles and category URLs return the theme 404 for visitors (admins still see them with a notice bar). Excluded from core / Yoast / Rank Math sitemaps and site search. CPT stays in the dashboard. |
 
-Saving Theme Options purges LiteSpeed Cache when that plugin is active (`do_action( 'litespeed_purge_all' )`).
+Saving Theme Options purges LiteSpeed Cache when that plugin is active (`do_action( 'litespeed_purge_all' )`). Legacy Appearance URLs (`themes.php?page=llb-theme-options` / `llb-import-content`) redirect to the new screens.
 
 ## Customizer (global settings)
 
@@ -159,7 +164,7 @@ Page meta boxes are registered per template (`template` / `templates` in `llb_me
 
 ### Default content import
 
-- Appearance → **Import default content** (`inc/import.php`)
+- Theme Options → **Import default content** (`inc/import.php`)
 - Defaults from `inc/content-defaults.php` (Dutch text from [10-page-content.md](10-page-content.md))
 - Creates pages, 9 services, FAQ items, Primary/Footer menus; skips existing slugs; never overwrites
 - Service slugs: `badkamers-toiletten`, `renovatie-verbouwing`, `stucwerk`, `tegelwerk`, `timmerwerk`, `schilder-afbouwwerk`, `keukenverbouwingen`, `aan-uitbouw`, `overige-bouwkundige-werkzaamheden`
