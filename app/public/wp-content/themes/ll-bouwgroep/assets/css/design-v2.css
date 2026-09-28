@@ -312,8 +312,8 @@ body.llb-motion .step:hover .step-img img{transform:scale(1.04)}
 .scard-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .scard:hover .scard-media img{transform:scale(1.04)}
 .scard-media--empty{display:grid;place-items:center}
-.scard-media--empty svg{width:72px;height:72px;fill:#D6D4CF;transition:fill .3s}
-.scard:hover .scard-media--empty svg{fill:var(--red)}
+.scard-media--empty > svg{width:72px;height:72px;fill:#D6D4CF;transition:fill .3s}
+.scard:hover .scard-media--empty > svg{fill:var(--red)}
 .scard-ic{position:absolute;left:0;bottom:0;width:52px;height:52px;display:grid;place-items:center;background:var(--red)}
 .scard-ic svg{width:24px;height:24px;fill:#fff}
 .scard h2{font-size:clamp(22px,1.9vw,26px);line-height:1.2;margin:24px 0 12px;letter-spacing:-.01em}
@@ -325,7 +325,7 @@ body.llb-motion .step:hover .step-img img{transform:scale(1.04)}
   body.llb-motion .phero .hero-img img,
   body.llb-motion .phero h1 .ln span,
   body.llb-motion .phero-intro{animation:none!important}
-  .step-img img,.scard-media img,.scard-media--empty svg{transition:none!important}
+  .step-img img,.scard-media img,.scard-media--empty > svg{transition:none!important}
   body.llb-motion .step:hover .step-img img,.scard:hover .scard-media img{transform:none}
 }
 

@@ -275,8 +275,8 @@ p:last-child{margin-bottom:0}
 .scard:hover .scard-media img{transform:scale(1.04)}
 /* fallback when a service has no featured image: brand icon on stone, never an empty box */
 .scard-media--empty{display:grid;place-items:center}
-.scard-media--empty svg{width:72px;height:72px;fill:#D6D4CF;transition:fill .3s}
-.scard:hover .scard-media--empty svg{fill:var(--red)}
+.scard-media--empty > svg{width:72px;height:72px;fill:#D6D4CF;transition:fill .3s}
+.scard:hover .scard-media--empty > svg{fill:var(--red)}
 .scard-ic{position:absolute;left:0;bottom:0;width:52px;height:52px;display:grid;place-items:center;background:var(--red)}
 .scard-ic svg{width:24px;height:24px;fill:#fff}
 .scard h2{font-size:clamp(22px,1.9vw,26px);line-height:1.2;margin:24px 0 12px;letter-spacing:-.01em}
