@@ -25,6 +25,11 @@ function llb_meta_box_config() {
 				'priority' => 'high',
 				'fields'   => array(
 					array(
+						'key'   => '_llb_hero_image',
+						'type'  => 'image',
+						'label' => __( 'Hero image', 'll-bouwgroep' ),
+					),
+					array(
 						'key'         => '_llb_hero_title',
 						'type'        => 'text',
 						'label'       => __( 'Hero title (H1)', 'll-bouwgroep' ),
@@ -85,6 +90,11 @@ function llb_meta_box_config() {
 								'type'  => 'lines',
 								'label' => __( 'List items (one per line, optional)', 'll-bouwgroep' ),
 							),
+							array(
+								'key'   => 'image',
+								'type'  => 'image',
+								'label' => __( 'Image', 'll-bouwgroep' ),
+							),
 						),
 					),
 				),
@@ -118,6 +128,25 @@ function llb_meta_box_config() {
 					),
 				),
 			),
+			'llb_service_related'  => array(
+				'title'    => __( 'Related content', 'll-bouwgroep' ),
+				'context'  => 'normal',
+				'priority' => 'high',
+				'fields'   => array(
+					array(
+						'key'     => '_llb_related_project_cat',
+						'type'    => 'select',
+						'label'   => __( 'Project category', 'll-bouwgroep' ),
+						'options' => llb_service_project_category_options(),
+					),
+					array(
+						'key'     => '_llb_related_faq_cat',
+						'type'    => 'select',
+						'label'   => __( 'FAQ category', 'll-bouwgroep' ),
+						'options' => llb_service_faq_category_options(),
+					),
+				),
+			),
 			'llb_service_cta'      => array(
 				'title'    => __( 'Service call to action', 'll-bouwgroep' ),
 				'context'  => 'normal',
@@ -137,7 +166,7 @@ function llb_meta_box_config() {
 						'key'         => '_llb_cta_button',
 						'type'        => 'text',
 						'label'       => __( 'Button text', 'll-bouwgroep' ),
-						'description' => __( 'The button links to the header button link (Customizer).', 'll-bouwgroep' ),
+						'description' => __( 'The button links to the Contact page.', 'll-bouwgroep' ),
 					),
 				),
 			),

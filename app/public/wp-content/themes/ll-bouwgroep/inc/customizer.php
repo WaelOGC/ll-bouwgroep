@@ -47,6 +47,11 @@ function llb_customizer_defaults() {
 		'llb_cf7_shortcode'      => '',
 		'llb_color_red'          => '#D0021B',
 		'llb_color_green'        => '#0B6B3A',
+		'llb_service_projects_heading' => 'Bekijk ons werk',
+		'llb_service_projects_btn'     => 'Bekijk onze projecten',
+		'llb_service_faq_heading'      => 'Veelgestelde vragen',
+		'llb_service_faq_btn'          => 'Bekijk alle vragen',
+		'llb_service_others_heading'   => 'Onze diensten',
 	);
 }
 
@@ -366,6 +371,76 @@ function llb_customize_register( $wp_customize ) {
 			'section'           => 'llb_section_cf7',
 			'label'             => __( 'Contact Form 7 shortcode', 'll-bouwgroep' ),
 			'description'       => __( 'Paste the shortcode from Contact → Contact Forms. If empty or CF7 is inactive, only contact details are shown.', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	// Service template labels.
+	$wp_customize->add_section(
+		'llb_section_service_template',
+		array(
+			'title'    => __( 'Service template', 'll-bouwgroep' ),
+			'panel'    => 'llb_theme_options',
+			'priority' => 75,
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_service_projects_heading',
+		array(
+			'default'           => $defaults['llb_service_projects_heading'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_service_template',
+			'label'             => __( 'Related projects heading', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_service_projects_btn',
+		array(
+			'default'           => $defaults['llb_service_projects_btn'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_service_template',
+			'label'             => __( 'Related projects button text', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_service_faq_heading',
+		array(
+			'default'           => $defaults['llb_service_faq_heading'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_service_template',
+			'label'             => __( 'Related FAQ heading', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_service_faq_btn',
+		array(
+			'default'           => $defaults['llb_service_faq_btn'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_service_template',
+			'label'             => __( 'Related FAQ button text', 'll-bouwgroep' ),
+			'type'              => 'text',
+		)
+	);
+
+	llb_customizer_add_setting_control(
+		$wp_customize,
+		'llb_service_others_heading',
+		array(
+			'default'           => $defaults['llb_service_others_heading'],
+			'sanitize_callback' => 'sanitize_text_field',
+			'section'           => 'llb_section_service_template',
+			'label'             => __( 'Other services heading', 'll-bouwgroep' ),
 			'type'              => 'text',
 		)
 	);

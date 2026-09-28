@@ -453,6 +453,47 @@ a.cinfo-v:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 @media (min-width:1024px){.fcat{scroll-margin-top:calc(var(--header) + 32px)}}
 .cta--short h2{max-width:none}
 
+/* ============ SINGLE SERVICE ============ */
+.phero-btns{margin-top:28px}
+body.llb-motion .phero-btns{animation:fade 1s .5s both}
+/* intro split: square image */
+.sv-intro .split-img img{aspect-ratio:4/3}
+@media (min-width:1024px){.sv-intro .split-img img{aspect-ratio:1/1}}
+/* werkzaamheden checklist */
+.sv-work{background:var(--stone)}
+.sv-work-grid{display:grid;gap:32px}
+@media (min-width:1024px){.sv-work-grid{grid-template-columns:5fr 7fr;gap:clamp(48px,6vw,96px);align-items:start}}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+@media (min-width:600px){.checks{grid-template-columns:1fr 1fr}}
+.checks li{display:flex;align-items:center;gap:14px;background:#fff;padding:18px 20px;border-radius:var(--radius);font-family:var(--head);font-weight:600;font-size:18px;color:var(--black)}
+.checks li::before{content:"";flex:none;width:28px;height:28px;border-radius:50%;background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat}
+/* werkwijze on dark */
+.sv-steps{list-style:none;margin:clamp(40px,5vw,64px) 0 0;padding:0;display:grid;border-top:1px solid rgba(255,255,255,.14)}
+@media (min-width:768px){.sv-steps{grid-template-columns:repeat(3,1fr)}}
+.sv-steps li{padding:32px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+@media (min-width:768px){.sv-steps li{padding:40px 32px 40px 0;border-bottom:0}.sv-steps li+li{padding-left:32px;border-left:1px solid rgba(255,255,255,.14)}}
+.sv-steps .step-no{margin:0 0 16px}
+.sv-steps h3{color:#fff;margin-bottom:8px}
+.sv-steps p{color:rgba(255,255,255,.78);font-size:16px;margin:0}
+/* section header with link on the right */
+.sec-head{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(32px,4vw,48px)}
+.pgrid--2{grid-template-columns:1fr}
+@media (min-width:600px){.pgrid--2{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.pgrid--2{grid-template-columns:1fr 1fr}}
+/* other services */
+.others{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+@media (min-width:600px){.others{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.others{grid-template-columns:repeat(4,1fr)}}
+.others a{display:flex;align-items:center;gap:14px;min-height:72px;padding:14px 18px;border:1.5px solid var(--line);border-radius:var(--radius);text-decoration:none;color:var(--black);font-family:var(--head);font-weight:600;font-size:17px;line-height:1.25;transition:border-color .2s,background .2s,color .2s}
+.others .o-ic{flex:none;width:40px;height:40px;display:grid;place-items:center;background:var(--stone);border-radius:8px;transition:background .2s}
+.others .o-ic svg{width:22px;height:22px;fill:var(--red);transition:fill .2s}
+.others a:hover{background:var(--black);border-color:var(--black);color:#fff}
+.others a:hover .o-ic{background:var(--red)}
+.others a:hover .o-ic svg{fill:#fff}
+
+.sv-hero .hero-img img{object-position:72% 50%}
+@media (min-width:1024px){.sv-hero .hero-img img{object-position:center}}
+
 @media (prefers-reduced-motion:reduce){
   body.llb-motion .phero .hero-img img,
   body.llb-motion .phero h1 .ln span,
@@ -462,5 +503,5 @@ a.cinfo-v:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 }
 
 .cta .wrap{position:relative}
-.llb-page-about,.llb-page-services,.llb-page-projects,.llb-page-contact,.llb-page-faq{padding-bottom:0}
+.llb-page-about,.llb-page-services,.llb-page-projects,.llb-page-contact,.llb-page-faq,.llb-single-service{padding-bottom:0}
 

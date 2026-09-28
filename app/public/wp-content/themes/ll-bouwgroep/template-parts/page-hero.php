@@ -16,6 +16,7 @@ $intro     = isset( $args['intro'] ) ? trim( (string) $args['intro'] ) : '';
 $image_id  = isset( $args['image_id'] ) ? absint( $args['image_id'] ) : 0;
 $mobile_id = isset( $args['mobile_id'] ) ? absint( $args['mobile_id'] ) : 0;
 $buttons   = isset( $args['buttons'] ) && is_array( $args['buttons'] ) ? $args['buttons'] : array();
+$hero_class = isset( $args['class'] ) ? trim( (string) $args['class'] ) : '';
 
 if ( '' === $title && '' === $intro && ! $image_id && ! $mobile_id ) {
 	return;
@@ -32,8 +33,13 @@ $img_attrs = array(
 	'decoding'      => 'async',
 	'fetchpriority' => 'high',
 );
+
+$section_class = 'phero';
+if ( '' !== $hero_class ) {
+	$section_class .= ' ' . $hero_class;
+}
 ?>
-<section class="phero">
+<section class="<?php echo esc_attr( $section_class ); ?>">
 	<?php if ( $image_id || $mobile_id ) : ?>
 		<div class="hero-img">
 			<?php if ( $image_id && $mobile_id ) : ?>
@@ -77,7 +83,7 @@ $img_attrs = array(
 			<p class="phero-intro"><?php echo esc_html( $intro ); ?></p>
 		<?php endif; ?>
 		<?php if ( ! empty( $buttons ) ) : ?>
-			<div class="hero-btns" style="margin-top:28px">
+			<div class="phero-btns">
 				<?php foreach ( $buttons as $button ) : ?>
 					<?php
 					$btn_text  = isset( $button['text'] ) ? trim( (string) $button['text'] ) : '';

@@ -41,55 +41,71 @@ function llb_breadcrumbs() {
 }
 
 /**
- * Prints FAQPage JSON-LD on the FAQ page template.
+ * Prints FAQPage JSON-LD on the FAQ page and single services with related FAQ.
  *
  * @return void
  */
 function llb_output_faq_schema() {
-	if ( ! is_page() ) {
-		return;
-	}
-
-	if ( 'page-templates/page-faq.php' !== get_page_template_slug() ) {
-		return;
-	}
-
-	/**
-	 * Filters whether the theme outputs FAQPage JSON-LD.
-	 *
-	 * @param bool $output Whether to output FAQ schema. Default true.
-	 */
-	if ( ! apply_filters( 'llb_output_faq_schema', true ) ) {
-		return;
-	}
-
-	$items = llb_get_meta( get_the_ID(), '_llb_faq_items' );
-	if ( ! is_array( $items ) || empty( $items ) ) {
-		return;
-	}
-
 	$entities = array();
 
-	foreach ( $items as $item ) {
-		if ( ! is_array( $item ) ) {
-			continue;
+	if ( is_singular( 'dienst' ) ) {
+		$items = function_exists( 'llb_get_related_faq_for_service' ) ? llb_get_related_faq_for_service( get_the_ID(), 3 ) : array();
+		foreach ( $items as $item ) {
+			if ( ! is_array( $item ) ) {
+				continue;
+			}
+			$question = isset( $item['question'] ) ? trim( (string) $item['question'] ) : '';
+			$answer   = isset( $item['answer'] ) ? trim( (string) $item['answer'] ) : '';
+			if ( '' === $question || '' === $answer ) {
+				continue;
+			}
+			$entities[] = array(
+				'@type'          => 'Question',
+				'name'           => $question,
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => wp_strip_all_tags( $answer ),
+				),
+			);
+		}
+	} elseif ( is_page() && 'page-templates/page-faq.php' === get_page_template_slug() ) {
+		/**
+		 * Filters whether the theme outputs FAQPage JSON-LD on the FAQ page.
+		 *
+		 * @param bool $output Whether to output FAQ schema. Default true.
+		 */
+		if ( ! apply_filters( 'llb_output_faq_schema', true ) ) {
+			return;
 		}
 
-		$question = isset( $item['question'] ) ? trim( (string) $item['question'] ) : '';
-		$answer   = isset( $item['answer'] ) ? trim( (string) $item['answer'] ) : '';
-
-		if ( '' === $question || '' === $answer ) {
-			continue;
+		$items = llb_get_meta( get_the_ID(), '_llb_faq_items' );
+		if ( ! is_array( $items ) || empty( $items ) ) {
+			return;
 		}
 
-		$entities[] = array(
-			'@type'          => 'Question',
-			'name'           => $question,
-			'acceptedAnswer' => array(
-				'@type' => 'Answer',
-				'text'  => wp_strip_all_tags( $answer ),
-			),
-		);
+		foreach ( $items as $item ) {
+			if ( ! is_array( $item ) ) {
+				continue;
+			}
+
+			$question = isset( $item['question'] ) ? trim( (string) $item['question'] ) : '';
+			$answer   = isset( $item['answer'] ) ? trim( (string) $item['answer'] ) : '';
+
+			if ( '' === $question || '' === $answer ) {
+				continue;
+			}
+
+			$entities[] = array(
+				'@type'          => 'Question',
+				'name'           => $question,
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => wp_strip_all_tags( $answer ),
+				),
+			);
+		}
+	} else {
+		return;
 	}
 
 	if ( empty( $entities ) ) {

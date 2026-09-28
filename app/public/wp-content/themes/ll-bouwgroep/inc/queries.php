@@ -535,6 +535,278 @@ function llb_get_faq_items_grouped() {
 }
 
 /**
+ * Parses list lines from a service section list field.
+ *
+ * @param mixed $list_raw Raw list value.
+ * @return array<int, string>
+ */
+function llb_parse_section_list( $list_raw ) {
+	$list = array();
+	if ( '' === trim( (string) $list_raw ) ) {
+		return $list;
+	}
+
+	$parts = preg_split( '/\r\n|\r|\n/', (string) $list_raw );
+	if ( ! is_array( $parts ) ) {
+		return $list;
+	}
+
+	foreach ( $parts as $line ) {
+		$line = trim( (string) $line );
+		if ( '' !== $line ) {
+			$list[] = $line;
+		}
+	}
+
+	return $list;
+}
+
+/**
+ * Strips a leading "1. " style prefix from a step title.
+ *
+ * @param string $title Step title.
+ * @return string
+ */
+function llb_strip_step_number_prefix( $title ) {
+	$title = trim( (string) $title );
+	return (string) preg_replace( '/^\d+\.\s*/u', '', $title );
+}
+
+/**
+ * Project category select options for service related content.
+ *
+ * @return array<string, string>
+ */
+function llb_service_project_category_options() {
+	$options = array(
+		'' => __( '— None —', 'll-bouwgroep' ),
+	);
+
+	if ( ! taxonomy_exists( 'project_categorie' ) ) {
+		return $options;
+	}
+
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'project_categorie',
+			'hide_empty' => false,
+		)
+	);
+
+	if ( is_wp_error( $terms ) || ! is_array( $terms ) ) {
+		return $options;
+	}
+
+	foreach ( $terms as $term ) {
+		if ( $term instanceof WP_Term ) {
+			$options[ $term->slug ] = $term->name;
+		}
+	}
+
+	return $options;
+}
+
+/**
+ * FAQ category select options for service related content.
+ *
+ * @return array<string, string>
+ */
+function llb_service_faq_category_options() {
+	$options = array(
+		'' => __( '— None —', 'll-bouwgroep' ),
+	);
+
+	foreach ( llb_get_faq_category_labels() as $slug => $label ) {
+		$options[ $slug ] = $label;
+	}
+
+	return $options;
+}
+
+/**
+ * Default related-content map by service slug (seeder only).
+ *
+ * @return array<string, array{project_name: string, faq: string}>
+ */
+function llb_default_service_related_map() {
+	return array(
+		'badkamers-toiletten'               => array(
+			'project_name' => 'Badkamers & toiletten',
+			'faq'          => 'badkamer',
+		),
+		'renovatie-verbouwing'              => array(
+			'project_name' => 'Renovatie & verbouwing',
+			'faq'          => 'algemeen',
+		),
+		'keukenverbouwingen'                => array(
+			'project_name' => 'Keukens',
+			'faq'          => 'algemeen',
+		),
+		'aan-uitbouw'                       => array(
+			'project_name' => 'Aan- en uitbouw',
+			'faq'          => 'aanbouw',
+		),
+		'stucwerk'                          => array(
+			'project_name' => '',
+			'faq'          => 'algemeen',
+		),
+		'tegelwerk'                         => array(
+			'project_name' => '',
+			'faq'          => 'algemeen',
+		),
+		'timmerwerk'                        => array(
+			'project_name' => '',
+			'faq'          => 'algemeen',
+		),
+		'schilder-afbouwwerk'               => array(
+			'project_name' => '',
+			'faq'          => 'algemeen',
+		),
+		'overige-bouwkundige-werkzaamheden' => array(
+			'project_name' => '',
+			'faq'          => 'algemeen',
+		),
+	);
+}
+
+/**
+ * Returns related projects for a service (category first, then newest fill).
+ *
+ * @param int $service_id Service post ID.
+ * @param int $limit      Number of projects.
+ * @return array<int, WP_Post>
+ */
+function llb_get_related_projects_for_service( $service_id, $limit = 2 ) {
+	$limit      = max( 1, absint( $limit ) );
+	$service_id = absint( $service_id );
+	$out        = array();
+	$exclude    = array();
+
+	$cat_slug = $service_id ? trim( (string) llb_get_meta( $service_id, '_llb_related_project_cat' ) ) : '';
+	if ( '' !== $cat_slug && taxonomy_exists( 'project_categorie' ) ) {
+		$term = get_term_by( 'slug', $cat_slug, 'project_categorie' );
+		if ( $term instanceof WP_Term ) {
+			$from_cat = get_posts(
+				array(
+					'post_type'      => 'project',
+					'post_status'    => 'publish',
+					'posts_per_page' => $limit,
+					'orderby'        => 'date',
+					'order'          => 'DESC',
+					'tax_query'      => array(
+						array(
+							'taxonomy' => 'project_categorie',
+							'field'    => 'term_id',
+							'terms'    => array( (int) $term->term_id ),
+						),
+					),
+				)
+			);
+			if ( is_array( $from_cat ) ) {
+				foreach ( $from_cat as $post ) {
+					if ( $post instanceof WP_Post ) {
+						$out[]     = $post;
+						$exclude[] = (int) $post->ID;
+					}
+				}
+			}
+		}
+	}
+
+	$needed = $limit - count( $out );
+	if ( $needed > 0 ) {
+		$rest = get_posts(
+			array(
+				'post_type'      => 'project',
+				'post_status'    => 'publish',
+				'posts_per_page' => $needed,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'post__not_in'   => $exclude,
+			)
+		);
+		if ( is_array( $rest ) ) {
+			foreach ( $rest as $post ) {
+				if ( $post instanceof WP_Post ) {
+					$out[] = $post;
+				}
+			}
+		}
+	}
+
+	return array_slice( $out, 0, $limit );
+}
+
+/**
+ * Returns related FAQ items for a service (answered only).
+ *
+ * @param int $service_id Service post ID.
+ * @param int $limit      Max items.
+ * @return array<int, array<string, mixed>>
+ */
+function llb_get_related_faq_for_service( $service_id, $limit = 3 ) {
+	$limit      = max( 1, absint( $limit ) );
+	$service_id = absint( $service_id );
+	$cat        = $service_id ? trim( (string) llb_get_meta( $service_id, '_llb_related_faq_cat' ) ) : '';
+	$labels     = llb_get_faq_category_labels();
+
+	if ( '' === $cat || ! isset( $labels[ $cat ] ) ) {
+		return array();
+	}
+
+	$page_id = llb_get_faq_page_id();
+	if ( ! $page_id ) {
+		return array();
+	}
+
+	$items = llb_get_meta( $page_id, '_llb_faq_items' );
+	if ( ! is_array( $items ) ) {
+		return array();
+	}
+
+	$out = array();
+	foreach ( $items as $item ) {
+		if ( ! is_array( $item ) ) {
+			continue;
+		}
+		$question = isset( $item['question'] ) ? trim( (string) $item['question'] ) : '';
+		$answer   = isset( $item['answer'] ) ? trim( (string) $item['answer'] ) : '';
+		$category = isset( $item['category'] ) ? (string) $item['category'] : '';
+		if ( '' === $question || '' === $answer || $category !== $cat ) {
+			continue;
+		}
+		$out[] = $item;
+		if ( count( $out ) >= $limit ) {
+			break;
+		}
+	}
+
+	return $out;
+}
+
+/**
+ * Returns the home CTA background attachment ID (demo home-cta or Home meta).
+ *
+ * @return int
+ */
+function llb_get_home_cta_image_id() {
+	if ( function_exists( 'llb_find_demo_attachment' ) ) {
+		$demo = llb_find_demo_attachment( 'home-cta.png' );
+		if ( $demo ) {
+			return $demo;
+		}
+	}
+
+	$home_id = function_exists( 'llb_get_demo_page_id_by_slug' ) ? llb_get_demo_page_id_by_slug( 'home' ) : 0;
+	if ( ! $home_id ) {
+		$front = (int) get_option( 'page_on_front' );
+		$home_id = $front ? $front : 0;
+	}
+
+	return $home_id ? absint( get_post_meta( $home_id, '_llb_cta_image', true ) ) : 0;
+}
+
+/**
  * Redirects project category archives to the Projects page filter URL.
  *
  * @return void

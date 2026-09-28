@@ -166,6 +166,132 @@ function llb_demo_images() {
 			'page'  => 'veelgestelde-vragen',
 			'title' => 'Home CTA',
 		),
+		array(
+			'file'      => 'service-badkamers-toiletten-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'badkamers-toiletten',
+			'title'     => 'Service bathrooms hero',
+		),
+		array(
+			'file'      => 'service-badkamers-toiletten.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'badkamers-toiletten',
+			'title'     => 'Service bathrooms',
+		),
+		array(
+			'file'      => 'service-renovatie-verbouwing-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'renovatie-verbouwing',
+			'title'     => 'Service renovation hero',
+		),
+		array(
+			'file'      => 'service-renovatie-verbouwing.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'renovatie-verbouwing',
+			'title'     => 'Service renovation',
+		),
+		array(
+			'file'      => 'service-stucwerk-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'stucwerk',
+			'title'     => 'Service plastering hero',
+		),
+		array(
+			'file'      => 'service-stucwerk.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'stucwerk',
+			'title'     => 'Service plastering',
+		),
+		array(
+			'file'      => 'service-tegelwerk-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'tegelwerk',
+			'title'     => 'Service tiling hero',
+		),
+		array(
+			'file'      => 'service-tegelwerk.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'tegelwerk',
+			'title'     => 'Service tiling',
+		),
+		array(
+			'file'      => 'service-timmerwerk-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'timmerwerk',
+			'title'     => 'Service carpentry hero',
+		),
+		array(
+			'file'      => 'service-timmerwerk.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'timmerwerk',
+			'title'     => 'Service carpentry',
+		),
+		array(
+			'file'      => 'service-schilder-afbouwwerk-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'schilder-afbouwwerk',
+			'title'     => 'Service painting hero',
+		),
+		array(
+			'file'      => 'service-schilder-afbouwwerk.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'schilder-afbouwwerk',
+			'title'     => 'Service painting',
+		),
+		array(
+			'file'      => 'service-keukenverbouwingen-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'keukenverbouwingen',
+			'title'     => 'Service kitchen hero',
+		),
+		array(
+			'file'      => 'service-keukenverbouwingen.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'keukenverbouwingen',
+			'title'     => 'Service kitchen',
+		),
+		array(
+			'file'      => 'service-aan-uitbouw-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'aan-uitbouw',
+			'title'     => 'Service extension hero',
+		),
+		array(
+			'file'      => 'service-aan-uitbouw.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'aan-uitbouw',
+			'title'     => 'Service extension',
+		),
+		array(
+			'file'      => 'service-overige-bouwkundige-werkzaamheden-hero.png',
+			'field'     => '_llb_hero_image',
+			'post_type' => 'dienst',
+			'page'      => 'overige-bouwkundige-werkzaamheden',
+			'title'     => 'Service other hero',
+		),
+		array(
+			'file'      => 'service-overige-bouwkundige-werkzaamheden.png',
+			'field'     => '_thumbnail_id',
+			'post_type' => 'dienst',
+			'page'      => 'overige-bouwkundige-werkzaamheden',
+			'title'     => 'Service other',
+		),
 	);
 }
 
@@ -293,6 +419,37 @@ function llb_get_demo_page_id_by_slug( $slug ) {
 }
 
 /**
+ * Returns a post ID by slug and post type, or 0.
+ *
+ * @param string $slug      Post slug.
+ * @param string $post_type Post type.
+ * @return int
+ */
+function llb_get_demo_post_id_by_slug( $slug, $post_type = 'page' ) {
+	$slug      = sanitize_title( (string) $slug );
+	$post_type = sanitize_key( (string) $post_type );
+	if ( '' === $slug || '' === $post_type ) {
+		return 0;
+	}
+
+	if ( 'page' === $post_type ) {
+		return llb_get_demo_page_id_by_slug( $slug );
+	}
+
+	$posts = get_posts(
+		array(
+			'name'           => $slug,
+			'post_type'      => $post_type,
+			'post_status'    => 'any',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+		)
+	);
+
+	return ! empty( $posts[0] ) ? (int) $posts[0] : 0;
+}
+
+/**
  * Returns the front page ID used for Home demo image fields.
  *
  * @return int
@@ -315,6 +472,14 @@ function llb_assign_demo_image_field( $page_id, $item, $attachment_id ) {
 	$field         = isset( $item['field'] ) ? (string) $item['field'] : '';
 
 	if ( ! $page_id || ! $attachment_id || '' === $field ) {
+		return;
+	}
+
+	if ( '_thumbnail_id' === $field ) {
+		if ( get_post_thumbnail_id( $page_id ) ) {
+			return;
+		}
+		set_post_thumbnail( $page_id, $attachment_id );
 		return;
 	}
 
@@ -355,7 +520,8 @@ function llb_import_demo_images() {
 		$file  = isset( $item['file'] ) ? (string) $item['file'] : '';
 		$reuse = isset( $item['reuse'] ) ? (string) $item['reuse'] : '';
 		$title = isset( $item['title'] ) ? (string) $item['title'] : '';
-		$page  = isset( $item['page'] ) ? (string) $item['page'] : 'home';
+		$page      = isset( $item['page'] ) ? (string) $item['page'] : 'home';
+		$post_type = isset( $item['post_type'] ) ? (string) $item['post_type'] : 'page';
 
 		$attachment_id = 0;
 		if ( '' !== $reuse ) {
@@ -371,7 +537,7 @@ function llb_import_demo_images() {
 			continue;
 		}
 
-		$page_id = llb_get_demo_page_id_by_slug( $page );
+		$page_id = llb_get_demo_post_id_by_slug( $page, $post_type );
 		if ( ! $page_id ) {
 			continue;
 		}
@@ -440,6 +606,39 @@ function llb_seed_demo_service_icons() {
 }
 
 /**
+ * Seeds default related project/FAQ categories on services when empty.
+ *
+ * @return void
+ */
+function llb_seed_demo_service_related() {
+	if ( ! function_exists( 'llb_get_services' ) || ! function_exists( 'llb_default_service_related_map' ) ) {
+		return;
+	}
+
+	$map = llb_default_service_related_map();
+
+	foreach ( llb_get_services() as $service ) {
+		$defaults = isset( $map[ $service->post_name ] ) ? $map[ $service->post_name ] : null;
+		if ( ! $defaults ) {
+			continue;
+		}
+
+		$faq_current = get_post_meta( $service->ID, '_llb_related_faq_cat', true );
+		if ( '' === (string) $faq_current && '' !== $defaults['faq'] ) {
+			update_post_meta( $service->ID, '_llb_related_faq_cat', $defaults['faq'] );
+		}
+
+		$proj_current = get_post_meta( $service->ID, '_llb_related_project_cat', true );
+		if ( '' === (string) $proj_current && '' !== $defaults['project_name'] && taxonomy_exists( 'project_categorie' ) ) {
+			$term = get_term_by( 'name', $defaults['project_name'], 'project_categorie' );
+			if ( $term instanceof WP_Term ) {
+				update_post_meta( $service->ID, '_llb_related_project_cat', $term->slug );
+			}
+		}
+	}
+}
+
+/**
  * Runs demo seeds once per theme version (admin).
  *
  * @return void
@@ -452,6 +651,7 @@ function llb_maybe_seed_demo_data() {
 
 	llb_seed_demo_company_options();
 	llb_seed_demo_service_icons();
+	llb_seed_demo_service_related();
 	update_option( 'llb_demo_data_version', (string) LLB_VERSION );
 }
 add_action( 'admin_init', 'llb_maybe_seed_demo_data' );

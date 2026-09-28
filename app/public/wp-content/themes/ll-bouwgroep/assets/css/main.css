@@ -1272,48 +1272,7 @@ p + p{
 	margin-bottom: var(--llb-space-2);
 }
 
-/* Service detail sections */
-.llb-service-section--light{
-	background: var(--llb-light);
-}
-
-.llb-service-section--white{
-	background: var(--llb-white);
-}
-
-.llb-service-section__text{
-	margin-top: var(--llb-space-4);
-}
-
-.llb-check-list{
-	list-style: none;
-	margin: var(--llb-space-5) 0 0;
-	padding: 0;
-	display: grid;
-	gap: var(--llb-space-3);
-}
-
-.llb-check-list li{
-	display: flex;
-	align-items: flex-start;
-	gap: var(--llb-space-3);
-}
-
-.llb-check-list__icon{
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 1.5rem;
-	height: 1.5rem;
-	flex-shrink: 0;
-	margin-top: 0.1rem;
-	color: var(--llb-red);
-}
-
-.llb-check-list__icon .llb-icon{
-	width: 1.25rem;
-	height: 1.25rem;
-}
+/* Single service styles live in design-v2.css (.sv-hero / .sv-intro / .sv-work / .checks / .sv-steps / .others) */
 
 /* Why */
 
