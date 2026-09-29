@@ -28,8 +28,17 @@
 .llbh-nav a[aria-current="true"]{background:var(--black);color:#fff}
 .llbh-nav a:focus-visible{outline:2px solid #2271b1;outline-offset:1px;box-shadow:none}
 .llbh-nav svg{width:18px;height:18px}
-.llbh-grp{padding:14px 12px 6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);margin-top:6px!important}
-@media (max-width:959px){.llbh-grp{display:none}}
+.llbh-grp{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;margin-top:6px;padding:14px 12px 10px;border:0;border-top:1px solid var(--line);background:none;font-family:inherit;font-size:11px;font-weight:600;line-height:1.2;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;text-align:left}
+.llbh-grp:hover{color:var(--black)}
+.llbh-grp:focus-visible{outline:2px solid #2271b1;outline-offset:-2px;border-radius:8px}
+.llbh-grp-ic{position:relative;flex:none;width:22px;height:22px;border-radius:50%;background:var(--stone);color:var(--black);transition:background .2s,color .2s}
+.llbh-grp-ic::before,.llbh-grp-ic::after{content:"";position:absolute;top:50%;left:50%;width:10px;height:2px;margin:-1px 0 0 -5px;border-radius:1px;background:currentColor;transition:transform .2s}
+.llbh-grp-ic::after{transform:rotate(90deg)}
+.llbh-grp[aria-expanded="true"] .llbh-grp-ic{background:var(--black);color:#fff}
+.llbh-grp[aria-expanded="true"] .llbh-grp-ic::after{transform:rotate(0deg)}
+.llbh-nav .llbh-sub{padding:0 0 4px}
+.llbh-grp[aria-expanded="false"]+.llbh-sub{display:none}
+@media (max-width:959px){.llbh-grp{display:none}.llbh-nav .llbh-grp-item,.llbh-nav .llbh-sub,.llbh-grp[aria-expanded="false"]+.llbh-sub{display:contents}}
 .llbh-art{background:#fff;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:20px;overflow:hidden;scroll-margin-top:52px}
 .llbh-art-h{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:flex-start;padding:22px 24px;border-bottom:1px solid var(--line)}
 .llbh-ic{width:44px;height:44px;border-radius:10px;background:var(--stone);display:grid;place-items:center;color:var(--red);flex:none}

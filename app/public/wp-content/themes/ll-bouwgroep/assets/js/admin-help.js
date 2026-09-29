@@ -17,8 +17,31 @@
 	});
 	/* Active section in the side menu */
 	var links = [].slice.call(root.querySelectorAll('.llbh-nav a[href^="#h-"]'));
+	/* Collapsible groups (+ / −) */
+	var groups = [].slice.call(root.querySelectorAll('.llbh-grp'));
+	function setGroup(btn, open) { btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+	groups.forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			setGroup(btn, btn.getAttribute('aria-expanded') !== 'true');
+		});
+	});
+	function openGroupOf(link) {
+		var item = link.closest('.llbh-grp-item');
+		groups.forEach(function (btn) { setGroup(btn, !!item && btn.parentNode === item); });
+	}
 	function mark(id) {
-		links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + id ? 'true' : 'false'); });
+		links.forEach(function (a) {
+			var on = a.getAttribute('href') === '#' + id;
+			a.setAttribute('aria-current', on ? 'true' : 'false');
+			if (on && a.closest('.llbh-grp-item')) {
+				var btn = a.closest('.llbh-grp-item').querySelector('.llbh-grp');
+				if (btn.getAttribute('aria-expanded') !== 'true') { openGroupOf(a); }
+			}
+		});
+	}
+	if (location.hash) {
+		var start = root.querySelector('.llbh-nav a[href="' + location.hash + '"]');
+		if (start && start.closest('.llbh-grp-item')) { openGroupOf(start); }
 	}
 	if ('IntersectionObserver' in window) {
 		var io = new IntersectionObserver(function (entries) {
