@@ -5,6 +5,14 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.28.0] — 2026-09-29
+
+### Added
+- Help page: Customizer section (intro + 9 sections with screenshots, EN/NL)
+
+### Removed
+- Unused 'Footer logo' Customizer setting
+
 ## [0.27.1] — 2026-09-29
 
 ### Fixed

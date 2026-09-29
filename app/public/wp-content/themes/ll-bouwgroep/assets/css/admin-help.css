@@ -68,3 +68,8 @@
 .llbh-note svg{width:18px;height:18px;margin-top:1px}
 .llbh-note--info{background:#EEF4FA;color:#1E4A73}
 .llbh-note--warn{background:#FFF6E5;color:#7A4B00}
+.llbh-split{display:grid;gap:24px;align-items:start}
+@media (min-width:1100px){.llbh-split{grid-template-columns:300px 1fr}}
+.llbh-split .llbh-shot{margin:0}
+.llbh-split h3{margin-top:0!important}
+.llbh-shot--narrow{max-width:300px}
