@@ -775,7 +775,7 @@ function llb_render_theme_options_page() {
 				<section class="llbo-panel active" id="p-overview" role="tabpanel">
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Overview', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'The status of every feature at a glance. Switch a feature on or off here, or open its section for the settings.', 'll-bouwgroep' ); ?></p>
-					<div class="llbo-ov-llbo-stat">
+					<div class="llbo-ov-stat">
 						<div class="llbo-stat"><b data-count-on>0</b><span><?php echo esc_html__( 'features active', 'll-bouwgroep' ); ?></span></div>
 						<div class="llbo-stat"><b><?php echo esc_html__( 'Live', 'll-bouwgroep' ); ?></b><span><?php echo esc_html__( 'website visible to visitors', 'll-bouwgroep' ); ?></span></div>
 						<div class="llbo-stat"><b><?php echo esc_html( (string) $theme_version ); ?></b><span><?php echo esc_html__( 'theme version', 'll-bouwgroep' ); ?></span></div>
