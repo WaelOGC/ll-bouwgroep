@@ -248,7 +248,8 @@ body.llb-motion .tile:hover .tile-go{transform:translate(3px,-3px)}
 .llb-social--light a{background:var(--stone);color:var(--black)}
 .llb-social--light a:hover{background:var(--red);color:#fff}
 .cinfo .llb-social{margin:0}
-.cinfo-social-only{display:block;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.cinfo-list li.cinfo-social-only{display:block;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.cinfo-list li.cinfo-social-only .llb-social{flex-wrap:nowrap}
 .ftr .llb-social a{display:grid;padding:0;color:#fff}
 .mnav .llb-social a{display:grid;padding:0;font-family:inherit;font-weight:400;font-size:0;color:var(--black)}
 .mnav .llb-social a:hover{color:#fff}
