@@ -35,9 +35,6 @@ function llb_customizer_defaults() {
 		'llb_hours_sunday'       => 'Gesloten',
 		'llb_map_image'          => 0,
 		'llb_map_url'            => '',
-		'llb_social_facebook'    => '',
-		'llb_social_instagram'   => '',
-		'llb_social_linkedin'    => '',
 		'llb_header_cta_text'    => 'Offerte aanvragen',
 		'llb_header_cta_url'     => '',
 		'llb_footer_tagline'     => 'Vakmanschap waarop u kunt bouwen.',
@@ -224,37 +221,6 @@ function llb_customize_register( $wp_customize ) {
 			'type'              => 'url',
 		)
 	);
-
-	// Social media.
-	$wp_customize->add_section(
-		'llb_section_social',
-		array(
-			'title'       => __( 'Social media', 'll-bouwgroep' ),
-			'description' => __( 'Empty = not shown.', 'll-bouwgroep' ),
-			'panel'       => 'llb_theme_options',
-			'priority'    => 40,
-		)
-	);
-
-	$social_fields = array(
-		'llb_social_facebook'  => __( 'Facebook URL', 'll-bouwgroep' ),
-		'llb_social_instagram' => __( 'Instagram URL', 'll-bouwgroep' ),
-		'llb_social_linkedin'  => __( 'LinkedIn URL', 'll-bouwgroep' ),
-	);
-
-	foreach ( $social_fields as $id => $label ) {
-		llb_customizer_add_setting_control(
-			$wp_customize,
-			$id,
-			array(
-				'default'           => $defaults[ $id ],
-				'sanitize_callback' => 'esc_url_raw',
-				'section'           => 'llb_section_social',
-				'label'             => $label,
-				'type'              => 'url',
-			)
-		);
-	}
 
 	// Header.
 	$wp_customize->add_section(

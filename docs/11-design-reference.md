@@ -18,6 +18,7 @@ The `*-v2.html` files in `docs/design/` are the **only approved design reference
 | **`project-v2.html`** | **Approved single project design** (desktop, tablet, phone). Live from theme **0.21.0**. Same design system (`design-v2.css`). Built on Aanbouw met lichtstraat; applies to all projects. |
 | **`privacy-v2.html`** | **Approved Privacyverklaring design** (desktop, tablet, phone). Live from theme **0.22.0**. Same design system (`design-v2.css`). Also the reference for the **default page template** (`page.php`: hero or dark `.thero`, TOC + `.prose`). |
 | **`404-v2.html`** | **Approved 404 design** (desktop, tablet, phone). Live from theme **0.22.0**. Same design system (`design-v2.css`). |
+| **`theme-options-v2.html`** | **Approved Theme Options admin UI** (desktop and phone). Live from theme **0.26.0**. WordPress chrome in the file is mockup only. |
 
 ## Archived PNG references
 
@@ -37,8 +38,9 @@ Older PNG mockups live in `docs/design/archive/` (`contact.png`, `diensten.png`,
 10. **Privacyverklaring** follows `privacy-v2.html` exactly (page hero, sticky TOC, prose, company card).
 11. **Default pages** (`page.php`) follow `privacy-v2.html` structure: image hero or dark `.thero`, TOC when ≥2 H2s, `.prose` content.
 12. **404** follows `404-v2.html` exactly (large light “404”, heading, sub-block, buttons).
-13. **No Google Maps embed (AVG).** Contact page shows a static map image with a button "Route bekijken" that opens Google Maps in a new tab. Map image and address are editable in the Customizer.
-14. **All company data comes from the Customizer**, never hard-coded: phone, email, address, KvK, BTW, opening hours, map image. Copyright year is generated automatically. Demo placeholders may be seeded when empty.
-15. **Fonts:** Barlow (headings) + Inter (body), self-hosted.
-16. **Images in the design are placeholders.** They must be replaced by real photos from the client before launch.
-17. **Responsive is mandatory** — see [07-coding-standards.md](07-coding-standards.md).
+13. **Theme Options admin** follows `theme-options-v2.html` exactly (tabs, cards, switches, save bar, social preview, credit). WordPress admin bar/menu in that file are mockup only.
+14. **No Google Maps embed (AVG).** Contact page shows a static map image with a button "Route bekijken" that opens Google Maps in a new tab. Map image and address are editable in the Customizer.
+15. **All company data comes from the Customizer**, never hard-coded: phone, email, address, KvK, BTW, opening hours, map image. Copyright year is generated automatically. Demo placeholders may be seeded when empty. Social profile URLs live in Theme Options (not the Customizer).
+16. **Fonts:** Barlow (headings) + Inter (body), self-hosted.
+17. **Images in the design are placeholders.** They must be replaced by real photos from the client before launch.
+18. **Responsive is mandatory** — see [07-coding-standards.md](07-coding-standards.md).

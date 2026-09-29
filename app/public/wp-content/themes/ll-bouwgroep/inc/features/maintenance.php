@@ -71,7 +71,16 @@ function llb_handle_regenerate_maintenance_token() {
 
 	llb_maintenance_regenerate_token();
 
-	wp_safe_redirect( add_query_arg( 'llb-token', 'new', admin_url( 'admin.php?page=llb-to-maintenance' ) ) );
+	wp_safe_redirect(
+		add_query_arg(
+			array(
+				'page'      => 'llb-theme-options',
+				'tab'       => 'maint',
+				'llb-token' => 'new',
+			),
+			admin_url( 'admin.php' )
+		)
+	);
 	exit;
 }
 add_action( 'admin_post_llb_regenerate_maintenance_token', 'llb_handle_regenerate_maintenance_token' );
@@ -86,7 +95,7 @@ function llb_maintenance_token_notice() {
 		return;
 	}
 
-	if ( ! isset( $_GET['page'] ) || 'llb-to-maintenance' !== $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! isset( $_GET['page'] ) || 'llb-theme-options' !== $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		return;
 	}
 
@@ -289,7 +298,7 @@ function llb_maintenance_admin_bar_notice() {
 	?>
 	<div class="llb-maintenance-bar" role="status">
 		<?php echo esc_html__( 'Maintenance mode is ON — visitors see the holding page.', 'll-bouwgroep' ); ?>
-		<a href="<?php echo esc_url( admin_url( 'admin.php?page=llb-to-maintenance' ) ); ?>"><?php echo esc_html__( 'Settings', 'll-bouwgroep' ); ?></a>
+		<a href="<?php echo esc_url( admin_url( 'admin.php?page=llb-theme-options&tab=maint' ) ); ?>"><?php echo esc_html__( 'Settings', 'll-bouwgroep' ); ?></a>
 	</div>
 	<style>
 		.llb-maintenance-bar{background:#8a2b06;color:#fff;text-align:center;padding:10px 16px;font:600 14px/1.4 system-ui,-apple-system,sans-serif;position:relative;z-index:100000}

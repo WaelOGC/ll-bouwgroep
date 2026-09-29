@@ -80,31 +80,36 @@ ll-bouwgroep/
 
 Top-level admin menu **Theme Options** (`inc/theme-options.php`), directly below Appearance. Capability: `manage_options`. English UI labels; every value the visitor reads is Dutch.
 
-| Sub-page | Slug | Section key |
-|----------|------|-------------|
-| **General** | `admin.php?page=llb-theme-options` | `general` |
-| **Contact buttons** | `admin.php?page=llb-to-contact` | `contact` |
-| **SEO** | `admin.php?page=llb-to-seo` | `seo` |
-| **Maintenance** | `admin.php?page=llb-to-maintenance` | `maintenance` |
-| **Announcement** | `admin.php?page=llb-to-announcement` | `announcement` |
-| **Tracking** | `admin.php?page=llb-to-tracking` | `tracking` |
-| **Branding** | `admin.php?page=llb-to-branding` | `branding` |
-| **Import default content** | `admin.php?page=llb-import-content` | — (see default content import below) |
+**One page with tabs** (approved admin UI: `docs/design/theme-options-v2.html`). Slug: `admin.php?page=llb-theme-options`. Active tab in the URL (`&tab=` / `#tab`). Old sub-page URLs (`llb-to-*`, `llb-import-content`, legacy Appearance URLs) redirect to the matching tab.
+
+| Tab | `tab` value | Section key |
+|-----|-------------|-------------|
+| Overview | `overview` | — (mirrors toggles) |
+| General | `general` | `general` |
+| Contact buttons | `contact` | `contact` |
+| Social media | `social` | `social` |
+| SEO | `seo` | `seo` |
+| Maintenance | `maint` | `maintenance` |
+| Announcement | `ann` | `announcement` |
+| Tracking | `track` | `tracking` |
+| Branding | `brand` | `branding` |
+| Import content | `import` | — (runs `llb_run_content_import`) |
 
 ### Storage and helpers
 
 | Item | Value |
 |------|--------|
-| Option name | `llb_theme_options` (single array, shared by all sub-pages) |
+| Option name | `llb_theme_options` (single array) |
 | Settings group | `llb_theme_options_group` |
 | Read value | `llb_theme_option( $key )` — toggles return `int`, everything else returns `string` |
 | Read trimmed string | `llb_theme_option_text( $key )` |
 | Read toggle as bool | `llb_theme_option_on( $key )` |
 | Full array | `llb_get_theme_options()` — saved values merged over the defaults |
+| Social links | `llb_get_social_links()` — non-empty profiles in display order |
 | Key types | `llb_theme_options_types()` — `bool`, `text`, `textarea`, `url`, `date`, `tel`, `code`, `consent` |
-| Section ownership | `llb_theme_options_sections()` — which keys each admin page may write |
+| Section ownership | `llb_theme_options_sections()` — keys per tab (for sanitize) |
 
-**Section-scoped saving.** Each page posts a hidden `llb_theme_options[_section]` field. `llb_sanitize_theme_options()` starts from the currently stored array and only writes the keys that belong to that section, so saving one page never resets another page. Checkboxes in the posted section are explicitly set to `0` when unchecked; keys from other sections are ignored even if they are injected into the request.
+**One form, one save.** The page posts `llb_theme_options[_section]=all`. `llb_sanitize_theme_options()` writes every section’s keys in one go (checkboxes become `0` when unchecked). Per-section `_section` values still work for backward compatibility. Admin CSS/JS load only on this page (`assets/css/admin-theme-options.css`, `assets/js/admin-theme-options.js`).
 
 ### Option keys and defaults
 
@@ -119,6 +124,14 @@ Top-level admin menu **Theme Options** (`inc/theme-options.php`), directly below
 | `mobile_bar_enabled` | bool | `0` | Contact buttons |
 | `mobile_bar_call_text` | text | `Bel ons` | Contact buttons |
 | `mobile_bar_quote_text` | text | `Offerte aanvragen` | Contact buttons |
+| `social_instagram` | url | `''` | Social media |
+| `social_facebook` | url | `''` | Social media |
+| `social_linkedin` | url | `''` | Social media |
+| `social_youtube` | url | `''` | Social media |
+| `social_google` | url | `''` | Social media |
+| `social_show_footer` | bool | `1` | Social media |
+| `social_show_contact` | bool | `1` | Social media |
+| `social_show_menu` | bool | `0` | Social media |
 | `schema_local_business` | bool | `1` | SEO |
 | `breadcrumbs` | bool | `1` | SEO |
 | `schema_area_served` | text | `Zoetermeer en omgeving` | SEO |
@@ -142,6 +155,7 @@ Top-level admin menu **Theme Options** (`inc/theme-options.php`), directly below
 
 Consent categories follow the WP Consent API names: `functional`, `preferences`, `statistics`, `marketing`.
 
+Social icons render via `template-parts/social-icons.php` (Instagram → Facebook → LinkedIn → YouTube → Google). Placement toggles gate footer, contact page and phone menu. Former Customizer social mods migrate once into these keys.
 ### What each toggle does
 
 | Toggle | Effect |
@@ -174,7 +188,7 @@ The floating buttons render once through `wp_footer` priority 5 inside `.llb-flo
 
 Tracking snippets are **never** printed when no consent plugin is available. `llb_consent_api_available()` looks for `wp_has_consent()` (WP Consent API) or `cmplz_has_consent()` (Complianz); the dashboard shows an error notice when code is saved without one. Google Analytics and Search Console belong in Site Kit by Google, not in these fields.
 
-Saving Theme Options purges LiteSpeed Cache when that plugin is active (`do_action( 'litespeed_purge_all' )`). Legacy Appearance URLs (`themes.php?page=llb-theme-options` / `llb-import-content`) redirect to the new screens.
+Saving Theme Options purges LiteSpeed Cache when that plugin is active (`do_action( 'litespeed_purge_all' )`). Legacy URLs (`llb-to-*`, `llb-import-content`, Appearance `themes.php?page=…`) redirect to `admin.php?page=llb-theme-options` with the matching `tab`.
 
 ## Customizer (global settings)
 
@@ -187,7 +201,7 @@ Fonts are fixed (self-hosted Barlow + Inter, AVG). Not editable in the Customize
 | Company & contact | `llb_company_name`, `llb_phone`, `llb_email`, `llb_address_street`, `llb_address_postcode`, `llb_address_city`, `llb_kvk`, `llb_btw` | Empty fields hidden on the front end |
 | Opening hours | `llb_hours_monday` … `llb_hours_sunday` | Grouped for display via `llb_get_opening_hours()` |
 | Map | `llb_map_image`, `llb_map_url` | Static image + route URL (fallback from address) |
-| Social media | `llb_social_facebook`, `llb_social_instagram`, `llb_social_linkedin` | Empty = not shown |
+| Social media | Theme Options keys `social_instagram`, `social_facebook`, `social_linkedin`, `social_youtube`, `social_google` | Empty = not shown; placement via `social_show_*` |
 | Header | `llb_header_cta_text`, `llb_header_cta_url` | Empty URL → `/contact/` |
 | Footer | `llb_footer_tagline`, `llb_footer_text`, `llb_footer_copyright` | © + year + company auto-prefixed |
 | Contact form | `llb_cf7_shortcode` | Output in Phase 5 |
@@ -251,7 +265,7 @@ Page meta boxes are registered per template (`template` / `templates` in `llb_me
 
 ### Default content import
 
-- Theme Options → **Import default content** (`inc/import.php`)
+- Theme Options → **Import content** tab (`llb_run_content_import` in `inc/import.php`)
 - Defaults from `inc/content-defaults.php` (Dutch text from [10-page-content.md](10-page-content.md))
 - Creates pages, 9 services, FAQ items, Primary/Footer menus; skips existing slugs; never overwrites
 - Service slugs: `badkamers-toiletten`, `renovatie-verbouwing`, `stucwerk`, `tegelwerk`, `timmerwerk`, `schilder-afbouwwerk`, `keukenverbouwingen`, `aan-uitbouw`, `overige-bouwkundige-werkzaamheden`

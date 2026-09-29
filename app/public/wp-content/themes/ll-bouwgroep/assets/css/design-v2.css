@@ -82,6 +82,7 @@ body.llb-motion .btn:hover svg{transform:translateX(4px)}
 .mnav .sub-menu{list-style:none;margin:0;padding:0 0 12px 16px}
 .mnav .sub-menu a{font-size:18px;padding:10px 0;font-weight:500}
 .mnav .btn{margin-top:auto;width:100%}
+.mnav .llb-social{margin-top:24px}
 .mnav .llb-nav-chevron{display:none}
 @media (min-width:1024px){
   .nav{display:block}.hdr-cta{display:inline-flex}.burger,.mnav{display:none}
@@ -236,7 +237,22 @@ body.llb-motion .tile:hover .tile-go{transform:translate(3px,-3px)}
 .ftr-bot{margin-top:56px;padding:24px 0 calc(24px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:14px;color:rgba(255,255,255,.5)}
 .ftr p{max-width:none}
 
-/* reveal on scroll — visible by default; hide only when JS + motion are ready */
+/* Social icons */
+.llb-social{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.llb-social a{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;text-decoration:none;transition:background .2s,color .2s;flex:none;padding:0;font-size:0;line-height:0}
+.llb-social a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.llb-social svg{width:18px;height:18px;fill:currentColor;display:block}
+.llb-social--footer{margin-top:20px}
+.llb-social--footer a{background:rgba(255,255,255,.08);color:#fff}
+.llb-social--footer a:hover{background:var(--red);color:#fff}
+.llb-social--light a{background:var(--stone);color:var(--black)}
+.llb-social--light a:hover{background:var(--red);color:#fff}
+.cinfo .llb-social{margin:0}
+.cinfo-social-only{display:block;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.ftr .llb-social a{display:grid;padding:0;color:#fff}
+.mnav .llb-social a{display:grid;padding:0;font-family:inherit;font-weight:400;font-size:0;color:var(--black)}
+.mnav .llb-social a:hover{color:#fff}
+
 .rv{clip-path:none}
 html.llb-js body.llb-motion .rv:not(.in){clip-path:inset(0 0 100% 0)}
 html.llb-js body.llb-motion .rv{transition:clip-path .8s cubic-bezier(.2,.7,.2,1)}

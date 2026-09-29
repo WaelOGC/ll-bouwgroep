@@ -108,6 +108,14 @@ get_header();
 								</div>
 							</li>
 						<?php endif; ?>
+						<?php
+						ob_start();
+						get_template_part( 'template-parts/social-icons', null, array( 'variant' => 'contact' ) );
+						$llb_contact_social = trim( (string) ob_get_clean() );
+						if ( '' !== $llb_contact_social ) :
+							?>
+							<li class="cinfo-social-only"><?php echo $llb_contact_social; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- template part escapes its own output. ?></li>
+						<?php endif; ?>
 						<?php if ( '' !== $hours_heading && ! empty( $hours ) ) : ?>
 							<li>
 								<span class="cinfo-ic" aria-hidden="true">

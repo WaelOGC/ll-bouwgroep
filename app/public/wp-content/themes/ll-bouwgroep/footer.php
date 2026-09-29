@@ -61,6 +61,7 @@ if ( '' !== $address ) {
 				<?php if ( '' !== $footer_text ) : ?>
 					<p><?php echo esc_html( $footer_text ); ?></p>
 				<?php endif; ?>
+				<?php get_template_part( 'template-parts/social-icons', null, array( 'variant' => 'footer' ) ); ?>
 			</div>
 			<div>
 				<h4>Navigatie</h4>

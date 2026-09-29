@@ -10,63 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the import admin page under Theme Options.
- *
- * @return void
- */
-function llb_register_import_page() {
-	add_submenu_page(
-		'llb-theme-options',
-		__( 'Import default content', 'll-bouwgroep' ),
-		__( 'Import default content', 'll-bouwgroep' ),
-		'manage_options',
-		'llb-import-content',
-		'llb_render_import_page'
-	);
-}
-add_action( 'admin_menu', 'llb_register_import_page' );
-
-/**
- * Renders the import page.
- *
- * @return void
- */
-function llb_render_import_page() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-
-	$result = null;
-	if ( isset( $_POST['llb_import_content'] ) ) {
-		check_admin_referer( 'llb_import_content' );
-		$result = llb_run_content_import();
-	}
-
-	echo '<div class="wrap">';
-	echo '<h1>' . esc_html__( 'Import default content', 'll-bouwgroep' ) . '</h1>';
-	echo '<p>' . esc_html__( 'Creates pages, services, FAQ and menus with the default Dutch content. Existing items (same slug) are skipped, never overwritten.', 'll-bouwgroep' ) . '</p>';
-
-	if ( is_array( $result ) ) {
-		echo '<div class="notice notice-success is-dismissible"><p>';
-		echo esc_html__( 'Import finished.', 'll-bouwgroep' );
-		echo '</p><ul>';
-		foreach ( $result['created'] as $item ) {
-			echo '<li>' . esc_html( sprintf( /* translators: %s: item label */ __( 'Created: %s', 'll-bouwgroep' ), $item ) ) . '</li>';
-		}
-		foreach ( $result['skipped'] as $item ) {
-			echo '<li>' . esc_html( sprintf( /* translators: %s: item label */ __( 'Skipped: %s', 'll-bouwgroep' ), $item ) ) . '</li>';
-		}
-		echo '</ul></div>';
-	}
-
-	echo '<form method="post">';
-	wp_nonce_field( 'llb_import_content' );
-	submit_button( __( 'Import default content', 'll-bouwgroep' ), 'primary', 'llb_import_content' );
-	echo '</form>';
-	echo '</div>';
-}
-
-/**
  * Runs the default content import.
  *
  * @return array{created: array<int, string>, skipped: array<int, string>}

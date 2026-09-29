@@ -78,5 +78,6 @@ $logo_alt     = '' !== $company_name ? $company_name : get_bloginfo( 'name' );
 	<?php if ( '' !== $cta_text ) : ?>
 		<a class="btn btn-red" href="<?php echo esc_url( $cta_url ); ?>"><?php echo esc_html( $cta_text ); ?></a>
 	<?php endif; ?>
+	<?php get_template_part( 'template-parts/social-icons', null, array( 'variant' => 'menu' ) ); ?>
 </div>
 <?php endif; ?>

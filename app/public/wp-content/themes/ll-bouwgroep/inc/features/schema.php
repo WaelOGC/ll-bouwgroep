@@ -114,17 +114,22 @@ function llb_schema_opening_hours() {
 }
 
 /**
- * Returns the non-empty social profile URLs from the Customizer.
+ * Returns the non-empty social profile URLs for schema sameAs.
+ *
+ * Order: Instagram, Facebook, LinkedIn, YouTube, Google.
  *
  * @return array<int, string>
  */
 function llb_schema_same_as() {
 	$urls = array();
 
-	foreach ( array( 'llb_social_facebook', 'llb_social_instagram', 'llb_social_linkedin' ) as $key ) {
-		$url = trim( (string) llb_get_option( $key ) );
-		if ( '' !== $url ) {
-			$urls[] = $url;
+	if ( ! function_exists( 'llb_get_social_links' ) ) {
+		return $urls;
+	}
+
+	foreach ( llb_get_social_links() as $link ) {
+		if ( ! empty( $link['url'] ) ) {
+			$urls[] = $link['url'];
 		}
 	}
 
