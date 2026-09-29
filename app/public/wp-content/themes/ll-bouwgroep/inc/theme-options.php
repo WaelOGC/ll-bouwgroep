@@ -677,7 +677,7 @@ add_action( 'admin_enqueue_scripts', 'llb_enqueue_theme_options_assets' );
 function llb_theme_options_badge( $key ) {
 	$on = llb_theme_option_on( $key );
 	printf(
-		'<span class="badge%s">%s</span>',
+		'<span class="llbo-badge%s">%s</span>',
 		$on ? '' : ' off',
 		esc_html( $on ? __( 'On', 'll-bouwgroep' ) : __( 'Off', 'll-bouwgroep' ) )
 	);
@@ -692,7 +692,7 @@ function llb_theme_options_badge( $key ) {
  */
 function llb_theme_options_switch( $key, $label ) {
 	?>
-	<label class="sw">
+	<label class="llbo-sw">
 		<input
 			type="checkbox"
 			name="llb_theme_options[<?php echo esc_attr( $key ); ?>]"
@@ -738,7 +738,7 @@ function llb_render_theme_options_page() {
 	<div class="llbo" data-saved="<?php echo $saved ? '1' : '0'; ?>">
 		<header class="llbo-head">
 			<img src="<?php echo esc_url( llb_asset( 'images/logo-header.webp' ) ); ?>" alt="<?php echo esc_attr__( 'L&L Bouwgroep', 'll-bouwgroep' ); ?>">
-			<div class="grow">
+			<div class="llbo-grow">
 				<span class="llbo-rule"></span>
 				<h1><?php echo esc_html__( 'Theme Options', 'll-bouwgroep' ); ?></h1>
 				<p><?php echo esc_html__( 'Control website features. Changes go live after saving (cache is cleared automatically).', 'll-bouwgroep' ); ?></p>
@@ -753,16 +753,16 @@ function llb_render_theme_options_page() {
 			<nav class="llbo-nav" aria-label="<?php echo esc_attr__( 'Theme Options sections', 'll-bouwgroep' ); ?>">
 				<ul role="tablist">
 					<li><button type="button" role="tab" aria-selected="true" data-tab="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><?php echo esc_html__( 'Overview', 'll-bouwgroep' ); ?></button></li>
-					<li class="sep" aria-hidden="true"></li>
-					<li><button type="button" role="tab" aria-selected="false" data-tab="general"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><?php echo esc_html__( 'General', 'll-bouwgroep' ); ?><i class="dot on" data-for="general"></i></button></li>
-					<li><button type="button" role="tab" aria-selected="false" data-tab="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><?php echo esc_html__( 'Contact buttons', 'll-bouwgroep' ); ?><i class="dot" data-for="contact"></i></button></li>
-					<li><button type="button" role="tab" aria-selected="false" data-tab="social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><?php echo esc_html__( 'Social media', 'll-bouwgroep' ); ?><i class="dot on" data-for="social"></i></button></li>
-					<li><button type="button" role="tab" aria-selected="false" data-tab="seo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><?php echo esc_html__( 'SEO', 'll-bouwgroep' ); ?><i class="dot on" data-for="seo"></i></button></li>
-					<li><button type="button" role="tab" aria-selected="false" data-tab="maint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><?php echo esc_html__( 'Maintenance', 'll-bouwgroep' ); ?><i class="dot" data-for="maint"></i></button></li>
-					<li><button type="button" role="tab" aria-selected="false" data-tab="ann"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12"/></svg><?php echo esc_html__( 'Announcement', 'll-bouwgroep' ); ?><i class="dot" data-for="ann"></i></button></li>
+					<li class="llbo-sep" aria-hidden="true"></li>
+					<li><button type="button" role="tab" aria-selected="false" data-tab="general"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><?php echo esc_html__( 'General', 'll-bouwgroep' ); ?><i class="llbo-dot on" data-for="general"></i></button></li>
+					<li><button type="button" role="tab" aria-selected="false" data-tab="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><?php echo esc_html__( 'Contact buttons', 'll-bouwgroep' ); ?><i class="llbo-dot" data-for="contact"></i></button></li>
+					<li><button type="button" role="tab" aria-selected="false" data-tab="social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><?php echo esc_html__( 'Social media', 'll-bouwgroep' ); ?><i class="llbo-dot on" data-for="social"></i></button></li>
+					<li><button type="button" role="tab" aria-selected="false" data-tab="seo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><?php echo esc_html__( 'SEO', 'll-bouwgroep' ); ?><i class="llbo-dot on" data-for="seo"></i></button></li>
+					<li><button type="button" role="tab" aria-selected="false" data-tab="maint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><?php echo esc_html__( 'Maintenance', 'll-bouwgroep' ); ?><i class="llbo-dot" data-for="maint"></i></button></li>
+					<li><button type="button" role="tab" aria-selected="false" data-tab="ann"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12"/></svg><?php echo esc_html__( 'Announcement', 'll-bouwgroep' ); ?><i class="llbo-dot" data-for="ann"></i></button></li>
 					<li><button type="button" role="tab" aria-selected="false" data-tab="track"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><?php echo esc_html__( 'Tracking', 'll-bouwgroep' ); ?></button></li>
 					<li><button type="button" role="tab" aria-selected="false" data-tab="brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 3l3 3-9 9-3-3zM9 12l-4 4a2.8 2.8 0 0 0 0 4c-1.5 0-3 .5-3 .5S2.5 17 4 16"/></svg><?php echo esc_html__( 'Branding', 'll-bouwgroep' ); ?></button></li>
-					<li class="sep" aria-hidden="true"></li>
+					<li class="llbo-sep" aria-hidden="true"></li>
 					<li><button type="button" role="tab" aria-selected="false" data-tab="import"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg><?php echo esc_html__( 'Import content', 'll-bouwgroep' ); ?></button></li>
 				</ul>
 			</nav>
@@ -775,22 +775,22 @@ function llb_render_theme_options_page() {
 				<section class="llbo-panel active" id="p-overview" role="tabpanel">
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Overview', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'The status of every feature at a glance. Switch a feature on or off here, or open its section for the settings.', 'll-bouwgroep' ); ?></p>
-					<div class="ov-stat">
-						<div class="stat"><b data-count-on>0</b><span><?php echo esc_html__( 'features active', 'll-bouwgroep' ); ?></span></div>
-						<div class="stat"><b><?php echo esc_html__( 'Live', 'll-bouwgroep' ); ?></b><span><?php echo esc_html__( 'website visible to visitors', 'll-bouwgroep' ); ?></span></div>
-						<div class="stat"><b><?php echo esc_html( (string) $theme_version ); ?></b><span><?php echo esc_html__( 'theme version', 'll-bouwgroep' ); ?></span></div>
+					<div class="llbo-ov-llbo-stat">
+						<div class="llbo-stat"><b data-count-on>0</b><span><?php echo esc_html__( 'features active', 'll-bouwgroep' ); ?></span></div>
+						<div class="llbo-stat"><b><?php echo esc_html__( 'Live', 'll-bouwgroep' ); ?></b><span><?php echo esc_html__( 'website visible to visitors', 'll-bouwgroep' ); ?></span></div>
+						<div class="llbo-stat"><b><?php echo esc_html( (string) $theme_version ); ?></b><span><?php echo esc_html__( 'theme version', 'll-bouwgroep' ); ?></span></div>
 					</div>
-					<div class="ov-grid" id="ov-grid"></div>
+					<div class="llbo-ov-grid" id="ov-grid"></div>
 				</section>
 
 				<section class="llbo-panel" id="p-general" role="tabpanel">
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'General', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'Effects and sections on the whole website.', 'll-bouwgroep' ); ?></p>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Animations', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'animations' ); ?></h3>
 								<p><?php echo esc_html__( 'Motion effects on the whole website: entrance animations, image reveal, zoom on hover.', 'll-bouwgroep' ); ?></p>
 							</div>
@@ -798,10 +798,10 @@ function llb_render_theme_options_page() {
 						</div>
 					</div>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Projects', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'projects' ); ?></h3>
 								<p><?php echo esc_html__( 'Show everything related to projects. Turning it off hides the Projecten page, project sections and menu links. Nothing is deleted.', 'll-bouwgroep' ); ?></p>
 							</div>
@@ -809,10 +809,10 @@ function llb_render_theme_options_page() {
 						</div>
 					</div>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Back to top button', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'back_to_top' ); ?></h3>
 								<p><?php echo esc_html__( 'A round button in the bottom-right corner after scrolling down.', 'll-bouwgroep' ); ?></p>
 							</div>
@@ -825,24 +825,24 @@ function llb_render_theme_options_page() {
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Contact buttons', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'Quick ways for visitors to reach the company.', 'll-bouwgroep' ); ?></p>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.6A8.5 8.5 0 1 1 7.7 19.4z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1 2 1v1a1.5 1.5 0 0 1-1.5 1.5A7 7 0 0 1 8 9.5 1.5 1.5 0 0 1 9.5 8h1l1 2z"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.6A8.5 8.5 0 1 1 7.7 19.4z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1 2 1v1a1.5 1.5 0 0 1-1.5 1.5A7 7 0 0 1 8 9.5 1.5 1.5 0 0 1 9.5 8h1l1 2z"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'WhatsApp button', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'whatsapp_enabled' ); ?></h3>
 								<p><?php echo esc_html__( 'A round WhatsApp button in the bottom-right corner on every page.', 'll-bouwgroep' ); ?></p>
 							</div>
 							<?php llb_theme_options_switch( 'whatsapp_enabled', __( 'WhatsApp button', 'll-bouwgroep' ) ); ?>
 						</div>
-						<div class="card-b"<?php echo llb_theme_option_on( 'whatsapp_enabled' ) ? '' : ' hidden'; ?>>
-							<div class="f">
+						<div class="llbo-card-b"<?php echo llb_theme_option_on( 'whatsapp_enabled' ) ? '' : ' hidden'; ?>>
+							<div class="llbo-f">
 								<label for="llbo-wa-n"><?php echo esc_html__( 'WhatsApp number', 'll-bouwgroep' ); ?></label>
 								<div>
 									<input id="llbo-wa-n" type="tel" name="llb_theme_options[whatsapp_number]" value="<?php echo esc_attr( llb_theme_option_text( 'whatsapp_number' ) ); ?>" placeholder="+31612345678">
 									<small><?php echo esc_html__( 'International format. The button is hidden when this is empty.', 'll-bouwgroep' ); ?></small>
 								</div>
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label for="llbo-wa-m"><?php echo esc_html__( 'Pre-filled message', 'll-bouwgroep' ); ?></label>
 								<div>
 									<input id="llbo-wa-m" type="text" name="llb_theme_options[whatsapp_message]" value="<?php echo esc_attr( (string) llb_theme_option( 'whatsapp_message' ) ); ?>">
@@ -852,24 +852,24 @@ function llb_render_theme_options_page() {
 						</div>
 					</div>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Mobile contact bar', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'mobile_bar_enabled' ); ?></h3>
 								<p><?php echo esc_html__( 'A fixed bar at the bottom of the screen on phones only, with a call button and a quote button.', 'll-bouwgroep' ); ?></p>
 							</div>
 							<?php llb_theme_options_switch( 'mobile_bar_enabled', __( 'Mobile contact bar', 'll-bouwgroep' ) ); ?>
 						</div>
-						<div class="card-b"<?php echo llb_theme_option_on( 'mobile_bar_enabled' ) ? '' : ' hidden'; ?>>
-							<div class="f">
+						<div class="llbo-card-b"<?php echo llb_theme_option_on( 'mobile_bar_enabled' ) ? '' : ' hidden'; ?>>
+							<div class="llbo-f">
 								<label><?php echo esc_html__( 'Button texts', 'll-bouwgroep' ); ?></label>
-								<div class="row2">
+								<div class="llbo-row2">
 									<input type="text" name="llb_theme_options[mobile_bar_call_text]" value="<?php echo esc_attr( (string) llb_theme_option( 'mobile_bar_call_text' ) ); ?>" aria-label="<?php echo esc_attr__( 'Call button text', 'll-bouwgroep' ); ?>">
 									<input type="text" name="llb_theme_options[mobile_bar_quote_text]" value="<?php echo esc_attr( (string) llb_theme_option( 'mobile_bar_quote_text' ) ); ?>" aria-label="<?php echo esc_attr__( 'Quote button text', 'll-bouwgroep' ); ?>">
 								</div>
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label></label>
 								<small><?php echo esc_html__( 'The call button uses the phone number from Appearance → Customize → Company details.', 'll-bouwgroep' ); ?></small>
 							</div>
@@ -881,41 +881,41 @@ function llb_render_theme_options_page() {
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Social media', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'Add the company profiles. Only filled-in links are shown on the website. Best practice: 3 to 5 active profiles.', 'll-bouwgroep' ); ?></p>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Profiles', 'll-bouwgroep' ); ?></h3>
 								<p><?php echo esc_html__( 'Paste the full link to each profile. Leave empty to hide that icon.', 'll-bouwgroep' ); ?></p>
 							</div>
 						</div>
-						<div class="card-b">
-							<div class="soc-list">
-								<div class="soc"><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3 0-4.1.1C4.3 2.2 2.2 4.3 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.1 3.6 2.2 5.7 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c3.6-.1 5.7-2.2 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.1-3.6-2.2-5.7-5.8-5.8C15 2 14.7 2 12 2zm0 1.8c2.7 0 3 0 4 .1 2.6.1 3.9 1.4 4 4 .1 1 .1 1.3.1 4s0 3-.1 4c-.1 2.6-1.4 3.9-4 4-1 .1-1.3.1-4 .1s-3 0-4-.1c-2.6-.1-3.9-1.4-4-4-.1-1-.1-1.3-.1-4s0-3 .1-4c.1-2.6 1.4-3.9 4-4 1-.1 1.3-.1 4-.1z"/></svg></span><input type="url" name="llb_theme_options[social_instagram]" placeholder="https://www.instagram.com/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_instagram' ) ); ?>" aria-label="<?php echo esc_attr__( 'Instagram link', 'll-bouwgroep' ); ?>" data-soc="ig"></div>
-								<div class="soc"><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.6c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V22z"/></svg></span><input type="url" name="llb_theme_options[social_facebook]" placeholder="https://www.facebook.com/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_facebook' ) ); ?>" aria-label="<?php echo esc_attr__( 'Facebook link', 'll-bouwgroep' ); ?>" data-soc="fb"></div>
-								<div class="soc"><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.8h4V21H3zM9.5 9.8h3.8v1.5h.1c.5-1 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></span><input type="url" name="llb_theme_options[social_linkedin]" placeholder="https://www.linkedin.com/company/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_linkedin' ) ); ?>" aria-label="<?php echo esc_attr__( 'LinkedIn link', 'll-bouwgroep' ); ?>" data-soc="li"></div>
-								<div class="soc"><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15V9l5.8 3z"/></svg></span><input type="url" name="llb_theme_options[social_youtube]" placeholder="https://www.youtube.com/@…" value="<?php echo esc_attr( llb_theme_option_text( 'social_youtube' ) ); ?>" aria-label="<?php echo esc_attr__( 'YouTube link', 'll-bouwgroep' ); ?>" data-soc="yt"></div>
-								<div class="soc"><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 10.2H12v3.9h5.5c-.5 2.5-2.7 4.1-5.5 4.1a6.2 6.2 0 1 1 4-10.9l2.9-2.9A10.2 10.2 0 1 0 12 22.2c5.9 0 9.8-4.1 9.8-9.9 0-.7-.1-1.4-.2-2.1z"/></svg></span><input type="url" name="llb_theme_options[social_google]" placeholder="<?php echo esc_attr__( 'Google Business profile link', 'll-bouwgroep' ); ?>" value="<?php echo esc_attr( llb_theme_option_text( 'social_google' ) ); ?>" aria-label="<?php echo esc_attr__( 'Google Business link', 'll-bouwgroep' ); ?>" data-soc="g"></div>
+						<div class="llbo-card-b">
+							<div class="llbo-soc-list">
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3 0-4.1.1C4.3 2.2 2.2 4.3 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.1 3.6 2.2 5.7 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c3.6-.1 5.7-2.2 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.1-3.6-2.2-5.7-5.8-5.8C15 2 14.7 2 12 2zm0 1.8c2.7 0 3 0 4 .1 2.6.1 3.9 1.4 4 4 .1 1 .1 1.3.1 4s0 3-.1 4c-.1 2.6-1.4 3.9-4 4-1 .1-1.3.1-4 .1s-3 0-4-.1c-2.6-.1-3.9-1.4-4-4-.1-1-.1-1.3-.1-4s0-3 .1-4c.1-2.6 1.4-3.9 4-4 1-.1 1.3-.1 4-.1z"/></svg></span><input type="url" name="llb_theme_options[social_instagram]" placeholder="https://www.instagram.com/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_instagram' ) ); ?>" aria-label="<?php echo esc_attr__( 'Instagram link', 'll-bouwgroep' ); ?>" data-soc="ig"></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.6c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V22z"/></svg></span><input type="url" name="llb_theme_options[social_facebook]" placeholder="https://www.facebook.com/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_facebook' ) ); ?>" aria-label="<?php echo esc_attr__( 'Facebook link', 'll-bouwgroep' ); ?>" data-soc="fb"></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.8h4V21H3zM9.5 9.8h3.8v1.5h.1c.5-1 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></span><input type="url" name="llb_theme_options[social_linkedin]" placeholder="https://www.linkedin.com/company/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_linkedin' ) ); ?>" aria-label="<?php echo esc_attr__( 'LinkedIn link', 'll-bouwgroep' ); ?>" data-soc="li"></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15V9l5.8 3z"/></svg></span><input type="url" name="llb_theme_options[social_youtube]" placeholder="https://www.youtube.com/@…" value="<?php echo esc_attr( llb_theme_option_text( 'social_youtube' ) ); ?>" aria-label="<?php echo esc_attr__( 'YouTube link', 'll-bouwgroep' ); ?>" data-soc="yt"></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 10.2H12v3.9h5.5c-.5 2.5-2.7 4.1-5.5 4.1a6.2 6.2 0 1 1 4-10.9l2.9-2.9A10.2 10.2 0 1 0 12 22.2c5.9 0 9.8-4.1 9.8-9.9 0-.7-.1-1.4-.2-2.1z"/></svg></span><input type="url" name="llb_theme_options[social_google]" placeholder="<?php echo esc_attr__( 'Google Business profile link', 'll-bouwgroep' ); ?>" value="<?php echo esc_attr( llb_theme_option_text( 'social_google' ) ); ?>" aria-label="<?php echo esc_attr__( 'Google Business link', 'll-bouwgroep' ); ?>" data-soc="g"></div>
 							</div>
 						</div>
 					</div>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Where to show the icons', 'll-bouwgroep' ); ?></h3>
 								<p><?php echo esc_html__( 'The footer is the standard place. The contact page and the phone menu are optional.', 'll-bouwgroep' ); ?></p>
 							</div>
 						</div>
-						<div class="card-b">
-							<div class="chips">
-								<label class="chip"><input type="checkbox" name="llb_theme_options[social_show_footer]" value="1" <?php checked( llb_theme_option_on( 'social_show_footer' ) ); ?>><span><?php echo esc_html__( 'Footer', 'll-bouwgroep' ); ?></span></label>
-								<label class="chip"><input type="checkbox" name="llb_theme_options[social_show_contact]" value="1" <?php checked( llb_theme_option_on( 'social_show_contact' ) ); ?>><span><?php echo esc_html__( 'Contact page', 'll-bouwgroep' ); ?></span></label>
-								<label class="chip"><input type="checkbox" name="llb_theme_options[social_show_menu]" value="1" <?php checked( llb_theme_option_on( 'social_show_menu' ) ); ?>><span><?php echo esc_html__( 'Phone menu', 'll-bouwgroep' ); ?></span></label>
+						<div class="llbo-card-b">
+							<div class="llbo-chips">
+								<label class="llbo-chip"><input type="checkbox" name="llb_theme_options[social_show_footer]" value="1" <?php checked( llb_theme_option_on( 'social_show_footer' ) ); ?>><span><?php echo esc_html__( 'Footer', 'll-bouwgroep' ); ?></span></label>
+								<label class="llbo-chip"><input type="checkbox" name="llb_theme_options[social_show_contact]" value="1" <?php checked( llb_theme_option_on( 'social_show_contact' ) ); ?>><span><?php echo esc_html__( 'Contact page', 'll-bouwgroep' ); ?></span></label>
+								<label class="llbo-chip"><input type="checkbox" name="llb_theme_options[social_show_menu]" value="1" <?php checked( llb_theme_option_on( 'social_show_menu' ) ); ?>><span><?php echo esc_html__( 'Phone menu', 'll-bouwgroep' ); ?></span></label>
 							</div>
 							<div>
-								<div class="prev" id="soc-prev"></div>
+								<div class="llbo-prev" id="soc-prev"></div>
 								<small style="color:var(--muted);font-size:12.5px"><?php echo esc_html__( 'Preview — how the icons look in the footer.', 'll-bouwgroep' ); ?></small>
 							</div>
 						</div>
@@ -927,7 +927,7 @@ function llb_render_theme_options_page() {
 					<p class="llbo-pdesc"><?php echo esc_html__( 'Help Google understand the company and the page structure.', 'll-bouwgroep' ); ?></p>
 
 					<?php if ( '' !== $seo_plugin ) : ?>
-						<div class="note note--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h0"/></svg><span>
+						<div class="llbo-note llbo-note--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h0"/></svg><span>
 							<?php
 							printf(
 								/* translators: %s: SEO plugin name. */
@@ -938,17 +938,17 @@ function llb_render_theme_options_page() {
 						</span></div>
 					<?php endif; ?>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Local business data', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'schema_local_business' ); ?></h3>
 								<p><?php echo esc_html__( 'Tells Google the company name, address, phone, opening hours and social profiles (GeneralContractor). Important for local search.', 'll-bouwgroep' ); ?></p>
 							</div>
 							<?php llb_theme_options_switch( 'schema_local_business', __( 'Local business data', 'll-bouwgroep' ) ); ?>
 						</div>
-						<div class="card-b"<?php echo llb_theme_option_on( 'schema_local_business' ) ? '' : ' hidden'; ?>>
-							<div class="f">
+						<div class="llbo-card-b"<?php echo llb_theme_option_on( 'schema_local_business' ) ? '' : ' hidden'; ?>>
+							<div class="llbo-f">
 								<label for="llbo-area"><?php echo esc_html__( 'Area served', 'll-bouwgroep' ); ?></label>
 								<div>
 									<input id="llbo-area" type="text" name="llb_theme_options[schema_area_served]" value="<?php echo esc_attr( (string) llb_theme_option( 'schema_area_served' ) ); ?>">
@@ -958,10 +958,10 @@ function llb_render_theme_options_page() {
 						</div>
 					</div>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4M10 12h4M17 12h4M6 9l3 3-3 3M13 9l3 3-3 3"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4M10 12h4M17 12h4M6 9l3 3-3 3M13 9l3 3-3 3"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Breadcrumbs', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'breadcrumbs' ); ?></h3>
 								<p><?php echo esc_html__( 'A small trail above the page title (Home / Diensten / Stucwerk) on every page except the homepage.', 'll-bouwgroep' ); ?></p>
 							</div>
@@ -974,32 +974,32 @@ function llb_render_theme_options_page() {
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Maintenance', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'Show a holding page to visitors while you work on the website. Logged-in administrators always see the normal website.', 'll-bouwgroep' ); ?></p>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Maintenance mode', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'maintenance_enabled' ); ?></h3>
 								<p><?php echo esc_html__( 'Visitors see the holding page. Google is told the site is temporarily unavailable, so rankings are not harmed.', 'll-bouwgroep' ); ?></p>
 							</div>
 							<?php llb_theme_options_switch( 'maintenance_enabled', __( 'Maintenance mode', 'll-bouwgroep' ) ); ?>
 						</div>
-						<div class="card-b"<?php echo llb_theme_option_on( 'maintenance_enabled' ) ? '' : ' hidden'; ?>>
-							<div class="f">
+						<div class="llbo-card-b"<?php echo llb_theme_option_on( 'maintenance_enabled' ) ? '' : ' hidden'; ?>>
+							<div class="llbo-f">
 								<label for="llbo-m-h"><?php echo esc_html__( 'Heading', 'll-bouwgroep' ); ?></label>
 								<input id="llbo-m-h" type="text" name="llb_theme_options[maintenance_heading]" value="<?php echo esc_attr( (string) llb_theme_option( 'maintenance_heading' ) ); ?>">
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label for="llbo-m-t"><?php echo esc_html__( 'Text', 'll-bouwgroep' ); ?></label>
 								<div>
 									<input id="llbo-m-t" type="text" name="llb_theme_options[maintenance_text]" value="<?php echo esc_attr( (string) llb_theme_option( 'maintenance_text' ) ); ?>">
 									<small><?php echo esc_html__( 'Logo, phone and e-mail are added automatically.', 'll-bouwgroep' ); ?></small>
 								</div>
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label><?php echo esc_html__( 'Client preview link', 'll-bouwgroep' ); ?></label>
 								<div>
 									<?php if ( '' !== $preview_url ) : ?>
-										<div class="copy">
+										<div class="llbo-copy">
 											<code><?php echo esc_html( $preview_url ); ?></code>
 											<button type="button" class="llbo-btn" data-copy><?php echo esc_html__( 'Copy', 'll-bouwgroep' ); ?></button>
 											<button type="submit" class="llbo-btn" form="llbo-regen-token"><?php echo esc_html__( 'New link', 'll-bouwgroep' ); ?></button>
@@ -1019,30 +1019,30 @@ function llb_render_theme_options_page() {
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Announcement', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'A thin bar above the header for short news, like holiday closing days.', 'll-bouwgroep' ); ?></p>
 
-					<div class="card">
-						<div class="card-h">
-							<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12"/></svg></div>
-							<div class="card-t">
+					<div class="llbo-card">
+						<div class="llbo-card-h">
+							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12"/></svg></div>
+							<div class="llbo-card-t">
 								<h3><?php echo esc_html__( 'Announcement bar', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'announcement_enabled' ); ?></h3>
 								<p><?php echo esc_html__( 'Visitors can close it; the choice is remembered for that message.', 'll-bouwgroep' ); ?></p>
 							</div>
 							<?php llb_theme_options_switch( 'announcement_enabled', __( 'Announcement bar', 'll-bouwgroep' ) ); ?>
 						</div>
-						<div class="card-b"<?php echo llb_theme_option_on( 'announcement_enabled' ) ? '' : ' hidden'; ?>>
-							<div class="f">
+						<div class="llbo-card-b"<?php echo llb_theme_option_on( 'announcement_enabled' ) ? '' : ' hidden'; ?>>
+							<div class="llbo-f">
 								<label for="llbo-a-t"><?php echo esc_html__( 'Text', 'll-bouwgroep' ); ?></label>
 								<input id="llbo-a-t" type="text" name="llb_theme_options[announcement_text]" value="<?php echo esc_attr( (string) llb_theme_option( 'announcement_text' ) ); ?>" placeholder="<?php echo esc_attr__( 'Wij zijn gesloten van 24 t/m 26 december.', 'll-bouwgroep' ); ?>">
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label><?php echo esc_html__( 'Link (optional)', 'll-bouwgroep' ); ?></label>
-								<div class="row2">
+								<div class="llbo-row2">
 									<input type="url" name="llb_theme_options[announcement_link]" value="<?php echo esc_attr( llb_theme_option_text( 'announcement_link' ) ); ?>" placeholder="https://" aria-label="<?php echo esc_attr__( 'Link', 'll-bouwgroep' ); ?>">
 									<input type="text" name="llb_theme_options[announcement_link_text]" value="<?php echo esc_attr( (string) llb_theme_option( 'announcement_link_text' ) ); ?>" placeholder="<?php echo esc_attr__( 'Lees meer', 'll-bouwgroep' ); ?>" aria-label="<?php echo esc_attr__( 'Link text', 'll-bouwgroep' ); ?>">
 								</div>
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label><?php echo esc_html__( 'Show between (optional)', 'll-bouwgroep' ); ?></label>
-								<div class="row2">
+								<div class="llbo-row2">
 									<input type="date" name="llb_theme_options[announcement_start]" value="<?php echo esc_attr( llb_theme_option_text( 'announcement_start' ) ); ?>" aria-label="<?php echo esc_attr__( 'Start date', 'll-bouwgroep' ); ?>">
 									<input type="date" name="llb_theme_options[announcement_end]" value="<?php echo esc_attr( llb_theme_option_text( 'announcement_end' ) ); ?>" aria-label="<?php echo esc_attr__( 'End date', 'll-bouwgroep' ); ?>">
 								</div>
@@ -1055,7 +1055,7 @@ function llb_render_theme_options_page() {
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Tracking', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'Extra third-party code. Each snippet only runs after the visitor accepted cookies for its category.', 'll-bouwgroep' ); ?></p>
 
-					<div class="note note--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h0"/></svg><span><?php
+					<div class="llbo-note llbo-note--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h0"/></svg><span><?php
 						echo wp_kses(
 							__( 'Google Analytics and Search Console are managed in <b>Site Kit by Google</b> — do not add them here.', 'll-bouwgroep' ),
 							array( 'b' => array() )
@@ -1063,7 +1063,7 @@ function llb_render_theme_options_page() {
 					?></span></div>
 
 					<?php if ( ! $has_consent ) : ?>
-						<div class="note note--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2zM12 10v4M12 17h0"/></svg><span><?php
+						<div class="llbo-note llbo-note--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2zM12 10v4M12 17h0"/></svg><span><?php
 							echo esc_html(
 								$has_tracking
 									? __( 'No cookie consent plugin found. Install Complianz first; until then these snippets are never printed.', 'll-bouwgroep' )
@@ -1072,13 +1072,13 @@ function llb_render_theme_options_page() {
 						?></span></div>
 					<?php endif; ?>
 
-					<div class="card">
-						<div class="card-b" style="border-top:0">
-							<div class="f">
+					<div class="llbo-card">
+						<div class="llbo-card-b" style="border-top:0">
+							<div class="llbo-f">
 								<label for="llbo-t-h"><?php echo esc_html__( 'In <head>', 'll-bouwgroep' ); ?></label>
 								<div>
 									<textarea id="llbo-t-h" name="llb_theme_options[tracking_head]" placeholder="<script>…</script>"><?php echo esc_textarea( (string) llb_theme_option( 'tracking_head' ) ); ?></textarea>
-									<div class="row2" style="margin-top:8px">
+									<div class="llbo-row2" style="margin-top:8px">
 										<select name="llb_theme_options[tracking_head_category]" aria-label="<?php echo esc_attr__( 'Consent category', 'll-bouwgroep' ); ?>">
 											<?php foreach ( llb_theme_options_consent_categories() as $slug => $title ) : ?>
 												<option value="<?php echo esc_attr( $slug ); ?>" <?php selected( (string) llb_theme_option( 'tracking_head_category' ), $slug ); ?>><?php echo esc_html( $title ); ?></option>
@@ -1087,11 +1087,11 @@ function llb_render_theme_options_page() {
 									</div>
 								</div>
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label for="llbo-t-b"><?php echo esc_html__( 'After <body>', 'll-bouwgroep' ); ?></label>
 								<div>
 									<textarea id="llbo-t-b" name="llb_theme_options[tracking_body]"><?php echo esc_textarea( (string) llb_theme_option( 'tracking_body' ) ); ?></textarea>
-									<div class="row2" style="margin-top:8px">
+									<div class="llbo-row2" style="margin-top:8px">
 										<select name="llb_theme_options[tracking_body_category]" aria-label="<?php echo esc_attr__( 'Consent category', 'll-bouwgroep' ); ?>">
 											<?php foreach ( llb_theme_options_consent_categories() as $slug => $title ) : ?>
 												<option value="<?php echo esc_attr( $slug ); ?>" <?php selected( (string) llb_theme_option( 'tracking_body_category' ), $slug ); ?>><?php echo esc_html( $title ); ?></option>
@@ -1100,11 +1100,11 @@ function llb_render_theme_options_page() {
 									</div>
 								</div>
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label for="llbo-t-f"><?php echo esc_html__( 'Before </body>', 'll-bouwgroep' ); ?></label>
 								<div>
 									<textarea id="llbo-t-f" name="llb_theme_options[tracking_footer]"><?php echo esc_textarea( (string) llb_theme_option( 'tracking_footer' ) ); ?></textarea>
-									<div class="row2" style="margin-top:8px">
+									<div class="llbo-row2" style="margin-top:8px">
 										<select name="llb_theme_options[tracking_footer_category]" aria-label="<?php echo esc_attr__( 'Consent category', 'll-bouwgroep' ); ?>">
 											<?php foreach ( llb_theme_options_consent_categories() as $slug => $title ) : ?>
 												<option value="<?php echo esc_attr( $slug ); ?>" <?php selected( (string) llb_theme_option( 'tracking_footer_category' ), $slug ); ?>><?php echo esc_html( $title ); ?></option>
@@ -1121,16 +1121,16 @@ function llb_render_theme_options_page() {
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Branding', 'll-bouwgroep' ); ?></h2>
 					<p class="llbo-pdesc"><?php echo esc_html__( 'The login screen always uses the company logo and colors.', 'll-bouwgroep' ); ?></p>
 
-					<div class="card">
-						<div class="card-b" style="border-top:0">
-							<div class="f">
+					<div class="llbo-card">
+						<div class="llbo-card-b" style="border-top:0">
+							<div class="llbo-f">
 								<label for="llbo-b-f"><?php echo esc_html__( 'Dashboard footer text', 'll-bouwgroep' ); ?></label>
 								<div>
 									<input id="llbo-b-f" type="text" name="llb_theme_options[admin_footer_text]" value="<?php echo esc_attr( (string) llb_theme_option( 'admin_footer_text' ) ); ?>">
 									<small><?php echo esc_html__( 'Shown at the bottom of every dashboard screen.', 'll-bouwgroep' ); ?></small>
 								</div>
 							</div>
-							<div class="f">
+							<div class="llbo-f">
 								<label><?php echo esc_html__( 'Login screen', 'll-bouwgroep' ); ?></label>
 								<div>
 									<a class="llbo-btn" href="<?php echo esc_url( wp_login_url() ); ?>" target="_blank" rel="noopener">
@@ -1154,8 +1154,8 @@ function llb_render_theme_options_page() {
 				<p class="llbo-pdesc"><?php echo esc_html__( 'Creates the pages, services, FAQ and menus with the default Dutch content. Items that already exist are skipped — nothing is overwritten.', 'll-bouwgroep' ); ?></p>
 
 				<?php if ( is_array( $import_result ) ) : ?>
-					<div class="card">
-						<div class="card-b" style="border-top:0">
+					<div class="llbo-card">
+						<div class="llbo-card-b" style="border-top:0">
 							<p><strong><?php echo esc_html__( 'Import finished.', 'll-bouwgroep' ); ?></strong></p>
 							<ul>
 								<?php foreach ( $import_result['created'] as $item ) : ?>
@@ -1169,10 +1169,10 @@ function llb_render_theme_options_page() {
 					</div>
 				<?php endif; ?>
 
-				<div class="card">
-					<div class="card-h">
-						<div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></div>
-						<div class="card-t">
+				<div class="llbo-card">
+					<div class="llbo-card-h">
+						<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></div>
+						<div class="llbo-card-t">
 							<h3><?php echo esc_html__( 'Default content', 'll-bouwgroep' ); ?></h3>
 							<p><?php echo esc_html__( 'Safe to run again at any time.', 'll-bouwgroep' ); ?></p>
 						</div>
@@ -1186,7 +1186,7 @@ function llb_render_theme_options_page() {
 			</div><!-- .llbo-main -->
 		</div>
 
-		<footer class="credit">
+		<footer class="llbo-credit">
 			<img src="<?php echo esc_url( llb_asset( 'images/ogc-newfinity-logo.webp' ) ); ?>" alt="OGC NewFinity">
 			<span><?php
 				echo wp_kses(
@@ -1205,16 +1205,16 @@ function llb_render_theme_options_page() {
 					)
 				);
 			?></span>
-			<span class="v"><?php echo esc_html( sprintf( /* translators: %s: theme version */ __( 'Version %s', 'll-bouwgroep' ), LLB_VERSION ) ); ?></span>
+			<span class="llbo-v"><?php echo esc_html( sprintf( /* translators: %s: theme version */ __( 'Version %s', 'll-bouwgroep' ), LLB_VERSION ) ); ?></span>
 		</footer>
 	</div>
 
-	<div class="savebar" id="savebar">
+	<div class="llbo-savebar" id="savebar">
 		<p><?php echo esc_html__( 'You have unsaved changes', 'll-bouwgroep' ); ?></p>
 		<button class="llbo-btn" type="button" id="discard"><?php echo esc_html__( 'Discard', 'll-bouwgroep' ); ?></button>
 		<button class="llbo-btn llbo-btn--red" type="button" id="save"><?php echo esc_html__( 'Save changes', 'll-bouwgroep' ); ?></button>
 	</div>
-	<div class="toast" id="toast"><?php echo esc_html__( 'Settings saved', 'll-bouwgroep' ); ?></div>
+	<div class="llbo-toast" id="toast"><?php echo esc_html__( 'Settings saved', 'll-bouwgroep' ); ?></div>
 	</div>
 	<?php
 }

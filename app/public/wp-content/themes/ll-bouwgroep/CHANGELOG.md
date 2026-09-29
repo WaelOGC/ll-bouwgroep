@@ -5,6 +5,11 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.26.1] — 2026-09-29
+
+### Fixed
+- Theme Options — prefixed classes, full-width cards, select fix
+
 ## [0.26.0] — 2026-09-29
 
 ### Changed

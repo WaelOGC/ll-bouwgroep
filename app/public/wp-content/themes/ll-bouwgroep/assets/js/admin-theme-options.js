@@ -93,14 +93,14 @@
 			if (!main) {
 				return;
 			}
-			var card = main.closest('.card');
-			var ic = card ? card.querySelector('.card-ic').innerHTML : '';
+			var card = main.closest('.llbo-card');
+			var ic = card ? card.querySelector('.llbo-card-ic').innerHTML : '';
 			var d = document.createElement('div');
-			d.className = 'ov';
+			d.className = 'llbo-ov';
 			d.innerHTML =
-				'<div class="ov-top"><div class="card-ic">' +
+				'<div class="llbo-ov-top"><div class="llbo-card-ic">' +
 				ic +
-				'</div><label class="sw"><input type="checkbox" data-mirror="' +
+				'</div><label class="llbo-sw"><input type="checkbox" data-mirror="' +
 				k +
 				'" aria-label="' +
 				meta[k][0] +
@@ -133,15 +133,15 @@
 		if (!main) {
 			return;
 		}
-		var card = main.closest('.card');
+		var card = main.closest('.llbo-card');
 		if (!card) {
 			return;
 		}
-		var b = card.querySelector('.card-b');
+		var b = card.querySelector('.llbo-card-b');
 		if (b) {
 			b.hidden = !v;
 		}
-		var bd = card.querySelector('.badge');
+		var bd = card.querySelector('.llbo-badge');
 		if (bd) {
 			bd.textContent = v ? 'On' : 'Off';
 			bd.classList.toggle('off', !v);
@@ -184,18 +184,18 @@
 				var el = document.querySelector('[data-key="' + k + '"]');
 				return el && el.checked;
 			});
-			var d = document.querySelector('.dot[data-for="' + t + '"]');
+			var d = document.querySelector('.llbo-dot[data-for="' + t + '"]');
 			if (d) {
 				d.classList.toggle('on', on);
 			}
 		});
 
-		var socialDot = document.querySelector('.dot[data-for="social"]');
+		var socialDot = document.querySelector('.llbo-dot[data-for="social"]');
 		if (socialDot) {
 			socialDot.classList.toggle('on', socialFilled());
 		}
 
-		var live = document.querySelector('.ov-stat .stat:nth-child(2)');
+		var live = document.querySelector('.llbo-ov-stat .llbo-stat:nth-child(2)');
 		var mEl = document.querySelector('[data-key="maintenance_enabled"]');
 		if (live && mEl) {
 			var m = mEl.checked;
@@ -286,9 +286,9 @@
 	});
 
 	var icons = {};
-	document.querySelectorAll('.soc').forEach(function (s) {
+	document.querySelectorAll('.llbo-soc').forEach(function (s) {
 		var input = s.querySelector('input');
-		var si = s.querySelector('.si');
+		var si = s.querySelector('.llbo-si');
 		if (input && si) {
 			icons[input.dataset.soc] = si.innerHTML;
 		}
