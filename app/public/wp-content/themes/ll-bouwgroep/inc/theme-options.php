@@ -554,16 +554,6 @@ function llb_add_theme_options_page() {
 add_action( 'admin_menu', 'llb_add_theme_options_page' );
 
 /**
- * Hides the auto-added duplicate Theme Options submenu entry.
- *
- * @return void
- */
-function llb_theme_options_hide_duplicate_submenu() {
-	remove_submenu_page( 'llb-theme-options', 'llb-theme-options' );
-}
-add_action( 'admin_menu', 'llb_theme_options_hide_duplicate_submenu', 999 );
-
-/**
  * Whether an admin page slug belongs to the Theme Options screens.
  *
  * @param string $page Page slug.
@@ -735,6 +725,7 @@ function llb_render_theme_options_page() {
 	$ext_svg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
 	?>
 	<div class="wrap llbo-wrap">
+	<hr class="wp-header-end">
 	<div class="llbo" data-saved="<?php echo $saved ? '1' : '0'; ?>">
 		<header class="llbo-head">
 			<img src="<?php echo esc_url( llb_asset( 'images/logo-header.webp' ) ); ?>" alt="<?php echo esc_attr__( 'L&L Bouwgroep', 'll-bouwgroep' ); ?>">

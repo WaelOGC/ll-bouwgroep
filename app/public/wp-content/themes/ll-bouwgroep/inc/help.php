@@ -29,35 +29,6 @@ function llb_add_help_page() {
 add_action( 'admin_menu', 'llb_add_help_page', 20 );
 
 /**
- * Restores "Theme Options" as the first submenu item after the duplicate is removed.
- *
- * @return void
- */
-function llb_help_restore_theme_options_submenu() {
-	global $submenu;
-
-	if ( ! isset( $submenu['llb-theme-options'] ) || ! is_array( $submenu['llb-theme-options'] ) ) {
-		return;
-	}
-
-	foreach ( $submenu['llb-theme-options'] as $item ) {
-		if ( isset( $item[2] ) && 'llb-theme-options' === $item[2] ) {
-			return;
-		}
-	}
-
-	array_unshift(
-		$submenu['llb-theme-options'],
-		array(
-			__( 'Theme Options', 'll-bouwgroep' ),
-			'manage_options',
-			'llb-theme-options',
-		)
-	);
-}
-add_action( 'admin_menu', 'llb_help_restore_theme_options_submenu', 1000 );
-
-/**
  * Enqueues Help page CSS/JS on that screen only.
  *
  * @param string $hook Current admin page hook suffix.
@@ -100,6 +71,7 @@ function llb_render_help_page() {
 	}
 	?>
 	<div class="wrap llbo-wrap">
+		<hr class="wp-header-end">
 		<?php require LLB_DIR . '/template-parts/admin/help.php'; ?>
 	</div>
 	<?php
