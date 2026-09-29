@@ -593,6 +593,25 @@
 				updateSelected(root);
 				root.classList.remove('is-invalid');
 			});
+
+			if (select.form && !select.form.dataset.llbSelectReset) {
+				select.form.dataset.llbSelectReset = '1';
+				select.form.addEventListener('reset', function () {
+					var form = this;
+					setTimeout(function () {
+						form.querySelectorAll('.llb-select').forEach(function (root) {
+							var s = root.querySelector('select');
+							var b = root.querySelector('.llb-select__btn');
+							if (s && b) {
+								updateBtn(b, s);
+								updateSelected(root);
+							}
+							root.classList.remove('is-invalid');
+							closeSelect(root, false);
+						});
+					}, 0);
+				});
+			}
 		}
 
 		function enhanceAll() {
@@ -632,21 +651,6 @@
 		document.addEventListener('wpcf7submit', function (e) {
 			requestAnimationFrame(function () {
 				syncFormInvalid(e.target);
-			});
-		});
-		document.addEventListener('wpcf7mailsent', function (e) {
-			var form = e.target;
-			if (!form) {
-				return;
-			}
-			form.querySelectorAll('.llb-select').forEach(function (root) {
-				var select = root.querySelector('select');
-				var btn = root.querySelector('.llb-select__btn');
-				if (select && btn) {
-					updateBtn(btn, select);
-				}
-				root.classList.remove('is-invalid');
-				closeSelect(root, false);
 			});
 		});
 	})();

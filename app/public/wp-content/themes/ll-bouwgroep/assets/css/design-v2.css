@@ -88,7 +88,7 @@ body.llb-motion .btn:hover svg{transform:translateX(4px)}
 #mnav .menu-item-has-children{position:relative}
 #mnav .menu-item-has-children > a{padding-right:56px}
 .mnav-toggle{position:absolute;top:12px;right:0;width:44px;height:44px;border:0;border-radius:50%;background:#F5F5F3;cursor:pointer;padding:0}
-.mnav-toggle::before,.mnav-toggle::after{content:"";position:absolute;top:50%;left:50%;width:16px;height:2px;margin:-1px 0 0 -8px;background:var(--black);transition:transform .2s,background .2s}
+.mnav-toggle::before,.mnav-toggle::after{content:"";position:absolute;top:50%;left:50%;width:16px;height:2px;margin:-1px 0 0 -8px;background:var(--black)}
 .mnav-toggle::after{transform:rotate(90deg)}
 body.llb-motion .mnav-toggle::before,body.llb-motion .mnav-toggle::after{transition:transform .2s,background .2s}
 #mnav .menu-item-has-children.is-open > .mnav-toggle{background:var(--black)}
