@@ -871,7 +871,7 @@ function llb_render_theme_options_page() {
 							</div>
 							<div class="llbo-f">
 								<label></label>
-								<small><?php echo esc_html__( 'The call button uses the phone number from Appearance → Customize → Company details.', 'll-bouwgroep' ); ?></small>
+								<small><?php echo esc_html__( 'The call button uses the phone number from Appearance → Customize → Company & contact.', 'll-bouwgroep' ); ?></small>
 							</div>
 						</div>
 					</div>

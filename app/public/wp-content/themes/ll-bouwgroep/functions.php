@@ -21,6 +21,7 @@ require_once LLB_DIR . '/inc/decor-icons.php';
 require_once LLB_DIR . '/inc/queries.php';
 require_once LLB_DIR . '/inc/customizer.php';
 require_once LLB_DIR . '/inc/theme-options.php';
+require_once LLB_DIR . '/inc/help.php';
 require_once LLB_DIR . '/inc/features/contact-buttons.php';
 require_once LLB_DIR . '/inc/features/schema.php';
 require_once LLB_DIR . '/inc/features/maintenance.php';
