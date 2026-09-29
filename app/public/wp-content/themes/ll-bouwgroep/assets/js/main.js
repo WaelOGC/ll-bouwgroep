@@ -67,6 +67,55 @@
 		});
 	}
 
+	if (mnav) {
+		mnav.querySelectorAll(':scope > ul > .menu-item-has-children').forEach(function (li) {
+			var link = li.querySelector(':scope > a');
+			if (!link || li.querySelector(':scope > .mnav-toggle')) {
+				return;
+			}
+			var toggle = document.createElement('button');
+			toggle.type = 'button';
+			toggle.className = 'mnav-toggle';
+			toggle.setAttribute('aria-expanded', 'false');
+			toggle.setAttribute('aria-label', 'Submenu openen');
+			link.insertAdjacentElement('afterend', toggle);
+
+			var startOpen =
+				li.classList.contains('current-menu-ancestor') ||
+				li.classList.contains('current-menu-parent') ||
+				li.querySelector(':scope > .sub-menu .current-menu-item, :scope > .sub-menu .current_page_item');
+			if (!startOpen) {
+				var pagePath = window.location.pathname.replace(/\/$/, '') || '/';
+				li.querySelectorAll(':scope > .sub-menu a[href]').forEach(function (subLink) {
+					if (startOpen) {
+						return;
+					}
+					try {
+						var subPath = new URL(subLink.href, window.location.origin).pathname.replace(/\/$/, '') || '/';
+						if (subPath === pagePath) {
+							startOpen = true;
+						}
+					} catch (err) {
+						/* ignore malformed href */
+					}
+				});
+			}
+			if (startOpen) {
+				li.classList.add('is-open');
+				toggle.setAttribute('aria-expanded', 'true');
+				toggle.setAttribute('aria-label', 'Submenu sluiten');
+			}
+
+			toggle.addEventListener('click', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				var open = li.classList.toggle('is-open');
+				toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+				toggle.setAttribute('aria-label', open ? 'Submenu sluiten' : 'Submenu openen');
+			});
+		});
+	}
+
 	/* Home / FAQ accordion (design v2) */
 	document.querySelectorAll('.qa > button').forEach(function (btn) {
 		btn.addEventListener('click', function () {
@@ -325,6 +374,280 @@
 		);
 		document.querySelectorAll('.prose h2[id]').forEach(function (h) {
 			io.observe(h);
+		});
+	})();
+
+	/* CF7 custom select (progressive enhancement) */
+	(function initCf7CustomSelect() {
+		var selectUid = 0;
+
+		function placeholderLabel(select) {
+			return select.options.length ? select.options[0].textContent : '';
+		}
+
+		function updateBtn(btn, select) {
+			var ph = placeholderLabel(select);
+			if (!select.value) {
+				btn.textContent = ph;
+				btn.classList.add('is-placeholder');
+			} else {
+				var opt = select.options[select.selectedIndex];
+				btn.textContent = opt ? opt.textContent : ph;
+				btn.classList.remove('is-placeholder');
+			}
+		}
+
+		function syncInvalid(root) {
+			var select = root.querySelector('select');
+			if (select) {
+				root.classList.toggle('is-invalid', select.classList.contains('wpcf7-not-valid'));
+			}
+		}
+
+		function optionNodes(root) {
+			return [].slice.call(root.querySelectorAll('.llb-select__list [role="option"]'));
+		}
+
+		function setActive(root, li) {
+			optionNodes(root).forEach(function (node) {
+				node.classList.remove('is-active');
+			});
+			var list = root.querySelector('.llb-select__list');
+			if (li) {
+				li.classList.add('is-active');
+				list.setAttribute('aria-activedescendant', li.id);
+			} else {
+				list.removeAttribute('aria-activedescendant');
+			}
+		}
+
+		function updateSelected(root) {
+			var select = root.querySelector('select');
+			optionNodes(root).forEach(function (li) {
+				var selected = li.dataset.value === select.value;
+				li.setAttribute('aria-selected', selected ? 'true' : 'false');
+			});
+		}
+
+		function closeSelect(root, focusBtn) {
+			if (!root.classList.contains('is-open')) {
+				return;
+			}
+			root.classList.remove('is-open');
+			var btn = root.querySelector('.llb-select__btn');
+			var list = root.querySelector('.llb-select__list');
+			btn.setAttribute('aria-expanded', 'false');
+			list.hidden = true;
+			setActive(root, null);
+			if (focusBtn) {
+				btn.focus();
+			}
+		}
+
+		function openSelect(root) {
+			root.classList.add('is-open');
+			var btn = root.querySelector('.llb-select__btn');
+			var list = root.querySelector('.llb-select__list');
+			btn.setAttribute('aria-expanded', 'true');
+			list.hidden = false;
+			var active =
+				optionNodes(root).find(function (li) {
+					return li.getAttribute('aria-selected') === 'true';
+				}) || optionNodes(root)[0];
+			setActive(root, active || null);
+		}
+
+		function choose(root, value) {
+			var select = root.querySelector('select');
+			var btn = root.querySelector('.llb-select__btn');
+			select.value = value;
+			select.dispatchEvent(new Event('change', { bubbles: true }));
+			updateBtn(btn, select);
+			updateSelected(root);
+			root.classList.remove('is-invalid');
+			closeSelect(root, true);
+		}
+
+		function enhanceSelect(select) {
+			if (!select.classList.contains('wpcf7-select') || select.closest('.llb-select')) {
+				return;
+			}
+
+			selectUid += 1;
+			var uid = 'llb-select-' + selectUid;
+			var root = document.createElement('div');
+			root.className = 'llb-select';
+			select.parentNode.insertBefore(root, select);
+			root.appendChild(select);
+			select.classList.add('llb-select__native');
+			select.tabIndex = -1;
+			select.setAttribute('aria-hidden', 'true');
+
+			var btn = document.createElement('button');
+			btn.type = 'button';
+			btn.className = 'llb-select__btn';
+			btn.id = uid + '-btn';
+			btn.setAttribute('aria-haspopup', 'listbox');
+			btn.setAttribute('aria-expanded', 'false');
+			updateBtn(btn, select);
+
+			var list = document.createElement('ul');
+			list.className = 'llb-select__list';
+			list.setAttribute('role', 'listbox');
+			list.setAttribute('aria-labelledby', btn.id);
+			list.hidden = true;
+
+			[].forEach.call(select.options, function (opt, index) {
+				if (!opt.value) {
+					return;
+				}
+				var li = document.createElement('li');
+				li.className = 'llb-select__option';
+				li.id = uid + '-opt-' + index;
+				li.setAttribute('role', 'option');
+				li.dataset.value = opt.value;
+				li.textContent = opt.textContent;
+				li.setAttribute('aria-selected', select.value === opt.value ? 'true' : 'false');
+				list.appendChild(li);
+			});
+
+			root.appendChild(btn);
+			root.appendChild(list);
+
+			root.addEventListener('click', function (e) {
+				e.preventDefault();
+			});
+
+			btn.addEventListener('click', function () {
+				if (root.classList.contains('is-open')) {
+					closeSelect(root, false);
+				} else {
+					openSelect(root);
+				}
+			});
+
+			list.addEventListener('click', function (e) {
+				var li = e.target.closest('[role="option"]');
+				if (li && root.contains(li)) {
+					choose(root, li.dataset.value);
+				}
+			});
+
+			btn.addEventListener('keydown', function (e) {
+				var opts = optionNodes(root);
+				var activeIndex = opts.findIndex(function (li) {
+					return li.classList.contains('is-active');
+				});
+
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					if (!root.classList.contains('is-open')) {
+						openSelect(root);
+					} else if (activeIndex >= 0) {
+						choose(root, opts[activeIndex].dataset.value);
+					}
+					return;
+				}
+				if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+					e.preventDefault();
+					if (!root.classList.contains('is-open')) {
+						openSelect(root);
+						return;
+					}
+					if (!opts.length) {
+						return;
+					}
+					var next = activeIndex;
+					if (e.key === 'ArrowDown') {
+						next = activeIndex < 0 ? 0 : Math.min(activeIndex + 1, opts.length - 1);
+					} else {
+						next = activeIndex < 0 ? opts.length - 1 : Math.max(activeIndex - 1, 0);
+					}
+					setActive(root, opts[next]);
+					opts[next].scrollIntoView({ block: 'nearest' });
+					return;
+				}
+				if (e.key === 'Home' && root.classList.contains('is-open')) {
+					e.preventDefault();
+					setActive(root, opts[0]);
+					opts[0].scrollIntoView({ block: 'nearest' });
+					return;
+				}
+				if (e.key === 'End' && root.classList.contains('is-open')) {
+					e.preventDefault();
+					setActive(root, opts[opts.length - 1]);
+					opts[opts.length - 1].scrollIntoView({ block: 'nearest' });
+					return;
+				}
+				if (e.key === 'Escape') {
+					closeSelect(root, true);
+					return;
+				}
+				if (e.key === 'Tab') {
+					closeSelect(root, false);
+				}
+			});
+
+			select.addEventListener('change', function () {
+				updateBtn(btn, select);
+				updateSelected(root);
+				root.classList.remove('is-invalid');
+			});
+		}
+
+		function enhanceAll() {
+			document.querySelectorAll('select.wpcf7-select').forEach(enhanceSelect);
+		}
+
+		enhanceAll();
+
+		document.addEventListener('click', function (e) {
+			document.querySelectorAll('.llb-select.is-open').forEach(function (root) {
+				if (!root.contains(e.target)) {
+					closeSelect(root, false);
+				}
+			});
+		});
+
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape') {
+				document.querySelectorAll('.llb-select.is-open').forEach(function (root) {
+					closeSelect(root, true);
+				});
+			}
+		});
+
+		function syncFormInvalid(form) {
+			if (!form || !form.querySelectorAll) {
+				return;
+			}
+			form.querySelectorAll('.llb-select').forEach(syncInvalid);
+		}
+
+		document.addEventListener('wpcf7invalid', function (e) {
+			requestAnimationFrame(function () {
+				syncFormInvalid(e.target);
+			});
+		});
+		document.addEventListener('wpcf7submit', function (e) {
+			requestAnimationFrame(function () {
+				syncFormInvalid(e.target);
+			});
+		});
+		document.addEventListener('wpcf7mailsent', function (e) {
+			var form = e.target;
+			if (!form) {
+				return;
+			}
+			form.querySelectorAll('.llb-select').forEach(function (root) {
+				var select = root.querySelector('select');
+				var btn = root.querySelector('.llb-select__btn');
+				if (select && btn) {
+					updateBtn(btn, select);
+				}
+				root.classList.remove('is-invalid');
+				closeSelect(root, false);
+			});
 		});
 	})();
 })();
