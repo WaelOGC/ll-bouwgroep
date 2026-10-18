@@ -404,6 +404,10 @@ function llb_sideload_demo_image( $filename, $title = '' ) {
 	update_post_meta( (int) $attachment_id, '_llb_demo_image', $filename );
 	update_post_meta( (int) $attachment_id, '_wp_attachment_image_alt', sanitize_text_field( (string) $title ) );
 
+	if ( function_exists( 'llb_apply_media_text_to_attachment' ) ) {
+		llb_apply_media_text_to_attachment( (int) $attachment_id, $filename );
+	}
+
 	return (int) $attachment_id;
 }
 
