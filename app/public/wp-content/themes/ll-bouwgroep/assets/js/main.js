@@ -205,6 +205,31 @@
 		rvs.forEach(revealRv);
 	}
 
+	/* Section titles reveal */
+	var titles = [];
+	document.querySelectorAll('.rule + h2').forEach(function (h) {
+		titles.push(h.previousElementSibling, h);
+	});
+	if (!reduceMotion && animationsOn && 'IntersectionObserver' in window && titles.length) {
+		var tObserver = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('t-in');
+						tObserver.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0, rootMargin: '0px 0px -10% 0px' }
+		);
+		titles.forEach(function (el) { tObserver.observe(el); });
+		window.setTimeout(function () {
+			titles.forEach(function (el) { el.classList.add('t-in'); });
+		}, 4000);
+	} else {
+		titles.forEach(function (el) { el.classList.add('t-in'); });
+	}
+
 	/* Legacy scroll reveal (inner pages) */
 	var reveals = document.querySelectorAll('.llb-reveal');
 	if (!reduceMotion && animationsOn && 'IntersectionObserver' in window && reveals.length) {

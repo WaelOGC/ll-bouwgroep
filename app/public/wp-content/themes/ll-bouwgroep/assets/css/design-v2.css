@@ -21,7 +21,7 @@ body.llb-v2{display:block;min-height:0}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 h1,h2,h3{font-family:var(--head);color:var(--black);font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balance}
-h2{font-size:clamp(32px,4.4vw,56px);line-height:1.05}
+h2{font-size:clamp(28px,3.2vw,44px);line-height:1.08}
 h3{font-size:clamp(19px,1.6vw,22px);line-height:1.25;font-weight:600}
 p{margin:0 0 1em;max-width:62ch}
 p:last-child{margin-bottom:0}
@@ -32,6 +32,9 @@ p:last-child{margin-bottom:0}
 .rule{display:flex;width:64px;height:4px;margin-bottom:24px}
 .rule::before,.rule::after{content:"";flex:1}
 .rule::before{background:var(--red)}.rule::after{background:var(--green)}
+/* Section titles: brand gradient (light sections only) */
+.rule + h2{width:fit-content;max-width:100%;background:linear-gradient(90deg,var(--green) 0%,var(--red) 25%,var(--black) 50%,var(--red) 75%,var(--green) 100%);background-size:200% 100%;background-position:0 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--black)}
+.why .rule + h2,.cta .rule + h2,.cinfo .rule + h2,.pfeat .rule + h2,.thero .rule + h2,.ftr .rule + h2{background:none;-webkit-text-fill-color:currentColor;color:#fff}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;font-family:var(--head);font-weight:600;font-size:17px;text-decoration:none;border:2px solid transparent;border-radius:var(--radius);transition:background .2s,color .2s,border-color .2s;cursor:pointer;background:transparent;box-sizing:border-box}
 .btn svg{width:18px;height:18px;transition:transform .2s;flex-shrink:0}
@@ -148,8 +151,10 @@ body.llb-motion .hero-foot{animation:fade 1s .5s both}
 .bath-grid{display:grid;gap:40px;align-items:center}
 .bath-img{position:relative;margin:0 calc(var(--pad) * -1)}
 .bath-img img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.bath h3{font-size:clamp(22px,2vw,28px);font-weight:700;color:var(--black);margin:28px 0 32px;line-height:1.25}
-.bath h3 span{display:block}
+.bath-points{list-style:none;margin:24px 0 32px;padding:0;display:grid;gap:12px}
+.bath-points li{display:flex;align-items:center;gap:12px;font-family:var(--body);font-weight:500;font-size:clamp(16px,1.15vw,17px);line-height:1.4;color:var(--black)}
+.bp-ic{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(11,107,58,.12)}
+.bp-ic svg{width:15px;height:15px;fill:var(--green)}
 @media (min-width:768px){
   .bath-grid{grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,80px)}
   .bath-img{margin:0}
@@ -200,7 +205,7 @@ body.llb-motion .tile:hover .tile-go{transform:translate(3px,-3px)}
 
 /* ============ PROJECTEN ============ */
 .proj-grid{display:grid;gap:28px}
-.proj h2{font-size:clamp(44px,7vw,96px);line-height:.95;letter-spacing:-.03em}
+.proj h2{font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.03em}
 .proj-text p{font-size:clamp(17px,1.25vw,19px)}
 .proj-text .btn{margin-top:12px}
 @media (min-width:768px){.proj-grid{grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:end}}
@@ -273,12 +278,21 @@ html.llb-js body.llb-motion .rv:not(.in){clip-path:inset(0 0 100% 0)}
 html.llb-js body.llb-motion .rv{transition:clip-path .8s cubic-bezier(.2,.7,.2,1)}
 .rv.in{clip-path:inset(0)}
 
+.rule{transform-origin:left center}
+html.llb-js body.llb-motion .rule:not(.t-in){transform:scaleX(0)}
+html.llb-js body.llb-motion .rule{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+html.llb-js body.llb-motion .rule + h2:not(.t-in){opacity:0;transform:translateY(16px);background-position:100% 0}
+html.llb-js body.llb-motion .rule + h2{transition:opacity .8s .12s cubic-bezier(.2,.7,.2,1),transform .8s .12s cubic-bezier(.2,.7,.2,1),background-position 1.8s .2s cubic-bezier(.2,.7,.2,1)}
+html.llb-js body.llb-motion :is(.hero,.phero,.thero,.ftr) .rule:not(.t-in){transform:none}
+
 @media (prefers-reduced-motion:reduce){
   body.llb-motion .hero-img img,
   body.llb-motion .hero h1 .ln span,
   body.llb-motion .hero-foot{animation:none!important}
   html.llb-js body.llb-motion .rv:not(.in),
   .rv{clip-path:none!important;transition:none!important}
+  html.llb-js body.llb-motion .rule,
+  html.llb-js body.llb-motion .rule + h2{transition:none!important;transform:none!important;opacity:1!important;background-position:0 0!important}
 }
 
 /* WP admin bar */

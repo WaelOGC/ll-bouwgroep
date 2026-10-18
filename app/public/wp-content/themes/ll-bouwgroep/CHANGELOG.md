@@ -5,6 +5,11 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.31.0] — 2026-10-18
+
+### Changed
+- Smaller section titles with brand gradient and reveal animation; bathroom highlights as check list; new logo.
+
 ## [0.30.0] — 2026-09-29
 
 ### Changed

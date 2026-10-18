@@ -77,11 +77,11 @@ if ( 1 === count( $sub_parts ) && substr_count( $subheading, '.' ) >= 2 ) {
 				</div>
 			<?php endif; ?>
 			<?php if ( ! empty( $sub_parts ) ) : ?>
-				<h3>
+				<ul class="bath-points">
 					<?php foreach ( $sub_parts as $part ) : ?>
-						<span><?php echo esc_html( $part ); ?></span>
+						<li><span class="bp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><?php echo esc_html( rtrim( $part, '.' ) ); ?></li>
 					<?php endforeach; ?>
-				</h3>
+				</ul>
 			<?php endif; ?>
 			<?php if ( '' !== $btn_text ) : ?>
 				<a class="btn btn-red" href="<?php echo esc_url( $btn_url ); ?>">
