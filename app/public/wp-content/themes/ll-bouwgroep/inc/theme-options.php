@@ -35,6 +35,12 @@ function llb_theme_options_defaults() {
 		'social_linkedin'           => '',
 		'social_youtube'            => '',
 		'social_google'             => '',
+		'social_enabled'            => 1,
+		'social_instagram_on'       => 1,
+		'social_facebook_on'        => 1,
+		'social_linkedin_on'        => 1,
+		'social_youtube_on'         => 1,
+		'social_google_on'          => 1,
 		'social_show_footer'        => 1,
 		'social_show_contact'       => 1,
 		'social_show_menu'          => 0,
@@ -89,6 +95,12 @@ function llb_theme_options_types() {
 		'social_linkedin'           => 'url',
 		'social_youtube'            => 'url',
 		'social_google'             => 'url',
+		'social_enabled'            => 'bool',
+		'social_instagram_on'       => 'bool',
+		'social_facebook_on'        => 'bool',
+		'social_linkedin_on'        => 'bool',
+		'social_youtube_on'         => 'bool',
+		'social_google_on'          => 'bool',
 		'social_show_footer'        => 'bool',
 		'social_show_contact'       => 'bool',
 		'social_show_menu'          => 'bool',
@@ -213,7 +225,7 @@ function llb_theme_options_sections() {
 	return array(
 		'general'      => array( 'animations', 'projects', 'back_to_top' ),
 		'contact'      => array( 'whatsapp_enabled', 'whatsapp_number', 'whatsapp_message', 'mobile_bar_enabled', 'mobile_bar_call_text', 'mobile_bar_quote_text' ),
-		'social'       => array( 'social_instagram', 'social_facebook', 'social_linkedin', 'social_youtube', 'social_google', 'social_show_footer', 'social_show_contact', 'social_show_menu' ),
+		'social'       => array( 'social_instagram', 'social_facebook', 'social_linkedin', 'social_youtube', 'social_google', 'social_enabled', 'social_instagram_on', 'social_facebook_on', 'social_linkedin_on', 'social_youtube_on', 'social_google_on', 'social_show_footer', 'social_show_contact', 'social_show_menu' ),
 		'seo'          => array( 'schema_local_business', 'breadcrumbs', 'schema_area_served' ),
 		'maintenance'  => array( 'maintenance_enabled', 'maintenance_heading', 'maintenance_text' ),
 		'announcement' => array( 'announcement_enabled', 'announcement_text', 'announcement_link', 'announcement_link_text', 'announcement_start', 'announcement_end' ),
@@ -253,6 +265,10 @@ function llb_generate_maintenance_token() {
  * @return array<int, array{key:string, url:string, label:string}>
  */
 function llb_get_social_links() {
+	if ( ! llb_theme_option_on( 'social_enabled' ) ) {
+		return array();
+	}
+
 	$profiles = array(
 		'instagram' => array(
 			'option' => 'social_instagram',
@@ -280,6 +296,9 @@ function llb_get_social_links() {
 	foreach ( $profiles as $key => $meta ) {
 		$url = llb_theme_option_text( $meta['option'] );
 		if ( '' === $url ) {
+			continue;
+		}
+		if ( ! llb_theme_option_on( $meta['option'] . '_on' ) ) {
 			continue;
 		}
 		$links[] = array(
@@ -373,8 +392,8 @@ function llb_maybe_seed_demo_social_options() {
 		update_option( 'llb_social_demo_v026b_fixed', 1 );
 	}
 
-	$stored = (string) get_option( 'llb_social_demo_version', '' );
-	if ( $stored === (string) LLB_VERSION ) {
+	// Seed demo links only once per site, never again after an update.
+	if ( '' !== (string) get_option( 'llb_social_demo_version', '' ) ) {
 		return;
 	}
 
@@ -678,11 +697,16 @@ function llb_theme_options_badge( $key ) {
  *
  * @param string $key   Option key.
  * @param string $label Accessible label.
+ * @param string $class Optional extra class appended to `llbo-sw`.
  * @return void
  */
-function llb_theme_options_switch( $key, $label ) {
+function llb_theme_options_switch( $key, $label, $class = '' ) {
+	$sw_class = 'llbo-sw';
+	if ( '' !== $class ) {
+		$sw_class .= ' ' . $class;
+	}
 	?>
-	<label class="llbo-sw">
+	<label class="<?php echo esc_attr( $sw_class ); ?>">
 		<input
 			type="checkbox"
 			name="llb_theme_options[<?php echo esc_attr( $key ); ?>]"
@@ -870,23 +894,24 @@ function llb_render_theme_options_page() {
 
 				<section class="llbo-panel" id="p-social" role="tabpanel">
 					<h2 class="llbo-ptitle"><?php echo esc_html__( 'Social media', 'll-bouwgroep' ); ?></h2>
-					<p class="llbo-pdesc"><?php echo esc_html__( 'Add the company profiles. Only filled-in links are shown on the website. Best practice: 3 to 5 active profiles.', 'll-bouwgroep' ); ?></p>
+					<p class="llbo-pdesc"><?php echo esc_html__( 'Add the company profiles. Switch off a profile to hide it, or switch off Social media to hide all icons. Best practice: 3 to 5 active profiles.', 'll-bouwgroep' ); ?></p>
 
 					<div class="llbo-card">
 						<div class="llbo-card-h">
 							<div class="llbo-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></div>
 							<div class="llbo-card-t">
-								<h3><?php echo esc_html__( 'Profiles', 'll-bouwgroep' ); ?></h3>
-								<p><?php echo esc_html__( 'Paste the full link to each profile. Leave empty to hide that icon.', 'll-bouwgroep' ); ?></p>
+								<h3><?php echo esc_html__( 'Profiles', 'll-bouwgroep' ); ?> <?php llb_theme_options_badge( 'social_enabled' ); ?></h3>
+								<p><?php echo esc_html__( 'Paste the full link to each profile. Use the switch next to a link to hide that icon without deleting the link.', 'll-bouwgroep' ); ?></p>
 							</div>
+							<?php llb_theme_options_switch( 'social_enabled', __( 'Social media', 'll-bouwgroep' ) ); ?>
 						</div>
 						<div class="llbo-card-b">
 							<div class="llbo-soc-list">
-								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3 0-4.1.1C4.3 2.2 2.2 4.3 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.1 3.6 2.2 5.7 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c3.6-.1 5.7-2.2 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.1-3.6-2.2-5.7-5.8-5.8C15 2 14.7 2 12 2zm0 1.8c2.7 0 3 0 4 .1 2.6.1 3.9 1.4 4 4 .1 1 .1 1.3.1 4s0 3-.1 4c-.1 2.6-1.4 3.9-4 4-1 .1-1.3.1-4 .1s-3 0-4-.1c-2.6-.1-3.9-1.4-4-4-.1-1-.1-1.3-.1-4s0-3 .1-4c.1-2.6 1.4-3.9 4-4 1-.1 1.3-.1 4-.1z"/></svg></span><input type="url" name="llb_theme_options[social_instagram]" placeholder="https://www.instagram.com/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_instagram' ) ); ?>" aria-label="<?php echo esc_attr__( 'Instagram link', 'll-bouwgroep' ); ?>" data-soc="ig"></div>
-								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.6c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V22z"/></svg></span><input type="url" name="llb_theme_options[social_facebook]" placeholder="https://www.facebook.com/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_facebook' ) ); ?>" aria-label="<?php echo esc_attr__( 'Facebook link', 'll-bouwgroep' ); ?>" data-soc="fb"></div>
-								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.8h4V21H3zM9.5 9.8h3.8v1.5h.1c.5-1 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></span><input type="url" name="llb_theme_options[social_linkedin]" placeholder="https://www.linkedin.com/company/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_linkedin' ) ); ?>" aria-label="<?php echo esc_attr__( 'LinkedIn link', 'll-bouwgroep' ); ?>" data-soc="li"></div>
-								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15V9l5.8 3z"/></svg></span><input type="url" name="llb_theme_options[social_youtube]" placeholder="https://www.youtube.com/@…" value="<?php echo esc_attr( llb_theme_option_text( 'social_youtube' ) ); ?>" aria-label="<?php echo esc_attr__( 'YouTube link', 'll-bouwgroep' ); ?>" data-soc="yt"></div>
-								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 10.2H12v3.9h5.5c-.5 2.5-2.7 4.1-5.5 4.1a6.2 6.2 0 1 1 4-10.9l2.9-2.9A10.2 10.2 0 1 0 12 22.2c5.9 0 9.8-4.1 9.8-9.9 0-.7-.1-1.4-.2-2.1z"/></svg></span><input type="url" name="llb_theme_options[social_google]" placeholder="<?php echo esc_attr__( 'Google Business profile link', 'll-bouwgroep' ); ?>" value="<?php echo esc_attr( llb_theme_option_text( 'social_google' ) ); ?>" aria-label="<?php echo esc_attr__( 'Google Business link', 'll-bouwgroep' ); ?>" data-soc="g"></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3 0-4.1.1C4.3 2.2 2.2 4.3 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.1 3.6 2.2 5.7 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c3.6-.1 5.7-2.2 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.1-3.6-2.2-5.7-5.8-5.8C15 2 14.7 2 12 2zm0 1.8c2.7 0 3 0 4 .1 2.6.1 3.9 1.4 4 4 .1 1 .1 1.3.1 4s0 3-.1 4c-.1 2.6-1.4 3.9-4 4-1 .1-1.3.1-4 .1s-3 0-4-.1c-2.6-.1-3.9-1.4-4-4-.1-1-.1-1.3-.1-4s0-3 .1-4c.1-2.6 1.4-3.9 4-4 1-.1 1.3-.1 4-.1z"/></svg></span><input type="url" name="llb_theme_options[social_instagram]" placeholder="https://www.instagram.com/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_instagram' ) ); ?>" aria-label="<?php echo esc_attr__( 'Instagram link', 'll-bouwgroep' ); ?>" data-soc="ig"><?php llb_theme_options_switch( 'social_instagram_on', __( 'Show Instagram', 'll-bouwgroep' ), 'llbo-sw--sm' ); ?></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.6c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V22z"/></svg></span><input type="url" name="llb_theme_options[social_facebook]" placeholder="https://www.facebook.com/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_facebook' ) ); ?>" aria-label="<?php echo esc_attr__( 'Facebook link', 'll-bouwgroep' ); ?>" data-soc="fb"><?php llb_theme_options_switch( 'social_facebook_on', __( 'Show Facebook', 'll-bouwgroep' ), 'llbo-sw--sm' ); ?></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.8h4V21H3zM9.5 9.8h3.8v1.5h.1c.5-1 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></span><input type="url" name="llb_theme_options[social_linkedin]" placeholder="https://www.linkedin.com/company/…" value="<?php echo esc_attr( llb_theme_option_text( 'social_linkedin' ) ); ?>" aria-label="<?php echo esc_attr__( 'LinkedIn link', 'll-bouwgroep' ); ?>" data-soc="li"><?php llb_theme_options_switch( 'social_linkedin_on', __( 'Show LinkedIn', 'll-bouwgroep' ), 'llbo-sw--sm' ); ?></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15V9l5.8 3z"/></svg></span><input type="url" name="llb_theme_options[social_youtube]" placeholder="https://www.youtube.com/@…" value="<?php echo esc_attr( llb_theme_option_text( 'social_youtube' ) ); ?>" aria-label="<?php echo esc_attr__( 'YouTube link', 'll-bouwgroep' ); ?>" data-soc="yt"><?php llb_theme_options_switch( 'social_youtube_on', __( 'Show YouTube', 'll-bouwgroep' ), 'llbo-sw--sm' ); ?></div>
+								<div class="llbo-soc"><span class="llbo-si"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 10.2H12v3.9h5.5c-.5 2.5-2.7 4.1-5.5 4.1a6.2 6.2 0 1 1 4-10.9l2.9-2.9A10.2 10.2 0 1 0 12 22.2c5.9 0 9.8-4.1 9.8-9.9 0-.7-.1-1.4-.2-2.1z"/></svg></span><input type="url" name="llb_theme_options[social_google]" placeholder="<?php echo esc_attr__( 'Google Business profile link', 'll-bouwgroep' ); ?>" value="<?php echo esc_attr( llb_theme_option_text( 'social_google' ) ); ?>" aria-label="<?php echo esc_attr__( 'Google Business link', 'll-bouwgroep' ); ?>" data-soc="g"><?php llb_theme_options_switch( 'social_google_on', __( 'Show Google', 'll-bouwgroep' ), 'llbo-sw--sm' ); ?></div>
 							</div>
 						</div>
 					</div>

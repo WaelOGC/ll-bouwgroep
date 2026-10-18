@@ -88,11 +88,14 @@
 .llbo-stat.warn{background:var(--red)}
 /* social */
 .llbo-soc-list{display:grid;gap:10px}
-.llbo-soc{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center}
+.llbo-soc{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center}
 .llbo-soc .llbo-si{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--black);color:#fff}
 .llbo-soc .llbo-si svg{width:20px;height:20px;fill:currentColor}
-.llbo-soc input{width:100%;min-height:40px;padding:8px 12px;border:1px solid #C9C7C2;border-radius:8px;font:14px/1.4 inherit;font-family:inherit;background:#fff;color:var(--black)}
-.llbo-soc input:focus{outline:0;border-color:#2271b1;box-shadow:0 0 0 1px #2271b1}
+.llbo-soc input[type=url]{width:100%;min-height:40px;padding:8px 12px;border:1px solid #C9C7C2;border-radius:8px;font:14px/1.4 inherit;font-family:inherit;background:#fff;color:var(--black)}
+.llbo-soc input[type=url]:focus{outline:0;border-color:#2271b1;box-shadow:0 0 0 1px #2271b1}
+.llbo-sw--sm{margin-top:0}
+.llbo-soc.is-off input[type=url],.llbo-soc.is-off .llbo-si{opacity:.45}
+.llbo-soc-list.is-off{opacity:.55}
 .llbo-chips{display:flex;flex-wrap:wrap;gap:8px}
 .llbo-chip{position:relative}
 .llbo-chip input{position:absolute;opacity:0}

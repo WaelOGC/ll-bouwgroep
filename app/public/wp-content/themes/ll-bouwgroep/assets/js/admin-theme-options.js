@@ -125,10 +125,24 @@
 		});
 	}
 
+	var socKeys = {
+		social_enabled: 1,
+		social_instagram_on: 1,
+		social_facebook_on: 1,
+		social_linkedin_on: 1,
+		social_youtube_on: 1,
+		social_google_on: 1
+	};
+
 	function sync(k, v) {
 		document.querySelectorAll('[data-key="' + k + '"],[data-mirror="' + k + '"]').forEach(function (i) {
 			i.checked = v;
 		});
+		// Feature cards only — keep Profiles body editable when social_enabled is off.
+		if (!meta[k]) {
+			refresh();
+			return;
+		}
 		var main = document.querySelector('[data-key="' + k + '"]');
 		if (!main) {
 			return;
@@ -150,13 +164,39 @@
 	}
 
 	function socialFilled() {
+		var master = document.querySelector('[data-key="social_enabled"]');
+		if (master && !master.checked) {
+			return false;
+		}
 		var n = 0;
-		document.querySelectorAll('[data-soc]').forEach(function (i) {
-			if (i.value.trim()) {
+		document.querySelectorAll('.llbo-soc').forEach(function (row) {
+			var i = row.querySelector('[data-soc]');
+			var cb = row.querySelector('input[type=checkbox]');
+			if (i && i.value.trim() && cb && cb.checked) {
 				n++;
 			}
 		});
 		return n > 0;
+	}
+
+	function socState() {
+		document.querySelectorAll('.llbo-soc').forEach(function (row) {
+			var cb = row.querySelector('input[type=checkbox]');
+			row.classList.toggle('is-off', !(cb && cb.checked));
+		});
+		var master = document.querySelector('[data-key="social_enabled"]');
+		var list = document.querySelector('.llbo-soc-list');
+		if (list) {
+			list.classList.toggle('is-off', !(master && master.checked));
+		}
+		if (master) {
+			var card = master.closest('.llbo-card');
+			var bd = card ? card.querySelector('.llbo-badge') : null;
+			if (bd) {
+				bd.textContent = master.checked ? 'On' : 'Off';
+				bd.classList.toggle('off', !master.checked);
+			}
+		}
 	}
 
 	function refresh() {
@@ -224,6 +264,10 @@
 		var k = t.dataset.key || t.dataset.mirror;
 		if (k) {
 			sync(k, t.checked);
+		}
+		if (k && socKeys[k]) {
+			socState();
+			prev();
 		}
 		if ((form && form.contains(t)) || t.dataset.mirror) {
 			mark();
@@ -299,9 +343,16 @@
 		if (!p) {
 			return;
 		}
+		var master = document.querySelector('[data-key="social_enabled"]');
+		if (master && !master.checked) {
+			p.innerHTML = '<em>Social media is off</em>';
+			return;
+		}
 		var h = '';
-		document.querySelectorAll('[data-soc]').forEach(function (i) {
-			if (i.value.trim()) {
+		document.querySelectorAll('.llbo-soc').forEach(function (row) {
+			var i = row.querySelector('[data-soc]');
+			var cb = row.querySelector('input[type=checkbox]');
+			if (i && i.value.trim() && cb && cb.checked) {
 				h +=
 					'<a href="#" aria-label="' +
 					i.getAttribute('aria-label') +
@@ -313,6 +364,7 @@
 		p.innerHTML = h + '<em>' + (h ? '' : 'No profiles filled in') + '</em>';
 	}
 
+	socState();
 	prev();
 	Object.keys(meta).forEach(function (k) {
 		var el = document.querySelector('[data-key="' + k + '"]');
