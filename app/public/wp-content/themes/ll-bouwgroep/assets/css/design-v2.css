@@ -243,18 +243,25 @@ body.llb-motion .tile:hover .tile-go{transform:translate(3px,-3px)}
 .ftr-grid{display:grid;gap:40px}
 @media (min-width:600px){.ftr-grid{grid-template-columns:1fr 1fr}}
 @media (min-width:1024px){.ftr-grid{grid-template-columns:1.4fr 1fr 1.2fr 1.2fr;gap:48px}}
-.ftr-name{font-family:var(--head);font-weight:700;font-size:24px;color:#fff;margin-bottom:6px}
 .ftr-tag{font-family:var(--head);font-weight:600;font-size:18px;color:#fff;margin-bottom:14px}
 .ftr .rule{margin-bottom:20px}
-.ftr h4{font-family:var(--head);font-weight:600;font-size:16px;color:#fff;margin:0 0 16px}
+.ftr h4{font-family:var(--head);font-weight:600;font-size:15px;letter-spacing:.02em;color:#fff;margin:0 0 14px}
 .ftr ul{list-style:none;margin:0;padding:0}
 .ftr li{margin-bottom:6px}
 .ftr a{text-decoration:none;display:inline-block;padding:4px 0;color:inherit}
 .ftr a:hover{color:#fff}
 .ftr-c li{display:flex;gap:12px;align-items:flex-start}
 .ftr-c svg{flex:none;width:18px;height:18px;fill:var(--red);margin-top:7px}
-.ftr-bot{margin-top:56px;padding:24px 0 calc(24px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:14px;color:rgba(255,255,255,.5)}
+.ftr-bot{margin-top:44px;padding:24px 0 calc(24px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:14px;color:rgba(255,255,255,.5)}
 .ftr p{max-width:none}
+.ftr a.ftr-logo{display:inline-block;background:#fff;border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;line-height:0}
+.ftr-logo img{display:block;width:168px;height:auto}
+.ftr-links li{margin:0}
+.ftr-links a{display:inline-flex;align-items:flex-start;gap:10px;padding:5px 0;line-height:1.45;font-size:15px}
+.ftr-links a::before{content:"";flex:none;width:8px;height:2px;margin-top:.7em;border-radius:2px;background:linear-gradient(90deg,var(--red) 50%,var(--green) 50%)}
+body.llb-motion .ftr-links a::before{transition:width .25s}
+body.llb-motion .ftr-links a:hover::before,.ftr-links a:focus-visible::before,.ftr-links .current-menu-item > a::before{width:14px}
+.ftr-c li{margin-bottom:10px}
 
 /* Social icons */
 .llb-social{display:flex;flex-wrap:wrap;gap:10px;align-items:center}

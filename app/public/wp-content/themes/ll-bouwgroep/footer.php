@@ -51,9 +51,9 @@ if ( '' !== $address ) {
 	<div class="wrap">
 		<div class="ftr-grid">
 			<div>
-				<?php if ( '' !== $company_name ) : ?>
-					<div class="ftr-name"><?php echo esc_html( $company_name ); ?></div>
-				<?php endif; ?>
+				<a class="ftr-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( ( '' !== $company_name ? $company_name : get_bloginfo( 'name' ) ) . ' — home' ); ?>">
+					<img src="<?php echo esc_url( llb_asset( 'images/logo-header.webp' ) ); ?>" alt="<?php echo esc_attr( '' !== $company_name ? $company_name : get_bloginfo( 'name' ) ); ?>" width="1375" height="688" loading="lazy" decoding="async">
+				</a>
 				<?php if ( '' !== $tagline ) : ?>
 					<div class="ftr-tag"><?php echo esc_html( $tagline ); ?></div>
 				<?php endif; ?>
@@ -73,7 +73,7 @@ if ( '' !== $address ) {
 						'fallback_cb'    => false,
 						'menu_class'     => '',
 						'depth'          => 1,
-						'items_wrap'     => '<ul>%3$s</ul>',
+						'items_wrap'     => '<ul class="ftr-links">%3$s</ul>',
 					)
 				);
 				?>
@@ -81,7 +81,7 @@ if ( '' !== $address ) {
 			<div>
 				<h4>Diensten</h4>
 				<?php if ( ! empty( $services ) ) : ?>
-					<ul>
+					<ul class="ftr-links">
 						<?php foreach ( $services as $service ) : ?>
 							<li>
 								<a href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( get_the_title( $service ) ); ?></a>
