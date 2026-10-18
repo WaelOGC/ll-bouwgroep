@@ -223,9 +223,6 @@
 			{ threshold: 0, rootMargin: '0px 0px -10% 0px' }
 		);
 		titles.forEach(function (el) { tObserver.observe(el); });
-		window.setTimeout(function () {
-			titles.forEach(function (el) { el.classList.add('t-in'); });
-		}, 4000);
 	} else {
 		titles.forEach(function (el) { el.classList.add('t-in'); });
 	}
