@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-2.0-or-later license.
 msgid ""
 msgstr ""
-"Project-Id-Version: L&L Bouwgroep 0.25.0\n"
+"Project-Id-Version: L&L Bouw 0.36.0\n"
 "Report-Msgid-Bugs-To: https://github.com/WaelOGC/ll-bouwgroep/issues\n"
-"POT-Creation-Date: 2026-09-29 12:26+0000\n"
+"POT-Creation-Date: 2026-10-22 19:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: ll-bouwgroep\n"
 
-#: inc/theme-options.php:925
+#: inc/theme-options.php:950
 msgid "%s is active: it provides the breadcrumb trail and its structured data. The theme only adds the styling."
 msgstr ""
 
@@ -22,7 +22,7 @@ msgstr ""
 msgid "404 page"
 msgstr ""
 
-#: inc/theme-options.php:851
+#: inc/theme-options.php:875
 msgid "A fixed bar at the bottom of the screen on phones only, with a call button and a quote button."
 msgstr ""
 
@@ -30,23 +30,23 @@ msgstr ""
 msgid "A new preview link was generated. The old link no longer works."
 msgstr ""
 
-#: inc/theme-options.php:824
+#: inc/theme-options.php:848
 msgid "A round WhatsApp button in the bottom-right corner on every page."
 msgstr ""
 
-#: inc/theme-options.php:808
+#: inc/theme-options.php:832
 msgid "A round button in the bottom-right corner after scrolling down."
 msgstr ""
 
-#: inc/theme-options.php:957
+#: inc/theme-options.php:982
 msgid "A small trail above the page title (Home / Diensten / Stucwerk) on every page except the homepage."
 msgstr ""
 
-#: inc/theme-options.php:1011
+#: inc/theme-options.php:1036
 msgid "A thin bar above the header for short news, like holiday closing days."
 msgstr ""
 
-#: inc/meta-boxes-pages.php:435
+#: inc/meta-boxes-pages.php:436
 msgid "About heading (H2)"
 msgstr ""
 
@@ -83,11 +83,11 @@ msgstr ""
 msgid "Add row"
 msgstr ""
 
-#: inc/theme-options.php:873
-msgid "Add the company profiles. Only filled-in links are shown on the website. Best practice: 3 to 5 active profiles."
+#: inc/theme-options.php:897
+msgid "Add the company profiles. Switch off a profile to hide it, or switch off Social media to hide all icons. Best practice: 3 to 5 active profiles."
 msgstr ""
 
-#: inc/theme-options.php:1082
+#: inc/theme-options.php:1107
 msgid "After <body>"
 msgstr ""
 
@@ -103,30 +103,30 @@ msgstr ""
 msgid "All Services"
 msgstr ""
 
-#: inc/theme-options.php:785
-#: inc/theme-options.php:788
+#: inc/theme-options.php:809
+#: inc/theme-options.php:812
 msgid "Animations"
 msgstr ""
 
-#: inc/theme-options.php:753
-#: inc/theme-options.php:1010
+#: inc/theme-options.php:777
+#: inc/theme-options.php:1035
 msgid "Announcement"
 msgstr ""
 
-#: inc/theme-options.php:1017
-#: inc/theme-options.php:1020
+#: inc/theme-options.php:1042
+#: inc/theme-options.php:1045
 msgid "Announcement bar"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:573
+#: inc/meta-boxes-pages.php:574
 msgid "Answer"
 msgstr ""
 
-#: inc/theme-options.php:1002
+#: inc/theme-options.php:1027
 msgid "Anyone with this link can see the real website for 7 days, without an account."
 msgstr ""
 
-#: inc/theme-options.php:943
+#: inc/theme-options.php:968
 msgid "Area served"
 msgstr ""
 
@@ -134,14 +134,14 @@ msgstr ""
 msgid "BTW number"
 msgstr ""
 
-#: inc/theme-options.php:807
-#: inc/theme-options.php:810
+#: inc/theme-options.php:831
+#: inc/theme-options.php:834
 msgid "Back to top button"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:272
-#: inc/meta-boxes-pages.php:363
-#: inc/meta-boxes-pages.php:605
+#: inc/meta-boxes-pages.php:273
+#: inc/meta-boxes-pages.php:364
+#: inc/meta-boxes-pages.php:606
 msgid "Background image"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "Bathrooms highlight"
 msgstr ""
 
-#: inc/theme-options.php:1095
+#: inc/theme-options.php:1120
 msgid "Before </body>"
 msgstr ""
 
@@ -157,28 +157,28 @@ msgstr ""
 msgid "Brand colors"
 msgstr ""
 
-#: inc/theme-options.php:755
-#: inc/theme-options.php:1112
+#: inc/theme-options.php:779
+#: inc/theme-options.php:1137
 msgid "Branding"
 msgstr ""
 
-#: inc/theme-options.php:956
-#: inc/theme-options.php:959
+#: inc/theme-options.php:981
+#: inc/theme-options.php:984
 msgid "Breadcrumbs"
 msgstr ""
 
 #: inc/customizer.php:253
-#: inc/meta-boxes-pages.php:146
+#: inc/meta-boxes-pages.php:147
 msgid "Button link"
 msgstr ""
 
 #: inc/customizer.php:241
-#: inc/meta-boxes-pages.php:141
-#: inc/meta-boxes-pages.php:238
-#: inc/meta-boxes-pages.php:257
-#: inc/meta-boxes-pages.php:287
-#: inc/meta-boxes-pages.php:378
-#: inc/meta-boxes-pages.php:615
+#: inc/meta-boxes-pages.php:142
+#: inc/meta-boxes-pages.php:239
+#: inc/meta-boxes-pages.php:258
+#: inc/meta-boxes-pages.php:288
+#: inc/meta-boxes-pages.php:379
+#: inc/meta-boxes-pages.php:616
 #: inc/meta-boxes.php:168
 msgid "Button text"
 msgstr ""
@@ -187,40 +187,40 @@ msgstr ""
 msgid "Button text on the Services overview page"
 msgstr ""
 
-#: inc/theme-options.php:857
+#: inc/theme-options.php:881
 msgid "Button texts"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:460
+#: inc/meta-boxes-pages.php:461
 msgid "CTA button text"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:450
+#: inc/meta-boxes-pages.php:451
 msgid "CTA heading (H2)"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:455
+#: inc/meta-boxes-pages.php:456
 msgid "CTA text"
 msgstr ""
 
-#: inc/theme-options.php:859
+#: inc/theme-options.php:883
 msgid "Call button text"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:354
-#: inc/meta-boxes-pages.php:596
+#: inc/meta-boxes-pages.php:355
+#: inc/meta-boxes-pages.php:597
 msgid "Call to action"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:578
+#: inc/meta-boxes-pages.php:579
 msgid "Category"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:539
+#: inc/meta-boxes-pages.php:540
 msgid "Category navigation"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:548
+#: inc/meta-boxes-pages.php:549
 msgid "Category navigation label"
 msgstr ""
 
@@ -232,7 +232,7 @@ msgstr ""
 msgid "City"
 msgstr ""
 
-#: inc/theme-options.php:990
+#: inc/theme-options.php:1015
 msgid "Client preview link"
 msgstr ""
 
@@ -244,9 +244,13 @@ msgstr ""
 msgid "Company name"
 msgstr ""
 
-#: inc/theme-options.php:1073
-#: inc/theme-options.php:1086
-#: inc/theme-options.php:1099
+#: inc/rename-company.php:269
+msgid "Company name updated to L&L Bouw B.V. in %d places."
+msgstr ""
+
+#: inc/theme-options.php:1098
+#: inc/theme-options.php:1111
+#: inc/theme-options.php:1124
 msgid "Consent category"
 msgstr ""
 
@@ -254,12 +258,12 @@ msgstr ""
 msgid "Contact Form 7 shortcode"
 msgstr ""
 
-#: inc/theme-options.php:749
-#: inc/theme-options.php:816
+#: inc/theme-options.php:773
+#: inc/theme-options.php:840
 msgid "Contact buttons"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:466
+#: inc/meta-boxes-pages.php:467
 msgid "Contact details"
 msgstr ""
 
@@ -267,15 +271,15 @@ msgstr ""
 msgid "Contact form"
 msgstr ""
 
-#: inc/theme-options.php:905
+#: inc/theme-options.php:930
 msgid "Contact page"
 msgstr ""
 
-#: inc/theme-options.php:735
+#: inc/theme-options.php:759
 msgid "Control website features. Changes go live after saving (cache is cleared automatically)."
 msgstr ""
 
-#: inc/theme-options.php:995
+#: inc/theme-options.php:1020
 msgid "Copy"
 msgstr ""
 
@@ -283,31 +287,31 @@ msgstr ""
 msgid "Copyright text"
 msgstr ""
 
-#: inc/theme-options.php:1153
+#: inc/theme-options.php:1178
 msgid "Created: %s"
 msgstr ""
 
-#: inc/theme-options.php:1145
+#: inc/theme-options.php:1170
 msgid "Creates the pages, services, FAQ and menus with the default Dutch content. Items that already exist are skipped — nothing is overwritten."
 msgstr ""
 
-#: inc/theme-options.php:1118
+#: inc/theme-options.php:1143
 msgid "Dashboard footer text"
 msgstr ""
 
-#: inc/theme-options.php:1167
+#: inc/theme-options.php:1192
 msgid "Default content"
 msgstr ""
 
-#: inc/theme-options.php:1205
+#: inc/theme-options.php:1230
 msgid "Discard"
 msgstr ""
 
-#: inc/theme-options.php:840
+#: inc/theme-options.php:864
 msgid "Dutch text the visitor sees in WhatsApp."
 msgstr ""
 
-#: inc/theme-options.php:946
+#: inc/theme-options.php:971
 msgid "Dutch. Company details come from Appearance → Customize."
 msgstr ""
 
@@ -323,7 +327,7 @@ msgstr ""
 msgid "Edit Service"
 msgstr ""
 
-#: inc/theme-options.php:779
+#: inc/theme-options.php:803
 msgid "Effects and sections on the whole website."
 msgstr ""
 
@@ -331,7 +335,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: inc/theme-options.php:1038
+#: inc/theme-options.php:1063
 msgid "End date"
 msgstr ""
 
@@ -339,7 +343,7 @@ msgstr ""
 msgid "Example: 08:00 – 17:00 or Gesloten."
 msgstr ""
 
-#: inc/theme-options.php:1047
+#: inc/theme-options.php:1072
 msgid "Extra third-party code. Each snippet only runs after the visitor accepted cookies for its category."
 msgstr ""
 
@@ -347,19 +351,19 @@ msgstr ""
 msgid "FAQ category"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:525
+#: inc/meta-boxes-pages.php:526
 msgid "FAQ link"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:534
+#: inc/meta-boxes-pages.php:535
 msgid "FAQ link text"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:243
+#: inc/meta-boxes-pages.php:244
 msgid "FAQ section"
 msgstr ""
 
-#: inc/theme-options.php:886
+#: inc/theme-options.php:911
 msgid "Facebook link"
 msgstr ""
 
@@ -386,16 +390,16 @@ msgstr ""
 msgid "Filter services list"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:411
+#: inc/meta-boxes-pages.php:412
 msgid "Filter “all” label"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:263
+#: inc/meta-boxes-pages.php:264
 msgid "Final call to action"
 msgstr ""
 
 #: inc/customizer.php:263
-#: inc/theme-options.php:904
+#: inc/theme-options.php:929
 msgid "Footer"
 msgstr ""
 
@@ -407,7 +411,7 @@ msgstr ""
 msgid "Footer text"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:486
+#: inc/meta-boxes-pages.php:487
 msgid "Form"
 msgstr ""
 
@@ -415,7 +419,7 @@ msgstr ""
 msgid "Friday"
 msgstr ""
 
-#: inc/theme-options.php:125
+#: inc/theme-options.php:137
 msgid "Functional"
 msgstr ""
 
@@ -423,20 +427,20 @@ msgstr ""
 msgid "Gallery images"
 msgstr ""
 
-#: inc/theme-options.php:748
-#: inc/theme-options.php:778
+#: inc/theme-options.php:772
+#: inc/theme-options.php:802
 msgid "General"
 msgstr ""
 
-#: inc/theme-options.php:1051
+#: inc/theme-options.php:1076
 msgid "Google Analytics and Search Console are managed in <b>Site Kit by Google</b> — do not add them here."
 msgstr ""
 
-#: inc/theme-options.php:889
+#: inc/theme-options.php:914
 msgid "Google Business link"
 msgstr ""
 
-#: inc/theme-options.php:889
+#: inc/theme-options.php:914
 msgid "Google Business profile link"
 msgstr ""
 
@@ -444,8 +448,8 @@ msgstr ""
 msgid "Header"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:610
-#: inc/theme-options.php:979
+#: inc/meta-boxes-pages.php:611
+#: inc/theme-options.php:1004
 msgid "Heading"
 msgstr ""
 
@@ -455,16 +459,16 @@ msgstr ""
 
 #: inc/meta-boxes-pages.php:102
 #: inc/meta-boxes-pages.php:126
-#: inc/meta-boxes-pages.php:161
-#: inc/meta-boxes-pages.php:186
-#: inc/meta-boxes-pages.php:228
-#: inc/meta-boxes-pages.php:252
-#: inc/meta-boxes-pages.php:277
-#: inc/meta-boxes-pages.php:306
-#: inc/meta-boxes-pages.php:368
-#: inc/meta-boxes-pages.php:392
-#: inc/meta-boxes-pages.php:475
-#: inc/meta-boxes-pages.php:495
+#: inc/meta-boxes-pages.php:162
+#: inc/meta-boxes-pages.php:187
+#: inc/meta-boxes-pages.php:229
+#: inc/meta-boxes-pages.php:253
+#: inc/meta-boxes-pages.php:278
+#: inc/meta-boxes-pages.php:307
+#: inc/meta-boxes-pages.php:369
+#: inc/meta-boxes-pages.php:393
+#: inc/meta-boxes-pages.php:476
+#: inc/meta-boxes-pages.php:496
 #: inc/meta-boxes.php:81
 #: inc/meta-boxes.php:158
 msgid "Heading (H2)"
@@ -475,7 +479,7 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: inc/theme-options.php:918
+#: inc/theme-options.php:943
 msgid "Help Google understand the company and the page structure."
 msgstr ""
 
@@ -502,11 +506,15 @@ msgstr ""
 msgid "Hero title (H1)"
 msgstr ""
 
+#: inc/meta-boxes-pages.php:136
+msgid "Highlights (check list)"
+msgstr ""
+
 #: inc/customizer.php:464
 msgid "Home button text"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:201
+#: inc/meta-boxes-pages.php:202
 #: inc/meta-boxes.php:53
 msgid "Icon"
 msgstr ""
@@ -519,7 +527,7 @@ msgstr ""
 msgid "If empty, the service title is used."
 msgstr ""
 
-#: inc/meta-boxes-pages.php:147
+#: inc/meta-boxes-pages.php:148
 msgid "If empty: Badkamers & toiletten service"
 msgstr ""
 
@@ -531,32 +539,32 @@ msgstr ""
 msgid "If empty: header button link"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:461
+#: inc/meta-boxes-pages.php:462
 msgid "If empty: header button text"
 msgstr ""
 
 #: inc/meta-boxes-pages.php:121
-#: inc/meta-boxes-pages.php:181
-#: inc/meta-boxes-pages.php:316
-#: inc/meta-boxes-pages.php:347
+#: inc/meta-boxes-pages.php:182
+#: inc/meta-boxes-pages.php:317
+#: inc/meta-boxes-pages.php:348
 #: inc/meta-boxes.php:96
 msgid "Image"
 msgstr ""
 
-#: inc/theme-options.php:757
-#: inc/theme-options.php:1144
+#: inc/theme-options.php:781
+#: inc/theme-options.php:1169
 msgid "Import content"
 msgstr ""
 
-#: inc/theme-options.php:1172
+#: inc/theme-options.php:1197
 msgid "Import default content"
 msgstr ""
 
-#: inc/theme-options.php:1150
+#: inc/theme-options.php:1175
 msgid "Import finished."
 msgstr ""
 
-#: inc/theme-options.php:1069
+#: inc/theme-options.php:1094
 msgid "In <head>"
 msgstr ""
 
@@ -568,25 +576,25 @@ msgstr ""
 msgid "Insert into service"
 msgstr ""
 
-#: inc/theme-options.php:885
+#: inc/theme-options.php:910
 msgid "Instagram link"
 msgstr ""
 
-#: inc/theme-options.php:833
+#: inc/theme-options.php:857
 msgid "International format. The button is hidden when this is empty."
 msgstr ""
 
-#: inc/meta-boxes-pages.php:166
-#: inc/meta-boxes-pages.php:430
+#: inc/meta-boxes-pages.php:167
+#: inc/meta-boxes-pages.php:431
 msgid "Intro"
 msgstr ""
 
 #: inc/meta-boxes-pages.php:93
-#: inc/meta-boxes-pages.php:383
+#: inc/meta-boxes-pages.php:384
 msgid "Introduction"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:196
+#: inc/meta-boxes-pages.php:197
 msgid "Items"
 msgstr ""
 
@@ -600,35 +608,35 @@ msgid "KvK number"
 msgstr ""
 
 #: inc/customizer.php:72
-#: inc/theme-options.php:731
-msgid "L&L Bouwgroep"
+#: inc/theme-options.php:755
+msgid "L&L Bouw"
 msgstr ""
 
-#: inc/theme-options.php:263
-msgid "L&L Bouwgroep op Facebook"
+#: inc/theme-options.php:279
+msgid "L&L Bouw op Facebook"
+msgstr ""
+
+#: inc/theme-options.php:291
+msgid "L&L Bouw op Google"
 msgstr ""
 
 #: inc/theme-options.php:275
-msgid "L&L Bouwgroep op Google"
+msgid "L&L Bouw op Instagram"
 msgstr ""
 
-#: inc/theme-options.php:259
-msgid "L&L Bouwgroep op Instagram"
+#: inc/theme-options.php:283
+msgid "L&L Bouw op LinkedIn"
 msgstr ""
 
-#: inc/theme-options.php:267
-msgid "L&L Bouwgroep op LinkedIn"
-msgstr ""
-
-#: inc/theme-options.php:271
-msgid "L&L Bouwgroep op YouTube"
+#: inc/theme-options.php:287
+msgid "L&L Bouw op YouTube"
 msgstr ""
 
 #: inc/features/tracking.php:150
-msgid "L&L Bouwgroep: tracking code is saved but no consent plugin (WP Consent API / Complianz) is active, so the code is never printed on the website."
+msgid "L&L Bouw: tracking code is saved but no consent plugin (WP Consent API / Complianz) is active, so the code is never printed on the website."
 msgstr ""
 
-#: inc/meta-boxes-pages.php:402
+#: inc/meta-boxes-pages.php:403
 msgid "Labels"
 msgstr ""
 
@@ -640,23 +648,23 @@ msgstr ""
 msgid "Leave empty until the real company data is available. Empty fields are hidden on the website."
 msgstr ""
 
-#: inc/theme-options.php:1031
+#: inc/theme-options.php:1056
 msgid "Lees meer"
 msgstr ""
 
-#: inc/theme-options.php:1030
+#: inc/theme-options.php:1055
 msgid "Link"
 msgstr ""
 
-#: inc/theme-options.php:1028
+#: inc/theme-options.php:1053
 msgid "Link (optional)"
 msgstr ""
 
-#: inc/theme-options.php:1031
+#: inc/theme-options.php:1056
 msgid "Link text"
 msgstr ""
 
-#: inc/theme-options.php:887
+#: inc/theme-options.php:912
 msgid "LinkedIn link"
 msgstr ""
 
@@ -664,30 +672,30 @@ msgstr ""
 msgid "List items (one per line, optional)"
 msgstr ""
 
-#: inc/theme-options.php:771
+#: inc/theme-options.php:795
 msgid "Live"
 msgstr ""
 
-#: inc/theme-options.php:936
-#: inc/theme-options.php:939
+#: inc/theme-options.php:961
+#: inc/theme-options.php:964
 msgid "Local business data"
 msgstr ""
 
-#: inc/theme-options.php:1125
+#: inc/theme-options.php:1150
 msgid "Login screen"
 msgstr ""
 
-#: inc/theme-options.php:986
+#: inc/theme-options.php:1011
 msgid "Logo, phone and e-mail are added automatically."
 msgstr ""
 
-#: inc/theme-options.php:752
-#: inc/theme-options.php:965
+#: inc/theme-options.php:776
+#: inc/theme-options.php:990
 msgid "Maintenance"
 msgstr ""
 
-#: inc/theme-options.php:972
-#: inc/theme-options.php:975
+#: inc/theme-options.php:997
+#: inc/theme-options.php:1000
 msgid "Maintenance mode"
 msgstr ""
 
@@ -699,16 +707,16 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:520
+#: inc/meta-boxes-pages.php:521
 msgid "Map button text"
 msgstr ""
 
-#: inc/theme-options.php:128
+#: inc/theme-options.php:140
 msgid "Marketing"
 msgstr ""
 
-#: inc/theme-options.php:850
-#: inc/theme-options.php:853
+#: inc/theme-options.php:874
+#: inc/theme-options.php:877
 msgid "Mobile contact bar"
 msgstr ""
 
@@ -716,7 +724,7 @@ msgstr ""
 msgid "Monday"
 msgstr ""
 
-#: inc/theme-options.php:786
+#: inc/theme-options.php:810
 msgid "Motion effects on the whole website: entrance animations, image reveal, zoom on hover."
 msgstr ""
 
@@ -740,17 +748,17 @@ msgstr ""
 msgid "New Service"
 msgstr ""
 
-#: inc/theme-options.php:996
-#: inc/theme-options.php:1000
+#: inc/theme-options.php:1021
+#: inc/theme-options.php:1025
 msgid "New link"
 msgstr ""
 
-#: inc/theme-options.php:1060
-#: inc/theme-options.php:1061
+#: inc/theme-options.php:1085
+#: inc/theme-options.php:1086
 msgid "No cookie consent plugin found. Install Complianz first; until then these snippets are never printed."
 msgstr ""
 
-#: inc/theme-options.php:999
+#: inc/theme-options.php:1024
 msgid "No preview token yet. One is created automatically when you turn maintenance mode on."
 msgstr ""
 
@@ -778,12 +786,16 @@ msgstr ""
 msgid "No services found."
 msgstr ""
 
-#: inc/theme-options.php:672
+#: inc/theme-options.php:691
 msgid "Off"
 msgstr ""
 
-#: inc/theme-options.php:672
+#: inc/theme-options.php:691
 msgid "On"
+msgstr ""
+
+#: inc/meta-boxes-pages.php:137
+msgid "One item per line."
 msgstr ""
 
 #: inc/meta-boxes-pages.php:52
@@ -794,11 +806,11 @@ msgstr ""
 msgid "Opening hours"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:506
+#: inc/meta-boxes-pages.php:507
 msgid "Opening hours and map"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:515
+#: inc/meta-boxes-pages.php:516
 msgid "Opening hours heading"
 msgstr ""
 
@@ -810,8 +822,8 @@ msgstr ""
 msgid "Other services heading"
 msgstr ""
 
-#: inc/theme-options.php:746
-#: inc/theme-options.php:767
+#: inc/theme-options.php:770
+#: inc/theme-options.php:791
 msgid "Overview"
 msgstr ""
 
@@ -835,8 +847,8 @@ msgstr ""
 msgid "Parent Service:"
 msgstr ""
 
-#: inc/theme-options.php:880
-msgid "Paste the full link to each profile. Leave empty to hide that icon."
+#: inc/theme-options.php:904
+msgid "Paste the full link to each profile. Use the switch next to a link to hide that icon without deleting the link."
 msgstr ""
 
 #: inc/customizer.php:324
@@ -847,11 +859,11 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: inc/theme-options.php:906
+#: inc/theme-options.php:931
 msgid "Phone menu"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:481
+#: inc/meta-boxes-pages.php:482
 msgid "Phone, email and address come from the Customizer."
 msgstr ""
 
@@ -867,19 +879,19 @@ msgstr ""
 msgid "Postcode"
 msgstr ""
 
-#: inc/theme-options.php:837
+#: inc/theme-options.php:861
 msgid "Pre-filled message"
 msgstr ""
 
-#: inc/theme-options.php:126
+#: inc/theme-options.php:138
 msgid "Preferences"
 msgstr ""
 
-#: inc/theme-options.php:1128
+#: inc/theme-options.php:1153
 msgid "Preview login screen"
 msgstr ""
 
-#: inc/theme-options.php:910
+#: inc/theme-options.php:935
 msgid "Preview — how the icons look in the footer."
 msgstr ""
 
@@ -899,7 +911,7 @@ msgstr ""
 msgid "Primary red"
 msgstr ""
 
-#: inc/theme-options.php:879
+#: inc/theme-options.php:903
 msgid "Profiles"
 msgstr ""
 
@@ -912,7 +924,7 @@ msgstr ""
 msgid "Project archives"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:416
+#: inc/meta-boxes-pages.php:417
 msgid "Project card button text"
 msgstr ""
 
@@ -944,12 +956,12 @@ msgstr ""
 
 #: inc/post-types.php:83
 #: inc/post-types.php:85
-#: inc/theme-options.php:796
-#: inc/theme-options.php:799
+#: inc/theme-options.php:820
+#: inc/theme-options.php:823
 msgid "Projects"
 msgstr ""
 
-#: inc/theme-options.php:1409
+#: inc/theme-options.php:1434
 msgid "Projects are turned off in Theme Options — only admins can see this page."
 msgstr ""
 
@@ -961,32 +973,32 @@ msgstr ""
 msgid "Projects list navigation"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:219
+#: inc/meta-boxes-pages.php:220
 msgid "Projects section"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:568
+#: inc/meta-boxes-pages.php:569
 msgid "Question"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:553
-#: inc/meta-boxes-pages.php:562
+#: inc/meta-boxes-pages.php:554
+#: inc/meta-boxes-pages.php:563
 msgid "Questions"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:258
+#: inc/meta-boxes-pages.php:259
 msgid "Questions marked 'Show on homepage' on the FAQ page are shown."
 msgstr ""
 
-#: inc/meta-boxes-pages.php:563
+#: inc/meta-boxes-pages.php:564
 msgid "Questions without an answer are hidden on the website."
 msgstr ""
 
-#: inc/theme-options.php:817
+#: inc/theme-options.php:841
 msgid "Quick ways for visitors to reach the company."
 msgstr ""
 
-#: inc/theme-options.php:860
+#: inc/theme-options.php:884
 msgid "Quote button text"
 msgstr ""
 
@@ -1027,7 +1039,7 @@ msgstr ""
 msgid "Remove row"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:445
+#: inc/meta-boxes-pages.php:446
 msgid "Result heading (H2)"
 msgstr ""
 
@@ -1035,12 +1047,12 @@ msgstr ""
 msgid "Route URL (Google Maps)"
 msgstr ""
 
-#: inc/theme-options.php:751
-#: inc/theme-options.php:917
+#: inc/theme-options.php:775
+#: inc/theme-options.php:942
 msgid "SEO"
 msgstr ""
 
-#: inc/theme-options.php:1168
+#: inc/theme-options.php:1193
 msgid "Safe to run again at any time."
 msgstr ""
 
@@ -1052,7 +1064,7 @@ msgstr ""
 msgid "Save and reload the page after changing the template to see the matching fields."
 msgstr ""
 
-#: inc/theme-options.php:1206
+#: inc/theme-options.php:1231
 msgid "Save changes"
 msgstr ""
 
@@ -1080,8 +1092,8 @@ msgstr ""
 msgid "Secondary green"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:292
-#: inc/meta-boxes-pages.php:301
+#: inc/meta-boxes-pages.php:293
+#: inc/meta-boxes-pages.php:302
 #: inc/meta-boxes.php:76
 msgid "Sections"
 msgstr ""
@@ -1129,7 +1141,7 @@ msgstr ""
 msgid "Services"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:167
+#: inc/meta-boxes-pages.php:168
 msgid "Services are loaded from Services, in their Order."
 msgstr ""
 
@@ -1149,7 +1161,7 @@ msgstr ""
 msgid "Services overview page"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:152
+#: inc/meta-boxes-pages.php:153
 msgid "Services section"
 msgstr ""
 
@@ -1162,23 +1174,43 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: inc/theme-options.php:1208
+#: inc/theme-options.php:1233
 msgid "Settings saved"
 msgstr ""
 
-#: inc/theme-options.php:966
+#: inc/theme-options.php:911
+msgid "Show Facebook"
+msgstr ""
+
+#: inc/theme-options.php:914
+msgid "Show Google"
+msgstr ""
+
+#: inc/theme-options.php:910
+msgid "Show Instagram"
+msgstr ""
+
+#: inc/theme-options.php:912
+msgid "Show LinkedIn"
+msgstr ""
+
+#: inc/theme-options.php:913
+msgid "Show YouTube"
+msgstr ""
+
+#: inc/theme-options.php:991
 msgid "Show a holding page to visitors while you work on the website. Logged-in administrators always see the normal website."
 msgstr ""
 
-#: inc/theme-options.php:1035
+#: inc/theme-options.php:1060
 msgid "Show between (optional)"
 msgstr ""
 
-#: inc/theme-options.php:797
+#: inc/theme-options.php:821
 msgid "Show everything related to projects. Turning it off hides the Projecten page, project sections and menu links. Nothing is deleted."
 msgstr ""
 
-#: inc/meta-boxes-pages.php:589
+#: inc/meta-boxes-pages.php:590
 msgid "Show on homepage"
 msgstr ""
 
@@ -1186,24 +1218,29 @@ msgstr ""
 msgid "Shown as featured project with image slider."
 msgstr ""
 
-#: inc/theme-options.php:1121
+#: inc/theme-options.php:1146
 msgid "Shown at the bottom of every dashboard screen."
 msgstr ""
 
-#: inc/meta-boxes-pages.php:421
+#: inc/meta-boxes-pages.php:422
 msgid "Single project texts"
 msgstr ""
 
-#: inc/theme-options.php:1156
+#: inc/theme-options.php:1181
 msgid "Skipped: %s"
 msgstr ""
 
-#: inc/theme-options.php:750
-#: inc/theme-options.php:872
+#: inc/theme-options.php:774
+#: inc/theme-options.php:896
+#: inc/theme-options.php:906
 msgid "Social media"
 msgstr ""
 
-#: inc/theme-options.php:1037
+#: inc/help.php:90
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+#: inc/theme-options.php:1062
 msgid "Start date"
 msgstr ""
 
@@ -1211,7 +1248,7 @@ msgstr ""
 msgid "Static map image"
 msgstr ""
 
-#: inc/theme-options.php:127
+#: inc/theme-options.php:139
 msgid "Statistics"
 msgstr ""
 
@@ -1219,8 +1256,8 @@ msgstr ""
 msgid "Step title (H3)"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:323
-#: inc/meta-boxes-pages.php:332
+#: inc/meta-boxes-pages.php:324
+#: inc/meta-boxes-pages.php:333
 #: inc/meta-boxes.php:115
 msgid "Steps"
 msgstr ""
@@ -1241,10 +1278,6 @@ msgstr ""
 msgid "Subheading (H2)"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:136
-msgid "Subheading (H3)"
-msgstr ""
-
 #: inc/customizer.php:163
 msgid "Sunday"
 msgstr ""
@@ -1253,27 +1286,27 @@ msgstr ""
 msgid "Tagline"
 msgstr ""
 
-#: inc/theme-options.php:937
+#: inc/theme-options.php:962
 msgid "Tells Google the company name, address, phone, opening hours and social profiles (GeneralContractor). Important for local search."
 msgstr ""
 
 #: inc/meta-boxes-pages.php:107
 #: inc/meta-boxes-pages.php:131
-#: inc/meta-boxes-pages.php:191
-#: inc/meta-boxes-pages.php:212
-#: inc/meta-boxes-pages.php:233
-#: inc/meta-boxes-pages.php:282
-#: inc/meta-boxes-pages.php:311
-#: inc/meta-boxes-pages.php:342
-#: inc/meta-boxes-pages.php:373
-#: inc/meta-boxes-pages.php:397
-#: inc/meta-boxes-pages.php:480
-#: inc/meta-boxes-pages.php:500
+#: inc/meta-boxes-pages.php:192
+#: inc/meta-boxes-pages.php:213
+#: inc/meta-boxes-pages.php:234
+#: inc/meta-boxes-pages.php:283
+#: inc/meta-boxes-pages.php:312
+#: inc/meta-boxes-pages.php:343
+#: inc/meta-boxes-pages.php:374
+#: inc/meta-boxes-pages.php:398
+#: inc/meta-boxes-pages.php:481
+#: inc/meta-boxes-pages.php:501
 #: inc/meta-boxes.php:86
 #: inc/meta-boxes.php:125
 #: inc/meta-boxes.php:163
-#: inc/theme-options.php:983
-#: inc/theme-options.php:1024
+#: inc/theme-options.php:1008
+#: inc/theme-options.php:1049
 msgid "Text"
 msgstr ""
 
@@ -1285,19 +1318,19 @@ msgstr ""
 msgid "The button links to the Contact page."
 msgstr ""
 
-#: inc/theme-options.php:865
+#: inc/theme-options.php:889
 msgid "The call button uses the phone number from Appearance → Customize → Company & contact."
 msgstr ""
 
-#: inc/theme-options.php:899
+#: inc/theme-options.php:924
 msgid "The footer is the standard place. The contact page and the phone menu are optional."
 msgstr ""
 
-#: inc/meta-boxes-pages.php:501
+#: inc/meta-boxes-pages.php:502
 msgid "The form itself: Customizer → Contact form."
 msgstr ""
 
-#: inc/theme-options.php:1113
+#: inc/theme-options.php:1138
 msgid "The login screen always uses the company logo and colors."
 msgstr ""
 
@@ -1309,7 +1342,7 @@ msgstr ""
 msgid "The service list uses each service's overview text and button."
 msgstr ""
 
-#: inc/theme-options.php:768
+#: inc/theme-options.php:792
 msgid "The status of every feature at a glance. Switch a feature on or off here, or open its section for the settings."
 msgstr ""
 
@@ -1317,17 +1350,17 @@ msgstr ""
 msgid "The © symbol, current year and company name are added automatically."
 msgstr ""
 
-#: inc/theme-options.php:545
-#: inc/theme-options.php:546
-#: inc/theme-options.php:734
+#: inc/theme-options.php:564
+#: inc/theme-options.php:565
+#: inc/theme-options.php:758
 msgid "Theme Options"
 msgstr ""
 
-#: inc/theme-options.php:744
+#: inc/theme-options.php:768
 msgid "Theme Options sections"
 msgstr ""
 
-#: inc/theme-options.php:1186
+#: inc/theme-options.php:1211
 msgid "Theme designed & developed by <b>OGC NewFinity</b> · <a href=\"%s\" target=\"_blank\" rel=\"noopener\">ogcnewfinity.com</a>"
 msgstr ""
 
@@ -1335,13 +1368,13 @@ msgstr ""
 msgid "Thursday"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:207
-#: inc/meta-boxes-pages.php:337
+#: inc/meta-boxes-pages.php:208
+#: inc/meta-boxes-pages.php:338
 msgid "Title (H3)"
 msgstr ""
 
-#: inc/theme-options.php:754
-#: inc/theme-options.php:1046
+#: inc/theme-options.php:778
+#: inc/theme-options.php:1071
 msgid "Tracking"
 msgstr ""
 
@@ -1370,7 +1403,7 @@ msgstr ""
 msgid "Used for the image slider when this project is featured."
 msgstr ""
 
-#: inc/theme-options.php:1199
+#: inc/theme-options.php:1224
 msgid "Version %s"
 msgstr ""
 
@@ -1394,15 +1427,15 @@ msgstr ""
 msgid "View Services"
 msgstr ""
 
-#: inc/theme-options.php:738
+#: inc/theme-options.php:762
 msgid "View website"
 msgstr ""
 
-#: inc/theme-options.php:1018
+#: inc/theme-options.php:1043
 msgid "Visitors can close it; the choice is remembered for that message."
 msgstr ""
 
-#: inc/theme-options.php:973
+#: inc/theme-options.php:998
 msgid "Visitors see the holding page. Google is told the site is temporarily unavailable, so rankings are not harmed."
 msgstr ""
 
@@ -1410,24 +1443,24 @@ msgstr ""
 msgid "Wednesday"
 msgstr ""
 
-#: inc/theme-options.php:823
-#: inc/theme-options.php:826
+#: inc/theme-options.php:847
+#: inc/theme-options.php:850
 msgid "WhatsApp button"
 msgstr ""
 
-#: inc/theme-options.php:830
+#: inc/theme-options.php:854
 msgid "WhatsApp number"
 msgstr ""
 
-#: inc/theme-options.php:898
+#: inc/theme-options.php:923
 msgid "Where to show the icons"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:172
+#: inc/meta-boxes-pages.php:173
 msgid "Why us"
 msgstr ""
 
-#: inc/theme-options.php:1025
+#: inc/theme-options.php:1050
 msgid "Wij zijn gesloten van 24 t/m 26 december."
 msgstr ""
 
@@ -1435,7 +1468,7 @@ msgstr ""
 msgid "Work carried out (one per line)"
 msgstr ""
 
-#: inc/meta-boxes-pages.php:440
+#: inc/meta-boxes-pages.php:441
 msgid "Work heading (H2)"
 msgstr ""
 
@@ -1443,23 +1476,23 @@ msgstr ""
 msgid "You are not allowed to do this."
 msgstr ""
 
-#: inc/theme-options.php:1204
+#: inc/theme-options.php:1229
 msgid "You have unsaved changes"
 msgstr ""
 
-#: inc/theme-options.php:888
+#: inc/theme-options.php:913
 msgid "YouTube link"
 msgstr ""
 
-#: inc/theme-options.php:770
+#: inc/theme-options.php:794
 msgid "features active"
 msgstr ""
 
-#: inc/theme-options.php:772
+#: inc/theme-options.php:796
 msgid "theme version"
 msgstr ""
 
-#: inc/theme-options.php:771
+#: inc/theme-options.php:795
 msgid "website visible to visitors"
 msgstr ""
 

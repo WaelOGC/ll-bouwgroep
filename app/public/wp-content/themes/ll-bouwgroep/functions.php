@@ -39,4 +39,5 @@ require_once LLB_DIR . '/inc/content-defaults.php';
 require_once LLB_DIR . '/inc/import.php';
 require_once LLB_DIR . '/inc/demo-images.php';
 require_once LLB_DIR . '/inc/media-texts.php';
+require_once LLB_DIR . '/inc/rename-company.php';
 require_once LLB_DIR . '/inc/demo-projects.php';

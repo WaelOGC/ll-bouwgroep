@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function llb_customizer_defaults() {
 	return array(
-		'llb_company_name'       => 'L&L Bouwgroep B.V.',
+		'llb_company_name'       => 'L&L Bouw B.V.',
 		'llb_phone'              => '',
 		'llb_email'              => '',
 		'llb_address_street'     => '',
@@ -51,7 +51,7 @@ function llb_customizer_defaults() {
 		'llb_404_title'                => 'Pagina niet gevonden',
 		'llb_404_lead'                 => 'De pagina die u zoekt bestaat niet meer, is verplaatst of de URL is niet correct.',
 		'llb_404_sub_title'            => 'Op zoek naar een bouw- of renovatieproject?',
-		'llb_404_sub_text'             => 'Bekijk onze diensten of neem contact met L&L Bouwgroep B.V. op.',
+		'llb_404_sub_text'             => 'Bekijk onze diensten of neem contact met L&L Bouw B.V. op.',
 		'llb_404_btn_home'             => 'Naar de homepage',
 		'llb_404_btn_services'         => 'Bekijk onze diensten',
 	);
@@ -69,7 +69,7 @@ function llb_customize_register( $wp_customize ) {
 	$wp_customize->add_panel(
 		'llb_theme_options',
 		array(
-			'title'    => __( 'L&L Bouwgroep', 'll-bouwgroep' ),
+			'title'    => __( 'L&L Bouw', 'll-bouwgroep' ),
 			'priority' => 30,
 		)
 	);

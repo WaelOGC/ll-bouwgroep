@@ -51,7 +51,7 @@ function llb_theme_options_defaults() {
 		// Maintenance.
 		'maintenance_enabled'       => 0,
 		'maintenance_heading'       => 'Onze website wordt vernieuwd',
-		'maintenance_text'          => 'Binnenkort vindt u hier de nieuwe website van L&L Bouwgroep B.V.',
+		'maintenance_text'          => 'Binnenkort vindt u hier de nieuwe website van L&L Bouw B.V.',
 		'maintenance_preview_token' => '',
 		// Announcement.
 		'announcement_enabled'      => 0,
@@ -68,7 +68,7 @@ function llb_theme_options_defaults() {
 		'tracking_body_category'    => 'statistics',
 		'tracking_footer_category'  => 'marketing',
 		// Branding.
-		'admin_footer_text'         => 'L&L Bouwgroep B.V.',
+		'admin_footer_text'         => 'L&L Bouw B.V.',
 	);
 }
 
@@ -272,23 +272,23 @@ function llb_get_social_links() {
 	$profiles = array(
 		'instagram' => array(
 			'option' => 'social_instagram',
-			'label'  => __( 'L&L Bouwgroep op Instagram', 'll-bouwgroep' ),
+			'label'  => __( 'L&L Bouw op Instagram', 'll-bouwgroep' ),
 		),
 		'facebook'  => array(
 			'option' => 'social_facebook',
-			'label'  => __( 'L&L Bouwgroep op Facebook', 'll-bouwgroep' ),
+			'label'  => __( 'L&L Bouw op Facebook', 'll-bouwgroep' ),
 		),
 		'linkedin'  => array(
 			'option' => 'social_linkedin',
-			'label'  => __( 'L&L Bouwgroep op LinkedIn', 'll-bouwgroep' ),
+			'label'  => __( 'L&L Bouw op LinkedIn', 'll-bouwgroep' ),
 		),
 		'youtube'   => array(
 			'option' => 'social_youtube',
-			'label'  => __( 'L&L Bouwgroep op YouTube', 'll-bouwgroep' ),
+			'label'  => __( 'L&L Bouw op YouTube', 'll-bouwgroep' ),
 		),
 		'google'    => array(
 			'option' => 'social_google',
-			'label'  => __( 'L&L Bouwgroep op Google', 'll-bouwgroep' ),
+			'label'  => __( 'L&L Bouw op Google', 'll-bouwgroep' ),
 		),
 	);
 
@@ -752,7 +752,7 @@ function llb_render_theme_options_page() {
 	<hr class="wp-header-end">
 	<div class="llbo" data-saved="<?php echo $saved ? '1' : '0'; ?>">
 		<header class="llbo-head">
-			<img src="<?php echo esc_url( llb_asset( 'images/ll-logo.webp' ) ); ?>" alt="<?php echo esc_attr__( 'L&L Bouwgroep', 'll-bouwgroep' ); ?>">
+			<img src="<?php echo esc_url( llb_asset( 'images/ll-logo.webp' ) ); ?>" alt="<?php echo esc_attr__( 'L&L Bouw', 'll-bouwgroep' ); ?>">
 			<div class="llbo-grow">
 				<span class="llbo-rule"></span>
 				<h1><?php echo esc_html__( 'Theme Options', 'll-bouwgroep' ); ?></h1>

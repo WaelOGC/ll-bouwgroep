@@ -53,14 +53,14 @@ function llb_default_pages() {
 			'template' => 'page-templates/template-home.php',
 			'meta'     => array(
 				'_llb_hero_title'        => "Van complete\nbadkamer tot\nvolledige verbouwing",
-				'_llb_hero_intro'        => 'L&L Bouwgroep B.V. verzorgt bouw- en renovatiewerkzaamheden voor woningen en bedrijfspanden in Zoetermeer en omgeving. Van een complete badkamerrenovatie tot een volledige verbouwing: wij verzorgen het traject van begin tot eind.',
+				'_llb_hero_intro'        => 'L&L Bouw B.V. verzorgt bouw- en renovatiewerkzaamheden voor woningen en bedrijfspanden in Zoetermeer en omgeving. Van een complete badkamerrenovatie tot een volledige verbouwing: wij verzorgen het traject van begin tot eind.',
 				'_llb_hero_btn1_text'    => 'Uw plannen bespreken',
 				'_llb_hero_btn1_url'     => '',
 				'_llb_hero_btn2_text'    => 'Bekijk onze diensten',
 				'_llb_hero_btn2_url'     => '',
 				'_llb_intro_heading'     => 'Bouwen en renoveren met één aanspreekpunt',
 				'_llb_intro_text'        => llb_join_paragraphs(
-					'Bij L&L Bouwgroep B.V. kunt u terecht voor uiteenlopende bouw- en renovatiewerkzaamheden. Onze specialiteit ligt onder andere bij het compleet renoveren en realiseren van badkamers en toiletten.',
+					'Bij L&L Bouw B.V. kunt u terecht voor uiteenlopende bouw- en renovatiewerkzaamheden. Onze specialiteit ligt onder andere bij het compleet renoveren en realiseren van badkamers en toiletten.',
 					'Van leidingwerk, elektra en tegelwerk tot stucwerk, sanitair en de complete afwerking: wij verzorgen desgewenst het volledige traject. Zo heeft u één aanspreekpunt, één planning en duidelijkheid tijdens het hele project.',
 					'Ook voor complete verbouwingen van woningen en bedrijfspanden kunt u bij ons terecht.'
 				),
@@ -73,10 +73,10 @@ function llb_default_pages() {
 				'_llb_bath_btn_text'     => 'Bekijk badkamers & toiletten',
 				'_llb_bath_btn_url'      => '',
 				'_llb_services_heading'  => 'Onze diensten',
-				'_llb_services_intro'    => 'L&L Bouwgroep B.V. verzorgt verschillende werkzaamheden binnen bouw, renovatie en afbouw.',
+				'_llb_services_intro'    => 'L&L Bouw B.V. verzorgt verschillende werkzaamheden binnen bouw, renovatie en afbouw.',
 				'_llb_why_heading'       => 'Ervaren vakmensen en duidelijke afspraken',
 				'_llb_why_text'          => llb_join_paragraphs(
-					'Bij L&L Bouwgroep werken ervaren vakmensen die ieder hun eigen jarenlange ervaring in de bouw meebrengen. Binnen ons team varieert die praktijkervaring van 10 tot 25 jaar.',
+					'Bij L&L Bouw werken ervaren vakmensen die ieder hun eigen jarenlange ervaring in de bouw meebrengen. Binnen ons team varieert die praktijkervaring van 10 tot 25 jaar.',
 					'Die ervaring combineren we met een persoonlijke en professionele werkwijze. We denken met u mee, houden de lijnen kort en vinden het belangrijk dat afspraken worden nagekomen.'
 				),
 				'_llb_why_items'         => array(
@@ -99,7 +99,7 @@ function llb_default_pages() {
 				'_llb_projects_heading'  => 'Bekijk ons werk',
 				'_llb_projects_text'     => llb_join_paragraphs(
 					'Van badkamers en toiletten tot complete verbouwingen: ieder project vraagt om een praktische aanpak en een goede afwerking.',
-					'Bekijk een selectie van onze gerealiseerde projecten en ontdek wat L&L Bouwgroep voor uw verbouwing kan betekenen.'
+					'Bekijk een selectie van onze gerealiseerde projecten en ontdek wat L&L Bouw voor uw verbouwing kan betekenen.'
 				),
 				'_llb_projects_btn_text' => 'Bekijk onze projecten',
 				'_llb_faq_heading'       => 'Veelgestelde vragen',
@@ -107,7 +107,7 @@ function llb_default_pages() {
 				'_llb_cta_heading'       => 'Heeft u verbouwingsplannen?',
 				'_llb_cta_text'          => llb_join_paragraphs(
 					'Wilt u uw badkamer of toilet volledig laten vernieuwen, of heeft u andere plannen voor uw woning of bedrijfspand?',
-					'Neem contact op met L&L Bouwgroep B.V. voor een vrijblijvende kennismaking en bespreking van de mogelijkheden.'
+					'Neem contact op met L&L Bouw B.V. voor een vrijblijvende kennismaking en bespreking van de mogelijkheden.'
 				),
 				'_llb_cta_btn_text'      => 'Neem contact met ons op',
 			),
@@ -117,20 +117,20 @@ function llb_default_pages() {
 			'slug'     => 'over-ons',
 			'template' => 'page-templates/template-about.php',
 			'meta'     => array(
-				'_llb_hero_title'   => 'Over L&L Bouwgroep',
-				'_llb_hero_intro'   => 'Vakmanschap, ervaring en een persoonlijke werkwijze vormen de basis van L&L Bouwgroep B.V.',
+				'_llb_hero_title'   => 'Over L&L Bouw',
+				'_llb_hero_intro'   => 'Vakmanschap, ervaring en een persoonlijke werkwijze vormen de basis van L&L Bouw B.V.',
 				'_llb_sections'     => array(
 					array(
 						'heading' => 'Bouwen met aandacht voor het volledige project',
 						'text'    => llb_join_paragraphs(
-							'Bij een verbouwing komen vaak verschillende werkzaamheden samen. L&L Bouwgroep B.V. kan meerdere onderdelen van een project verzorgen, van de eerste werkzaamheden tot de uiteindelijke afwerking.',
+							'Bij een verbouwing komen vaak verschillende werkzaamheden samen. L&L Bouw B.V. kan meerdere onderdelen van een project verzorgen, van de eerste werkzaamheden tot de uiteindelijke afwerking.',
 							'Vooral bij badkamers en toiletten is een goede samenwerking tussen verschillende vakgebieden belangrijk. Daarom bieden wij de mogelijkheid om het volledige traject bij één partij onder te brengen.'
 						),
 					),
 					array(
 						'heading' => 'Ervaren vakmensen',
 						'text'    => llb_join_paragraphs(
-							'Binnen L&L Bouwgroep werken vakmensen met ieder hun eigen ervaring en specialisme. De praktijkervaring binnen ons team varieert van 10 tot 25 jaar.',
+							'Binnen L&L Bouw werken vakmensen met ieder hun eigen ervaring en specialisme. De praktijkervaring binnen ons team varieert van 10 tot 25 jaar.',
 							'Deze ervaring zetten wij in bij uiteenlopende bouw- en renovatiewerkzaamheden.'
 						),
 					),
@@ -167,7 +167,7 @@ function llb_default_pages() {
 			'template' => 'page-templates/template-services.php',
 			'meta'     => array(
 				'_llb_hero_title' => 'Bouw- en renovatiewerkzaamheden',
-				'_llb_hero_intro' => 'Van een complete badkamer tot een volledige verbouwing: L&L Bouwgroep B.V. verzorgt uiteenlopende werkzaamheden voor woningen en bedrijfspanden.',
+				'_llb_hero_intro' => 'Van een complete badkamer tot een volledige verbouwing: L&L Bouw B.V. verzorgt uiteenlopende werkzaamheden voor woningen en bedrijfspanden.',
 			),
 		),
 		array(
@@ -176,17 +176,17 @@ function llb_default_pages() {
 			'template' => 'page-templates/template-projects.php',
 			'meta'     => array(
 				'_llb_hero_title'            => 'Onze projecten',
-				'_llb_hero_intro'            => 'Bekijk een selectie van projecten van L&L Bouwgroep B.V. en ontdek hoe verschillende bouw- en renovatiewerkzaamheden samenkomen in een compleet eindresultaat.',
+				'_llb_hero_intro'            => 'Bekijk een selectie van projecten van L&L Bouw B.V. en ontdek hoe verschillende bouw- en renovatiewerkzaamheden samenkomen in een compleet eindresultaat.',
 				'_llb_intro_heading'         => 'Van badkamer tot volledige verbouwing',
 				'_llb_intro_text'            => 'Onze projecten omvatten onder andere badkamer- en toiletrenovaties, renovatiewerkzaamheden en diverse bouwkundige werkzaamheden.',
 				'_llb_filter_all_label'      => 'Alle projecten',
 				'_llb_card_btn_text'         => 'Bekijk project',
-				'_llb_single_intro'          => 'Een project van L&L Bouwgroep B.V.',
+				'_llb_single_intro'          => 'Een project van L&L Bouw B.V.',
 				'_llb_single_about_heading'  => 'Over dit project',
 				'_llb_single_work_heading'   => 'Uitgevoerde werkzaamheden',
 				'_llb_single_result_heading' => 'Het resultaat',
 				'_llb_single_cta_heading'    => 'Heeft u een vergelijkbaar project?',
-				'_llb_single_cta_text'       => 'Bespreek uw plannen vrijblijvend met L&L Bouwgroep B.V.',
+				'_llb_single_cta_text'       => 'Bespreek uw plannen vrijblijvend met L&L Bouw B.V.',
 				'_llb_single_cta_btn_text'   => 'Vraag een kennismaking aan',
 			),
 		),
@@ -198,7 +198,7 @@ function llb_default_pages() {
 				'_llb_hero_title'      => 'Uw plannen bespreken?',
 				'_llb_hero_intro'      => llb_join_paragraphs(
 					'Wilt u uw badkamer of toilet volledig laten vernieuwen, heeft u plannen voor een verbouwing of wilt u andere bouwkundige werkzaamheden bespreken?',
-					'Neem contact op met L&L Bouwgroep B.V. voor een vrijblijvende kennismaking en bespreking van de mogelijkheden.'
+					'Neem contact op met L&L Bouw B.V. voor een vrijblijvende kennismaking en bespreking van de mogelijkheden.'
 				),
 				'_llb_details_heading' => 'Neem contact met ons op',
 				'_llb_details_text'    => 'Heeft u vragen of wilt u uw project bespreken? Vul het contactformulier in of neem rechtstreeks contact met ons op.',
@@ -229,7 +229,7 @@ function llb_default_pages() {
 			'content'  => llb_default_privacy_content(),
 			'meta'     => array(
 				'_llb_hero_title' => 'Privacyverklaring',
-				'_llb_hero_intro' => 'L&L Bouwgroep B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.',
+				'_llb_hero_intro' => 'L&L Bouw B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.',
 			),
 		),
 	);
@@ -477,9 +477,9 @@ function llb_default_services() {
 			'excerpt'  => 'Complete renovatie en realisatie van badkamers en toiletten, van sloopwerk tot afwerking.',
 			'meta'     => array(
 				'_llb_hero_title'      => 'Badkamer of toilet laten renoveren?',
-				'_llb_hero_intro'      => 'L&L Bouwgroep B.V. verzorgt complete badkamer- en toiletrenovaties: van de eerste sloopwerkzaamheden tot de laatste afwerking.',
+				'_llb_hero_intro'      => 'L&L Bouw B.V. verzorgt complete badkamer- en toiletrenovaties: van de eerste sloopwerkzaamheden tot de laatste afwerking.',
 				'_llb_overview_text'   => llb_join_paragraphs(
-					'Een badkamer of toilet renoveren betekent vaak dat verschillende werkzaamheden samenkomen. L&L Bouwgroep kan het volledige traject verzorgen.',
+					'Een badkamer of toilet renoveren betekent vaak dat verschillende werkzaamheden samenkomen. L&L Bouw kan het volledige traject verzorgen.',
 					'Van sloopwerk, leidingwerk en elektra tot stucwerk, tegelwerk, sanitair en de uiteindelijke afwerking.'
 				),
 				'_llb_overview_button' => 'Meer over badkamers & toiletten',
@@ -514,7 +514,7 @@ function llb_default_services() {
 					),
 				),
 				'_llb_cta_heading'     => 'Uw badkamer of toilet vernieuwen?',
-				'_llb_cta_text'        => 'Bespreek uw plannen vrijblijvend met L&L Bouwgroep B.V.',
+				'_llb_cta_text'        => 'Bespreek uw plannen vrijblijvend met L&L Bouw B.V.',
 				'_llb_cta_button'      => 'Vraag een kennismaking aan',
 			),
 		),
@@ -525,7 +525,7 @@ function llb_default_services() {
 			'excerpt'    => 'Voor uiteenlopende renovatie- en verbouwingswerkzaamheden aan woningen en bedrijfspanden.',
 			'meta'       => array(
 				'_llb_hero_title'      => 'Renovatie en verbouwing',
-				'_llb_hero_intro'      => 'Voor renovatie- en verbouwingswerkzaamheden aan woningen en bedrijfspanden kunt u terecht bij L&L Bouwgroep B.V.',
+				'_llb_hero_intro'      => 'Voor renovatie- en verbouwingswerkzaamheden aan woningen en bedrijfspanden kunt u terecht bij L&L Bouw B.V.',
 				'_llb_overview_text'   => llb_join_paragraphs(
 					'Heeft u plannen om een woning of bedrijfspand te renoveren of te verbouwen? Wij verzorgen uiteenlopende werkzaamheden binnen renovatie en verbouwing.',
 					'Samen bespreken we de werkzaamheden en mogelijkheden voor uw project.'
@@ -561,13 +561,13 @@ function llb_default_services() {
 				'_llb_hero_intro'      => 'Strak stucwerk vormt een belangrijke basis voor de verdere afwerking van een ruimte.',
 				'_llb_overview_text'   => llb_join_paragraphs(
 					'Goed uitgevoerd stucwerk vormt een belangrijke basis voor de verdere afwerking van een ruimte.',
-					'L&L Bouwgroep verzorgt stucwerk als onderdeel van verschillende renovatie- en verbouwingsprojecten.'
+					'L&L Bouw verzorgt stucwerk als onderdeel van verschillende renovatie- en verbouwingsprojecten.'
 				),
 				'_llb_overview_button' => 'Meer over stucwerk',
 				'_llb_sections'        => array(
 					array(
 						'heading' => 'Stucwerk als onderdeel van uw verbouwing',
-						'text'    => 'Bij renovatie- en verbouwingsprojecten komt stucwerk vaak samen met andere werkzaamheden. L&L Bouwgroep kan het stucwerk daarom onderdeel maken van het totale project.',
+						'text'    => 'Bij renovatie- en verbouwingsprojecten komt stucwerk vaak samen met andere werkzaamheden. L&L Bouw kan het stucwerk daarom onderdeel maken van het totale project.',
 						'list'    => '',
 					),
 					array(
@@ -613,7 +613,7 @@ function llb_default_services() {
 				'_llb_steps_heading'   => $steps_v2['heading'],
 				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Uw tegelwerk bespreken?',
-				'_llb_cta_text'        => 'Neem contact op met L&L Bouwgroep.',
+				'_llb_cta_text'        => 'Neem contact op met L&L Bouw.',
 				'_llb_cta_button'      => $map_v2['tegelwerk']['cta_button'],
 			),
 		),
@@ -627,13 +627,13 @@ function llb_default_services() {
 				'_llb_hero_intro'      => 'Timmerwerk voor uiteenlopende renovatie-, verbouwings- en bouwkundige werkzaamheden.',
 				'_llb_overview_text'   => llb_join_paragraphs(
 					'Voor diverse bouwkundige en renovatiewerkzaamheden is vakkundig timmerwerk nodig.',
-					'L&L Bouwgroep verzorgt timmerwerk binnen uiteenlopende verbouwings- en renovatieprojecten.'
+					'L&L Bouw verzorgt timmerwerk binnen uiteenlopende verbouwings- en renovatieprojecten.'
 				),
 				'_llb_overview_button' => 'Meer over timmerwerk',
 				'_llb_sections'        => array(
 					array(
 						'heading' => 'Timmerwerk binnen uw project',
-						'text'    => 'Bij een verbouwing kunnen verschillende timmerwerkzaamheden nodig zijn. L&L Bouwgroep verzorgt timmerwerk als onderdeel van het totale project.',
+						'text'    => 'Bij een verbouwing kunnen verschillende timmerwerkzaamheden nodig zijn. L&L Bouw verzorgt timmerwerk als onderdeel van het totale project.',
 						'list'    => '',
 					),
 					array(
@@ -646,7 +646,7 @@ function llb_default_services() {
 				'_llb_steps_heading'   => $steps_v2['heading'],
 				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Timmerwerk nodig?',
-				'_llb_cta_text'        => 'Bespreek uw project met L&L Bouwgroep.',
+				'_llb_cta_text'        => 'Bespreek uw project met L&L Bouw.',
 				'_llb_cta_button'      => $map_v2['timmerwerk']['cta_button'],
 			),
 		),
@@ -657,7 +657,7 @@ function llb_default_services() {
 			'excerpt'    => 'Voor een verzorgde en complete afwerking van uw project.',
 			'meta'       => array(
 				'_llb_hero_title'      => 'Schilder- en afbouwwerk',
-				'_llb_hero_intro'      => 'De afwerking maakt uw verbouwing compleet. L&L Bouwgroep verzorgt schilder- en afbouwwerk als onderdeel van uiteenlopende projecten.',
+				'_llb_hero_intro'      => 'De afwerking maakt uw verbouwing compleet. L&L Bouw verzorgt schilder- en afbouwwerk als onderdeel van uiteenlopende projecten.',
 				'_llb_overview_text'   => llb_join_paragraphs(
 					'De laatste werkzaamheden bepalen voor een belangrijk deel de uitstraling van een ruimte.',
 					'Daarom verzorgen wij ook schilder- en afbouwwerkzaamheden als onderdeel van het totale project.'
@@ -690,10 +690,10 @@ function llb_default_services() {
 			'excerpt'    => 'Werkzaamheden rondom het verbouwen en vernieuwen van keukens.',
 			'meta'       => array(
 				'_llb_hero_title'      => 'Keukenverbouwingen',
-				'_llb_hero_intro'      => 'Een keukenverbouwing vraagt vaak om meer dan alleen het plaatsen van een keuken. L&L Bouwgroep verzorgt verschillende werkzaamheden rondom keukenverbouwingen.',
+				'_llb_hero_intro'      => 'Een keukenverbouwing vraagt vaak om meer dan alleen het plaatsen van een keuken. L&L Bouw verzorgt verschillende werkzaamheden rondom keukenverbouwingen.',
 				'_llb_overview_text'   => llb_join_paragraphs(
 					'Een keukenverbouwing kan verschillende bouwkundige werkzaamheden met zich meebrengen.',
-					'L&L Bouwgroep kan werkzaamheden rondom uw keukenverbouwing verzorgen en deze waar nodig combineren met andere renovatie- en afbouwwerkzaamheden.'
+					'L&L Bouw kan werkzaamheden rondom uw keukenverbouwing verzorgen en deze waar nodig combineren met andere renovatie- en afbouwwerkzaamheden.'
 				),
 				'_llb_overview_button' => 'Meer over keukenverbouwingen',
 				'_llb_sections'        => array(
@@ -712,7 +712,7 @@ function llb_default_services() {
 				'_llb_steps_heading'   => $steps_v2['heading'],
 				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Plannen voor een keukenverbouwing?',
-				'_llb_cta_text'        => 'Bespreek uw wensen met L&L Bouwgroep.',
+				'_llb_cta_text'        => 'Bespreek uw wensen met L&L Bouw.',
 				'_llb_cta_button'      => $map_v2['keukenverbouwingen']['cta_button'],
 			),
 		),
@@ -723,8 +723,8 @@ function llb_default_services() {
 			'excerpt'    => 'Bouwkundige werkzaamheden voor het realiseren van een aan- of uitbouw.',
 			'meta'       => array(
 				'_llb_hero_title'      => 'Aan- en uitbouw',
-				'_llb_hero_intro'      => 'Wilt u uw woning uitbreiden? L&L Bouwgroep verzorgt diverse bouwkundige werkzaamheden rondom aan- en uitbouw.',
-				'_llb_overview_text'   => 'Wilt u uw woning uitbreiden met een aan- of uitbouw? L&L Bouwgroep verzorgt diverse bouwkundige werkzaamheden rondom aan- en uitbouw.',
+				'_llb_hero_intro'      => 'Wilt u uw woning uitbreiden? L&L Bouw verzorgt diverse bouwkundige werkzaamheden rondom aan- en uitbouw.',
+				'_llb_overview_text'   => 'Wilt u uw woning uitbreiden met een aan- of uitbouw? L&L Bouw verzorgt diverse bouwkundige werkzaamheden rondom aan- en uitbouw.',
 				'_llb_overview_button' => 'Meer over aan- en uitbouw',
 				'_llb_sections'        => array(
 					array(
@@ -742,7 +742,7 @@ function llb_default_services() {
 				'_llb_steps_heading'   => $steps_v2['heading'],
 				'_llb_steps'           => $steps_v2['steps'],
 				'_llb_cta_heading'     => 'Uw plannen voor een aan- of uitbouw bespreken?',
-				'_llb_cta_text'        => 'Neem contact op met L&L Bouwgroep.',
+				'_llb_cta_text'        => 'Neem contact op met L&L Bouw.',
 				'_llb_cta_button'      => $map_v2['aan-uitbouw']['cta_button'],
 			),
 		),
@@ -924,11 +924,11 @@ function llb_maybe_migrate_privacy_page_v1() {
 			update_post_meta(
 				$page->ID,
 				'_llb_hero_intro',
-				'L&L Bouwgroep B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.'
+				'L&L Bouw B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.'
 			);
 		}
 
-		$old_intro = '<!-- wp:paragraph -->' . "\n" . '<p>L&L Bouwgroep B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.</p>' . "\n" . '<!-- /wp:paragraph -->';
+		$old_intro = '<!-- wp:paragraph -->' . "\n" . '<p>L&L Bouw B.V. respecteert uw privacy. Op deze pagina leggen wij uit welke persoonsgegevens wij verwerken wanneer u gebruikmaakt van onze website en contact met ons opneemt.</p>' . "\n" . '<!-- /wp:paragraph -->';
 		$content   = (string) $page->post_content;
 		$trimmed   = ltrim( $content );
 		if ( 0 === strpos( $trimmed, $old_intro ) ) {

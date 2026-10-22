@@ -147,6 +147,6 @@ function llb_tracking_consent_admin_notice() {
 		return;
 	}
 
-	echo '<div class="notice notice-error"><p>' . esc_html__( 'L&L Bouwgroep: tracking code is saved but no consent plugin (WP Consent API / Complianz) is active, so the code is never printed on the website.', 'll-bouwgroep' ) . '</p></div>';
+	echo '<div class="notice notice-error"><p>' . esc_html__( 'L&L Bouw: tracking code is saved but no consent plugin (WP Consent API / Complianz) is active, so the code is never printed on the website.', 'll-bouwgroep' ) . '</p></div>';
 }
 add_action( 'admin_notices', 'llb_tracking_consent_admin_notice' );

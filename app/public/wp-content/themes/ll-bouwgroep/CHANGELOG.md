@@ -1,9 +1,14 @@
 # Changelog
 
-All notable changes to the L&L Bouwgroep theme are documented in this file.
+All notable changes to the L&L Bouw theme are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
+
+## [0.36.0] — 2026-10-22
+
+### Changed
+- Company name changed to the official KvK name L&L Bouw B.V. (theme texts + one-time database update).
 
 ## [0.35.0] — 2026-10-22
 
