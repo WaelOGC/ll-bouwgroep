@@ -29,28 +29,18 @@ if ( '' === $heading && '' === $text && '' === $subheading && '' === $btn_text &
 	return;
 }
 
-$sub_parts = preg_split( '/\r\n|\r|\n|\.\s+/', $subheading );
-$sub_parts = array_values( array_filter( array_map( 'trim', is_array( $sub_parts ) ? $sub_parts : array() ) ) );
-if ( empty( $sub_parts ) && '' !== $subheading ) {
-	$sub_parts = array( $subheading );
-}
-// Match reference three-line subheading when stored as one sentence with periods.
-if ( 1 === count( $sub_parts ) && substr_count( $subheading, '.' ) >= 2 ) {
-	$sub_parts = array_values(
-		array_filter(
-			array_map(
-				static function ( $p ) {
-					$p = trim( $p );
-					if ( '' === $p ) {
-						return '';
-					}
-					return ( '.' === substr( $p, -1 ) ) ? $p : $p . '.';
-				},
-				preg_split( '/(?<=\.)\s+/', $subheading )
-			)
+// One item per line; also split "a.B" / "a. B" when line breaks were lost on save.
+$sub_parts = preg_split( '/[\r\n]+|(?<=\p{Ll})\.\s*(?=\p{Lu})/u', $subheading );
+$sub_parts = array_values(
+	array_filter(
+		array_map(
+			static function ( $p ) {
+				return trim( rtrim( trim( (string) $p ), '.' ) );
+			},
+			is_array( $sub_parts ) ? $sub_parts : array()
 		)
-	);
-}
+	)
+);
 ?>
 <section class="sec bath">
 	<div class="wrap bath-grid">

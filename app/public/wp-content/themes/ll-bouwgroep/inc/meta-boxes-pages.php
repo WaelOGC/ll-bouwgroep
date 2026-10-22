@@ -131,9 +131,10 @@ function llb_meta_box_page_config() {
 					'label' => __( 'Text', 'll-bouwgroep' ),
 				),
 				array(
-					'key'   => '_llb_bath_subheading',
-					'type'  => 'text',
-					'label' => __( 'Subheading (H3)', 'll-bouwgroep' ),
+					'key'         => '_llb_bath_subheading',
+					'type'        => 'lines',
+					'label'       => __( 'Highlights (check list)', 'll-bouwgroep' ),
+					'description' => __( 'One item per line.', 'll-bouwgroep' ),
 				),
 				array(
 					'key'   => '_llb_bath_btn_text',
