@@ -5,6 +5,11 @@ All notable changes to the L&L Bouwgroep theme are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.35.0] — 2026-10-22
+
+### Changed
+- New company logo (ll-logo.webp) in header, footer, login, maintenance page, Theme Options and Schema.
+
 ## [0.34.1] — 2026-10-22
 
 ### Fixed

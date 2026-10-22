@@ -223,7 +223,7 @@ function llb_maintenance_render_page() {
 	$email   = trim( (string) llb_get_option( 'llb_email' ) );
 	$red     = trim( (string) llb_get_option( 'llb_color_red' ) );
 	$green   = trim( (string) llb_get_option( 'llb_color_green' ) );
-	$logo    = llb_asset( 'images/logo-header.webp' );
+	$logo    = llb_asset( 'images/ll-logo.webp' );
 
 	if ( '' === $red ) {
 		$red = '#D0021B';

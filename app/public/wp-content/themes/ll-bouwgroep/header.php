@@ -28,8 +28,8 @@ $logo_alt     = '' !== $company_name ? $company_name : get_bloginfo( 'name' );
 	<div class="wrap">
 		<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( $logo_alt . ' — home' ); ?>">
 			<img
-				src="<?php echo esc_url( llb_asset( 'images/logo-header.webp' ) ); ?>"
-				width="100"
+				src="<?php echo esc_url( llb_asset( 'images/ll-logo.webp' ) ); ?>"
+				width="106"
 				height="50"
 				alt="<?php echo esc_attr( $logo_alt ); ?>"
 				decoding="async"

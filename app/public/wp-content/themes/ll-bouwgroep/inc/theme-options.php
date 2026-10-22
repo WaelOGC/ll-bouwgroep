@@ -752,7 +752,7 @@ function llb_render_theme_options_page() {
 	<hr class="wp-header-end">
 	<div class="llbo" data-saved="<?php echo $saved ? '1' : '0'; ?>">
 		<header class="llbo-head">
-			<img src="<?php echo esc_url( llb_asset( 'images/logo-header.webp' ) ); ?>" alt="<?php echo esc_attr__( 'L&L Bouwgroep', 'll-bouwgroep' ); ?>">
+			<img src="<?php echo esc_url( llb_asset( 'images/ll-logo.webp' ) ); ?>" alt="<?php echo esc_attr__( 'L&L Bouwgroep', 'll-bouwgroep' ); ?>">
 			<div class="llbo-grow">
 				<span class="llbo-rule"></span>
 				<h1><?php echo esc_html__( 'Theme Options', 'll-bouwgroep' ); ?></h1>

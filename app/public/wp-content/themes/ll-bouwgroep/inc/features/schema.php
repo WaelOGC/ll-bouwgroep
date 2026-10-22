@@ -41,7 +41,7 @@ function llb_schema_logo_url() {
 		}
 	}
 
-	return llb_asset( 'images/logo-header.webp' );
+	return llb_asset( 'images/ll-logo.webp' );
 }
 
 /**

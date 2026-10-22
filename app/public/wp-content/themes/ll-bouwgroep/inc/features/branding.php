@@ -25,7 +25,7 @@ function llb_login_styles() {
 		$green = '#0B6B3A';
 	}
 
-	$logo = llb_asset( 'images/logo-header.webp' );
+	$logo = llb_asset( 'images/ll-logo.webp' );
 
 	$css = '
 		body.login{background:#F5F5F3}

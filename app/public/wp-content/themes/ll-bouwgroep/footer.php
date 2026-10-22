@@ -52,7 +52,7 @@ if ( '' !== $address ) {
 		<div class="ftr-grid">
 			<div>
 				<a class="ftr-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( ( '' !== $company_name ? $company_name : get_bloginfo( 'name' ) ) . ' — home' ); ?>">
-					<img src="<?php echo esc_url( llb_asset( 'images/logo-header.webp' ) ); ?>" alt="<?php echo esc_attr( '' !== $company_name ? $company_name : get_bloginfo( 'name' ) ); ?>" width="1375" height="688" loading="lazy" decoding="async">
+					<img src="<?php echo esc_url( llb_asset( 'images/ll-logo.webp' ) ); ?>" alt="<?php echo esc_attr( '' !== $company_name ? $company_name : get_bloginfo( 'name' ) ); ?>" width="800" height="379" loading="lazy" decoding="async">
 				</a>
 				<?php if ( '' !== $tagline ) : ?>
 					<div class="ftr-tag"><?php echo esc_html( $tagline ); ?></div>
